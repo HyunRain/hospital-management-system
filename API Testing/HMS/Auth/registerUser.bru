@@ -1,0 +1,24 @@
+meta {
+  name: registerUser
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8079/api/auth/registration
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDg5NjA5NzYsImV4cCI6MTc0ODk5Njk3Nn0.61ei7Bp0lkeCqyzGXzDNQTqRhqJXdsngHmhHU3kCWv1JUNZaQCe2wXgesRIqj_UrYGfOFMXRYfX1SL8SeINJKw
+}
+
+body:json {
+  {
+    "email": "franz.meier@gmail.com",
+    "password": "87943251",
+    "repeatedPassword": "87943251",
+    "role": "DOCTOR"
+  }
+}

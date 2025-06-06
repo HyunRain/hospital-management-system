@@ -1,0 +1,17 @@
+meta {
+  name: registerDepartment
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8083/api/department
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Nephrology"
+  }
+}

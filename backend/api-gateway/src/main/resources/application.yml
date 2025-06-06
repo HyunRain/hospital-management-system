@@ -1,0 +1,67 @@
+server:
+  port: 8079 # Gateway listens on port 8079
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: auth
+        url: /api-docs/auth
+      - name: patient
+        url: /api-docs/patient
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        # AUTH SERVICE ROUTES
+        - id: auth-service-protected-route
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api/auth/registration
+          filters:
+            - JwtValidation
+
+        - id: auth-service-route
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api/auth/**
+
+        # PATIENT SERVICE ROUTE
+        - id: patient-service-route
+          uri: http://patient-service:8080
+          predicates:
+            - Path=/api/patient/**
+          filters:
+            - JwtValidation
+
+        # STAFF SERVICE ROUTE
+        - id: staff-service-route
+          uri: http://staff-service:8083
+          predicates:
+              - Path=/api/staff/**
+          filters:
+            - JwtValidation
+
+        # APPOINTMENT SERVICE ROUTE
+        - id: appointment-service-route
+          uri: http://appointment-service:8084
+          predicates:
+            - Path=/api/appointment/**
+          filters:
+            - JwtValidation
+
+        # AUTH API DOCS
+        - id: auth-api-docs-route
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api-docs/auth
+          filters:
+            - RewritePath=/api-docs/auth, /v3/api-docs
+
+        # PATIENT API DOCS
+        - id: patient-api-docs-route
+          uri: http://patient-service:8080
+          predicates:
+            - Path=/api-docs/patient
+          filters:
+            - RewritePath=/api-docs/patient, /v3/api-docs

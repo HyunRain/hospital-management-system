@@ -1,0 +1,76 @@
+package com.hms.auth_service.util;
+
+import com.hms.auth_service.enums.Role;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
+import java.util.Base64;
+import java.util.Date;
+
+@Component
+public class JwtUtil {
+    private final Key secretKey;
+
+    public JwtUtil(@Value("${jwt.secret}") String secret) {
+         byte[] keyBytes = Base64.getDecoder().decode(secret.getBytes(StandardCharsets.UTF_8));
+         this.secretKey = Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public String generateToken(String email, Role role) {
+        return Jwts.builder()
+                .subject(email)
+                .claim("role", role)
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+                .signWith(secretKey)
+                .compact();
+    }
+
+    public void validateToken(String token) {
+        try {
+            Claims claims = Jwts.parser().verifyWith((SecretKey) secretKey)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+
+            Date expiration = claims.getExpiration();
+            if (expiration.before(new Date())) {
+                throw new JwtException("JWT token is expired");
+            }
+        } catch (SignatureException e) {
+            throw new JwtException("Invalid JWT signature");
+        } catch (JwtException e) {
+            throw new JwtException("Invalid JWT");
+        }
+    }
+
+    public String extractRoleFromJwt(String token) {
+        try {
+            Claims claims = Jwts.parser().verifyWith((SecretKey) secretKey)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+
+            Date expiration = claims.getExpiration();
+            if (expiration.before(new Date())) {
+                throw new JwtException("JWT token is expired");
+            }
+
+
+            //System.out.println(claims.get("role", String.class));
+            return claims.get("role", String.class);
+        } catch (SignatureException e) {
+            throw new JwtException("Invalid JWT signature");
+        } catch (JwtException e) {
+            throw new JwtException("Invalid JWT");
+        }
+    }
+}
