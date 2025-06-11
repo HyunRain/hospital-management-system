@@ -1,8 +1,10 @@
 package com.hms.patient_service.grpc;
 
-import billing.BillingRequest;
-import billing.BillingResponse;
+
 import billing.BillingServiceGrpc;
+import billing.CreateBillingRequest;
+import billing.GetBillingAccountRequest;
+import billing.GetBillingResponse;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +23,19 @@ public class BillingServiceGrpcClient {
         billingServiceBlockingStub = BillingServiceGrpc.newBlockingStub(channel);
     }
 
-    public BillingResponse createBillingAccount(String patientId, String firstName, String lastName, String email) {
-        BillingRequest request = BillingRequest.newBuilder().setPatientId(patientId).setFirstName(firstName).setLastName(lastName).setEmail(email).build();
+    public GetBillingResponse createBillingAccount(String patientId, String firstName, String lastName, String email) {
+        CreateBillingRequest request = CreateBillingRequest.newBuilder().setPatientId(patientId).setEmail(email).build();
 
-        BillingResponse response = billingServiceBlockingStub.createBillingAccount(request);
-        log.info("Response received from Billing Service via GRPC: {}", response);
+        GetBillingResponse response = billingServiceBlockingStub.createBillingAccount(request);
+        log.info("Create BillingAccount Response received from Billing Service via GRPC: {}", response);
+        return response;
+    }
+
+    public GetBillingResponse getBillingAccount(String patientId) {
+        GetBillingAccountRequest request = GetBillingAccountRequest.newBuilder().setPatientId(patientId).build();
+
+        GetBillingResponse response = billingServiceBlockingStub.getBillingAccount(request);
+        log.info("Get BillingAccount Response received from Billing Service via GRPC: {}", response);
         return response;
     }
 

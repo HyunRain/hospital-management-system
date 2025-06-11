@@ -1,6 +1,7 @@
 package com.hms.patient_service.service;
 
-import billing.BillingResponse;
+
+import billing.GetBillingResponse;
 import com.hms.patient_service.exception.EmailAlreadyExistsException;
 import com.hms.patient_service.exception.PhoneNumberAlreadyExistsException;
 import com.hms.patient_service.exception.ResourceNotFoundException;
@@ -47,7 +48,7 @@ public class PatientServiceImpl implements PatientService {
 
         Patient savedPatient = patientRepository.save(patient);
         // Create the billing account for the patient
-        BillingResponse billingAccount = billingServiceGrpcClient.createBillingAccount(savedPatient.getPatientId(), savedPatient.getFirstName(), savedPatient.getLastName(), savedPatient.getEmail());
+        GetBillingResponse billingAccount = billingServiceGrpcClient.createBillingAccount(savedPatient.getPatientId(), savedPatient.getFirstName(), savedPatient.getLastName(), savedPatient.getEmail());
         return patientMapper.entityToDto(savedPatient);
     }
 
