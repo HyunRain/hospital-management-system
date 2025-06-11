@@ -32,7 +32,6 @@ public class AppointmentMapper {
                 .appointmentStatus(appointmentRequestDto.getAppointmentStatus())
                 .appointmentDate(appointmentRequestDto.getAppointmentDate())
                 .appointmentTime(appointmentRequestDto.getAppointmentTime())
-                .appointmentEndTime(appointmentRequestDto.getAppointmentEndTime())
                 .reason(appointmentRequestDto.getReason())
                 .build();
     }

@@ -4,10 +4,13 @@ import com.hms.billing_service.model.BillingItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface BillingItemRepository extends JpaRepository<BillingItem, UUID> {
     List<BillingItem> findByBillingAccountId(UUID billingAccountId);
+    Optional<BillingItem> findByIdAndBillingAccountId(UUID id, UUID billingAccountId);
 }

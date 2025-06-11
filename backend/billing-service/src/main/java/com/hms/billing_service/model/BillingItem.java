@@ -36,6 +36,10 @@ public class BillingItem {
     @Enumerated(EnumType.STRING)
     private BillingItemType billingItemType;
 
+    // This field links the billing item to the appointment/admission/another source
+    @NotNull
+    private UUID sourceId;
+
     @NotNull
     private BigDecimal unitPrice;
     @Min(1)
@@ -47,8 +51,10 @@ public class BillingItem {
     @Enumerated(EnumType.STRING)
     private BillingItemStatus status;
 
-    @CreatedDate
     private LocalDateTime startDate;
 
     private LocalDateTime endDate;
+
+    @CreatedDate
+    private LocalDateTime createdAt;
 }
