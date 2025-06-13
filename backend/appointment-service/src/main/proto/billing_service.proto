@@ -57,6 +57,7 @@ message GetBillingItemResponse {
   int32 quantity = 6;
   string totalPrice = 7;
   string status = 8;
+  string sourceId = 9;
 }
 
 message UpdateBillingItemRequest {
@@ -64,6 +65,7 @@ message UpdateBillingItemRequest {
   string patientId = 2;
   string billingItemId = 3;
   string billingItemType = 4;
+  string sourceId = 5;
   int32 quantity = 6;
   string totalPrice = 7;
   string startDate = 8;

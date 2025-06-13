@@ -32,13 +32,19 @@ public class BillingServiceGrpcClient {
         return response;
     }
 
-    public GetBillingItemResponse updateBillingItem(String billingItemId, String accountId, String billingItemType, String startDate) {
+    public GetBillingItemResponse updateBillingItem(String billingItemId, String accountId, String billingItemType, String startDate, String sourceId, String status) {
         UpdateBillingItemRequest request = UpdateBillingItemRequest.newBuilder()
                 .setAccountId(accountId)
                 .setBillingItemId(billingItemId)
                 .setBillingItemType(billingItemType)
+                .setSourceId(sourceId)
                 .setStartDate(startDate)
+                .setStatus(status)
                 .build();
+
+        GetBillingItemResponse response = billingServiceBlockingStub.updateBillingItem(request);
+        log.info("Update BillingItem Response received from Billing Service via GRPC: {}", response);
+        return response;
     }
 
 

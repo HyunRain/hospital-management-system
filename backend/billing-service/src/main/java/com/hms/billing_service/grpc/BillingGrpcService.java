@@ -183,6 +183,7 @@ public class BillingGrpcService extends BillingServiceImplBase {
                 .setQuantity(savedBillingItem.getQuantity())
                 .setTotalPrice(savedBillingItem.getTotalPrice().toPlainString())
                 .setStatus(savedBillingItem.getStatus().toString())
+                .setSourceId(savedBillingItem.getSourceId().toString())
                 .build();
 
         responseStreamObserver.onNext(response);
