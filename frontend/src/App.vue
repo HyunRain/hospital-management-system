@@ -11,7 +11,7 @@ import MainFooter from './components/MainFooter.vue';
     </nav>
   </header>
 
-  <main>
+  <main class="flex flex-col h-[calc(100vh-123px)]">
     <RouterView/>
   </main>
 
