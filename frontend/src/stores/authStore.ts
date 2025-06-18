@@ -66,8 +66,6 @@ export const useAuthStore = defineStore("auth", {
         this.email = null;
         this.role = null;
       },
-
-
   },
 })
 

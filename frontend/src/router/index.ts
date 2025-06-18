@@ -1,23 +1,30 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import { useAuthStore } from '@/stores/authStore'
+import { createRouter, createWebHistory } from 'vue-router';
+import { useAuthStore } from '@/stores/authStore';
+import { useToggleStore } from '@/stores/toggleStore';
+
 
 async function isAuthenticated() {
-  const authStore = useAuthStore()
+  const authStore = useAuthStore();
+  const toggleStore = useToggleStore();
+
+  if(toggleStore.isDemo) return;
+
   if (!authStore.isInitialised) {
     try {
-      console.log("reauthenticate under progress..");
       await authStore.reauthenticate()
       if (authStore.role && authStore.email) {
-        await authStore.fetchStaffData(authStore.role, authStore.email)
+        await authStore.fetchStaffData(authStore.role, authStore.email);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
+  } else {
+    return;
   }
   if (!authStore.isLoggedIn) {
-    return { path: '/login' }
+    return { path: '/login' };
   }
-}
+};
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +55,6 @@ const router = createRouter({
       beforeEnter: isAuthenticated,
     },
   ],
-})
+});
 
-export default router
+export default router;

@@ -39,6 +39,13 @@ const mode = useColorMode({
         <img @click="toggleStore.toggleUserDropdown()" :src="authStore.profileImage" alt="Profile Picture" class="w-[35px] h-[35px] rounded-full object-fit-cover cursor-pointer">
         <UserDropdown v-if="toggleStore.showUserDropdown" v-click-outside="toggleStore.toggleUserDropdown"/>
       </div>
+      <div v-if="toggleStore.isDemo" class="flex items-center gap-4">
+        <div class="flex flex-col">
+          <p>Demo Session</p>
+          <p>( Mock Data )</p>
+        </div>
+        <img class="size-7 cursor-pointer" :src="`/assets/icons/${toggleStore.darkModeState}/logout.svg`" alt="Logout Icon">
+      </div>
 
     </div>
   </div>
