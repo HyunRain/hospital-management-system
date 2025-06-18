@@ -6,9 +6,10 @@ const toggleStore = useToggleStore();
 </script>
 
 <template>
-  <div class="flex flex-grow w-full px-5 py-5">
+  <div class="flex flex-grow w-full pr-10 pl-5 pb-5">
 
-    <div class="rounded-lg max-w-[260px] w-full text-start md:flex flex-col hidden">
+    <!-- Sidebar -->
+    <div class="rounded-lg max-w-[260px] w-full text-start md:flex flex-col hidden md:fixed self-start top-[86px]">
       <ul class="flex flex-col gap-4 items-start font-medium w-full">
         <RouterLink to="/dashboard">
           <li class="cursor-pointer flex items-center gap-3 hover:bg-red-100 dark:hover:bg-zinc-800 p-2.5 rounded-xl transition w-full">
@@ -61,7 +62,9 @@ const toggleStore = useToggleStore();
       </ul>
     </div>
 
-    <RouterView />
+    <div class="md:pl-[260px] flex w-full">
+      <RouterView />
+    </div>
   </div>
 </template>
 

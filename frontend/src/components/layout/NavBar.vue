@@ -16,7 +16,7 @@ const mode = useColorMode({
 </script>
 
 <template>
-  <div class="top-0 z-50 flex items-center h-[66px] justify-between px-2 md:px-10 py-3 position-sticky">
+  <div class="top-0 z-50 w-full flex items-center h-[66px] justify-between px-2 md:px-10 bg-white dark:bg-zinc-900 py-3 fixed">
     <div class="flex items-center gap-30">
       <div class="flex items-center gap-2">
         <img src="/assets/icons/lightMode/hospital.svg" alt="Brand logo" class="w-[35px] h-[35px]">

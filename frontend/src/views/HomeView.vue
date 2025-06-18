@@ -1,31 +1,54 @@
 <script setup lang="ts">
 import DashboardCard from '@/components/ui/DashboardCard.vue';
-import { Line } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale, Filler } from 'chart.js'
+import { Line, Pie, Bar } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, BarElement, PointElement, ArcElement, CategoryScale, LinearScale, Filler } from 'chart.js'
 import type { ChartOptions } from 'chart.js'
 import { useToggleStore } from '@/stores/toggleStore';
-import { computed } from 'vue';
+import { computed, ref} from 'vue';
 
 const toggleStore = useToggleStore();
 
 const isDark = computed(() => toggleStore.darkModeState === 'darkMode');
 
-ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale, Filler);
+ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, BarElement, CategoryScale, LinearScale, Filler, ArcElement);
 
-const chartData = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
-  datasets: [{
-    label: 'Patients',
-    data: [30,40,10,20,60,30],
-    borderColor: '#da4353',
-    backgroundColor: '#da435264',
-    tension: 0.4,
-    fill: true,
-    },
-  ],
+
+// ----------------------- Patients Overview Chart -----------------------
+
+const selectedRange = ref<'week' | 'month' | 'year'>('week');
+
+// Plan is 3 Sections: Last Week, Last Month, Last Year
+const chartDataSets = {
+  week: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    data: [10, 12, 8, 15, 20, 18, 9],
+  },
+  month: {
+    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+    data: [50, 70, 40, 90],
+  },
+  year: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Sep', 'Oct', 'Nov', 'Dec'],
+    data: [120, 90, 140, 100, 180, 160, 120, 90, 130, 180, 150, 120],
+  },
 };
 
-const chartOptions = computed<ChartOptions<'line'>> (() => ({
+const chartDataLinePatients = computed(() => ({
+  labels: chartDataSets[selectedRange.value].labels,
+  datasets: [{
+    label: 'Patients',
+    data: chartDataSets[selectedRange.value].data,
+    borderColor: '#da4353',
+    backgroundColor: isDark.value ? '#da43521a' : '#da435264',
+    tension: 0.4,
+    fill: true,
+    pointRadius: 4,
+    },
+  ],
+}));
+
+
+const chartOptionsLinePatients = computed<ChartOptions<'line'>> (() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
@@ -47,6 +70,7 @@ const chartOptions = computed<ChartOptions<'line'>> (() => ({
       },
     },
     y: {
+      min: 0,
       ticks: {
         color: isDark.value ? '#dfdfd6': '#4c4c4c',
         stepSize: 10,
@@ -54,6 +78,80 @@ const chartOptions = computed<ChartOptions<'line'>> (() => ({
       grid: {
         color: isDark.value ? '#333' : '#dfdfd6',
       },
+    },
+  },
+}));
+
+// -----------------------  -----------------------
+
+// ----------------------- Revenue Chart -----------------------
+
+const chartDataLineRevenue = computed(() => ({
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
+  datasets: [{
+    label: 'Revenue in €',
+    data: [30, 40, 10, 20, 60, 30],
+    borderColor: '#da4353',
+    backgroundColor: isDark.value ? '#da43521a' : '#da435264',
+    tension: 0.4,
+    fill: true,
+  }],
+}));
+
+const chartOptionsLineRevenue = computed<ChartOptions<'line'>> (() => ({
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      labels: {
+        color: isDark.value ? '#dfdfd6': '#4c4c4c', // Adjust for dark mode if needed
+      },
+      position: 'bottom',
+    },
+  },
+  scales: {
+    x: {
+      ticks: {
+        color: isDark.value ? '#dfdfd6': '#4c4c4c', // Adjust for dark mode
+      },
+      grid: {
+        color: '#333', // Grid color
+        display: false,
+      },
+    },
+    y: {
+      min: 0,
+      ticks: {
+        color: isDark.value ? '#dfdfd6': '#4c4c4c',
+        stepSize: 10,
+      },
+      grid: {
+        color: isDark.value ? '#333' : '#dfdfd6',
+      },
+    },
+  },
+}));
+
+// ----------------------- Department Pie Chart -----------------------
+const chartDataPie = {
+  labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+  datasets: [
+    {
+      backgroundColor: ['#da4353', 'Yellow', 'Orange', '#34ad53'],
+      data: [40, 20, 80, 10]
+    }
+  ]
+};
+
+const chartOptionsPie = computed<ChartOptions<'pie'>> (() => ({
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      labels: {
+        color: isDark.value ? '#dfdfd6': '#4c4c4c', // Adjust for dark mode if needed
+      },
+      position: 'bottom',
     },
   },
 }));
@@ -70,16 +168,32 @@ const chartOptions = computed<ChartOptions<'line'>> (() => ({
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full p-5">
       <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-zinc-900 p-4">
-        <p class="text-[18px] mb-4 text-zinc-800 dark:text-zinc-200">Patients</p>
+        <div class="flex mb-4 items-center justify-between">
+          <p class="text-[18px] text-zinc-800 dark:text-zinc-200">Patients Overview</p>
+          <div class="flex gap-4">
+            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRange = 'week'">Last Week</button>
+            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRange = 'month'">Last Month</button>
+            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRange = 'year'">Last Year</button>
+          </div>
+        </div>
         <div class="flex-1">
-          <Line :data="chartData" :options="chartOptions" />
+          <Line :data="chartDataLinePatients" :options="chartOptionsLinePatients" />
         </div>
       </div>
 
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-[33%_66%] gap-6 w-full p-5">
       <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-zinc-900 p-4">
-        <p class="text-[18px] mb-4 text-zinc-800 dark:text-zinc-200">Patients</p>
+        <p class="text-[18px] mb-4 text-zinc-800 dark:text-zinc-200">Department Breakdown</p>
         <div class="flex-1">
-          <Line :data="chartData" :options="chartOptions" />
+          <Pie :options="chartOptionsPie" :data="chartDataPie"/>
+        </div>
+      </div>
+       <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-zinc-900 p-4">
+        <p class="text-[18px] mb-4 text-zinc-800 dark:text-zinc-200">Revenue in €</p>
+        <div class="flex-1">
+          <Line :data="chartDataLineRevenue" :options="chartOptionsLineRevenue" />
         </div>
       </div>
     </div>
