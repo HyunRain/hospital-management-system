@@ -1,5 +1,6 @@
 package com.hms.auth_service.util;
 
+import com.hms.auth_service.dto.LoginInfoResponseDto;
 import com.hms.auth_service.enums.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -29,7 +30,7 @@ public class JwtUtil {
                 .subject(email)
                 .claim("role", role)
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 15)) // 15 minutes expiration
                 .signWith(secretKey)
                 .compact();
     }
@@ -45,6 +46,32 @@ public class JwtUtil {
             if (expiration.before(new Date())) {
                 throw new JwtException("JWT token is expired");
             }
+        } catch (SignatureException e) {
+            throw new JwtException("Invalid JWT signature");
+        } catch (JwtException e) {
+            throw new JwtException("Invalid JWT");
+        }
+    }
+
+    public LoginInfoResponseDto extractEmailAndRoleFromJwt(String token) {
+        try {
+            Claims claims = Jwts.parser().verifyWith((SecretKey) secretKey)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+
+            Date expiration = claims.getExpiration();
+            if (expiration.before(new Date())) {
+                throw new JwtException("JWT token is expired");
+            }
+
+            String email = claims.getSubject();
+            String role = claims.get("role", String.class);
+
+            return LoginInfoResponseDto.builder()
+                    .email(email)
+                    .role(Role.valueOf(role))
+                    .build();
         } catch (SignatureException e) {
             throw new JwtException("Invalid JWT signature");
         } catch (JwtException e) {

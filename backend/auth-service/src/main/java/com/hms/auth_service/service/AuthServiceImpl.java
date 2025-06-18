@@ -1,9 +1,6 @@
 package com.hms.auth_service.service;
 
-import com.hms.auth_service.dto.LoginRequestDto;
-import com.hms.auth_service.dto.LoginResponseDto;
-import com.hms.auth_service.dto.RegistrationRequestDto;
-import com.hms.auth_service.dto.RegistrationResponseDto;
+import com.hms.auth_service.dto.*;
 import com.hms.auth_service.exception.EmailAlreadyExistsException;
 import com.hms.auth_service.model.User;
 import com.hms.auth_service.util.JwtUtil;
@@ -54,7 +51,13 @@ public class AuthServiceImpl implements AuthService {
 
         return LoginResponseDto.builder()
                 .token(jwtUtil.generateToken(user.getEmail(), user.getRole()))
+                .email(user.getEmail())
+                .role(user.getRole())
                 .build();
+    }
+
+    public LoginInfoResponseDto reauthenticate(String token) {
+        return jwtUtil.extractEmailAndRoleFromJwt(token);
     }
 
     public boolean validateToken(String token) {
