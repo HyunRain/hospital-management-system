@@ -1,8 +1,24 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 body {
-  background-color: #fafafa28;
-  color: #4c4c4c;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-size: 14px;
   font-family: 'Inter';
+  height: 100%;
+}
+
+:root {
+  --bg-color: #fafafa28;
+  --text-color: #4c4c4c;
+  --input-placeholder: #999999;
+}
+
+.dark {
+  --text-color: #eeeeee;
+  /* --bg-color: #161618; more black */
+  --bg-color: #18181b; /* more blue*/
+  --input-placeholder: #797979;
 }

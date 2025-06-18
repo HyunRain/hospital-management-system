@@ -1,23 +1,25 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import NavBar from './components/NavBar.vue';
-import MainFooter from './components/MainFooter.vue';
+import NavBar from './components/layout/NavBar.vue';
+import MainFooter from './components/layout/MainFooter.vue';
 </script>
 
 <template>
-  <header>
-    <nav>
-      <NavBar/>
-    </nav>
-  </header>
+  <div class="flex flex-col min-h-screen">
+    <header>
+      <nav>
+        <NavBar/>
+      </nav>
+    </header>
 
-  <main class="flex flex-col h-[calc(100vh-123px)]">
-    <RouterView/>
-  </main>
+    <main class="flex min-h-[calc(100vh-106px)]">
+      <RouterView/>
+    </main>
 
-  <footer>
-    <MainFooter/>
-  </footer>
+    <footer>
+      <MainFooter/>
+    </footer>
+  </div>
 </template>
 
 <style scoped>
