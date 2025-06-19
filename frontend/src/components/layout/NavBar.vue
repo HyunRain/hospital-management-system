@@ -5,6 +5,7 @@ import UserDropdown from '@/components/ui/UserDropdown.vue';
 import { roleToPascalCase } from '@/util/functions/roleToPascalCase';
 import { Icon } from '@iconify/vue'
 import { useColorMode } from '@vueuse/core'
+import router from '@/router';
 
 const authStore = useAuthStore();
 const toggleStore = useToggleStore();
@@ -16,7 +17,7 @@ const mode = useColorMode({
 </script>
 
 <template>
-  <div class="top-0 z-50 w-full flex items-center h-[66px] justify-between px-2 md:px-10 bg-white dark:bg-zinc-900 py-3 fixed">
+  <div class="top-0 z-50 w-full flex items-center h-[66px] justify-between px-2 md:px-7.5 bg-white dark:bg-zinc-900 py-3 fixed">
     <div class="flex items-center gap-30">
       <div class="flex items-center gap-2">
         <img src="/assets/icons/lightMode/hospital.svg" alt="Brand logo" class="w-[35px] h-[35px]">
@@ -41,10 +42,11 @@ const mode = useColorMode({
       </div>
       <div v-if="toggleStore.isDemo" class="flex items-center gap-4">
         <div class="flex flex-col">
-          <p>Demo Session</p>
-          <p>( Mock Data )</p>
+          <p class="hidden md:block">Demo Session</p>
+          <p class="md:hidden">Demo</p>
         </div>
-        <img class="size-7 cursor-pointer" :src="`/assets/icons/${toggleStore.darkModeState}/logout.svg`" alt="Logout Icon">
+        <img @click="toggleStore.toggleUserDropdown()" :src="authStore.profileImage" alt="Profile Picture" class="w-[35px] h-[35px] rounded-full object-fit-cover cursor-pointer">
+        <UserDropdown v-if="toggleStore.showUserDropdown" v-click-outside="toggleStore.toggleUserDropdown"/>
       </div>
 
     </div>

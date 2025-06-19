@@ -16,7 +16,7 @@ export const useAuthStore = defineStore("auth", {
       return !!this.user;
     },
     profileImage(): string {
-      return createProfilPicture(this.user?.firstName ?? "");
+      return createProfilPicture(this.user?.firstName ?? "Demo");
     }
   },
 

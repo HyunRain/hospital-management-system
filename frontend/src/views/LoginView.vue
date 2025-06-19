@@ -55,7 +55,6 @@ function handleDemoLogin() {
         class="px-5 md:p-0 items-center justify-center bg-white dark:bg-[#1c1c20] flex flex-col md:w-1/2 rounded-r-xl"
       >
         <h2 class="mb-10 font-bold text-[28px]">Login to Dashboard</h2>
-        {{ toggleStore.isDemo }}
         <form
           class="flex flex-col items-center justify-center gap-6 w-full md:w-2/4"
           @submit.prevent="handleLogin()"

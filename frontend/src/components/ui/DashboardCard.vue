@@ -33,7 +33,7 @@ const imgSrc = computed(() => {
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
         <img class="h-6 w-6" :src="imgSrc" alt="Card Icon">
-        <p class="font-medium text-[18px]">{{ props.title }}</p>
+        <p class="font-medium text-[16px]">{{ props.title }}</p>
       </div>
       <img class="h-6 w-6" :src="`/assets/icons/${toggleStore.darkModeState}/options.svg`" alt="3 Dots Icon">
     </div>

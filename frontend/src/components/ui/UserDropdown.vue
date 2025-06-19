@@ -8,6 +8,11 @@ const toggleStore = useToggleStore();
 const router = useRouter();
 
 async function handleLogout() {
+  if(!authStore.user) {
+    toggleStore.toggleDemo();
+    router.push('/login');
+    toggleStore.toggleUserDropdown();
+  }
   await authStore.logout();
   router.push('/login');
   toggleStore.toggleUserDropdown();
