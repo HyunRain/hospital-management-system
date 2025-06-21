@@ -1,5 +1,6 @@
 package com.hms.patient_service.controller;
 
+import com.hms.patient_service.dto.PaginatedResponse;
 import com.hms.patient_service.dto.PatientDto;
 import com.hms.patient_service.service.PatientService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,7 +9,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/patient")
@@ -36,9 +36,16 @@ public class PatientController {
 
     @GetMapping("/all")
     @Operation(summary = "Get all patients")
-    public ResponseEntity<List<PatientDto>> getAllPatients() {
-        List<PatientDto> allPatients = patientService.getAllPatients();
-        return new ResponseEntity<>(allPatients, HttpStatus.OK);
+    public ResponseEntity<PaginatedResponse> getAllPatients(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size) {
+        PaginatedResponse allPatientsPaginated = patientService.getAllPatientsPaginated(page, size);
+        return new ResponseEntity<>(allPatientsPaginated, HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    @Operation(summary = "Search Patients by Fields")
+    public ResponseEntity<PaginatedResponse> searchPatients(@RequestParam String input, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size ) {
+        PaginatedResponse allPatientsPaginated = patientService.searchPatients(input, page, size);
+        return new ResponseEntity<>(allPatientsPaginated, HttpStatus.OK);
     }
 
     @PatchMapping("/update/{patientId}")

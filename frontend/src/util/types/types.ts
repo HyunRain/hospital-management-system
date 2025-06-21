@@ -22,3 +22,37 @@ export enum UserRole {
   NURSE = 'NURSE',
   RECEPTIONIST = 'RECEPTIONIST',
 }
+
+
+export interface PatientDto {
+  firstName: string;
+  lastName: string;
+  gender: 'MALE' | 'FEMALE' | 'OTHER';
+  dateOfBirth: string; //
+  bloodGroup: 'A_POSITIVE' | 'A_NEGATIVE' | 'B_POSITIVE' | 'B_NEGATIVE' | 'AB_POSITIVE' | 'AB_NEGATIVE' | 'O_POSITIVE' | 'O_NEGATIVE';
+  maritalStatus: 'SINGLE' | 'MARRIED';
+  phoneNumber: string;
+  email: string;
+  emergencyContactName?: string;
+  emergencyContactNumber?: string;
+  relationshipToEmergencyContact?: string;
+  addressLine1: string;
+  addressLine2?: string;
+  city: string;
+  state: string;
+  country: string;
+  postalCode: string;
+  status: 'ACTIVE' | 'INACTIVE' | 'DECEASED';
+  patientId?: string;
+  referredBy?: string;
+  knownAllergies?: string[];
+  pastMedicalHistory?: string[];
+  chronicDiseases?: string[];
+  currentMedications?: string[];
+  immunizationStatus?: string[];
+  surgicalHistory?: string[];
+  insuranceProvider?: string;
+  insurancePolicyNumber?: string;
+  insuranceExpiryDate?: string; //
+};
+

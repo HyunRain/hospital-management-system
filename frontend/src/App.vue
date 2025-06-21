@@ -7,8 +7,6 @@ import MainFooter from './components/layout/MainFooter.vue';
 <template>
   <div class="flex flex-col min-h-screen">
         <NavBar/>
-
-
     <main class="flex min-h-[calc(100vh-106px)] pt-[66px]">
       <RouterView/>
     </main>

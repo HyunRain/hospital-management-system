@@ -6,8 +6,10 @@ import com.hms.patient_service.enums.PatientStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -23,7 +25,9 @@ import java.util.UUID;
 @Data
 @Builder
 @EntityListeners(AuditingEntityListener.class)
-public class Patient {
+@NoArgsConstructor
+@AllArgsConstructor
+public class  Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

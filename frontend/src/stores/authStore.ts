@@ -31,7 +31,6 @@ export const useAuthStore = defineStore("auth", {
         if(role === UserRole.DOCTOR || role === UserRole.NURSE || role === UserRole.RECEPTIONIST) {
           const responseStaff = await axios.get(`http://localhost:8079/api/staff/get/${email}`, { withCredentials: true });
           this.user = responseStaff.data;
-          console.log("User logged in:", this.user);
         } else if(this.role === UserRole.ADMIN) {
             this.user =  {
               userId: '',
@@ -49,7 +48,6 @@ export const useAuthStore = defineStore("auth", {
               postalCode: '',
               departmentId: '',
             } as User;
-            console.log("Admin user logged in:", this.user);
         }
       },
 
@@ -57,7 +55,6 @@ export const useAuthStore = defineStore("auth", {
         const response = await axios.get("http://localhost:8079/api/auth/get/currentUser", { withCredentials: true });
         this.email = response.data.email;
         this.role = response.data.role;
-        console.log("Reauthentication successful: ", this.email, this.role);
       },
 
       async logout() {

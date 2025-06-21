@@ -18,7 +18,6 @@ async function handleLogin() {
   try {
     await authStore.login(loginInput.value)
     if (authStore.role && authStore.email) {
-      console.log('test 123 login')
       await authStore.fetchStaffData(authStore.role, authStore.email)
       authStore.isInitialised = true
     }
@@ -46,13 +45,13 @@ function handleDemoLogin() {
 </script>
 
 <template>
-  <div class="flex bg-zinc-50 dark:bg-zinc-900 w-full justify-center items-center">
+  <div class="flex bg-zinc-50 dark:bg-[#030712] min-h-[calc(100vh-127px)] w-full justify-center items-center">
     <div class="flex max-w-[1000px] justify-center w-full md:shadow-lg rounded-xl h-[65%]">
       <div class="w-1/2 bg-[#FFE0CA] p-5 items-center justify-center rounded-l-xl hidden md:flex">
         <img src="/assets/images/hospital image.png" alt="Hospital Management System Image" />
       </div>
       <div
-        class="px-5 md:p-0 items-center justify-center bg-white dark:bg-[#1c1c20] flex flex-col md:w-1/2 rounded-r-xl"
+        class="px-5 md:p-0 items-center justify-center bg-white dark:bg-[#0e1015] flex flex-col md:w-1/2 rounded-r-xl"
       >
         <h2 class="mb-10 font-bold text-[28px]">Login to Dashboard</h2>
         <form

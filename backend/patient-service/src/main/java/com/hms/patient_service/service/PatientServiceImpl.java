@@ -2,6 +2,7 @@ package com.hms.patient_service.service;
 
 
 import billing.GetBillingResponse;
+import com.hms.patient_service.dto.PaginatedResponse;
 import com.hms.patient_service.exception.EmailAlreadyExistsException;
 import com.hms.patient_service.exception.PhoneNumberAlreadyExistsException;
 import com.hms.patient_service.exception.ResourceNotFoundException;
@@ -10,9 +11,16 @@ import com.hms.patient_service.grpc.BillingServiceGrpcClient;
 import com.hms.patient_service.mapper.PatientMapper;
 import com.hms.patient_service.model.Patient;
 import com.hms.patient_service.respository.PatientRepository;
+import com.hms.patient_service.specification.PatientSpecifications;
 import com.hms.patient_service.util.PatientIdGenerator;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -31,6 +39,7 @@ public class PatientServiceImpl implements PatientService {
         this.billingServiceGrpcClient = billingServiceGrpcClient;
     }
 
+    @Override
     public PatientDto savePatient(PatientDto patientDto) {
         if(patientRepository.existsByEmail(patientDto.getEmail())) {
             throw new EmailAlreadyExistsException("A patient with this email already exists. ");
@@ -52,18 +61,43 @@ public class PatientServiceImpl implements PatientService {
         return patientMapper.entityToDto(savedPatient);
     }
 
+    @Override
     public PatientDto getPatientById(String patientId) {
         Patient patient = patientRepository.findByPatientId(patientId)
                 .orElseThrow(() -> new ResourceNotFoundException("Patient not found with Id: " + patientId));
         return patientMapper.entityToDto(patient);
     }
 
-    public List<PatientDto> getAllPatients() {
-        List<Patient> patients = patientRepository.findAll();
-        return patients.stream().map(patientMapper::entityToDto).toList();
+    @Override
+    public PaginatedResponse getAllPatientsPaginated(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Patient> allPatients = patientRepository.findAll(pageable);
+        List<PatientDto> dtos = allPatients.stream().map(patientMapper::entityToDto).toList();
+
+        return PaginatedResponse.builder()
+                .patients(dtos)
+                .totalPages(allPatients.getTotalPages())
+                .totalPatients(allPatients.getTotalElements())
+                .build();
     }
 
-    public PatientDto updatePatient(String patientId, PatientDto patientDto) {
+    @Override
+    public PaginatedResponse searchPatients(String input, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Specification<Patient> spec = PatientSpecifications.patientContainsTerm(input);
+
+        Page<Patient> allPatients = patientRepository.findAll(spec, pageable);
+        List<PatientDto> dtos = allPatients.stream().map(patientMapper::entityToDto).toList();
+
+        return PaginatedResponse.builder()
+                .patients(dtos)
+                .totalPages(allPatients.getTotalPages())
+                .totalPatients(allPatients.getTotalElements())
+                .build();
+    }
+
+
+        public PatientDto updatePatient(String patientId, PatientDto patientDto) {
         Patient currentPatient = patientRepository.findByPatientId(patientId)
                 .orElseThrow(() -> new ResourceNotFoundException("Patient not found with Id: " + patientDto.getPatientId()));
 
@@ -73,6 +107,7 @@ public class PatientServiceImpl implements PatientService {
         return patientMapper.entityToDto(savedPatient);
     }
 
+    @Override
     public void deletePatient(String patientId) {
         long resultCount = patientRepository.deleteByPatientId(patientId);
         if (resultCount == 0) throw new ResourceNotFoundException("Patient not found with Id: " + patientId);

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DashboardCard from '@/components/ui/DashboardCard.vue';
+import DashboardCard from '@/components/ui/homeview/DashboardCard.vue';
 import { Line, Pie, Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, BarElement, PointElement, ArcElement, CategoryScale, LinearScale, Filler } from 'chart.js'
 import type { ChartOptions } from 'chart.js'
@@ -42,7 +42,6 @@ const chartDataLinePatients = computed(() => ({
     backgroundColor: isDark.value ? '#da43521a' : '#da435264',
     tension: 0.4,
     fill: true,
-    pointRadius: 4,
     },
   ],
 }));
@@ -105,17 +104,15 @@ const chartDataSetsBarAppointments = {
 const chartDataBarAppointments = computed(() => ({
   labels: chartDataSetsBarAppointments[selectedRangeBarAppoitments.value].labels,
   datasets: [{
-    label: 'Patients',
+    label: 'Appointments',
     data: chartDataSetsBarAppointments[selectedRangeBarAppoitments.value].data,
     backgroundColor: isDark.value ? '#da43521a' : '#da435264',
-    fill: true,
-    pointRadius: 4,
     },
   ],
 }));
 
 
-const chartOptionsBarAppointments = computed<ChartOptions<'line'>> (() => ({
+const chartOptionsBarAppointments = computed<ChartOptions<'bar'>> (() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
@@ -223,7 +220,7 @@ const chartOptionsPie = computed<ChartOptions<'pie'>> (() => ({
 </script>
 
 <template>
-  <div class="flex flex-col items-start w-full bg-gray-50 dark:bg-[#1f1f23] rounded-xl">
+  <div class="flex flex-col items-start w-full bg-gray-50 dark:bg-[#030712] rounded-xl">
     <div class="flex flex-wrap gap-4 w-full justify-center p-5">
       <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Patients" />
       <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Appointments" />
@@ -232,7 +229,7 @@ const chartOptionsPie = computed<ChartOptions<'pie'>> (() => ({
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full p-5">
-      <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-zinc-900 p-4">
+      <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-[#0d1016] p-4">
         <div class="flex mb-4 items-center justify-between">
           <p class="text-[16px] text-zinc-800 dark:text-zinc-200">Patients Overview</p>
           <div class="flex gap-4">
@@ -246,13 +243,13 @@ const chartOptionsPie = computed<ChartOptions<'pie'>> (() => ({
         </div>
       </div>
 
-      <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-zinc-900 p-4">
+      <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-[#0d1016] p-4">
         <div class="flex mb-4 items-center justify-between">
           <p class="text-[16px] text-zinc-800 dark:text-zinc-200">Appointments</p>
           <div class="flex gap-4">
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRangeLinePatients = 'week'">Last Week</button>
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRangeLinePatients = 'month'">Last Month</button>
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRangeLinePatients = 'year'">Last Year</button>
+            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRangeBarAppoitments = 'week'">Last Week</button>
+            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRangeBarAppoitments = 'month'">Last Month</button>
+            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRangeBarAppoitments = 'year'">Last Year</button>
           </div>
         </div>
         <div class="flex-1">
@@ -262,13 +259,13 @@ const chartOptionsPie = computed<ChartOptions<'pie'>> (() => ({
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-[33%_65.3%] gap-6 w-full p-5">
-      <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-zinc-900 p-4">
+      <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-[#0d1016] p-4">
         <p class="text-[16px] mb-4 text-zinc-800 dark:text-zinc-200">Department Breakdown</p>
         <div class="flex-1">
           <Pie :options="chartOptionsPie" :data="chartDataPie"/>
         </div>
       </div>
-       <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-zinc-900 p-4">
+       <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-[#0d1016] p-4">
         <p class="text-[16px] mb-4 text-zinc-800 dark:text-zinc-200">Revenue in €</p>
         <div class="flex-1">
           <Line :data="chartDataLineRevenue" :options="chartOptionsLineRevenue" />
