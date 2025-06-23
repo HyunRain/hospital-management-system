@@ -5,7 +5,7 @@ import { onBeforeMount } from 'vue';
 const patientStore = usePatientStore();
 
 onBeforeMount(async () => {
-  await patientStore.getPageOfPatients(0, patientStore.size);
+  if(patientStore.patients.length === 0) await patientStore.getPageOfPatients(0, patientStore.size);
 })
 </script>
 

@@ -56,3 +56,4 @@ export interface PatientDto {
   insuranceExpiryDate?: string; //
 };
 
+export type ValidationResult = { success: true } | { success: false; field: string; validator: string; error: string };

@@ -5,7 +5,6 @@ export default {
     const handler = (event: MouseEvent) => {
       const target = event.target as Node;
 
-
       // Only trigger when the click is outside the element
       if (el && !el.contains(target)) {
         binding.value(event);

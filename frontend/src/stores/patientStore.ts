@@ -7,11 +7,18 @@ export const usePatientStore = defineStore("patient", {
   state: () => ({
     patients: [] as PatientDto[],
     size: 15 as number,
+    page: 1 as number,
     totalPages: 0 as number,
     totalPatients: 0 as number,
+
+    // Add Patient select data fields
+    bloodType: '' as string,
+    gender: '' as string,
+    maritalStatus: '' as string,
   }),
 
   actions: {
+    // Main CRUD ACTIONS
     async getPageOfPatients(page: number, size: number) {
       const response = await axios.get(apiUrl + 'patient/all', {
         params: {
@@ -37,6 +44,34 @@ export const usePatientStore = defineStore("patient", {
       this.patients = response.data.patients;
       this.totalPages = response.data.totalPages;
       this.totalPatients = response.data.totalPatients;
+    },
+
+    async addPatient(formData: object) {
+      const response = await axios.post(apiUrl + 'patient', formData, {
+        withCredentials: true,
+      });
+      console.log(response.data);
+    },
+
+
+
+
+
+
+
+    // Miscellaneous actions
+    storeSelectInput(input: string, type: string) {
+      switch (type) {
+        case "gender":
+          this.gender = input;
+          break;
+        case "blood type":
+          this.bloodType = input;
+          break;
+        case "marital status":
+          this.maritalStatus = input;
+          break;
+      }
     }
   },
 });
