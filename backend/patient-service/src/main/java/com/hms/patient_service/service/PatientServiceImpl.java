@@ -14,15 +14,18 @@ import com.hms.patient_service.respository.PatientRepository;
 import com.hms.patient_service.specification.PatientSpecifications;
 import com.hms.patient_service.util.PatientIdGenerator;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.lang.NonNullApi;
 import org.springframework.stereotype.Service;
 
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -71,13 +74,15 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public PaginatedResponse getAllPatientsPaginated(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Patient> allPatients = patientRepository.findAll(pageable);
+        Page<UUID> pagedPatientIds = patientRepository.findPagedPatientIds(pageable);
+        List<UUID> patientIds = pagedPatientIds.stream().toList();
+        List<Patient> allPatients = patientRepository.findPatientsWithAllCollections(patientIds);
         List<PatientDto> dtos = allPatients.stream().map(patientMapper::entityToDto).toList();
 
         return PaginatedResponse.builder()
                 .patients(dtos)
-                .totalPages(allPatients.getTotalPages())
-                .totalPatients(allPatients.getTotalElements())
+                .totalPages(pagedPatientIds.getTotalPages())
+                .totalPatients(pagedPatientIds.getTotalElements())
                 .build();
     }
 
@@ -86,13 +91,17 @@ public class PatientServiceImpl implements PatientService {
         Pageable pageable = PageRequest.of(page, size);
         Specification<Patient> spec = PatientSpecifications.patientContainsTerm(input);
 
-        Page<Patient> allPatients = patientRepository.findAll(spec, pageable);
+        Page<Patient> pagedPatients = patientRepository.findAll(spec, pageable);
+        List<UUID> patientIds = pagedPatients.stream().map(Patient::getId).toList();
+
+        List<Patient> allPatients = patientRepository.findPatientsWithAllCollections(patientIds);
+
         List<PatientDto> dtos = allPatients.stream().map(patientMapper::entityToDto).toList();
 
         return PaginatedResponse.builder()
                 .patients(dtos)
-                .totalPages(allPatients.getTotalPages())
-                .totalPatients(allPatients.getTotalElements())
+                .totalPages(pagedPatients.getTotalPages())
+                .totalPatients(pagedPatients.getTotalElements())
                 .build();
     }
 

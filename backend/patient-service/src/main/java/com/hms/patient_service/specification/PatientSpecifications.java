@@ -36,7 +36,6 @@ public class PatientSpecifications {
                     cb.like(cb.lower(root.get("email")), likeInput),
                     cb.like(cb.lower(root.get("city")), likeInput),
                     cb.like(cb.lower(root.get("patientId")), likeInput),
-                    cb.like(cb.lower(root.get("addressLine1")), likeInput),
                     cb.like(cb.lower(root.get("gender").as(String.class)), likeInput),
                     cb.like(cb.lower(root.get("status").as(String.class)), likeInput),
                     cb.like(cb.lower(root.get("bloodGroup").as(String.class)), likeInput),

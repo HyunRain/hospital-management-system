@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String,String>> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
         log.warn("Email already exists {}", ex.getMessage());
         Map<String,String> errors = new HashMap<>();
-        errors.put("message", "Email already exists");
+        errors.put("message", ex.getMessage());
         return ResponseEntity.badRequest().body(errors);
     }
 
@@ -49,7 +49,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String,String>> handleEmailAlreadyExistsException(ResourceNotFoundException ex) {
         log.warn("Email not found {}", ex.getMessage());
         Map<String,String> errors = new HashMap<>();
-        errors.put("message", "Email not found");
+        errors.put("message", ex.getMessage());
+        return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler(PasswordsDontMatchException.class)
+    public ResponseEntity<Map<String,String>> handlePasswordsDoNotMatchException(PasswordsDontMatchException ex) {
+        log.warn("Passwords don't match {}", ex.getMessage());
+        Map<String,String> errors = new HashMap<>();
+        errors.put("message", ex.getMessage());
         return ResponseEntity.badRequest().body(errors);
     }
 

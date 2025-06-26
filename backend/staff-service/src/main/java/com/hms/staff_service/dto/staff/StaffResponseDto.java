@@ -38,5 +38,5 @@ public class StaffResponseDto {
 
     private String postalCode;
 
-    private UUID departmentId;
+    private String departmentName;
 }

@@ -1,5 +1,6 @@
 package com.hms.staff_service.controller;
 
+import com.hms.staff_service.dto.staff.PaginatedResponseDto;
 import com.hms.staff_service.dto.staff.StaffRequestDto;
 import com.hms.staff_service.dto.staff.StaffResponseDto;
 import com.hms.staff_service.service.StaffService;
@@ -10,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/staff")
@@ -39,8 +39,8 @@ public class StaffController {
 
     @GetMapping("/all")
     @Operation(summary = "Get All Staff")
-    public ResponseEntity<List<StaffResponseDto>> getAllStaff() {
-        List<StaffResponseDto> allStaff = staffService.getAllStaff();
+    public ResponseEntity<PaginatedResponseDto> getAllStaff(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size) {
+        PaginatedResponseDto allStaff = staffService.getAllDoctorsPaginated(page, size);
         return new ResponseEntity<>(allStaff, HttpStatus.OK);
     }
 

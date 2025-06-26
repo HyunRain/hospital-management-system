@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -18,6 +19,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -86,39 +88,38 @@ public class  Patient {
     @NotNull
     @Enumerated(EnumType.STRING)
     private PatientStatus status; // ACTIVE, INACTIVE, DECEASED, etc.
-    @NotNull
     private String referredBy;
 
     @NotNull
     @ElementCollection
     @CollectionTable(name = "patient_known_allergies", joinColumns = @JoinColumn(name = "patient_id"))
     @Column(name = "allergy")
-    private List<String> knownAllergies;
+    private Set<String> knownAllergies;
     @NotNull
     @ElementCollection
     @CollectionTable(name = "patient_past_medical_history", joinColumns = @JoinColumn(name = "patient_id"))
     @Column(name = "medicalHistory")
-    private List<String> pastMedicalHistory;
+    private Set<String> pastMedicalHistory;
     @NotNull
     @ElementCollection
     @CollectionTable(name = "patient_chronic_diseases", joinColumns = @JoinColumn(name = "patient_id"))
     @Column(name = "disease")
-    private List<String> chronicDiseases;
+    private Set<String> chronicDiseases;
     @NotNull
     @ElementCollection
     @CollectionTable(name = "patient_current_medications", joinColumns = @JoinColumn(name = "patient_id"))
     @Column(name = "medication")
-    private List<String> currentMedications;
+    private Set<String> currentMedications;
     @NotNull
     @ElementCollection
     @CollectionTable(name = "patient_immunization_status", joinColumns = @JoinColumn(name = "patient_id"))
     @Column(name = "immunization")
-    private List<String> immunizationStatus;
+    private Set<String> immunizationStatus;
     @NotNull
     @ElementCollection
     @CollectionTable(name = "patient_surgical_history", joinColumns = @JoinColumn(name = "patient_id"))
     @Column(name = "surgery")
-    private List<String> surgicalHistory;
+    private Set<String> surgicalHistory;
 
     @NotNull
     private String insuranceProvider;

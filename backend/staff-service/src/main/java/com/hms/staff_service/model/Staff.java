@@ -2,6 +2,7 @@ package com.hms.staff_service.model;
 
 
 import com.hms.staff_service.enums.Gender;
+import com.hms.staff_service.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -32,6 +33,13 @@ public class Staff {
 
     @NotNull
     private String userId;
+
+    @Column(unique = true)
+    private String staffId;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)

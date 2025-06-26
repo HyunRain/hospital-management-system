@@ -46,7 +46,7 @@ public class AuthServiceImpl implements AuthService {
 
         System.out.println(user.getEmail());
         if(!passwordEncoder.matches(loginRequestDto.getPassword(), user.getPassword())) {
-            throw new BadCredentialsException("Invalid Password");
+            throw new BadCredentialsException("Invalid email or password.");
         }
 
         return LoginResponseDto.builder()
