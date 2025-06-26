@@ -3,14 +3,22 @@ import type { PropType } from 'vue';
 import { ref } from 'vue';
 import { useToggleStore } from '@/stores/toggleStore';
 import { usePatientStore } from '@/stores/patientStore';
+import { useDoctorStore } from '@/stores/doctorStore';
 
 const toggleStore = useToggleStore();
 const patientStore = usePatientStore();
+const doctorStore = useDoctorStore();
 
 type SelectItem = {
   label: string;
   value: string;
 };
+
+const storeMap = {
+  patient: patientStore,
+  doctor: doctorStore,
+  //employee: employeeStore,
+}
 
 const props = defineProps({
   data: {
@@ -19,6 +27,10 @@ const props = defineProps({
   },
   type: {
     type: String,
+    required: true,
+  },
+  forView: {
+    type: String as PropType<'patient' | 'doctor'>,
     required: true,
   }
 });
@@ -46,7 +58,7 @@ function toggleDropdown() {
       dark:border-zinc-800 rounded-xl px-2 py-3">
       <!-- Select Items-->
       <div v-for="item in props.data" :key="item.value"
-        @click.stop="() => { selection = item.label; patientStore.storeSelectInput(item.value, type); showDropdown = false; }"
+        @click.stop="() => { selection = item.label; const store = storeMap[forView]; store.storeSelectInput(item.value, type); showDropdown = false; }"
         class="flex justify-between h-[37px] items-center py-1 px-3 rounded-xl font-medium hover:bg-red-200 dark:hover:bg-[#1d1d1dcf]">
         <p> {{ item.label }} </p>
         <img v-if="item.label === selection" class="size-3.5"

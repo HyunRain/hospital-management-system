@@ -12,6 +12,10 @@ export const useToggleStore = defineStore("toggle", {
     isDemo: localStorage.getItem('isDemo') === "true",
     // PatientView
     showAddPatientModal: false as boolean,
+    // DoctorView
+    showAddDoctorModal: false as boolean,
+    // Misc
+    showLoader: false as boolean,
   }),
 
   actions: {
@@ -27,6 +31,12 @@ export const useToggleStore = defineStore("toggle", {
     },
     toggleAddPatientModel() {
       this.showAddPatientModal = !this.showAddPatientModal;
+    },
+    toggleAddDoctorModal() {
+      this.showAddDoctorModal = !this.showAddDoctorModal;
+    },
+    toggleLoader() {
+      this.showLoader = !this.showLoader;
     }
   },
 });

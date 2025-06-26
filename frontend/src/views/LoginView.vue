@@ -6,18 +6,19 @@ import { isAxiosError } from 'axios';
 import { useToggleStore } from '@/stores/toggleStore';
 import { validate } from '@/util/functions/validation/validate';
 import { required, validEmail } from '@/util/functions/validation/rules';
+import ErrorAlert from '@/components/ui/misc/ErrorAlert.vue';
 
 const authStore = useAuthStore();
 const toggleStore = useToggleStore();
 const router = useRouter();
 
 onBeforeMount(async () => {
-  const authStore = useAuthStore();
-  await authStore.reauthenticate();
+   await authStore.reauthenticate();
 
   if (authStore.role && authStore.email) {
     await authStore.fetchStaffData(authStore.role, authStore.email);
   }
+
   if (authStore.user) {
     router.push('/dashboard'); // or your desired route
   }
@@ -43,11 +44,10 @@ async function handleLogin() {
     }
     router.push({ path: '/dashboard' });
   } catch (error: unknown) {
-    if (isAxiosError(error) && error.message.includes('Network Error')) {
-      triggerBackendError("Login Service is currently unavailable.");
-    }
-
-    if (isAxiosError(error) && error.response?.status === 503) {
+    if (
+      isAxiosError(error) &&
+      (error.message.includes('Network Error') || error.response?.status === 503)
+    ) {
       triggerBackendError("Login Service is currently unavailable.");
     }
 
@@ -137,16 +137,9 @@ function triggerFrontendError(message: string) {
           </button>
         </form>
         <!-- Backend Error -->
-        <transition enter-active-class="transition-transform transition-opacity duration-500 ease-out" enter-from-class="-translate-x-10 opacity-0"
-          enter-to-class="translate-x-0 opacity-100">
-          <p v-if="showLoginFailed" :key="errorAlertKey" class="mt-5 text-red-600"> {{ errorMessage }} </p>
-        </transition>
+        <ErrorAlert class="mt-5" :alert-key="errorAlertKey" :show="showLoginFailed" :message="errorMessage"></ErrorAlert>
         <!-- Frontend Error -->
-        <transition enter-active-class="transition-transform transition-opacity duration-200 ease-out" enter-from-class="-translate-x-10 opacity-0"
-          enter-to-class="translate-x-0 opacity-100">
-          <p v-if="showBadLoginData" :key="badLoginDataAlertKey" class="mt-5 text-red-600"> {{ badLoginDataMessage }}
-          </p>
-        </transition>
+        <ErrorAlert class="mt-5" :alert-key="badLoginDataAlertKey" :show="showBadLoginData" :message="badLoginDataMessage"></ErrorAlert>
         <p @click="handleDemoLogin()" class="mt-5 cursor-pointer underline hover:text-[#a7a7a7]">Explore as a Demo Admin
         </p>
       </div>

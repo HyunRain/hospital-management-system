@@ -4,11 +4,45 @@ import { useToggleStore } from '@/stores/toggleStore';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationNext, PaginationPrevious, } from '@/components/ui/pagination';
 import AddPatient from '@/components/ui/patientview/AddPatient.vue';
 import { usePatientStore } from '@/stores/patientStore';
-import { ref, watch } from 'vue';
+import { ref, watch, onBeforeMount } from 'vue';
 import debounce from 'lodash.debounce';
+import { isAxiosError } from 'axios';
+import ErrorAlert from '@/components/ui/misc/ErrorAlert.vue';
 
 const toggleStore = useToggleStore();
 const patientStore = usePatientStore();
+
+onBeforeMount(async () => {
+  if (patientStore.patients.length === 0) {
+    try {
+      await patientStore.getPageOfPatients(0, patientStore.size);
+    } catch (error: unknown) {
+      if (
+        isAxiosError(error) &&
+        (error.message.includes('Network Error') || error.response?.status === 503)
+      ) {
+        triggerBackendError("Patient Service is currently unavailable.");
+      }
+    }
+  }
+});
+
+const showPatientFailed = ref(false);
+const errorMessage = ref('');
+const errorAlertKey = ref(Date.now());
+let timer: ReturnType<typeof setTimeout>;
+
+function triggerBackendError(message: string) {
+  window.clearTimeout(timer);
+  showPatientFailed.value = true;
+  errorAlertKey.value = Date.now();
+  errorMessage.value = message;
+  console.log('test error patient');
+  timer = setTimeout(() => {
+    showPatientFailed.value = false;
+    errorMessage.value = '';
+  }, 10000);
+}
 
 const patientRange = ref<string>('1-15');
 const pageSize = ref<number>(patientStore.size);
@@ -16,6 +50,7 @@ const currentPage = ref(patientStore.page);
 
 async function handlePageChange(page: number) {
   patientStore.page = page;
+
   if (searchInput.value.length > 1) {
     await patientStore.searchPatients(searchInput.value, page - 1, pageSize.value);
   } else {
@@ -38,7 +73,9 @@ function updatePatientsRange(page: number) {
 const searchInput = ref('');
 
 const debouncedSearch = debounce(async (input: string) => {
-  if (input.length > 1) await patientStore.searchPatients(input, 0, pageSize.value);
+  if (input.length > 1) {
+    await patientStore.searchPatients(input, 0, pageSize.value);
+  }
   if (input.length < 1) {
     // if search field becomes empty, fetch first page of all patients and set the visual current page back to 1
     await patientStore.getPageOfPatients(0, pageSize.value);
@@ -52,12 +89,12 @@ watch(searchInput, (newInput) => {
 </script>
 
 <template>
-  <div
-    class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#030712] dark:border border-zinc-800 min-h-[calc(100vh-147px)] rounded-xl">
+  <div class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#030712] dark:border border-zinc-800 min-h-[calc(100vh-147px)] rounded-xl">
     <div class="flex justify-between items-center mb-5">
       <div class="flex gap-2 items-center">
         <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/patients.svg`" alt="PatientIcon" />
         <h2 class="text-[20px]">Patients</h2>
+        <ErrorAlert class="ml-5" :show="showPatientFailed" :alert-key="errorAlertKey" :message="errorMessage" />
       </div>
       <div class="items-center flex gap-2">
         <input type="search" placeholder="Search ..." v-model="searchInput"
@@ -68,7 +105,7 @@ watch(searchInput, (newInput) => {
         <AddPatient v-if="toggleStore.showAddPatientModal" />
       </div>
     </div>
-    <div class="h-full overflow-x-auto items-start flex">
+    <div class="h-full overflow-auto items-start flex">
       <PatientTable />
     </div>
     <div class="flex flex-col md:flex-row gap-3 items-center justify-between py-3">
@@ -76,13 +113,12 @@ watch(searchInput, (newInput) => {
         Showing {{ patientRange }} of {{ patientStore.totalPatients }} patients
       </p>
       <div>
-        <Pagination v-slot="{ page }" :items-per-page="patientStore.size" v-model:page="currentPage"
-          :total="patientStore.totalPatients" @update:page="handlePageChange" :default-page="1">
+        <Pagination v-slot="{ page }" :items-per-page="patientStore.size" v-model:page="currentPage" :total="patientStore.totalPatients"
+          @update:page="handlePageChange" :default-page="1">
           <PaginationContent v-slot="{ items }">
             <PaginationPrevious class="cursor-pointer" />
             <template v-for="(item, index) in items" :key="index">
-              <PaginationItem class="cursor-pointer" v-if="item.type === 'page'" :value="item.value"
-                :is-active="item.value === page">
+              <PaginationItem class="cursor-pointer" v-if="item.type === 'page'" :value="item.value" :is-active="item.value === page">
                 {{ item.value }}
               </PaginationItem>
             </template>

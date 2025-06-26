@@ -56,4 +56,21 @@ export interface PatientDto {
   insuranceExpiryDate?: string; //
 };
 
+export interface DoctorDto {
+  userId: string;
+  firstName: string;
+  lastName: string;
+  gender: 'MALE' | 'FEMALE' | 'OTHER';
+  dateOfBirth: string;
+  phoneNumber: string;
+  email: string;
+  addressLine1: string;
+  addressLine2?: string;
+  city: string;
+  state: string;
+  country: string;
+  postalCode: string;
+  departmentName: string; // UUID as string
+};
+
 export type ValidationResult = { success: true } | { success: false; field: string; validator: string; error: string };

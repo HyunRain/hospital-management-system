@@ -27,6 +27,7 @@ const patientFormData = reactive({
   emergencyContactNumber: "",
   relationshipToEmergencyContact: "",
   addressLine1: "",
+  addressLine2: "",
   city: "",
   state: "",
   country: "",
@@ -144,13 +145,12 @@ function nextStep() {
 
     <!-- AddPatientModal -->
     <div v-click-outside="() => { toggleStore.toggleAddPatientModel(); resetSelects(); } " class="flex flex-col bg-white dark:bg-[#02050e] p-5 border border-gray-300 dark:border-zinc-800 min-h-[90vh] max-h-[90vh]
-      md:min-h-[835px] rounded-xl w-full max-w-4xl overflow-y-auto">
+      md:min-h-fit rounded-xl w-full max-w-4xl overflow-y-auto">
       <div class="flex justify-between items-center">
         <div class="flex gap-2 items-center">
           <h3 class="text-[18px]">+ Add Patient</h3>
         </div>
-        <img class="size-4.5 cursor-pointer hover:size-5"
-          @click="() => { toggleStore.toggleAddPatientModel(); resetSelects(); }"
+        <img class="size-4.5 cursor-pointer hover:size-5" @click="() => { toggleStore.toggleAddPatientModel(); resetSelects(); }"
           :src="`/assets/icons/${toggleStore.darkModeState}/close.svg`" alt="Close Icon">
       </div>
 
@@ -161,8 +161,7 @@ function nextStep() {
 
         <!-- Header 1-->
         <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 1">
-          <div
-            class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
+          <div class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
             <img v-if="isStep1" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`" alt="PatientIcon" />
             <p v-else :class="[stepTextColor(1)]">1</p>
           </div>
@@ -174,8 +173,7 @@ function nextStep() {
 
         <!-- Header 2-->
         <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 2">
-          <div
-            class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
+          <div class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
             <img v-if="isStep2" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`" alt="PatientIcon" />
             <p v-else :class="[stepTextColor(2)]">2</p>
           </div>
@@ -187,8 +185,7 @@ function nextStep() {
 
         <!-- Header 3-->
         <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 3">
-          <div
-            class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
+          <div class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
             <img v-if="isStep3" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`" alt="PatientIcon" />
             <p v-else :class="[stepTextColor(3)]">3</p>
           </div>
@@ -200,12 +197,11 @@ function nextStep() {
 
         <!-- Header 4-->
         <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 4">
-          <div
-            class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
+          <div class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
             <img v-if="isStep4" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`" alt="PatientIcon" />
             <p v-else :class="[stepTextColor(4)]">4</p>
           </div>
-          <p class="min-w-33" :class="[stepTextColor(4)]">
+          <p class="min-w-55" :class="[stepTextColor(4)]">
             Insurance & Emergency Contact </p>
         </div>
 
@@ -213,7 +209,7 @@ function nextStep() {
       </div>
       <form @submit.prevent="handleAddPatient" class="flex flex-col flex-1">
         <!-- Form Body-->
-        <div class="md:mx-30 flex-1">
+        <div class="md:mx-30 md:max-h-[70vh] md:min-h-[70vh] 3xl:max-h-[40vh] 3xl:min-h-[40vh]">
 
           <!-- Step 1 Basic Patient Information -->
           <div v-show="currentStep === 1" class="flex flex-col gap-4 mt-10 mb-10">
@@ -226,10 +222,10 @@ function nextStep() {
               <label class="ml-1" for="lName">Last Name</label>
               <input class="input mt-2" id="lName" type="text" v-model="patientFormData.lastName">
             </div>
-            <div class="flex gap-4">
+            <div class="flex gap-4 items-center flex-wrap">
               <div class="w-1/3">
                 <label class="ml-1" for="gender">Gender</label>
-                <Select :data="gender" type="gender" />
+                <Select :data="gender" for-view="patient" type="gender" />
               </div>
               <div class="w-2/3">
                 <div class="flex justify-between">
@@ -249,7 +245,7 @@ function nextStep() {
             </div>
             <div class="w-1/3">
               <label class="ml-1" for="maritalStatus">Marital Status</label>
-              <Select id="maritalStatus" :data="maritalStatus" type="marital status" />
+              <Select id="maritalStatus" for-view="patient" :data="maritalStatus" type="marital status" />
             </div>
           </div>
 
@@ -265,7 +261,7 @@ function nextStep() {
                 <label class="ml-1" for="address2">Address 2</label>
                 <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
-              <input class="input mt-2" id="address2" type="text">
+              <input class="input mt-2" id="address2" type="text" v-model="patientFormData.addressLine2">
             </div>
             <div>
               <label class="ml-1" for="city">City</label>
@@ -290,7 +286,7 @@ function nextStep() {
             <p class="ml-1 text-[16px] mb-1">Medical</p>
             <div class="md:w-1/3 w-1/2">
               <label class="ml-1" for="Blood Type">Blood Type</label>
-              <Select id="Blood Type" :data="bloodTypes" type="blood type" />
+              <Select id="Blood Type" for-view="patient" :data="bloodTypes" type="blood type" />
             </div>
             <div>
               <div class="flex justify-between">
@@ -318,8 +314,7 @@ function nextStep() {
                 <label class="ml-1" for="currentMedications">Current Medications</label>
                 <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
-              <input class="input mt-2" id="currentMedications" type="text"
-                v-model="medicationString">
+              <input class="input mt-2" id="currentMedications" type="text" v-model="medicationString">
               <p class="text-zinc-400 text-[12px] mt-1 ml-1">
                 Include all current medications, separated by commas (e.g. ibuprofen, insulin).
               </p>
@@ -355,13 +350,11 @@ function nextStep() {
             </div>
             <div>
               <label class="ml-1" for="insurancePolicyNumber">Policy Number</label>
-              <input class="input mt-2" id="insurancePolicyNumber" type="text"
-                v-model="patientFormData.insurancePolicyNumber">
+              <input class="input mt-2" id="insurancePolicyNumber" type="text" v-model="patientFormData.insurancePolicyNumber">
             </div>
             <div>
               <label class="ml-1" for="insuranceExpiryDate">Expiry Date</label>
-              <input class="input mt-2" id="insuranceExpiryDate" type="text"
-                v-model="patientFormData.insuranceExpiryDate">
+              <input class="input mt-2" id="insuranceExpiryDate" type="text" v-model="patientFormData.insuranceExpiryDate">
             </div>
             <p class="ml-1 text-[16px] my-1">Emergency Contact</p>
             <div>
@@ -369,24 +362,21 @@ function nextStep() {
                 <label class="ml-1" for="emergencyContactName">Name</label>
                 <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
-              <input class="input mt-2" id="emergencyContactName" type="text"
-                v-model="patientFormData.emergencyContactName">
+              <input class="input mt-2" id="emergencyContactName" type="text" v-model="patientFormData.emergencyContactName">
             </div>
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="emergencyContactNumber">Phone Number</label>
                 <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
-              <input class="input mt-2" id="emergencyContactNumber" type="text"
-                v-model="patientFormData.emergencyContactNumber">
+              <input class="input mt-2" id="emergencyContactNumber" type="text" v-model="patientFormData.emergencyContactNumber">
             </div>
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="relationshipToEmergencyContact">Relationship</label>
                 <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
-              <input class="input mt-2" id="relationshipToEmergencyContact" type="text"
-                v-model="patientFormData.relationshipToEmergencyContact">
+              <input class="input mt-2" id="relationshipToEmergencyContact" type="text" v-model="patientFormData.relationshipToEmergencyContact">
             </div>
           </div>
 
@@ -409,4 +399,5 @@ function nextStep() {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>

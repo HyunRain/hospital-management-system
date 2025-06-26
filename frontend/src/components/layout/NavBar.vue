@@ -5,7 +5,6 @@ import UserDropdown from '@/components/ui/nav/UserDropdown.vue';
 import { roleToPascalCase } from '@/util/functions/roleToPascalCase';
 import { Icon } from '@iconify/vue'
 import { useColorMode } from '@vueuse/core'
-import router from '@/router';
 
 const authStore = useAuthStore();
 const toggleStore = useToggleStore();
