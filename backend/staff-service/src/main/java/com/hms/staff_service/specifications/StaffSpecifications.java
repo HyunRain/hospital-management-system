@@ -36,7 +36,7 @@ public class StaffSpecifications {
                     cb.like(cb.lower(root.get("email")), likeInput),
                     cb.like(cb.lower(root.get("city")), likeInput),
                     cb.like(cb.lower(root.get("staffId")), likeInput),
-                    cb.like(cb.lower(root.get("departmentName").as(String.class)), likeInput),
+                    cb.like(cb.lower(root.join("department").get("name")), likeInput),
                     cb.like(cb.lower(root.get("gender").as(String.class)), likeInput),
                     cb.like(cb.lower(cb.function("TO_CHAR", String.class, root.get("dateOfBirth"), cb.literal("YYYY-MM-DD"))), likeInput)
             );

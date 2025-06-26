@@ -58,6 +58,7 @@ export interface PatientDto {
 
 export interface DoctorDto {
   userId: string;
+  staffId: string;
   firstName: string;
   lastName: string;
   gender: 'MALE' | 'FEMALE' | 'OTHER';

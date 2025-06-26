@@ -38,10 +38,17 @@ public class StaffController {
     }
 
     @GetMapping("/all")
-    @Operation(summary = "Get All Staff")
+    @Operation(summary = "Get 15 Doctors Paginated")
     public ResponseEntity<PaginatedResponseDto> getAllStaff(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size) {
         PaginatedResponseDto allStaff = staffService.getAllDoctorsPaginated(page, size);
         return new ResponseEntity<>(allStaff, HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    @Operation(summary = "Search for Doctors")
+    public ResponseEntity<PaginatedResponseDto> searchStaff(@RequestParam String input, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size) {
+        PaginatedResponseDto searchedDoctors = staffService.searchDoctors(input, page, size);
+        return new ResponseEntity<>(searchedDoctors, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{email}")

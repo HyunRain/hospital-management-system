@@ -13,6 +13,7 @@ public class StaffMapper {
     public StaffResponseDto entityToDto(Staff staff) {
         return StaffResponseDto.builder()
                 .userId(staff.getUserId())
+                .staffId(staff.getStaffId())
                 .firstName(staff.getFirstName())
                 .lastName(staff.getLastName())
                 .gender(staff.getGender())

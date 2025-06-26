@@ -14,6 +14,8 @@ public class StaffResponseDto {
 
     private String userId;
 
+    private String staffId;
+
     private String firstName;
 
     private String lastName;

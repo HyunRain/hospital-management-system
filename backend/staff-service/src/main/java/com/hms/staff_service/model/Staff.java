@@ -34,6 +34,7 @@ public class Staff {
     @NotNull
     private String userId;
 
+    @NotNull
     @Column(unique = true)
     private String staffId;
 
