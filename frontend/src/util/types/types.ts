@@ -74,4 +74,14 @@ export interface DoctorDto {
   departmentName: string; // UUID as string
 };
 
+export interface DepartmentDto {
+  name: string;
+  headOfDepartmentName: string;
+  headOfDepartmentId: string; // UUID as string
+  staffCount: number;
+  bedCapacity: number;
+  currentBedCount: number;
+  isActive: boolean;
+}
+
 export type ValidationResult = { success: true } | { success: false; field: string; validator: string; error: string };

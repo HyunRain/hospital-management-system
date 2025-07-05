@@ -5,6 +5,7 @@ import UserDropdown from '@/components/ui/nav/UserDropdown.vue';
 import { roleToPascalCase } from '@/util/functions/roleToPascalCase';
 import { Icon } from '@iconify/vue'
 import { useColorMode } from '@vueuse/core'
+import { RouterLink } from 'vue-router';
 
 const authStore = useAuthStore();
 const toggleStore = useToggleStore();
@@ -20,7 +21,7 @@ const mode = useColorMode({
     <div class="flex items-center gap-30">
       <div class="flex items-center gap-2">
         <img src="/assets/icons/lightMode/hospital.svg" alt="Brand logo" class="w-[35px] h-[35px]">
-        <h1 class="font-bold text-2xl">Medicator</h1>
+        <RouterLink to="/dashboard"><h1 class="font-bold text-2xl">Medicator</h1></RouterLink>
       </div>
       <input v-if="authStore.isLoggedIn" type="search" placeholder="Search ..." class="h-[35px] w-[220px] shadow-sm hidden md:block focus:w-[280px] px-3 border border-gray-300 dark:border-0 dark:bg-[#1f1f23] dark:placeholder-[#979797] rounded-xl focus:outline-none">
     </div>

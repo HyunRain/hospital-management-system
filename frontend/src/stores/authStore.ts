@@ -1,7 +1,7 @@
-import axios from "axios";
 import { defineStore } from "pinia";
 import { type User, UserRole } from "@/util/types/types";
 import { createProfilPicture } from "@/util/functions/createProfilePicture";
+import api from "./apiInterceptor";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -22,14 +22,14 @@ export const useAuthStore = defineStore("auth", {
 
   actions: {
       async login(userInput: Record<string,string>) {
-        const response = await axios.post("http://localhost:8079/api/auth/login", userInput, { withCredentials: true });
+        const response = await api.post("/auth/login", userInput);
         this.email = response.data.email;
         this.role = response.data.role;
       },
 
       async fetchStaffData(role: UserRole, email: string) {
         if(role === UserRole.DOCTOR || role === UserRole.NURSE || role === UserRole.RECEPTIONIST) {
-          const responseStaff = await axios.get(`http://localhost:8079/api/staff/get/${email}`, { withCredentials: true });
+          const responseStaff = await api.get(`/staff/get/${email}`);
           this.user = responseStaff.data;
         } else if(this.role === UserRole.ADMIN) {
             this.user =  {
@@ -51,14 +51,29 @@ export const useAuthStore = defineStore("auth", {
         }
       },
 
+      async refreshToken() {
+        try {
+          await api.post("/auth/refresh", {});
+          return this.isInitialised;
+        } catch (error) {
+          console.error("Error refreshing token:", error);
+          this.user = null;
+          this.email = null;
+          this.role = null;
+          this.isInitialised = false;
+          return false;
+        }
+      },
+
       async reauthenticate() {
-        const response = await axios.get("http://localhost:8079/api/auth/get/currentUser", { withCredentials: true });
+        const response = await api.get("/auth/get/currentUser");
         this.email = response.data.email;
         this.role = response.data.role;
+        this.isInitialised = true;
       },
 
       async logout() {
-        await axios.post("http://localhost:8079/api/auth/logout", {}, { withCredentials: true });
+        await api.post("/auth/logout", {});
         this.user = null;
         this.email = null;
         this.role = null;

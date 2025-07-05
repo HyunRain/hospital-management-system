@@ -21,6 +21,7 @@ onBeforeMount(async () => {
   if (doctorStore.doctors.length === 0 && isAdmin.value) {
     try {
       await doctorStore.getPageOfDoctors(0, doctorStore.size);
+      updatePatientsRange(1);
     } catch (error: unknown) {
       if (
         isAxiosError(error) &&
@@ -68,7 +69,6 @@ function updatePatientsRange(page: number) {
   const size = doctorStore.size;
   const start = (page - 1) * size + 1;
   const end = Math.min(size * page, doctorStore.totalDoctors);
-
   doctorRange.value = `${start}-${end}`;
 }
 

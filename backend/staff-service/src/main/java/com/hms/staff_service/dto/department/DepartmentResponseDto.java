@@ -1,14 +1,17 @@
 package com.hms.staff_service.dto.department;
 
-import com.hms.staff_service.model.Staff;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.List;
+import java.util.UUID;
 
 @Data
 @Builder
 public class DepartmentResponseDto {
     private String name;
-    private List<Staff> staffList;
+    private String headOfDepartmentName;
+    private UUID headOfDepartmentUuid;
+    private Integer staffCount;
+    private Integer bedCapacity;
+    private Integer currentBedCount;
+    private Boolean isActive;
 }

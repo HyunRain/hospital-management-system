@@ -9,7 +9,7 @@ const patientStore = usePatientStore();
 <template>
   <table class="min-w-full">
     <thead>
-      <tr class=" h-[30px]">
+      <tr class=" h-[30px] text-[15px]">
     <th class="md:px-0 px-13">Name</th>
     <th>Patient ID</th>
     <th class="md:px-0 px-5">Gender</th>

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import type { PatientDto } from "@/util/types/types";
-import { apiUrl } from "@/util/api/apiUrl";
+import api from "./apiInterceptor";
 
 export const usePatientStore = defineStore("patient", {
   state: () => ({
@@ -20,7 +20,7 @@ export const usePatientStore = defineStore("patient", {
   actions: {
     // Main CRUD ACTIONS
     async getPageOfPatients(page: number, size: number) {
-      const response = await axios.get(apiUrl + 'patient/all', {
+      const response = await api.get('/patient/all', {
         params: {
           page: page,
           size: size,
@@ -33,7 +33,7 @@ export const usePatientStore = defineStore("patient", {
     },
 
     async searchPatients(input: string, page: number, size: number) {
-      const response = await axios.get(apiUrl + 'patient/search', {
+      const response = await api.get('/patient/search', {
         params: {
           input: input,
           page: page,
@@ -47,7 +47,7 @@ export const usePatientStore = defineStore("patient", {
     },
 
     async addPatient(formData: object) {
-      const response = await axios.post(apiUrl + 'patient', formData, {
+      const response = await api.post('/patient', formData, {
         withCredentials: true,
       });
       console.log(response.data);

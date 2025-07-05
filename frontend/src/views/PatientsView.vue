@@ -8,9 +8,11 @@ import { ref, watch, onBeforeMount } from 'vue';
 import debounce from 'lodash.debounce';
 import { isAxiosError } from 'axios';
 import ErrorAlert from '@/components/ui/misc/ErrorAlert.vue';
+import { useAuthStore } from '@/stores/authStore';
 
 const toggleStore = useToggleStore();
 const patientStore = usePatientStore();
+const authStore = useAuthStore();
 
 onBeforeMount(async () => {
   if (patientStore.patients.length === 0) {

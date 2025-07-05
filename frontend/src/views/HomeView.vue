@@ -4,9 +4,24 @@ import { Line, Pie, Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, BarElement, PointElement, ArcElement, CategoryScale, LinearScale, Filler } from 'chart.js'
 import type { ChartOptions } from 'chart.js'
 import { useToggleStore } from '@/stores/toggleStore';
-import { computed, ref} from 'vue';
+import { computed, ref, onMounted} from 'vue';
+import { usePatientStore } from '@/stores/patientStore';
+import { useDoctorStore } from '@/stores/doctorStore';
+import { useAuthStore } from '@/stores/authStore';
 
 const toggleStore = useToggleStore();
+const authStore = useAuthStore();
+const patientStore = usePatientStore();
+const doctorStore = useDoctorStore();
+
+onMounted(async () => {
+  if (patientStore.patients.length === 0) {
+    await patientStore.getPageOfPatients(0, patientStore.size);
+  }
+  if (doctorStore.doctors.length === 0 && authStore.role === 'ADMIN') {
+    await doctorStore.getPageOfDoctors(0, doctorStore.size);
+  }
+});
 
 const isDark = computed(() => toggleStore.darkModeState === 'darkMode');
 

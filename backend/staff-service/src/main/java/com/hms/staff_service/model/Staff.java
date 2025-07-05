@@ -1,6 +1,7 @@
 package com.hms.staff_service.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hms.staff_service.enums.Gender;
 import com.hms.staff_service.enums.Role;
 import jakarta.persistence.*;
@@ -45,6 +46,7 @@ public class Staff {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
+    @JsonIgnore
     private Department department;
 
     @NotNull

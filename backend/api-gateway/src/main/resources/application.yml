@@ -9,7 +9,17 @@ springdoc:
       - name: patient
         url: /api-docs/patient
 
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway.filter.ratelimit: DEBUG
+
+
 spring:
+  data:
+    redis:
+      host: redis-stack
+      port: 6379
   cloud:
     gateway:
       globalcors:
@@ -34,10 +44,20 @@ spring:
           filters:
             - JwtValidation
 
+        - id: login_route
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api/auth/login
+          filters:
+            - LoginRateLimiter
+
+
         - id: auth-service-route
           uri: http://auth-service:8081
           predicates:
             - Path=/api/auth/**
+          filters:
+            - JwtValidation
 
         # PATIENT SERVICE ROUTE
         - id: patient-service-route
@@ -54,6 +74,15 @@ spring:
               - Path=/api/staff/**
           filters:
             - JwtValidation
+
+        # DEPARTMENT SERVICE ROUTE
+        - id: department-service-route
+          uri: http://staff-service:8083
+          predicates:
+            - Path=/api/department/**
+          filters:
+            - JwtValidation
+
 
         # APPOINTMENT SERVICE ROUTE
         - id: appointment-service-route

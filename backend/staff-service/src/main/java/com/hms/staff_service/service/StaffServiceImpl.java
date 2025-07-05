@@ -91,7 +91,6 @@ public class StaffServiceImpl implements StaffService {
 
         Page<UUID> pagedDoctorIds = staffRepository.findPagedRoleIds(Role.DOCTOR, pageable);
         List<UUID> doctorIds = pagedDoctorIds.stream().toList();
-        System.out.println(doctorIds);
         List<Staff> staffWithDepartment = staffRepository.findStaffWithDepartmentByIds(doctorIds);
         List<StaffResponseDto> dtos = staffWithDepartment.stream().map(staffMapper::entityToDto).toList();
         return PaginatedResponseDto.builder()
@@ -107,10 +106,7 @@ public class StaffServiceImpl implements StaffService {
         Specification<Staff> spec = StaffSpecifications.staffContainsTerm(input);
 
         Page<Staff> pagedDoctors = staffRepository.findAll(spec, pageable);
-        System.out.println(pagedDoctors.getTotalElements());
         List<UUID> doctorIds = pagedDoctors.stream().map(Staff::getUuid).toList();
-        System.out.println(doctorIds);
-        System.out.println("Servas i bims da fritz phantom");
 
         List<Staff> allDoctors = staffRepository.findStaffWithDepartmentByIds(doctorIds);
 

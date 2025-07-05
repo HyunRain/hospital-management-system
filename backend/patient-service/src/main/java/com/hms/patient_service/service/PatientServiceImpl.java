@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -79,6 +80,7 @@ public class PatientServiceImpl implements PatientService {
         List<Patient> allPatients = patientRepository.findPatientsWithAllCollections(patientIds);
         List<PatientDto> dtos = allPatients.stream().map(patientMapper::entityToDto).toList();
 
+        System.out.println(LocalDateTime.now());
         return PaginatedResponse.builder()
                 .patients(dtos)
                 .totalPages(pagedPatientIds.getTotalPages())

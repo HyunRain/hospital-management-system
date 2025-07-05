@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String,String>> handleResourceNotFoundException(ResourceNotFoundException ex) {
         log.warn("Resource not found {}", ex.getMessage());
         Map<String,String> errors = new HashMap<>();
-        errors.put("message", "Invalid email or password.");
+        errors.put("message", ex.getMessage());
         return ResponseEntity.badRequest().body(errors);
     }
 

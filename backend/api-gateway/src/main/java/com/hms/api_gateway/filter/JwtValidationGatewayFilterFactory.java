@@ -5,11 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.*;
 
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
@@ -31,30 +33,42 @@ public class JwtValidationGatewayFilterFactory extends AbstractGatewayFilterFact
             ServerHttpRequest request = exchange.getRequest();
             HttpMethod method = request.getMethod();
 
-            if ("OPTIONS".equalsIgnoreCase(String.valueOf(method))) {
-                exchange.getResponse().setStatusCode(HttpStatus.OK);
-                // You may also want to add CORS headers here explicitly if needed
-                return exchange.getResponse().setComplete();
+//            if ("OPTIONS".equalsIgnoreCase(String.valueOf(method))) {
+//                exchange.getResponse().setStatusCode(HttpStatus.OK);
+//                return exchange.getResponse().setComplete();
+//            }
+
+            if(path.equals("/api/auth/refresh") || path.equals("/api/auth/logout")) {
+                log.info("Bypassing JWT validation for path: {}", path);
+                // Bypass JWT validation for these paths
+                return chain.filter(exchange);
             }
 
-            List<HttpCookie> cookies = request.getCookies().get("token");
-            String token = null;
+            List<HttpCookie> accessCookies = request.getCookies().get("accessToken");
+            List<HttpCookie> refreshCookies = request.getCookies().get("refreshToken");
+            String accessToken = null;
+            String refreshToken = null;
 
-            if (cookies != null && !cookies.isEmpty()) {
-                token = "Bearer " + cookies.getFirst().getValue();
+            if (accessCookies != null && !accessCookies.isEmpty()) {
+                accessToken = "Bearer " + accessCookies.getFirst().getValue();
             }
 
-            // If the token is still null or does not start with "Bearer", return unauthorized
-            if(token == null || !token.startsWith("Bearer ")) {
-                exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-                return exchange.getResponse().setComplete();
+            if (refreshCookies != null && !refreshCookies.isEmpty()) {
+                refreshToken = "Bearer " + refreshCookies.getFirst().getValue();
+            }
+
+            if (accessToken == null || !accessToken.startsWith("Bearer ")) {
+                if (refreshToken != null) {
+                    return respondUnauthorized(exchange, "Expired Access Token, but refresh token is available");
+                }
+                return respondUnauthorized(exchange, "Expired Access Token");
             }
 
             // Admin role check for specific paths
-            if (path.equals("/api/auth/registration") || path.equals("/api/staff") || path.equals("/api/staff/all") || path.equals("/api/staff/delete/{email}")) {
+            if (isAdminRestrictedPath(path)) {
                 return webClient.get()
                         .uri("/api/auth/extractRole")
-                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .header(HttpHeaders.AUTHORIZATION, accessToken)
                         .retrieve()
                         .bodyToMono(String.class)
                         .flatMap(role -> {
@@ -68,11 +82,41 @@ public class JwtValidationGatewayFilterFactory extends AbstractGatewayFilterFact
 
             return webClient.get()
                     .uri("/api/auth/validate")
-                    .header(HttpHeaders.AUTHORIZATION, token)
-                    .retrieve()
-                    .toBodilessEntity()
-                    .then(chain.filter(exchange));
+                    .header(HttpHeaders.AUTHORIZATION, accessToken)
+                    .exchangeToMono(clientResponse -> {
+                        if (clientResponse.statusCode().is2xxSuccessful()) {
+                            return chain.filter(exchange);
+                        } else {
+                            exchange.getResponse().setStatusCode(clientResponse.statusCode());
+                            return clientResponse.bodyToMono(String.class)
+                                    .flatMap(errorBody -> {
+                                        exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
+                                        byte[] bytes = errorBody.getBytes(StandardCharsets.UTF_8);
+                                        return exchange.getResponse()
+                                                .writeWith(Mono.just(exchange.getResponse().bufferFactory().wrap(bytes)));
+                                    });
+                        }
+                    });
+
         };
     }
+
+    private Mono<Void> respondUnauthorized(ServerWebExchange exchange, String message) {
+        exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+        exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
+        DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(
+                ("{\"error\": \"" + message + "\"}").getBytes(StandardCharsets.UTF_8)
+        );
+        return exchange.getResponse().writeWith(Mono.just(buffer));
+    }
+
+    private boolean isAdminRestrictedPath(String path) {
+        return path.equals("/api/auth/registration") ||
+                path.equals("/api/staff") ||
+                path.equals("/api/staff/all") ||
+                path.equals("/api/department/all") ||
+                path.startsWith("/api/staff/delete/");
+    }
+
 
 }
