@@ -11,7 +11,9 @@ public interface StaffService {
 
     StaffResponseDto getStaffByEmail(String email);
 
-    PaginatedResponseDto getAllDoctorsPaginated(int page, int size);
+    PaginatedResponseDto getAllStaffPaginated(int page, int size, String role);
+
+    PaginatedResponseDto getAllStaffPaginated(int page, int size);
 
     PaginatedResponseDto searchDoctors(String input, int page, int size);
 

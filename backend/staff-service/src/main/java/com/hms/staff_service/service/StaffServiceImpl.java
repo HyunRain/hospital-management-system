@@ -86,17 +86,34 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public PaginatedResponseDto getAllDoctorsPaginated(int page, int size) {
+    public PaginatedResponseDto getAllStaffPaginated(int page, int size, String role) {
         Pageable pageable = PageRequest.of(page, size);
 
-        Page<UUID> pagedDoctorIds = staffRepository.findPagedRoleIds(Role.DOCTOR, pageable);
-        List<UUID> doctorIds = pagedDoctorIds.stream().toList();
-        List<Staff> staffWithDepartment = staffRepository.findStaffWithDepartmentByIds(doctorIds);
+        Page<UUID> pagedStaffIds = staffRepository.findPagedRoleIds(Role.valueOf(role), pageable);
+        List<UUID> staffIds = pagedStaffIds.stream().toList();
+        List<Staff> staffWithDepartment = staffRepository.findStaffWithDepartmentByIds(staffIds);
         List<StaffResponseDto> dtos = staffWithDepartment.stream().map(staffMapper::entityToDto).toList();
         return PaginatedResponseDto.builder()
                 .staffResponseDtos(dtos)
-                .totalPages(pagedDoctorIds.getTotalPages())
-                .totalStaff(pagedDoctorIds.getTotalElements())
+                .totalPages(pagedStaffIds.getTotalPages())
+                .totalStaff(pagedStaffIds.getTotalElements())
+                .build();
+    }
+
+    @Override
+    public PaginatedResponseDto getAllStaffPaginated(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        List<Role> roles = List.of(Role.NURSE, Role.CLEANING_STAFF, Role.ACCOUNTANT, Role.ANESTHESIOLOGIST, Role.LAB_TECHNICIAN, Role.DIETICIAN,
+                Role.PHARMACIST, Role.PHYSIOTHERAPIST, Role.RADIOLOGIST, Role.SECURITY, Role.RECEPTIONIST, Role.SURGEON);
+
+        Page<UUID> pagedStaffIds = staffRepository.findPagedRolesIds(roles, pageable);
+        List<UUID> staffIds = pagedStaffIds.stream().toList();
+        List<Staff> staffWithDepartment = staffRepository.findStaffWithDepartmentByIds(staffIds);
+        List<StaffResponseDto> dtos = staffWithDepartment.stream().map(staffMapper::entityToDto).toList();
+        return PaginatedResponseDto.builder()
+                .staffResponseDtos(dtos)
+                .totalPages(pagedStaffIds.getTotalPages())
+                .totalStaff(pagedStaffIds.getTotalElements())
                 .build();
     }
 

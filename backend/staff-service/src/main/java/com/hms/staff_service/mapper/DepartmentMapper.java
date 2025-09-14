@@ -12,9 +12,15 @@ import java.util.UUID;
 public class DepartmentMapper {
 
     public DepartmentResponseDto entityToDto(Department department, Integer staffCount) {
+        String fullName = null;
+        UUID headOfDepartmentUuid = null;
+
         Staff headOfDepartment = department.getHeadOfDepartment();
-        String fullName = headOfDepartment.getFirstName() + " " + headOfDepartment.getLastName();
-        UUID headOfDepartmentUuid = headOfDepartment.getUuid();
+
+        if(headOfDepartment != null) {
+            fullName = headOfDepartment.getFirstName() + " " + headOfDepartment.getLastName();
+            headOfDepartmentUuid = headOfDepartment.getUuid();
+        }
 
         return DepartmentResponseDto.builder()
                 .name(department.getName())

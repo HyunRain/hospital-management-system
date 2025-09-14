@@ -50,7 +50,7 @@ public class LoginRateLimiterGatewayFilterFactory extends AbstractGatewayFilterF
     }
 
     public static class Config {
-        // You can add config fields here later if needed
+
     }
 
     private String getClientIp(ServerWebExchange exchange) {

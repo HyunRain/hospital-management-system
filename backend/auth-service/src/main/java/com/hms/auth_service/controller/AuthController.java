@@ -52,7 +52,7 @@ public class AuthController {
                 .httpOnly(true)
                 .secure(false) // set true for prod
                 .path("/api") // limit refresh token usage to refresh endpoint
-                .maxAge(24 * 60 * 60) // 1 day
+                .maxAge(24 * 60 * 60 * 20) // 1 day
                 .sameSite("Strict")
                 .build();
 

@@ -48,7 +48,6 @@ public class GlobalErrorHandlingFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        // make sure this runs late in the filter chain to catch errors
         return Ordered.LOWEST_PRECEDENCE;
     }
 }

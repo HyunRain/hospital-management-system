@@ -7,14 +7,9 @@ from datetime import datetime
 fake = Faker('de_AT')
 
 genders = ['MALE', 'FEMALE', 'OTHER']
-departments = [
-    "Pediatrics", "Dermatology", "Ophthalmology", "Pathology", "Surgery",
-    "Orthopedics", "Gynecology", "Gastroenterology", "Neurology", "Urology",
-    "Oncology", "Nephrology", "Cardiology", "Pulmonology", "Emergency",
-    "Endocrinology", "Radiology"
-]
+roles = [ 'NURSE', 'RECEPTIONIST', 'PHARMACIST', 'RADIOLOGIST', 'SECURITY', 'ACCOUNTANT', 'DIETICIAN', 'ANESTHESIOLOGIST', 'CLEANING_STAFF', 'PHYSIOTHERAPIST', 'LAB_TECHNICIAN', 'SURGEON']
 
-doctors = []
+employees = []
 
 for _ in range(100): 
     gender = random.choice(genders)
@@ -22,8 +17,8 @@ for _ in range(100):
     last_name = fake.last_name()
     dob = fake.date_of_birth(minimum_age=28, maximum_age=70)
 
-    doctor = {
-        "role": "DOCTOR",
+    employee = {
+        "role": random.choice(roles),
         "firstName": first_name,
         "lastName": last_name,
         "gender": gender,
@@ -34,20 +29,20 @@ for _ in range(100):
         "addressLine2": fake.street_address() if random.random() < 0.5 else "",
         "city": fake.city(),
         "state": fake.state(),
+        "department": "NonMedical",
         "country": "Austria",
         "postalCode": fake.postcode(),
-        "departmentName": random.choice(departments),
         "password": "87943251",
         "repeatedPassword": "87943251"
     }
 
-    doctors.append(doctor)
+    employees.append(employee)
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-file_path = os.path.join(script_dir, f'doctors_{timestamp}.json')
+file_path = os.path.join(script_dir, f'employees_{timestamp}.json')
 
 with open(file_path, 'w', encoding='utf-8') as f:
-    json.dump(doctors, f, ensure_ascii=False, indent=2)
+    json.dump(employees, f, ensure_ascii=False, indent=2)
 
-print(f"JSON file 'doctors_{timestamp}.json' created.")
+print(f"JSON file 'employees_{timestamp}.json' created.")

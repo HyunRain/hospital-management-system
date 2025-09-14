@@ -14,6 +14,8 @@ export const useToggleStore = defineStore("toggle", {
     showAddPatientModal: false as boolean,
     // DoctorView
     showAddDoctorModal: false as boolean,
+    // EmployeeView
+    showAddEmployeeModal: false as boolean,
     // Misc
     showLoader: false as boolean,
   }),
@@ -34,6 +36,9 @@ export const useToggleStore = defineStore("toggle", {
     },
     toggleAddDoctorModal() {
       this.showAddDoctorModal = !this.showAddDoctorModal;
+    },
+    toggleAddEmployeeModal() {
+      this.showAddEmployeeModal = !this.showAddEmployeeModal;
     },
     toggleLoader() {
       this.showLoader = !this.showLoader;

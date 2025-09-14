@@ -139,3 +139,4 @@ watch(searchInput, (newInput) => {
 </template>
 
 <style scoped></style>
+

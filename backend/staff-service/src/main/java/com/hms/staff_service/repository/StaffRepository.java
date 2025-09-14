@@ -25,6 +25,9 @@ public interface StaffRepository extends JpaRepository<Staff, UUID>, JpaSpecific
     @Query("SELECT s.uuid FROM Staff s WHERE s.role = :role ORDER BY s.uuid ASC")
     Page<UUID> findPagedRoleIds(@Param("role") Role role, Pageable pageable);
 
+    @Query("SELECT s.uuid FROm Staff s WHERE s.role IN :role ORDER BY s.uuid ASC")
+    Page<UUID> findPagedRolesIds(@Param("role") List<Role> roles, Pageable pageable);
+
     @Query("SELECT s FROM Staff s JOIN FETCH s.department WHERE s.uuid IN :uuids")
     List<Staff> findStaffWithDepartmentByIds(@Param("uuids") List<UUID> uuids);
 

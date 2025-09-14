@@ -9,15 +9,21 @@ const patientStore = usePatientStore();
 <template>
   <table class="min-w-full">
     <thead>
-      <tr class=" h-[30px] text-[15px]">
-    <th class="md:px-0 px-13">Name</th>
-    <th>Patient ID</th>
-    <th class="md:px-0 px-5">Gender</th>
-    <th class="md:px-0 px-3">Birthdate</th>
-    <th>Email</th>
-    <th>City</th>
-    <th>Status</th>
-    </tr>
+      <tr v-if="patientStore.patients.length === 0">
+        <td colspan="7" class="text-center py-4">
+          No results found.
+        </td>
+      </tr>
+
+      <tr v-else class=" h-[30px] text-[15px]">
+        <th class="md:px-0 px-13">Name</th>
+        <th>Patient ID</th>
+        <th class="md:px-0 px-5">Gender</th>
+        <th class="md:px-0 px-3">Birthdate</th>
+        <th>Email</th>
+        <th>City</th>
+        <th>Status</th>
+      </tr>
     </thead>
     <tbody>
       <tr v-for="(patient, index) in patientStore.patients"

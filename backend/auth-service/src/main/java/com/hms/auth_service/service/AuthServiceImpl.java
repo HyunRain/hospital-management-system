@@ -11,6 +11,7 @@ import com.hms.auth_service.util.JwtUtil;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.JwtParser;
 import jakarta.transaction.Transactional;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,7 @@ public class AuthServiceImpl implements AuthService {
 
     public LoginResponseDto login(LoginRequestDto loginRequestDto) {
         User user = null;
+        // Using a fake password hash for comparison if the user is not found to prevent timing attacks
         String passwordHashToCompare = DUMMY_PASSWORD_HASH;
 
         try {
@@ -96,6 +98,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     private String createAndSaveRefreshToken(String email) {
+        refreshTokenRepository.deleteByUserEmail(email);
+
         String refreshToken = jwtUtil.generateRefreshToken(email);
 
         // Hash the refresh token before saving it to the database
@@ -117,28 +121,29 @@ public class AuthServiceImpl implements AuthService {
 
     public RefreshTokenDto refreshAccessToken(String refreshToken) {
         jwtUtil.validateToken(refreshToken);
+
         String email = jwtUtil.extractEmailFromRefreshToken(refreshToken);
         User user = userService.findByEmail(email);
 
         RefreshToken storedRefreshToken = refreshTokenRepository.findByUserEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("Refresh token not found for user: " + email));
 
+        if (storedRefreshToken.getExpirationTime().isBefore(LocalDateTime.now())) {
+            refreshTokenRepository.delete(storedRefreshToken);
+            throw new BadCredentialsException("Invalid refresh token");
+        }
 
         String hashedRefreshToken = hashToken(refreshToken);
         if (!MessageDigest.isEqual(hashedRefreshToken.getBytes(), storedRefreshToken.getToken().getBytes())) {
             throw new BadCredentialsException("Invalid refresh token");
         }
 
-        // Generate a new access token
-        String newAccessToken = jwtUtil.generateToken(email, user.getRole());
-        // Delete the old refresh token
+        // Rotate the refresh token
         refreshTokenRepository.delete(storedRefreshToken);
-        refreshTokenRepository.flush();
-        // Create and save a new refresh token
         String newRefreshToken = createAndSaveRefreshToken(email);
 
         return RefreshTokenDto.builder()
-                .accessToken(newAccessToken)
+                .accessToken(jwtUtil.generateToken(email, user.getRole()))
                 .refreshToken(newRefreshToken)
                 .build();
     }
@@ -165,6 +170,11 @@ public class AuthServiceImpl implements AuthService {
 
     public String extractRoleFromJwt(String token) {
         return jwtUtil.extractRoleFromJwt(token);
+    }
+
+    @Scheduled(cron = "0 0 * * * *") // every hour
+    public void cleanExpiredTokens() {
+        refreshTokenRepository.deleteAllExpiredSince(LocalDateTime.now());
     }
 
 }

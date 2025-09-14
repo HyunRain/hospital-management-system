@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/staff")
 @Tag(name = "Staff", description = "API Staff Service")
@@ -38,11 +40,20 @@ public class StaffController {
     }
 
     @GetMapping("/all")
-    @Operation(summary = "Get 15 Doctors Paginated")
-    public ResponseEntity<PaginatedResponseDto> getAllStaff(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size) {
-        PaginatedResponseDto allStaff = staffService.getAllDoctorsPaginated(page, size);
+    @Operation(summary = "Get 15 Staff Paginated")
+    public ResponseEntity<PaginatedResponseDto> getAllStaff(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size, @RequestParam String role) {
+        PaginatedResponseDto allStaff = staffService.getAllStaffPaginated(page, size, role);
         return new ResponseEntity<>(allStaff, HttpStatus.OK);
     }
+
+    @GetMapping("/allRoles")
+    @Operation(summary = "Get 15 Staff Paginated")
+    public ResponseEntity<PaginatedResponseDto> getAllStaff(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size) {
+        PaginatedResponseDto allStaff = staffService.getAllStaffPaginated(page, size );
+        return new ResponseEntity<>(allStaff, HttpStatus.OK);
+    }
+
+
 
     @GetMapping("/search")
     @Operation(summary = "Search for Doctors")

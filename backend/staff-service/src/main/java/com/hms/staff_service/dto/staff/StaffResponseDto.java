@@ -38,6 +38,8 @@ public class StaffResponseDto {
 
     private String country;
 
+    private String role;
+
     private String postalCode;
 
     private String departmentName;

@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import type { DoctorDto } from '@/util/types/types'
+import type { StaffDto } from '@/util/types/types'
 import api from './apiInterceptor'
 
 export const useDoctorStore = defineStore('doctor', {
   state: () => ({
-    doctors: [] as DoctorDto[],
+    doctors: [] as StaffDto[],
     size: 15 as number,
     page: 1 as number,
     totalPages: 0 as number,
@@ -22,6 +22,7 @@ export const useDoctorStore = defineStore('doctor', {
         params: {
           page: page,
           size: size,
+          role: 'DOCTOR',
         },
         withCredentials: true,
       })

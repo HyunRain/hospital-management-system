@@ -131,7 +131,7 @@ function nextStep() {
         <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 3">
           <div class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
             <img v-if="isStep2" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`" alt="PatientIcon" />
-            <p v-else :class="[stepTextColor(3)]">2</p>
+            <p v-else :class="[stepTextColor(3)]">3</p>
           </div>
           <p :class="[stepTextColor(3)]">
             Address </p>

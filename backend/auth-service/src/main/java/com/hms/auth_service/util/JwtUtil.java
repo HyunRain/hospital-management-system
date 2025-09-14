@@ -20,7 +20,7 @@ import java.util.Date;
 public class JwtUtil {
     private final Key secretKey;
     private static final long ACCESS_TOKEN_EXPIRATION = 1000 * 60 * 15; // 15 minutes
-    private static final long REFRESH_TOKEN_EXPIRATION = 1000 * 60 * 60 * 24; // 1 day
+    private static final long REFRESH_TOKEN_EXPIRATION = 1000 * 60 * 60 * 24 * 20; // 1 day
 
     public JwtUtil(@Value("${jwt.secret}") String secret) {
          byte[] keyBytes = Base64.getDecoder().decode(secret.getBytes(StandardCharsets.UTF_8));

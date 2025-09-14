@@ -56,7 +56,7 @@ export interface PatientDto {
   insuranceExpiryDate?: string; //
 };
 
-export interface DoctorDto {
+export interface StaffDto {
   userId: string;
   staffId: string;
   firstName: string;
@@ -71,6 +71,7 @@ export interface DoctorDto {
   state: string;
   country: string;
   postalCode: string;
+  role: string;
   departmentName: string; // UUID as string
 };
 

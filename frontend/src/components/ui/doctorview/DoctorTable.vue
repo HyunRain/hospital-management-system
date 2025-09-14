@@ -9,7 +9,13 @@ const doctorStore = useDoctorStore();
 <template>
   <table class="min-w-full">
     <thead>
-      <tr class=" h-[30px] text-[15px]">
+      <tr v-if="doctorStore.doctors.length === 0">
+        <td colspan="7" class="text-center py-4">
+          No results found.
+        </td>
+      </tr>
+
+      <tr v-else class=" h-[30px] text-[15px]">
         <th class="md:px-0 px-13">Name</th>
         <th>Staff ID</th>
         <th class="md:px-0 px-5">Gender</th>

@@ -25,6 +25,7 @@ public class StaffMapper {
                 .city(staff.getCity())
                 .state(staff.getState())
                 .country(staff.getCountry())
+                .role(String.valueOf(staff.getRole()))
                 .postalCode(staff.getPostalCode())
                 .departmentName(staff.getDepartment().getName())
                 .build();

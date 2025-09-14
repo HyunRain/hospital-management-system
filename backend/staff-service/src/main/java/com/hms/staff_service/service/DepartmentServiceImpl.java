@@ -45,6 +45,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<DepartmentResponseDto> getAllDepartments() {
         List<Department> departments = departmentRepository.findAllWithHeads();
+
+        List<Department> medicalDepartments = departments.stream()
+                .filter(department -> !department.getName().equalsIgnoreCase("NonMedical"))
+                .toList();
+
         Map<UUID, Integer> staffCountMap = staffRepository.countStaffPerDepartment()
                 .stream()
                 .collect(Collectors.toMap(
@@ -52,7 +57,7 @@ public class DepartmentServiceImpl implements DepartmentService {
                         DepartmentStaffCount::getStaffCount
                 ));
 
-        return departments.stream().map(department -> {
+        return medicalDepartments.stream().map(department -> {
             Integer staffCount = staffCountMap.getOrDefault(department.getUuid(), 0);
             return departmentMapper.entityToDto(department, staffCount);
         }).toList();
