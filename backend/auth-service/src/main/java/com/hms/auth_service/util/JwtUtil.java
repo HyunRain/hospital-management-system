@@ -19,6 +19,8 @@ import java.util.Date;
 @Component
 public class JwtUtil {
     private final Key secretKey;
+    private static final long ACCESS_TOKEN_EXPIRATION = 1000 * 60 * 15; // 15 minutes
+    private static final long REFRESH_TOKEN_EXPIRATION = 1000 * 60 * 60 * 24 * 20; // 1 day
 
     public JwtUtil(@Value("${jwt.secret}") String secret) {
          byte[] keyBytes = Base64.getDecoder().decode(secret.getBytes(StandardCharsets.UTF_8));
@@ -30,7 +32,18 @@ public class JwtUtil {
                 .subject(email)
                 .claim("role", role)
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 15)) // 15 minutes expiration
+                .expiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRATION))
+                .signWith(secretKey)
+                .compact();
+    }
+
+
+    public String generateRefreshToken(String email) {
+        return Jwts.builder()
+                .subject(email)
+                .claim("type", "refresh")  // mark token type
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRATION))
                 .signWith(secretKey)
                 .compact();
     }
@@ -49,7 +62,7 @@ public class JwtUtil {
         } catch (SignatureException e) {
             throw new JwtException("Invalid JWT signature");
         } catch (JwtException e) {
-            throw new JwtException("Invalid JWT");
+            throw new JwtException("JWT token is expired");
         }
     }
 
@@ -79,6 +92,26 @@ public class JwtUtil {
         }
     }
 
+    public String extractEmailFromRefreshToken(String token) {
+        try {
+            Claims claims = Jwts.parser().verifyWith((SecretKey) secretKey)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+
+            Date expiration = claims.getExpiration();
+            if (expiration.before(new Date())) {
+                throw new JwtException("JWT token is expired");
+            }
+
+            return claims.getSubject();
+        } catch (SignatureException e) {
+            throw new JwtException("Invalid JWT signature");
+        } catch (JwtException e) {
+            throw new JwtException("Invalid JWT");
+        }
+    }
+
     public String extractRoleFromJwt(String token) {
         try {
             Claims claims = Jwts.parser().verifyWith((SecretKey) secretKey)
@@ -96,6 +129,18 @@ public class JwtUtil {
             return claims.get("role", String.class);
         } catch (SignatureException e) {
             throw new JwtException("Invalid JWT signature");
+        } catch (JwtException e) {
+            throw new JwtException("Invalid JWT");
+        }
+    }
+
+    public Date extractExpiration(String token) {
+        try {
+            Claims claims = Jwts.parser().verifyWith((SecretKey) secretKey)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+            return claims.getExpiration();
         } catch (JwtException e) {
             throw new JwtException("Invalid JWT");
         }

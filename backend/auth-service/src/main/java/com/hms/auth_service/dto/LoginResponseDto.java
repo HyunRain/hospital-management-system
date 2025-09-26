@@ -7,7 +7,8 @@ import lombok.Data;
 @Data
 @Builder
 public class LoginResponseDto {
-    private String token;
+    private String accessToken;
+    private String refreshToken;
     private String email;
     private Role role;
 }

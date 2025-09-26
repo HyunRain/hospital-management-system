@@ -12,6 +12,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -67,12 +68,12 @@ public class PatientDto {
 
     private String referredBy;
 
-    private List<String> knownAllergies;
-    private List<String> pastMedicalHistory;
-    private List<String> chronicDiseases;
-    private List<String> currentMedications;
-    private List<String> immunizationStatus;
-    private List<String> surgicalHistory;
+    private Set<String> knownAllergies;
+    private Set<String> pastMedicalHistory;
+    private Set<String> chronicDiseases;
+    private Set<String> currentMedications;
+    private Set<String> immunizationStatus;
+    private Set<String> surgicalHistory;
 
     private String insuranceProvider;
     private String insurancePolicyNumber;

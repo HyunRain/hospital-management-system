@@ -25,10 +25,23 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID uuid;
 
-    @NotBlank()
+    @NotBlank
     @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     private List<Staff> staffList;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "head_of_department_uuid", referencedColumnName = "uuid")
+    private Staff headOfDepartment;
+
+    @NotNull
+    private Integer bedCapacity;
+
+    @NotNull
+    private Integer currentBedCount;
+
+    @NotNull
+    private Boolean isActive;
 }

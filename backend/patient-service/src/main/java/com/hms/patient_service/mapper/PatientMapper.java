@@ -17,7 +17,7 @@ public class PatientMapper {
                 .bloodGroup(patient.getBloodGroup())
                 .maritalStatus(patient.getMaritalStatus())
                 .phoneNumber(patient.getPhoneNumber())
-                .email(patient.getPatientId())
+                .email(patient.getEmail())
                 .emergencyContactName(patient.getEmergencyContactName())
                 .emergencyContactNumber(patient.getEmergencyContactNumber())
                 .relationshipToEmergencyContact(patient.getRelationshipToEmergencyContact())

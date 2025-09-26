@@ -2,14 +2,20 @@ package com.hms.staff_service.service;
 
 import com.hms.staff_service.dto.department.DepartmentRequestDto;
 import com.hms.staff_service.dto.department.DepartmentResponseDto;
+import com.hms.staff_service.enums.Role;
 import com.hms.staff_service.exception.DepartmentAlreadyExistsException;
 import com.hms.staff_service.exception.DepartmentNotFoundException;
 import com.hms.staff_service.mapper.DepartmentMapper;
 import com.hms.staff_service.model.Department;
 import com.hms.staff_service.repository.DepartmentRepository;
+import com.hms.staff_service.repository.DepartmentStaffCount;
+import com.hms.staff_service.repository.StaffRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -17,11 +23,14 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
     private final DepartmentRepository departmentRepository;
     private final DepartmentMapper departmentMapper;
+    private final StaffRepository staffRepository;
 
-    public DepartmentServiceImpl(DepartmentRepository departmentRepository, DepartmentMapper departmentMapper) {
+    public DepartmentServiceImpl(DepartmentRepository departmentRepository, DepartmentMapper departmentMapper, StaffRepository staffRepository) {
         this.departmentRepository = departmentRepository;
         this.departmentMapper = departmentMapper;
+        this.staffRepository = staffRepository;
     }
+
 
     @Override
     public void registerDepartment(DepartmentRequestDto departmentRequestDto) {
@@ -35,15 +44,31 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<DepartmentResponseDto> getAllDepartments() {
-        List<Department> departments = departmentRepository.findAll();
-        return departments.stream().map(departmentMapper::entityToDto).toList();
+        List<Department> departments = departmentRepository.findAllWithHeads();
+
+        List<Department> medicalDepartments = departments.stream()
+                .filter(department -> !department.getName().equalsIgnoreCase("NonMedical"))
+                .toList();
+
+        Map<UUID, Integer> staffCountMap = staffRepository.countStaffPerDepartment()
+                .stream()
+                .collect(Collectors.toMap(
+                        DepartmentStaffCount::getDepartmentId,
+                        DepartmentStaffCount::getStaffCount
+                ));
+
+        return medicalDepartments.stream().map(department -> {
+            Integer staffCount = staffCountMap.getOrDefault(department.getUuid(), 0);
+            return departmentMapper.entityToDto(department, staffCount);
+        }).toList();
     }
 
     @Override
     public DepartmentResponseDto getDepartmentByName(String name) {
         Department department = departmentRepository.findByName(name)
                 .orElseThrow(() -> new DepartmentNotFoundException("Department not found with name: " + name));
-        return departmentMapper.entityToDto(department);
+        int staffCount = staffRepository.countByDepartment_Uuid(department.getUuid());
+        return departmentMapper.entityToDto(department, staffCount);
     }
 
     @Override

@@ -1,14 +1,14 @@
 package com.hms.patient_service.service;
 
 
+import com.hms.patient_service.dto.PaginatedResponse;
 import com.hms.patient_service.dto.PatientDto;
-
-import java.util.List;
 
 public interface PatientService {
     PatientDto savePatient(PatientDto patientDto);
     PatientDto getPatientById(String patientId);
-    List<PatientDto> getAllPatients();
+    PaginatedResponse getAllPatientsPaginated(int page, int size);
+    PaginatedResponse searchPatients(String input, int page, int size);
     PatientDto updatePatient(String patientId, PatientDto patientDto);
     void deletePatient(String patientId);
 }

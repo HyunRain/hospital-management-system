@@ -14,6 +14,8 @@ public class StaffResponseDto {
 
     private String userId;
 
+    private String staffId;
+
     private String firstName;
 
     private String lastName;
@@ -36,7 +38,9 @@ public class StaffResponseDto {
 
     private String country;
 
+    private String role;
+
     private String postalCode;
 
-    private UUID departmentId;
+    private String departmentName;
 }
