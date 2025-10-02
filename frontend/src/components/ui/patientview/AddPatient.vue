@@ -106,10 +106,11 @@ const isStep3 = computed(() => {
 const isStep4 = computed(() => {
   return !!patientFormData.bloodGroup &&
     !!patientFormData.insuranceProvider &&
-    !!patientFormData.insurancePolicyNumber &&
-    !!patientFormData.emergencyContactName &&
-    !!patientFormData.emergencyContactNumber &&
-    !!patientFormData.relationshipToEmergencyContact;
+    !!patientFormData.insurancePolicyNumber
+});
+
+const stepsCompleted = computed(() => {
+  return isStep1.value && isStep2.value && isStep3.value && isStep4.value;
 });
 
 function stepTextColor(step: number) {
@@ -168,8 +169,7 @@ function nextStep() {
           <p class="min-w-24" :class="[stepTextColor(1)]">
             Personal Data</p>
         </div>
-
-        <div class="border-l"></div>
+      <div class="border-l"></div>
 
         <!-- Header 2-->
         <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 2">
@@ -388,7 +388,7 @@ function nextStep() {
           <button class="form-button" type="button" @click="previousStep" v-show="currentStep > 1">Back</button>
           <div class="flex ml-auto">
             <button class="form-button" type="button" @click="nextStep" v-show="currentStep < totalSteps">Next</button>
-            <button class="form-button w-[65.32px]" type="submit" v-if="currentStep === totalSteps">Add</button>
+            <button :disabled="!stepsCompleted" class="form-button" type="submit" v-if="currentStep === totalSteps">Add</button>
           </div>
         </div>
 

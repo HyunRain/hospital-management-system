@@ -47,7 +47,6 @@ message CreateBillingItemRequest {
   string sourceId = 3;
 }
 
-
 message GetBillingItemResponse {
   string accountId = 1;
   string patientId = 2;

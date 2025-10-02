@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import TrendingUp from '/assets/icons/trending-up.svg';
 import TrendingDown from '/assets/icons/trending-down.svg';
-import { useToggleStore } from '@/stores/toggleStore' ;
+import { useToggleStore } from '@/stores/toggleStore';
 
 const toggleStore = useToggleStore();
 
@@ -11,7 +11,11 @@ const props = defineProps({
     type: String,
     required: true
   },
-})
+  amount: {
+    type: Number,
+    required: true
+  },
+});
 
 const darkModeState = computed(() => toggleStore.darkModeState);
 
@@ -20,12 +24,12 @@ const iconNameMap: Record<string, string> = {
   Appointments: 'appointment',
   Bedroom: 'patient',
   Doctors: 'doctor',
-}
+};
 
 const imgSrc = computed(() => {
   const iconName: string = iconNameMap[props.title];
-  return `/assets/icons/${darkModeState.value}/${iconName}.svg`
-})
+  return `/assets/icons/${darkModeState.value}/${iconName}.svg`;
+});
 </script>
 
 <template>
@@ -38,7 +42,7 @@ const imgSrc = computed(() => {
       <img class="h-6 w-6" :src="`/assets/icons/${toggleStore.darkModeState}/options.svg`" alt="3 Dots Icon">
     </div>
     <div class="flex items-center mt-6 justify-between">
-      <p class="text-2xl font-bold ">15</p>
+      <p class="text-2xl font-bold "> {{ props.amount }}</p>
 
       <div class="flex items-center gap-1 bg-[#c4ffc8] rounded-xl p-1">
         <img class="h-5 w-5" :src="TrendingUp" alt="Trending Icon">
@@ -49,6 +53,4 @@ const imgSrc = computed(() => {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

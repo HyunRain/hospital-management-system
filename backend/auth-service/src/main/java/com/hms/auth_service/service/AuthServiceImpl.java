@@ -91,7 +91,7 @@ public class AuthServiceImpl implements AuthService {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(token.getBytes(StandardCharsets.UTF_8));
-            return Base64.getEncoder().encodeToString(hash); // or use Hex encoding if preferred
+            return Base64.getEncoder().encodeToString(hash);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("SHA-256 algorithm not found", e);
         }
@@ -99,6 +99,7 @@ public class AuthServiceImpl implements AuthService {
 
     private String createAndSaveRefreshToken(String email) {
         refreshTokenRepository.deleteByUserEmail(email);
+        refreshTokenRepository.flush();
 
         String refreshToken = jwtUtil.generateRefreshToken(email);
 

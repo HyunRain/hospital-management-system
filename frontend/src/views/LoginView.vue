@@ -51,17 +51,16 @@ async function handleLogin() {
       triggerBackendError("Login Service is currently unavailable.");
     }
 
+    if (isAxiosError(error) && error.response?.status === 429) {
+      triggerBackendError("Too many login attempts. Please try again later.");
+    }
+
     if (isAxiosError(error) && error.response?.data?.message === "Invalid email or password.") {
       triggerBackendError(error.response?.data?.message);
     }
   }
 }
 
-// WIP
-function handleDemoLogin() {
-  toggleStore.toggleDemo();
-  router.push('/dashboard');
-}
 
 // Rules for frontend validation used in handleLogin()
 // rules.ts to check what rules you can apply.
@@ -119,11 +118,11 @@ function triggerFrontendError(message: string) {
         <h2 class="mb-10 font-bold text-[28px]">Login to Dashboard</h2>
         <form class="flex flex-col items-center justify-center gap-6 w-full md:w-2/4" @submit.prevent="handleLogin()">
           <input
-            class="bg-white dark:bg-[#030714] placeholder-[#828282] w-full px-[10px] py-[7px] rounded-xl border border-gray-300 dark:border-zinc-800 focus:border-red-300 dark:focus:border-zinc-600 focus:outline-none"
+            class="bg-white input dark:bg-[#030714] placeholder-[#828282] w-full px-[10px] py-[7px] rounded-xl border border-gray-300 dark:border-zinc-800 focus:border-red-300 dark:focus:border-zinc-600 focus:outline-none"
             type="text" name="email" placeholder="Email" v-model="loginInput.email" />
           <div class="relative w-full">
             <input
-              class="bg-white dark:bg-[#030714] placeholder-[#828282] w-full px-[10px] py-[7px] rounded-xl border border-gray-300 dark:border-zinc-800 focus:border-red-300 dark:focus:border-zinc-600 focus:outline-none"
+              class="bg-white input dark:bg-[#030714] placeholder-[#828282] w-full px-[10px] py-[7px] rounded-xl border border-gray-300 dark:border-zinc-800 focus:border-red-300 dark:focus:border-zinc-600 focus:outline-none"
               :type="toggleStore.showPassword ? 'text' : 'password'" name="password" placeholder="Password" v-model="loginInput.password" />
             <img v-if="toggleStore.showPassword" class="size-5 cursor-pointer absolute top-1/2 right-3 -translate-y-1/2"
               :src="`/assets/icons/${toggleStore.darkModeState}/eyeHide.svg`" alt="Show Eye Password Icon" @click="toggleStore.togglePassword">
@@ -140,8 +139,6 @@ function triggerFrontendError(message: string) {
         <ErrorAlert class="mt-5" :alert-key="errorAlertKey" :show="showLoginFailed" :message="errorMessage"></ErrorAlert>
         <!-- Frontend Error -->
         <ErrorAlert class="mt-5" :alert-key="badLoginDataAlertKey" :show="showBadLoginData" :message="badLoginDataMessage"></ErrorAlert>
-        <p @click="handleDemoLogin()" class="mt-5 cursor-pointer underline hover:text-[#a7a7a7]">Explore as a Demo Admin
-        </p>
       </div>
     </div>
   </div>

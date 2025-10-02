@@ -13,12 +13,13 @@ import java.time.Duration;
 import java.util.Objects;
 
 @Component
-public class LoginRateLimiterGatewayFilterFactory extends AbstractGatewayFilterFactory<LoginRateLimiterGatewayFilterFactory.Config> {
+public class LoginRateLimiterGatewayFilterFactory
+        extends AbstractGatewayFilterFactory<LoginRateLimiterGatewayFilterFactory.Config> {
 
     private final RedisTemplate<String, String> redisTemplate;
+
     private static final int LIMIT = 5;
     private static final Duration REPLENISH_WINDOW = Duration.ofMinutes(30);
-
 
     public LoginRateLimiterGatewayFilterFactory(RedisTemplate<String, String> redisTemplate) {
         super(Config.class);
@@ -29,19 +30,31 @@ public class LoginRateLimiterGatewayFilterFactory extends AbstractGatewayFilterF
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
             String key = "login:rate:" + getClientIp(exchange);
+
+            // check attempts before processing the request
+            String value = redisTemplate.opsForValue().get(key);
+            int attempts = value != null ? Integer.parseInt(value) : 0;
+
+            if (attempts >= LIMIT) {
+                exchange.getResponse().setStatusCode(HttpStatus.TOO_MANY_REQUESTS);
+                return exchange.getResponse().setComplete();
+            }
+
+
             return chain.filter(exchange).then(Mono.defer(() -> {
                 HttpStatusCode statusCode = exchange.getResponse().getStatusCode();
-                if (statusCode == HttpStatus.BAD_REQUEST) {
-                    redisTemplate.opsForValue().increment(key);
-                    redisTemplate.expire(key, REPLENISH_WINDOW);
-                }
 
-                String value = redisTemplate.opsForValue().get(key);
-                int attempts = value != null ? Integer.parseInt(value) : 0;
+                if (statusCode == HttpStatus.BAD_REQUEST || statusCode == HttpStatus.UNAUTHORIZED) {
+                    Long updatedAttempts = redisTemplate.opsForValue().increment(key);
+                    // Only set/refresh expiry on first increment
+                    if (updatedAttempts != null && updatedAttempts == 1) {
+                        redisTemplate.expire(key, REPLENISH_WINDOW);
+                    }
 
-                if (attempts > LIMIT) {
-                    exchange.getResponse().setStatusCode(HttpStatus.TOO_MANY_REQUESTS);
-                    return exchange.getResponse().setComplete();
+                    if (updatedAttempts != null && updatedAttempts > LIMIT) {
+                        exchange.getResponse().setStatusCode(HttpStatus.TOO_MANY_REQUESTS);
+                        return exchange.getResponse().setComplete();
+                    }
                 }
 
                 return Mono.empty();
@@ -54,8 +67,10 @@ public class LoginRateLimiterGatewayFilterFactory extends AbstractGatewayFilterF
     }
 
     private String getClientIp(ServerWebExchange exchange) {
-        return Objects.requireNonNull(exchange.getRequest().getRemoteAddress()).getAddress().getHostAddress();
+        return Objects.requireNonNull(exchange.getRequest().getRemoteAddress())
+                .getAddress()
+                .getHostAddress();
     }
-
 }
+
 

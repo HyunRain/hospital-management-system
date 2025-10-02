@@ -53,8 +53,6 @@ public class StaffController {
         return new ResponseEntity<>(allStaff, HttpStatus.OK);
     }
 
-
-
     @GetMapping("/search")
     @Operation(summary = "Search for Doctors")
     public ResponseEntity<PaginatedResponseDto> searchStaff(@RequestParam String input, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size) {

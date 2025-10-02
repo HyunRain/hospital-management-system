@@ -141,10 +141,15 @@ body {
   @apply h-[36px] py-1 w-full shadow-sm px-3 border bg-white border-gray-300 dark:border-zinc-800 dark:bg-[#02050e] dark:placeholder-[#979797] rounded-xl focus:border-red-300 dark:focus:border-zinc-500 focus:outline-none;
 }
 
+.input:-webkit-autofill {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: var(--text-color) !important;
+}
+
 .button {
   @apply px-3 h-[36px] bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#030712] border border-gray-300 dark:border-zinc-800 rounded-xl cursor-pointer dark:hover:bg-[#1d1d1dcf];
 }
 
 .form-button {
-  @apply px-4 h-[36px] bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#030712] border border-gray-300 dark:border-zinc-800 rounded-xl cursor-pointer dark:hover:bg-[#1d1d1dcf];
+  @apply px-4 h-[36px] bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#030712] border border-gray-300 dark:border-zinc-800 rounded-xl cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-[#1d1d1dcf];
 }
