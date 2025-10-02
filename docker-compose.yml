@@ -2,26 +2,26 @@ services:
   api-gateway:
     image: ea4dc2bf8312
     ports:
-      - "8079:8079"
+      - "${API_GATEWAY_PORTS}"
     networks:
       - internal
     environment:
-      - AUTH_SERVICE_URL=http://auth-service:8081
+      - AUTH_SERVICE_URL=${AUTH_SERVICE_URL}
       - SPRING_REDIS_HOST=redis-stack
-      - SPRING_REDIS_PORT=6379
+      - SPRING_REDIS_PORT=${SPRING_REDIS_PORT}
 
   redis-stack:
     image: redis/redis-stack:latest
     ports:
-      - "6379:6379"
-      - "8001:8001"
+      - "${REDIS_PORTS}"
+      - "${REDIS_UI_PORTS}"
     networks:
       - internal
 
   auth-service-db:
     image: postgres:latest
     ports:
-      - "5433:5432"
+      - "${AUTH_SERVICE_DB_PORTS}"
     networks:
       - internal
     environment:
@@ -29,12 +29,12 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - 42f0d3948df9c53212318d3fcf05216dd7f0da2c0071ba7c4ce895d6d2147f1b:/var/lib/postgresql/data
+      - ${AUTH_SERVICE_VOLUME}:/var/lib/postgresql/data
 
   auth-service:
     image: dbc939787cfb
     ports:
-      - "9083:9083"
+      - "${AUTH_SERVICE_GRPC_PORTS}"
     networks:
       - internal
     depends_on:
@@ -42,7 +42,7 @@ services:
     environment:
       - JWT_SECRET=${JWT_SECRET}
       - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://auth-service-db:5432/postgres
+      - SPRING_DATASOURCE_URL=${AUTH_SPRING_DATASOURCE_URL}
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_SQL_INIT_MODE=always
@@ -50,7 +50,7 @@ services:
   patient-service-db:
     image: postgres:latest
     ports:
-     - "5432:5432"
+     - "${PATIENT_SERVICE_DB_PORTS}"
     networks:
       - internal
     environment:
@@ -58,7 +58,7 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - 7dc1434d98cd64a6ca905ad636b18b2624fe849ec317e4c5032121e378fee09a:/var/lib/postgresql/data
+      - ${PATIENT_SERVICE_VOLUME}:/var/lib/postgresql/data
 
   patient-service:
     image: 1efdc4b80c75
@@ -68,9 +68,9 @@ services:
       - patient-service-db
     environment:
       - BILLING_SERVICE_ADDRESS=billing-service
-      - BILLING_SERVICE_GRPC_PORT=9082
+      - BILLING_SERVICE_GRPC_PORT=${BILLING_SERVICE_GRPC_PORT}
       - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://patient-service-db/postgres
+      - SPRING_DATASOURCE_URL=${PATIENT_SPRING_DATASOURCE_URL}
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
@@ -80,7 +80,7 @@ services:
   staff-service-db:
     image: postgres:latest
     ports:
-      - "5435:5432"
+      - "${STAFF_SERVICE_DB_PORTS}"
     networks:
       - internal
     environment:
@@ -88,7 +88,7 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - 9923b7cd06a45c8f77c434a0fad42df11b8b0f88cd95a926671fb92458c5cd97:/var/lib/postgresql/data
+      - ${STAFF_SERVICE_VOLUME}:/var/lib/postgresql/data
 
   staff-service:
     image: ab50d3c3ac4d
@@ -98,9 +98,9 @@ services:
       - staff-service-db
     environment:
       - AUTH_SERVICE_ADDRESS=auth-service
-      - AUTH_SERVICE_GRPC_PORT=9083
+      - AUTH_SERVICE_GRPC_PORT=${AUTH_SERVICE_GRPC_PORT}
       - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://staff-service-db/postgres
+      - SPRING_DATASOURCE_URL=${STAFF_SPRING_DATASOURCE_URL}
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_SQL_INIT_MODE=always
@@ -111,9 +111,9 @@ networks:
     driver: bridge
 
 volumes:
-  42f0d3948df9c53212318d3fcf05216dd7f0da2c0071ba7c4ce895d6d2147f1b:
+  ${AUTH_SERVICE_VOLUME}:
     external: true
-  7dc1434d98cd64a6ca905ad636b18b2624fe849ec317e4c5032121e378fee09a:
+  ${PATIENT_SERVICE_VOLUME}:
     external: true
-  9923b7cd06a45c8f77c434a0fad42df11b8b0f88cd95a926671fb92458c5cd97:
+  ${STAFF_SERVICE_VOLUME}:
     external: true
