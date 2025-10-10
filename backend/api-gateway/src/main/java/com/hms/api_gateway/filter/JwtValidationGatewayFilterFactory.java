@@ -30,6 +30,7 @@ public class JwtValidationGatewayFilterFactory extends AbstractGatewayFilterFact
     public GatewayFilter apply(Object config) {
         return (exchange, chain) -> {
             String path = exchange.getRequest().getPath().value();
+            System.out.println(path);
             ServerHttpRequest request = exchange.getRequest();
             HttpMethod method = request.getMethod();
 

@@ -13,7 +13,7 @@ import com.hms.billing_service.model.BillingItem;
 import com.hms.billing_service.model.BillingItemPrice;
 import com.hms.billing_service.repository.BillingItemPriceRepository;
 import com.hms.billing_service.repository.BillingItemRepository;
-import com.hms.billing_service.repository.BillingRepository;
+import com.hms.billing_service.repository.BillingAccountRepository;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.slf4j.Logger;
@@ -26,15 +26,15 @@ import java.util.UUID;
 
 @GrpcService
 public class BillingGrpcService extends BillingServiceImplBase {
-    private final BillingRepository billingRepository;
+    private final BillingAccountRepository billingAccountRepository;
     private final BillingItemRepository billingItemRepository;
     private final BillingItemPriceRepository billingItemPriceRepository;
     private final BillingItemMapper billingItemMapper;
 
     private static final Logger log = LoggerFactory.getLogger(BillingGrpcService.class);
 
-    public BillingGrpcService(BillingRepository billingRepository, BillingItemRepository billingItemRepository, BillingItemPriceRepository billingItemPriceRepository, BillingItemMapper billingItemMapper) {
-        this.billingRepository = billingRepository;
+    public BillingGrpcService(BillingAccountRepository billingAccountRepository, BillingItemRepository billingItemRepository, BillingItemPriceRepository billingItemPriceRepository, BillingItemMapper billingItemMapper) {
+        this.billingAccountRepository = billingAccountRepository;
         this.billingItemRepository = billingItemRepository;
         this.billingItemPriceRepository = billingItemPriceRepository;
         this.billingItemMapper = billingItemMapper;
@@ -61,7 +61,7 @@ public class BillingGrpcService extends BillingServiceImplBase {
                 .status(Status.PENDING)
                 .build();
 
-        BillingAccount savedBillingAccount = billingRepository.save(billingAccount);
+        BillingAccount savedBillingAccount = billingAccountRepository.save(billingAccount);
 
         GetBillingResponse response = GetBillingResponse.newBuilder()
                 .setAccountId(String.valueOf(savedBillingAccount.getId()))
@@ -79,7 +79,7 @@ public class BillingGrpcService extends BillingServiceImplBase {
         // Business logic to retrieve a billing account
         String patientId = getBillingAccountRequest.getPatientId();
 
-        BillingAccount billingAccount = billingRepository.findByPatientId(patientId)
+        BillingAccount billingAccount = billingAccountRepository.findByPatientId(patientId)
                 .orElseThrow(() -> new ResourceNotFoundException("Billing account not found for patient ID: " + patientId));
 
         //Fetch all billing items and set them as a list of GetBillingItemResponse
@@ -118,7 +118,7 @@ public class BillingGrpcService extends BillingServiceImplBase {
 
         String patientId = createBillingItemRequest.getPatientId();
 
-        BillingAccount billingAccount = billingRepository.findByPatientId(patientId)
+        BillingAccount billingAccount = billingAccountRepository.findByPatientId(patientId)
                 .orElseThrow(() -> new ResourceNotFoundException("Billing account not found for patient ID: " + patientId));
 
         // Fetch the current billing item price based on the billing item type and set the unit price and initial total price

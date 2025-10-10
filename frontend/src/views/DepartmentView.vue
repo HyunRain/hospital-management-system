@@ -48,15 +48,15 @@ function triggerBackendError(message: string) {
 </script>
 
 <template>
-  <div class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#030712] dark:border border-zinc-800 min-h-[calc(100vh-147px)] rounded-xl">
-    <div v-if="isAdmin" class="flex justify-between items-center mb-5">
+  <div class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] dark:border border-zinc-800 min-h-[calc(100vh-147px)] rounded-lg">
+    <div v-if="isAdmin" class="flex justify-between items-center">
       <div class="flex gap-2 items-center">
         <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/department.svg`" alt="DepartmentIcon" />
         <h2 class="text-[20px]">Departments</h2>
         <ErrorAlert class="ml-5" :show="showDepartmentsFailed" :alert-key="errorAlertKey" :message="errorMessage" />
       </div>
     </div>
-    <div v-if="isAdmin" class="h-full overflow-auto items-start flex">
+    <div v-if="isAdmin" class="h-full overflow-auto items-center flex">
       <DepartmentTable />
     </div>
     <div v-else class="flex items-center justify-center w-full h-full text-center p-5">
@@ -67,6 +67,4 @@ function triggerBackendError(message: string) {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

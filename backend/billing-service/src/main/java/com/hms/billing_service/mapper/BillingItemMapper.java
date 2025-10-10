@@ -1,11 +1,13 @@
 package com.hms.billing_service.mapper;
 
+import com.hms.billing_service.dto.BillingItemResponseDto;
 import com.hms.billing_service.enums.BillingItemStatus;
 import com.hms.billing_service.enums.BillingItemType;
 import com.hms.billing_service.model.BillingItem;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Component
 public class BillingItemMapper {
@@ -23,5 +25,20 @@ public class BillingItemMapper {
         }
 
         return existingItem;
+    }
+
+    public BillingItemResponseDto entityToDto(BillingItem billingItem) {
+        return BillingItemResponseDto.builder()
+                .billingId(billingItem.getId())
+                .billingAccountId(billingItem.getBillingAccount().getId())
+                .patientId(billingItem.getBillingAccount().getPatientId())
+                .billingItemType(billingItem.getBillingItemType())
+                .unitPrice(billingItem.getUnitPrice())
+                .quantity(billingItem.getQuantity())
+                .totalPrice(billingItem.getTotalPrice())
+                .status(billingItem.getStatus())
+                .startDate(billingItem.getStartDate())
+                .dueDate(billingItem.getEndDate())
+                .build();
     }
 }

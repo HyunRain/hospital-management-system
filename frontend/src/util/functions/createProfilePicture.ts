@@ -2,23 +2,23 @@
 export function createProfilPicture(firstName: string): string {
   const letter = firstName.charAt(0).toUpperCase() || '?';
   const colors: string[] = [
-  '#D32F2F',
-  '#C2185B',
-  '#7B1FA2',
-  '#303F9F',
-  '#1976D2',
-  '#0288D1',
-  '#0097A7',
-  '#00796B',
-  '#388E3C',
-  '#689F38',
-  '#AFB42B',
-  '#FFA000',
-  '#F57C00',
-  '#E64A19',
-  '#5D4037',
-  '#455A64',
-];
+    '#D32F2F',
+    '#8b000080',
+    '#7B1FA2',
+    '#303F9F',
+    '#1976D2',
+    '#0288D1',
+    '#0097A7',
+    '#00796B',
+    '#388E3C',
+    '#689F38',
+    '#AFB42B',
+    '#FFA000',
+    '#F57C00',
+    '#E64A19',
+    '#5D4037',
+    '#455A64',
+  ]
   const charCode = letter.charCodeAt(0);
   const colorIndex = charCode % colors.length;
   const color: string = colors[colorIndex];

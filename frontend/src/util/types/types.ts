@@ -1,9 +1,9 @@
 export interface User {
-  userId: string; // UUID as string
+  userId: string;
   firstName: string;
   lastName: string;
   gender: 'MALE' | 'FEMALE' | 'OTHER';
-  dateOfBirth: string; // LocalDate as string
+  dateOfBirth: string;
   phoneNumber: string;
   email: string;
   addressLine1: string;
@@ -12,7 +12,7 @@ export interface User {
   state: string;
   country: string;
   postalCode: string;
-  departmentId: string; // UUID as string
+  departmentId: string;
 
 }
 
@@ -53,7 +53,7 @@ export interface PatientDto {
   surgicalHistory?: string[];
   insuranceProvider?: string;
   insurancePolicyNumber?: string;
-  insuranceExpiryDate?: string; //
+  insuranceExpiryDate?: string;
 };
 
 export interface StaffDto {
@@ -72,17 +72,30 @@ export interface StaffDto {
   country: string;
   postalCode: string;
   role: string;
-  departmentName: string; // UUID as string
+  departmentName: string;
 };
 
 export interface DepartmentDto {
   name: string;
   headOfDepartmentName: string;
-  headOfDepartmentId: string; // UUID as string
+  headOfDepartmentId: string;
   staffCount: number;
   bedCapacity: number;
   currentBedCount: number;
   isActive: boolean;
+}
+
+export interface BillingData {
+  billingId: string;
+  billingAccountId: string;
+  billingItemType: string;
+  unitPrice: number;
+  quantity: number;
+  totalPrice: number;
+  status: 'ACTIVE' | 'CLOSED';
+  startDate: string;
+  dueDate: string;
+  patientName: string;
 }
 
 export type ValidationResult = { success: true } | { success: false; field: string; validator: string; error: string };

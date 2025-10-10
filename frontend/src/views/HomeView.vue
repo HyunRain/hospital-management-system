@@ -1,20 +1,22 @@
 <script setup lang="ts">
 import DashboardCard from '@/components/ui/homeview/DashboardCard.vue';
-import { Line, Pie, Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, BarElement, PointElement, ArcElement, CategoryScale, LinearScale, Filler } from 'chart.js'
-import type { ChartOptions } from 'chart.js'
+import { Line, Pie, Bar } from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, BarElement, PointElement, ArcElement, CategoryScale, LinearScale, Filler } from 'chart.js';
+import type { ChartOptions } from 'chart.js';
 import { useToggleStore } from '@/stores/toggleStore';
-import { computed, ref, onMounted, onBeforeMount} from 'vue';
+import { computed, ref, onMounted, onBeforeMount } from 'vue';
 import { usePatientStore } from '@/stores/patientStore';
 import { useDoctorStore } from '@/stores/doctorStore';
 import { useAuthStore } from '@/stores/authStore';
 import { useDepartmentStore } from '@/stores/departmentStore';
+import { useStaffStore } from '@/stores/staffStore';
 
 const toggleStore = useToggleStore();
 const authStore = useAuthStore();
 const patientStore = usePatientStore();
 const doctorStore = useDoctorStore();
 const departmentStore = useDepartmentStore();
+const staffStore = useStaffStore();
 
 onBeforeMount(async () => {
   if (patientStore.patients.length === 0) {
@@ -24,8 +26,10 @@ onBeforeMount(async () => {
     await doctorStore.getPageOfDoctors(0, doctorStore.size);
   }
   if (departmentStore.departments.length === 0) {
-    console.log('Fetching departments...');
     await departmentStore.fetchDepartments();
+  }
+  if (staffStore.staff.length === 0 && authStore.role === 'ADMIN') {
+    await staffStore.getPageOfAllStaff(0, staffStore.size);
   }
 });
 
@@ -58,22 +62,21 @@ const chartDataLinePatients = computed(() => ({
   datasets: [{
     label: 'Patients',
     data: chartDataSetsLinePatients[selectedRangeLinePatients.value].data,
-    borderColor: '#da4353',
-    backgroundColor: isDark.value ? '#da43521a' : '#da435264',
+    borderColor: isDark.value ? '#e7523b95' : '#e7523b',
+    backgroundColor: isDark.value ? '#e7523b20' : '#e7523b80',
     tension: 0.4,
     fill: true,
-    },
+  },
   ],
 }));
 
-
-const chartOptionsLinePatients = computed<ChartOptions<'line'>> (() => ({
+const chartOptionsLinePatients = computed<ChartOptions<'line'>>(() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
     legend: {
       labels: {
-        color: isDark.value ? '#dfdfd6': '#4c4c4c',
+        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
       },
       position: 'bottom',
     },
@@ -81,7 +84,7 @@ const chartOptionsLinePatients = computed<ChartOptions<'line'>> (() => ({
   scales: {
     x: {
       ticks: {
-        color: isDark.value ? '#dfdfd6': '#4c4c4c',
+        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
       },
       grid: {
         color: '#333',
@@ -91,7 +94,7 @@ const chartOptionsLinePatients = computed<ChartOptions<'line'>> (() => ({
     y: {
       min: 0,
       ticks: {
-        color: isDark.value ? '#dfdfd6': '#4c4c4c',
+        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
         stepSize: 10,
       },
       grid: {
@@ -125,19 +128,19 @@ const chartDataBarAppointments = computed(() => ({
   datasets: [{
     label: 'Appointments',
     data: chartDataSetsBarAppointments[selectedRangeBarAppoitments.value].data,
-    backgroundColor: isDark.value ? '#da43521a' : '#da435264',
-    },
+    backgroundColor: isDark.value ? '#e7523b20' : '#e7523b80',
+  },
   ],
 }));
 
 
-const chartOptionsBarAppointments = computed<ChartOptions<'bar'>> (() => ({
+const chartOptionsBarAppointments = computed<ChartOptions<'bar'>>(() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
     legend: {
       labels: {
-        color: isDark.value ? '#dfdfd6': '#4c4c4c',
+        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
       },
       position: 'bottom',
     },
@@ -146,13 +149,13 @@ const chartOptionsBarAppointments = computed<ChartOptions<'bar'>> (() => ({
     bar: {
       borderWidth: 3,
       borderRadius: 10,
-      borderColor: isDark.value ? '#db4353' : '#db4353',
+      borderColor: isDark.value ? '#e7523b95' : '#e7523b',
     }
   },
   scales: {
     x: {
       ticks: {
-        color: isDark.value ? '#dfdfd6': '#4c4c4c',
+        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
       },
       grid: {
         color: '#333',
@@ -162,7 +165,7 @@ const chartOptionsBarAppointments = computed<ChartOptions<'bar'>> (() => ({
     y: {
       min: 0,
       ticks: {
-        color: isDark.value ? '#dfdfd6': '#4c4c4c',
+        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
         stepSize: 10,
       },
       grid: {
@@ -196,20 +199,20 @@ const chartDataLineRevenue = computed(() => ({
   datasets: [{
     label: 'Revenue in €',
     data: chartDataSetsLineRevenue[selectedRangeLineRevenue.value].data,
-    borderColor: '#da4353',
-    backgroundColor: isDark.value ? '#da43521a' : '#da435264',
+    borderColor: isDark.value ? '#e7523b95' : '#e7523b',
+    backgroundColor: isDark.value ? '#e7523b20' : '#e7523b80',
     tension: 0.4,
     fill: true,
   }],
 }));
 
-const chartOptionsLineRevenue = computed<ChartOptions<'line'>> (() => ({
+const chartOptionsLineRevenue = computed<ChartOptions<'line'>>(() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
     legend: {
       labels: {
-        color: isDark.value ? '#dfdfd6': '#4c4c4c',
+        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
       },
       position: 'bottom',
     },
@@ -217,7 +220,7 @@ const chartOptionsLineRevenue = computed<ChartOptions<'line'>> (() => ({
   scales: {
     x: {
       ticks: {
-        color: isDark.value ? '#dfdfd6': '#4c4c4c',
+        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
       },
       grid: {
         color: '#333',
@@ -227,7 +230,7 @@ const chartOptionsLineRevenue = computed<ChartOptions<'line'>> (() => ({
     y: {
       min: 0,
       ticks: {
-        color: isDark.value ? '#dfdfd6': '#4c4c4c',
+        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
         stepSize: 10,
       },
       grid: {
@@ -244,29 +247,30 @@ const chartDataPie = computed(() => ({
   labels: departmentStore.departments.map(dept => dept.name),
   datasets: [
     {
-      // Generate a gradient from red to light red but randomly not sequentially
-
-      backgroundColor: departmentStore.departments.map((_, index) => {
-        const ratio = index / (departmentCount.value - 1); // 0..1
-        const value = Math.round(255 * (1 - ratio)); // 255 → 0
-
-        const hex = value.toString(16).padStart(2, '0');
-
-        // Red fixed at FF, green and blue use hex
-        return `#FF${hex}${hex}`;
-      }),
+      backgroundColor: [
+        '#FF6384',
+        '#36A2EB',
+        '#FFCE56',
+        '#4BC0C0',
+        '#9966FF',
+        '#FF9F40',
+        '#C9CBCF',
+        '#8B0000',
+        '#008000',
+        '#00008B',
+      ],
       data: departmentStore.departments.map(dept => dept.staffCount)
     }
   ]
 }));
 
-const chartOptionsPie = computed<ChartOptions<'pie'>> (() => ({
+const chartOptionsPie = computed<ChartOptions<'pie'>>(() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
     legend: {
       labels: {
-        color: isDark.value ? '#dfdfd6': '#4c4c4c',
+        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
       },
       position: 'bottom',
     },
@@ -275,24 +279,24 @@ const chartOptionsPie = computed<ChartOptions<'pie'>> (() => ({
 </script>
 
 <template>
-  <div class="flex flex-col items-start w-full bg-gray-50 dark:bg-[#030712] rounded-xl">
+  <div class="flex flex-col items-start w-full bg-gray-50 dark:bg-[#000000] rounded-lg">
     <div class="flex flex-wrap gap-5 w-full justify-center p-5">
-      <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Patients" :amount="patientStore.totalPatients" />
-      <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Appointments" :amount="15" />
-      <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Bedroom" :amount="10" />
-      <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Doctors" :amount="doctorStore.totalDoctors" />
+      <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Patients" :amount="patientStore.totalPatients" :trend="3.15" />
+      <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Appointments" :amount="15" :trend="-1.25" />
+      <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Staff" :amount="staffStore.totalStaff" :trend="2.24" />
+      <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Doctors" :amount="doctorStore.totalDoctors" :trend="2.5" />
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full px-5 pb-5">
-      <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-[#0d1016] p-5">
+      <div class="flex flex-col h-[400px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] dark:border dark:border-neutral-900 shadow-md p-5">
         <div class="flex mb-5 items-center justify-between">
           <p class="text-[16px] text-zinc-800 dark:text-zinc-200">Patients Overview</p>
           <div class="flex gap-5">
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRangeLinePatients = 'week'">Last
+            <button class="hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2 rounded-lg cursor-pointer" @click="selectedRangeLinePatients = 'week'">Last
               Week</button>
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRangeLinePatients = 'month'">Last
+            <button class="hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2 rounded-lg cursor-pointer" @click="selectedRangeLinePatients = 'month'">Last
               Month</button>
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer" @click="selectedRangeLinePatients = 'year'">Last
+            <button class="hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2 rounded-lg cursor-pointer" @click="selectedRangeLinePatients = 'year'">Last
               Year</button>
           </div>
         </div>
@@ -301,15 +305,15 @@ const chartOptionsPie = computed<ChartOptions<'pie'>> (() => ({
         </div>
       </div>
 
-      <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-[#0d1016] p-5">
+      <div class="flex flex-col h-[400px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] shadow-md dark:border dark:border-neutral-900 p-5">
         <div class="flex mb-5 items-center justify-between">
           <p class="text-[16px] text-zinc-800 dark:text-zinc-200">Appointments</p>
           <div class="flex gap-4">
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer"
+            <button class="hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2 rounded-lg cursor-pointer"
               @click="selectedRangeBarAppoitments = 'week'">Last Week</button>
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer"
+            <button class="hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2 rounded-lg cursor-pointer"
               @click="selectedRangeBarAppoitments = 'month'">Last Month</button>
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer"
+            <button class="hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2 rounded-lg cursor-pointer"
               @click="selectedRangeBarAppoitments = 'year'">Last Year</button>
           </div>
         </div>
@@ -319,23 +323,23 @@ const chartOptionsPie = computed<ChartOptions<'pie'>> (() => ({
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-[40%_58.5%] gap-5 w-full px-5 pb-5">
-      <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-[#0d1016] p-5">
+    <div class="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-5 w-full px-5 pb-5">
+      <div class="flex flex-col h-[400px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] dark:border dark:border-neutral-900 shadow-md p-5">
         <p class="text-[16px] mb-5 text-zinc-800 dark:text-zinc-200">Department Breakdown</p>
         <div class="flex-1">
           <Pie :options="chartOptionsPie" :data="chartDataPie" />
         </div>
       </div>
-      <div class="flex flex-col h-[400px] w-full rounded-xl bg-white dark:bg-[#0d1016] p-5">
+      <div class="flex flex-col h-[400px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] dark:border dark:border-neutral-900  shadow-md  p-5">
         <div class="flex mb-5 items-center justify-between">
           <p class="text-[16px] mb-5 text-zinc-800 dark:text-zinc-200">Revenue in €</p>
           <div class="flex gap-5">
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer"
-              @click="selectedRangeLineRevenue = 'week'">Last Week</button>
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer"
-              @click="selectedRangeLineRevenue = 'month'">Last Month</button>
-            <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-xl cursor-pointer"
-              @click="selectedRangeLineRevenue = 'year'">Last Year</button>
+            <button class="hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2 rounded-lg cursor-pointer" @click="selectedRangeLineRevenue = 'week'">Last
+              Week</button>
+            <button class="hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2 rounded-lg cursor-pointer" @click="selectedRangeLineRevenue = 'month'">Last
+              Month</button>
+            <button class="hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2 rounded-lg cursor-pointer" @click="selectedRangeLineRevenue = 'year'">Last
+              Year</button>
           </div>
         </div>
         <div class="flex-1">
@@ -347,5 +351,4 @@ const chartOptionsPie = computed<ChartOptions<'pie'>> (() => ({
 </template>
 
 
-<style scoped>
-</style>
+<style scoped></style>

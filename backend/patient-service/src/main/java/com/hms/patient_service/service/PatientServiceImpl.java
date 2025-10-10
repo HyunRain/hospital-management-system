@@ -3,6 +3,7 @@ package com.hms.patient_service.service;
 
 import billing.GetBillingResponse;
 import com.hms.patient_service.dto.PaginatedResponse;
+import com.hms.patient_service.dto.SimplePatientDto;
 import com.hms.patient_service.exception.EmailAlreadyExistsException;
 import com.hms.patient_service.exception.PhoneNumberAlreadyExistsException;
 import com.hms.patient_service.exception.ResourceNotFoundException;
@@ -86,6 +87,12 @@ public class PatientServiceImpl implements PatientService {
                 .totalPages(pagedPatientIds.getTotalPages())
                 .totalPatients(pagedPatientIds.getTotalElements())
                 .build();
+    }
+
+    @Override
+    public List<SimplePatientDto> getPatientsByIds(List<String> patientIds) {
+        List<Patient> allPatients = patientRepository.findAllByPatientIdIn(patientIds);
+        return allPatients.stream().map(patientMapper::entityToSimpleDto).toList();
     }
 
     @Override

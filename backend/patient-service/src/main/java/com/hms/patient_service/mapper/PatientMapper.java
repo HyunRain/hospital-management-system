@@ -1,6 +1,7 @@
 package com.hms.patient_service.mapper;
 
 import com.hms.patient_service.dto.PatientDto;
+import com.hms.patient_service.dto.SimplePatientDto;
 import com.hms.patient_service.model.Patient;
 import java.util.Objects;
 import org.springframework.stereotype.Component;
@@ -162,4 +163,11 @@ public class PatientMapper {
         }
     }
 
+    public SimplePatientDto entityToSimpleDto(Patient patient) {
+        return SimplePatientDto.builder()
+                .patientId(patient.getPatientId())
+                .firstName(patient.getFirstName())
+                .lastName(patient.getLastName())
+                .build();
+    }
 }

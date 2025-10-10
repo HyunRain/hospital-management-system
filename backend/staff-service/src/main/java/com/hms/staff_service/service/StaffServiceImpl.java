@@ -66,7 +66,9 @@ public class StaffServiceImpl implements StaffService {
         if(authServiceGrpcClient.userExists(email).getDoesExist()) {
            throw new EmailAlreadyExistsException("User already exists: " + email);
        }
+        System.out.println(role.name());
         CreateUserResponse createUserResponse = authServiceGrpcClient.createUser(email, password, role.name());
+        System.out.println(createUserResponse);
         String userId = createUserResponse.getUserId();
 
 

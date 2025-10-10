@@ -11,10 +11,9 @@ export const useStaffStore = defineStore('staff', {
     totalPages: 0 as number,
     totalStaff: 0 as number,
 
-
     // Add Staff select data fields
     gender: '' as string,
-    role: '' as string
+    role: '' as string,
   }),
 
   actions: {
@@ -65,6 +64,17 @@ export const useStaffStore = defineStore('staff', {
         withCredentials: true,
       })
       console.log(response.data)
+    },
+
+    storeSelectInput(input: string, type: string) {
+      switch (type) {
+        case 'gender':
+          this.gender = input
+          break
+        case 'role':
+          this.role = input
+          break
+      }
     },
   },
 })

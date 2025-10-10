@@ -15,6 +15,13 @@ logging:
     org.springframework.cloud.gateway.filter.ratelimit: DEBUG
 
 
+services:
+  patient:
+    url: http://patient-service:8080
+  billing:
+    url: http://billing-service:8082
+
+
 spring:
   data:
     redis:
@@ -32,6 +39,7 @@ spring:
               - GET
               - POST
               - PUT
+              - PATCH
               - DELETE
               - OPTIONS
             allowedHeaders:
@@ -93,6 +101,22 @@ spring:
             - Path=/api/appointment/**
           filters:
             - JwtValidation
+
+        # BILLING SERVICE ROUTES
+        - id: billing-service-route
+          uri: http://billing-service:8082
+          predicates:
+            - Path=/api/billing-item/**
+          filters:
+            - JwtValidation
+
+        - id: billing-item-service-route
+          uri: http://billing-service:8082
+          predicates:
+            - Path=/api/billing-item/**
+          filters:
+            - JwtValidation
+
 
         # AUTH API DOCS
         - id: auth-api-docs-route

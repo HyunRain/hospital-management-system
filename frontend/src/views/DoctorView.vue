@@ -9,12 +9,14 @@ import { isAxiosError } from 'axios';
 import ErrorAlert from '@/components/ui/misc/ErrorAlert.vue';
 import DoctorTable from '@/components/ui/doctorview/DoctorTable.vue';
 import { useAuthStore } from '@/stores/authStore';
+import { useErrorAlert } from '@/composables/useErrorAlert';
 
 const toggleStore = useToggleStore();
 const authStore = useAuthStore();
 const doctorStore = useDoctorStore();
 
 const isAdmin = computed(() => authStore.role === 'ADMIN');
+const { showError, errorMessage, errorAlertKey, triggerBackendError } = useErrorAlert();
 
 
 onBeforeMount(async () => {
@@ -32,23 +34,6 @@ onBeforeMount(async () => {
     }
   }
 });
-
-const showDoctorFailed = ref(false);
-const errorMessage = ref('');
-const errorAlertKey = ref(Date.now());
-let timer: ReturnType<typeof setTimeout>;
-
-function triggerBackendError(message: string) {
-  window.clearTimeout(timer);
-  showDoctorFailed.value = true;
-  errorAlertKey.value = Date.now();
-  errorMessage.value = message;
-  console.log('test error doctor');
-  timer = setTimeout(() => {
-    showDoctorFailed.value = false;
-    errorMessage.value = '';
-  }, 10000);
-}
 
 const doctorRange = ref<string>('1-15');
 const pageSize = ref<number>(doctorStore.size);
@@ -86,22 +71,22 @@ const debouncedSearch = debounce(async (input: string) => {
 }, 300); // delay in ms
 
 watch(searchInput, (newInput) => {
-  if(isAdmin.value) debouncedSearch(newInput);
+  if (isAdmin.value) debouncedSearch(newInput);
 });
 </script>
 
 <template>
-  <div class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#030712] dark:border border-zinc-800 min-h-[calc(100vh-147px)] rounded-xl">
-    <div v-if="isAdmin" class="flex justify-between items-center mb-5">
+  <div
+    class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] shadow-md dark:border dark:border-neutral-900 min-h-[calc(100vh-147px)] rounded-lg">
+    <div v-if="isAdmin" class="flex justify-between items-center mb-10">
       <div class="flex gap-2 items-center">
         <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/doctor.svg`" alt="PatientIcon" />
         <h2 class="text-[20px]">Doctors</h2>
-        <ErrorAlert class="ml-5" :show="showDoctorFailed" :alert-key="errorAlertKey" :message="errorMessage" />
+        <ErrorAlert class="ml-5" :show="showError" :alert-key="errorAlertKey" :message="errorMessage" />
       </div>
       <div class="items-center flex gap-2">
-        <input type="search" placeholder="Search ..." v-model="searchInput"
-          class="h-[35px] shadow-sm hidden md:block px-3 border bg-white border-gray-300 dark:border-[#1f1f23] dark:bg-[#1f1f23] dark:placeholder-[#979797] rounded-xl focus:outline-none" />
-        <button @click="toggleStore.toggleAddDoctorModal" class="button flex items-center">
+        <input type="search" placeholder="Search ..." v-model="searchInput" class="search-input" />
+        <button @click="toggleStore.toggleAddDoctorModal" class="button flex items-center min-w-fit">
           + Add Doctor
         </button>
         <AddDoctor v-if="toggleStore.showAddDoctorModal" />
@@ -139,4 +124,3 @@ watch(searchInput, (newInput) => {
 </template>
 
 <style scoped></style>
-

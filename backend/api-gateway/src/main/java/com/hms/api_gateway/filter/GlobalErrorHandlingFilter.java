@@ -30,19 +30,27 @@ public class GlobalErrorHandlingFilter implements GlobalFilter, Ordered {
                     response.setStatusCode(HttpStatus.SERVICE_UNAVAILABLE);
                     response.getHeaders().setContentType(MediaType.TEXT_PLAIN);
 
-                    String message = "Service not available";
-                    if(originalUri.equals("http://localhost:8079/api/auth/login")) {
-                        message = "Login Service is currently unavailable.";
-                    }
-                    if(originalUri.startsWith("http://localhost:8079/api/patient")) {
-                        message = "Patient Service is currently unavailable.";
-                    }
-                    if(originalUri.startsWith("http://localhost:8079/api/staff")) {
-                        message = "Staff Service is currently unavailable.";
-                    }
+                    String message = getString(originalUri);
                     byte[] bytes = message.getBytes(StandardCharsets.UTF_8);
                     return response.writeWith(Mono.just(response.bufferFactory().wrap(bytes)));
                 });
+    }
+
+    private static String getString(String originalUri) {
+        String message = "Service not available";
+        if(originalUri.equals("http://localhost:8079/api/auth/login")) {
+            message = "Login Service is currently unavailable.";
+        }
+        if(originalUri.startsWith("http://localhost:8079/api/patient")) {
+            message = "Patient Service is currently unavailable.";
+        }
+        if(originalUri.startsWith("http://localhost:8079/api/staff")) {
+            message = "Staff Service is currently unavailable.";
+        }
+        if(originalUri.startsWith("http://localhost:8081/api/billing")) {
+            message = "Billing Service is currently unavailable.";
+        }
+        return message;
     }
 
 

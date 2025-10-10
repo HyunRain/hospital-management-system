@@ -20,7 +20,7 @@ const props = defineProps({
 <template>
   <transition enter-active-class="transition-transform transition-opacity duration-200 ease-out" enter-from-class="-translate-x-10 opacity-0"
     enter-to-class="translate-x-0 opacity-100">
-    <p v-if="show" :key="alertKey" class=" text-red-600"> {{ message }}
+    <p v-if="show" :key="alertKey" class=" text-[#e7523b]"> {{ message }}
     </p>
   </transition>
 </template>

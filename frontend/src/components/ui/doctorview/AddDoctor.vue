@@ -57,10 +57,13 @@ const isStep2 = computed(() => {
     !!doctorFormData.country;
 });
 
+const stepsCompleted = computed(() => {
+  return isStep1.value && isStep2.value;
+});
 
 function stepTextColor(step: number) {
   if (currentStep.value === step) {
-    return toggleStore.darkModeState === 'darkMode' ? 'text-orange-300' : 'text-red-300';
+    return toggleStore.darkModeState === 'darkMode' ? 'text-[#e7523b]' : 'text-red-600';
   } else {
     return toggleStore.darkModeState === 'darkMode' ? 'text-[#eeeeee]' : 'text-[#4c4c4c]';
   }
@@ -88,8 +91,8 @@ function nextStep() {
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-[#00000087] p-4">
 
     <!-- AddPatientModal -->
-    <div v-click-outside="() => { toggleStore.toggleAddDoctorModal(); resetSelects(); }" class="flex flex-col bg-white dark:bg-[#02050e] p-5 border border-gray-300 dark:border-zinc-800 min-h-[90vh] max-h-[90vh]
-      md:min-h-fit rounded-xl w-full max-w-4xl overflow-y-auto">
+    <div v-click-outside="() => { toggleStore.toggleAddDoctorModal(); resetSelects(); }" class="flex flex-col bg-white dark:bg-[#0a0a0a] p-5 border border-gray-300 dark:border-neutral-900 min-h-[50vh] max-h-[90vh]
+      md:min-h-fit rounded-lg w-full max-w-4xl overflow-y-auto">
       <div class="flex justify-between items-center">
         <div class="flex gap-2 items-center">
           <h3 class="text-[18px]">+ Add Doctor</h3>
@@ -101,7 +104,7 @@ function nextStep() {
 
 
       <!-- Steps Window-->
-      <div class="flex justify-evenly px-5 mt-9 md:py-3 py-6 overflow-x-auto gap-5 md:mx-15 rounded-xl border ">
+      <div class="flex justify-evenly px-5 mt-9 md:py-3 py-6 dark:bg-[#000] overflow-x-auto gap-5 md:mx-15 rounded-lg border ">
 
         <!-- Header 1-->
         <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 1">
@@ -110,7 +113,7 @@ function nextStep() {
             <p v-else :class="[stepTextColor(1)]">1</p>
           </div>
           <p class="min-w-24" :class="[stepTextColor(1)]">
-            User Data</p>
+            Account Data</p>
         </div>
 
         <div class="border-l"></div>
@@ -142,7 +145,7 @@ function nextStep() {
       </div>
       <form @submit.prevent="handleAddDoctor" class="flex flex-col flex-1">
         <!-- Form Body-->
-        <div class="md:mx-30 md:max-h-[60vh] md:min-h-[60vh] 3xl:max-h-[40vh] 3xl:min-h-[40vh]">
+        <div class="md:mx-30 md:max-h-[60vh] md:min-h-[55vh] 3xl:max-h-[40vh] 3xl:min-h-[40vh]">
 
           <!-- Step 1 UserData Doctor Information -->
           <div v-show="currentStep === 1" class="flex flex-col gap-4 mt-10 mb-10">
@@ -154,14 +157,14 @@ function nextStep() {
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="password">Password</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Atleast 8 characters long</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Atleast 8 characters long</p>
               </div>
               <input class="input mt-2" id="password" type="text" v-model="doctorFormData.password">
             </div>
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="repeatedPassword">Repeated Password</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Atleast 8 characters long</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Atleast 8 characters long</p>
               </div>
               <input class="input mt-2" id="repeatedPassword" type="text" v-model="doctorFormData.repeatedPassword">
             </div>
@@ -193,7 +196,7 @@ function nextStep() {
               <div class="w-2/3">
                 <div class="flex justify-between">
                   <label class="ml-1" for="birthdate">Date of Birth</label>
-                  <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">YYYY-MM-DD</p>
+                  <p class="text-[#898989] opacity-80 mr-1 text-[13px]">YYYY-MM-DD</p>
                 </div>
                 <input class="input mt-2" id="birthdate" type="text" v-model="doctorFormData.dateOfBirth">
               </div>
@@ -218,7 +221,7 @@ function nextStep() {
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="address2">Address 2</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
               <input class="input mt-2" id="address2" type="text">
             </div>
@@ -246,7 +249,7 @@ function nextStep() {
           <button class="form-button" type="button" @click="previousStep" v-show="currentStep > 1">Back</button>
           <div class="flex ml-auto">
             <button class="form-button" type="button" @click="nextStep" v-show="currentStep < totalSteps">Next</button>
-            <button class="form-button w-[65.32px]" type="submit" v-if="currentStep === totalSteps">Add</button>
+            <button :disabled="!stepsCompleted" class="form-button w-[65.32px]" type="submit" v-if="currentStep === totalSteps">Add</button>
           </div>
         </div>
 

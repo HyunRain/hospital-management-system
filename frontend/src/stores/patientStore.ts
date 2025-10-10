@@ -53,12 +53,6 @@ export const usePatientStore = defineStore("patient", {
       console.log(response.data);
     },
 
-
-
-
-
-
-
     // Miscellaneous actions
     storeSelectInput(input: string, type: string) {
       switch (type) {

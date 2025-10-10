@@ -14,10 +14,12 @@ export const useToggleStore = defineStore("toggle", {
     showAddPatientModal: false as boolean,
     // DoctorView
     showAddDoctorModal: false as boolean,
-    // EmployeeView
-    showAddEmployeeModal: false as boolean,
+    // StaffView
+    showAddStaffModal: false as boolean,
     // Misc
     showLoader: false as boolean,
+    // BillingDropDown
+    showBillingDropdown: false as boolean,
   }),
 
   actions: {
@@ -37,11 +39,14 @@ export const useToggleStore = defineStore("toggle", {
     toggleAddDoctorModal() {
       this.showAddDoctorModal = !this.showAddDoctorModal;
     },
-    toggleAddEmployeeModal() {
-      this.showAddEmployeeModal = !this.showAddEmployeeModal;
+    toggleAddStaffModal() {
+      this.showAddStaffModal = !this.showAddStaffModal;
     },
     toggleLoader() {
       this.showLoader = !this.showLoader;
-    }
+    },
+    toggleBillingDropdown() {
+      this.showBillingDropdown = !this.showBillingDropdown;
+    },
   },
 });

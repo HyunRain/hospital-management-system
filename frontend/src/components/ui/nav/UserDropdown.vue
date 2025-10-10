@@ -9,7 +9,7 @@ const router = useRouter();
 
 async function handleLogout() {
   // Demo Logout
-  if(!authStore.user) {
+  if (!authStore.user) {
     toggleStore.toggleDemo();
     router.push('/login');
     toggleStore.toggleUserDropdown();
@@ -23,25 +23,24 @@ async function handleLogout() {
 </script>
 
 <template>
-  <div class="absolute right-0 top-13 z-50 bg-white dark:bg-[#11141a] shadow-lg font-medium rounded-xl py-6  min-w-[200px] w-full max-w-[300px]">
+  <div
+    class="absolute right-0 top-13 z-50 bg-white dark:bg-[#0a0a0a] dark:border dark:border-neutral-900 shadow-lg font-medium rounded-lg py-6  min-w-[175px] w-full max-w-[300px]">
     <ul class="flex flex-col gap-2 text-[14px]">
-      <li class="cursor-pointer flex items-center gap-3 hover:bg-red-100 dark:hover:bg-[#22252c] p-2.5 px-8 rounded-md transition">
-        <img class="w-8 h-7" :src="`/assets/icons/${toggleStore.darkModeState}/profile.svg`" alt="Profile Icon" />
+      <!--<li class="cursor-pointer flex items-center gap-3 hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2.5 px-8 rounded-md transition">
+        <img class="w-6 h-6" :src="`/assets/icons/${toggleStore.darkModeState}/profile.svg`" alt="Profile Icon" />
         <span>Profile</span>
       </li>
-      <li class="cursor-pointer flex items-center gap-3 hover:bg-red-100 dark:hover:bg-[#22252c] p-2.5 px-8 rounded-md transition">
-        <img class="w-8 h-7" :src="`/assets/icons/${toggleStore.darkModeState}/settings.svg`" alt="Settings Icon" />
+      <li class="cursor-pointer flex items-center gap-3 hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2.5 px-8 rounded-md transition">
+        <img class="w-6 h-6" :src="`/assets/icons/${toggleStore.darkModeState}/settings.svg`" alt="Settings Icon" />
         <span>Settings</span>
-      </li>
+      </li>-->
       <li @click="handleLogout()"
-        class="cursor-pointer flex items-center gap-3 hover:bg-red-100 dark:hover:bg-[#22252c] p-2.5 px-8 rounded-md transition">
-        <img class="w-8 h-7" :src="`/assets/icons/${toggleStore.darkModeState}/logout.svg`" alt="Logout Icon" />
+        class="cursor-pointer flex items-center gap-3 hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] p-2.5 px-8 rounded-md transition">
+        <img class="w-6 h-6" :src="`/assets/icons/${toggleStore.darkModeState}/logout.svg`" alt="Logout Icon" />
         <span>Logout</span>
       </li>
     </ul>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

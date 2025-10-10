@@ -9,10 +9,13 @@ import debounce from 'lodash.debounce';
 import { isAxiosError } from 'axios';
 import ErrorAlert from '@/components/ui/misc/ErrorAlert.vue';
 import { useAuthStore } from '@/stores/authStore';
+import { useErrorAlert } from '@/composables/useErrorAlert';
 
 const toggleStore = useToggleStore();
 const patientStore = usePatientStore();
 const authStore = useAuthStore();
+
+const { showError, errorMessage, errorAlertKey, triggerBackendError } = useErrorAlert();
 
 onBeforeMount(async () => {
   if (patientStore.patients.length === 0) {
@@ -28,23 +31,6 @@ onBeforeMount(async () => {
     }
   }
 });
-
-const showPatientFailed = ref(false);
-const errorMessage = ref('');
-const errorAlertKey = ref(Date.now());
-let timer: ReturnType<typeof setTimeout>;
-
-function triggerBackendError(message: string) {
-  window.clearTimeout(timer);
-  showPatientFailed.value = true;
-  errorAlertKey.value = Date.now();
-  errorMessage.value = message;
-  console.log('test error patient');
-  timer = setTimeout(() => {
-    showPatientFailed.value = false;
-    errorMessage.value = '';
-  }, 10000);
-}
 
 const patientRange = ref<string>('1-15');
 const pageSize = ref<number>(patientStore.size);
@@ -91,17 +77,16 @@ watch(searchInput, (newInput) => {
 </script>
 
 <template>
-  <div class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#030712] dark:border border-zinc-800 min-h-[calc(100vh-147px)] rounded-xl">
-    <div class="flex justify-between items-center mb-5">
+  <div class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] dark:border border-neutral-900 min-h-[calc(100vh-147px)] rounded-lg">
+    <div class="flex justify-between items-center mb-10">
       <div class="flex gap-2 items-center">
         <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/patients.svg`" alt="PatientIcon" />
         <h2 class="text-[20px]">Patients</h2>
-        <ErrorAlert class="ml-5" :show="showPatientFailed" :alert-key="errorAlertKey" :message="errorMessage" />
+        <ErrorAlert class="ml-5" :show="showError" :alert-key="errorAlertKey" :message="errorMessage" />
       </div>
       <div class="items-center flex gap-2">
-        <input type="search" placeholder="Search ..." v-model="searchInput"
-          class="h-[35px] shadow-sm hidden md:block px-3 border bg-white border-gray-300 dark:border-[#1f1f23] dark:bg-[#1f1f23] dark:placeholder-[#979797] rounded-xl focus:outline-none" />
-        <button @click="toggleStore.toggleAddPatientModel" class="button flex items-center">
+        <input type="search" placeholder="Search ..." v-model="searchInput" class="search-input" />
+        <button @click="toggleStore.toggleAddPatientModel" class="button flex items-center min-w-fit">
           + Add Patient
         </button>
         <AddPatient v-if="toggleStore.showAddPatientModal" />

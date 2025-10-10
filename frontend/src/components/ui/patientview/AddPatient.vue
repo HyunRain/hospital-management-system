@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useToggleStore } from '@/stores/toggleStore';
 import { usePatientStore } from '@/stores/patientStore';
-import { ref, computed, reactive, watch} from 'vue';
+import { ref, computed, reactive, watch } from 'vue';
 import Select from './Select.vue';
 import { bloodTypes, gender, maritalStatus } from '@/util/types/constants';
 
@@ -45,13 +45,13 @@ const patientFormData = reactive({
 });
 
 function parseCommaList(str: string): string[] {
-  console.log(str)
+  console.log(str);
   return str.split(',').map(s => s.trim()).filter(Boolean);
 }
 
 // Watchers
 watch(allergiesString, (newVal) => {
-  console.log("allergies changed")
+  console.log("allergies changed");
   patientFormData.knownAllergies = parseCommaList(newVal);
 });
 
@@ -73,7 +73,7 @@ watch(surgHistString, (newVal) => {
 
 
 async function handleAddPatient() {
-  console.log(patientFormData)
+  console.log(patientFormData);
   await patientStore.addPatient(patientFormData);
   resetSelects();
   toggleStore.toggleAddPatientModel();
@@ -89,7 +89,7 @@ const isStep1 = computed(() => {
     !!patientFormData.email &&
     !!patientFormData.phoneNumber &&
     !!patientFormData.maritalStatus;
-})
+});
 
 const isStep2 = computed(() => {
   return !!patientFormData.addressLine1 &&
@@ -106,7 +106,7 @@ const isStep3 = computed(() => {
 const isStep4 = computed(() => {
   return !!patientFormData.bloodGroup &&
     !!patientFormData.insuranceProvider &&
-    !!patientFormData.insurancePolicyNumber
+    !!patientFormData.insurancePolicyNumber;
 });
 
 const stepsCompleted = computed(() => {
@@ -115,7 +115,7 @@ const stepsCompleted = computed(() => {
 
 function stepTextColor(step: number) {
   if (currentStep.value === step) {
-    return toggleStore.darkModeState === 'darkMode' ? 'text-orange-300' : 'text-red-300';
+    return toggleStore.darkModeState === 'darkMode' ? 'text-[#e7523b]' : 'text-red-600';
   } else {
     return toggleStore.darkModeState === 'darkMode' ? 'text-[#eeeeee]' : 'text-[#4c4c4c]';
   }
@@ -145,8 +145,8 @@ function nextStep() {
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-[#00000087] p-4">
 
     <!-- AddPatientModal -->
-    <div v-click-outside="() => { toggleStore.toggleAddPatientModel(); resetSelects(); } " class="flex flex-col bg-white dark:bg-[#02050e] p-5 border border-gray-300 dark:border-zinc-800 min-h-[90vh] max-h-[90vh]
-      md:min-h-fit rounded-xl w-full max-w-4xl overflow-y-auto">
+    <div v-click-outside="() => { toggleStore.toggleAddPatientModel(); resetSelects(); }" class="flex flex-col bg-white dark:bg-[#0a0a0a] p-5 border border-gray-300 dark:border-neutral-900 min-h-[90vh] max-h-[90vh]
+      md:min-h-fit rounded-lg w-full max-w-4xl overflow-y-auto">
       <div class="flex justify-between items-center">
         <div class="flex gap-2 items-center">
           <h3 class="text-[18px]">+ Add Patient</h3>
@@ -158,7 +158,7 @@ function nextStep() {
 
 
       <!-- Steps Window-->
-      <div class="flex justify-evenly px-5 mt-9 md:py-3 py-6 overflow-x-auto gap-5 md:mx-15 rounded-xl border ">
+      <div class="flex justify-evenly px-5 mt-9 md:py-3 py-6 dark:bg-[#000] overflow-x-auto gap-5 md:mx-15 rounded-lg border ">
 
         <!-- Header 1-->
         <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 1">
@@ -169,7 +169,7 @@ function nextStep() {
           <p class="min-w-24" :class="[stepTextColor(1)]">
             Personal Data</p>
         </div>
-      <div class="border-l"></div>
+        <div class="border-l"></div>
 
         <!-- Header 2-->
         <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 2">
@@ -230,7 +230,7 @@ function nextStep() {
               <div class="w-2/3">
                 <div class="flex justify-between">
                   <label class="ml-1" for="birthdate">Date of Birth</label>
-                  <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">YYYY-MM-DD</p>
+                  <p class="text-[#898989] opacity-80 mr-1 text-[13px]">YYYY-MM-DD</p>
                 </div>
                 <input class="input mt-2" id="birthdate" type="text" v-model="patientFormData.dateOfBirth">
               </div>
@@ -259,7 +259,7 @@ function nextStep() {
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="address2">Address 2</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
               <input class="input mt-2" id="address2" type="text" v-model="patientFormData.addressLine2">
             </div>
@@ -291,10 +291,10 @@ function nextStep() {
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="allergies">Known Allergies</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
               <input class="input mt-2" id="allergies" type="text" v-model="allergiesString">
-              <p class="text-zinc-400 text-[12px] mt-1 ml-1">
+              <p class="text-[#898989] text-[12px] mt-1 ml-1">
                 List all known allergies, separated by commas (e.g. penicillin, peanuts, pollen).
               </p>
 
@@ -302,40 +302,40 @@ function nextStep() {
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="chronicDiseases">Chronic Diseases</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
               <input class="input mt-2" id="chronicDiseases" type="text" v-model="chronicDisString">
-              <p class="text-zinc-400 text-[12px] mt-1 ml-1">
+              <p class="text-[#898989] text-[12px] mt-1 ml-1">
                 Enter any chronic conditions, separated by commas (e.g. asthma, diabetes).
               </p>
             </div>
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="currentMedications">Current Medications</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
               <input class="input mt-2" id="currentMedications" type="text" v-model="medicationString">
-              <p class="text-zinc-400 text-[12px] mt-1 ml-1">
+              <p class="text-[#898989] text-[12px] mt-1 ml-1">
                 Include all current medications, separated by commas (e.g. ibuprofen, insulin).
               </p>
             </div>
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="immunizations">Immunizations</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
               <input class="input mt-2" id="immunizations" type="text" v-model="immuneString">
-              <p class="text-zinc-400 text-[12px] mt-1 ml-1">
+              <p class="text-[#898989] text-[12px] mt-1 ml-1">
                 List received immunizations, separated by commas (e.g. tetanus, hepatitis B).
               </p>
             </div>
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="surgicalHistory">Surgical History</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
               <input class="input mt-2" id="surgicalHistory" type="text" v-model="surgHistString">
-              <p class="text-zinc-400 text-[12px] mt-1 ml-1">
+              <p class="text-[#898989] text-[12px] mt-1 ml-1">
                 Note any past surgeries, separated by commas (e.g. appendectomy, knee replacement).
               </p>
             </div>
@@ -360,21 +360,21 @@ function nextStep() {
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="emergencyContactName">Name</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
               <input class="input mt-2" id="emergencyContactName" type="text" v-model="patientFormData.emergencyContactName">
             </div>
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="emergencyContactNumber">Phone Number</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
               <input class="input mt-2" id="emergencyContactNumber" type="text" v-model="patientFormData.emergencyContactNumber">
             </div>
             <div>
               <div class="flex justify-between">
                 <label class="ml-1" for="relationshipToEmergencyContact">Relationship</label>
-                <p class="text-zinc-400 opacity-80 mr-1 text-[13px]">Optional</p>
+                <p class="text-[#898989] opacity-80 mr-1 text-[13px]">Optional</p>
               </div>
               <input class="input mt-2" id="relationshipToEmergencyContact" type="text" v-model="patientFormData.relationshipToEmergencyContact">
             </div>
@@ -399,5 +399,4 @@ function nextStep() {
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

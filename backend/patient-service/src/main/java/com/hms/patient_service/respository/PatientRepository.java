@@ -21,6 +21,7 @@ public interface PatientRepository extends JpaRepository<Patient, UUID>, JpaSpec
     boolean existsByPhoneNumber(String phoneNumber);
     Optional<Patient> findByPatientId(String patientId);
     long deleteByPatientId(String patientId);
+    List<Patient> findAllByPatientIdIn(List<String> patientIds);
 
     @Query("SELECT p.id FROM Patient p ORDER BY p.id ASC")
     Page<UUID> findPagedPatientIds(Pageable pageable);

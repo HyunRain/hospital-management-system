@@ -28,13 +28,13 @@ const staffStore = useStaffStore();
     <tbody>
       <tr v-for="(staff, index) in staffStore.staff"
         class="text-center w-full h-[45px] cursor-pointer border-zinc-800 hover:bg-red-100 dark:hover:bg-[#1d1d1dcf]">
-        <td class="border-0 rounded-l-xl"> {{ staff.firstName + ' ' + staff.lastName }} </td>
+        <td class="border-0 rounded-l-lg"> {{ staff.firstName + ' ' + staff.lastName }} </td>
         <td>{{ staff.staffId }}</td>
         <td>{{ staff.gender }}</td>
         <td> {{ staff.dateOfBirth }}</td>
         <td> {{ staff.email }}</td>
         <td class="min-w-[80px]"> {{ staff.city }}</td>
-        <td class="border-0 rounded-r-xl"> {{ staff.role }}</td>
+        <td class="border-0 rounded-r-lg"> {{ staff.role }}</td>
       </tr>
     </tbody>
   </table>

@@ -51,9 +51,9 @@ body {
 }
 
 .dark {
-  --text-color: #eeeeee;
+  --text-color: #ededed;
   /* --bg-color: #161618; more black */
-  --bg-color: #030712; /* more blue*/
+  --bg-color: #000; /*  #080808 #030712 */
   --input-placeholder: #797979;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -138,7 +138,16 @@ body {
 }
 
 .input {
-  @apply h-[36px] py-1 w-full shadow-sm px-3 border bg-white border-gray-300 dark:border-zinc-800 dark:bg-[#02050e] dark:placeholder-[#979797] rounded-xl focus:border-red-300 dark:focus:border-zinc-500 focus:outline-none;
+  @apply h-[36px] py-1 w-full px-3  bg-white border dark:border-neutral-800 dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg focus:border-red-300 dark:focus:border-neutral-500 focus:outline-none;
+}
+
+.search-input {
+  @apply h-[38px] max-w-[185px] shadow-sm hidden md:block py-1 px-3 bg-white dark:border-0 dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg border focus:border-red-300 dark:focus:border-neutral-800 focus:outline-none;
+}
+
+.search-input:-webkit-autofill {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: var(--text-color) !important;
 }
 
 .input:-webkit-autofill {
@@ -147,9 +156,11 @@ body {
 }
 
 .button {
-  @apply px-3 h-[36px] bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#030712] border border-gray-300 dark:border-zinc-800 rounded-xl cursor-pointer dark:hover:bg-[#1d1d1dcf];
+  @apply px-5 py-4 h-[40px] bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#000] border border-gray-300 dark:border-zinc-900 rounded-lg cursor-pointer dark:hover:bg-[#1d1d1dcf];
 }
 
 .form-button {
-  @apply px-4 h-[36px] bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#030712] border border-gray-300 dark:border-zinc-800 rounded-xl cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-[#1d1d1dcf];
+  @apply px-4 h-[36px] bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#000] border border-gray-300 dark:border-zinc-800 rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-[#1d1d1dcf];
 }
+
+

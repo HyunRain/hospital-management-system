@@ -1,9 +1,10 @@
-import { defineStore } from "pinia";
-import { type User, UserRole } from "@/util/types/types";
-import { createProfilPicture } from "@/util/functions/createProfilePicture";
-import api from "./apiInterceptor";
+import { defineStore } from 'pinia';
+import { type User, UserRole } from '@/util/types/types';
+import { createProfilPicture } from '@/util/functions/createProfilePicture';
+import api from './apiInterceptor';
+import router from '@/router';
 
-export const useAuthStore = defineStore("auth", {
+export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null as User | null,
     email: null as string | null,
@@ -16,68 +17,69 @@ export const useAuthStore = defineStore("auth", {
       return !!this.user;
     },
     profileImage(): string {
-      return createProfilPicture(this.user?.firstName ?? "Demo");
-    }
+      return createProfilPicture(this.user?.firstName ?? 'Demo');
+    },
   },
 
   actions: {
-      async login(userInput: Record<string,string>) {
-        const response = await api.post("/auth/login", userInput);
-        this.email = response.data.email;
-        this.role = response.data.role;
-      },
+    async login(userInput: Record<string, string>) {
+      const response = await api.post('/auth/login', userInput);
+      this.email = response.data.email;
+      this.role = response.data.role;
+    },
 
-      async fetchStaffData(role: UserRole, email: string) {
-        if(role === UserRole.DOCTOR || role === UserRole.NURSE || role === UserRole.RECEPTIONIST) {
-          const responseStaff = await api.get(`/staff/get/${email}`);
-          this.user = responseStaff.data;
-        } else if(this.role === UserRole.ADMIN) {
-            this.user =  {
-              userId: '',
-              firstName: 'Admin',
-              lastName: '',
-              gender: 'OTHER',
-              dateOfBirth: '',
-              phoneNumber: '',
-              email: email ?? '',
-              addressLine1: '',
-              addressLine2: null,
-              city: '',
-              state: '',
-              country: '',
-              postalCode: '',
-              departmentId: '',
-            } as User;
-        }
-      },
+    async fetchStaffData(role: UserRole, email: string) {
+      if (role === UserRole.DOCTOR || role === UserRole.NURSE || role === UserRole.RECEPTIONIST) {
+        const responseStaff = await api.get(`/staff/get/${email}`);
+        this.user = responseStaff.data;
+      } else if (this.role === UserRole.ADMIN) {
+        this.user = {
+          userId: '',
+          firstName: 'Admin',
+          lastName: '',
+          gender: 'OTHER',
+          dateOfBirth: '',
+          phoneNumber: '',
+          email: email ?? '',
+          addressLine1: '',
+          addressLine2: null,
+          city: '',
+          state: '',
+          country: '',
+          postalCode: '',
+          departmentId: '',
+        } as User;
+      }
+    },
 
-      async refreshToken() {
-        try {
-          await api.post("/auth/refresh", {});
-          return this.isInitialised;
-        } catch (error) {
-          console.error("Error refreshing token:", error);
-          this.user = null;
-          this.email = null;
-          this.role = null;
-          this.isInitialised = false;
-          return false;
-        }
-      },
-
-      async reauthenticate() {
-        const response = await api.get("/auth/get/currentUser");
-        this.email = response.data.email;
-        this.role = response.data.role;
-        this.isInitialised = true;
-      },
-
-      async logout() {
-        await api.post("/auth/logout", {});
+    async refreshToken(): Promise<boolean> {
+      try {
+        await api.post('/auth/refresh', {});
+        return true;
+      } catch (error) {
+        console.error('Error refreshing token:', error);
         this.user = null;
         this.email = null;
         this.role = null;
-      },
-  },
-})
+        this.isInitialised = false;
+        return false;
+      }
+    },
 
+    async reauthenticate() {
+      const response = await api.get('/auth/get/currentUser');
+      this.email = response.data.email;
+      this.role = response.data.role;
+      this.isInitialised = true;
+    },
+
+    async logout() {
+      await api.post('/auth/logout', {});
+      console.log('performing logout');
+      this.user = null;
+      this.email = null;
+      this.role = null;
+      router.push('/login');
+    },
+  },
+});

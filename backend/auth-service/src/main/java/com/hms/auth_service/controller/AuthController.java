@@ -117,11 +117,9 @@ public class AuthController {
     public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
         String refreshToken = extractRefreshTokenFromCookie(request);
 
-        if (refreshToken == null || refreshToken.isEmpty()) {
-            return new ResponseEntity<>("Refresh token not found", HttpStatus.UNAUTHORIZED);
+        if (refreshToken != null && !refreshToken.isEmpty()) {
+            authService.logout(refreshToken);
         }
-
-        authService.logout(refreshToken);
 
         ResponseCookie accessCookie = ResponseCookie.from("accessToken", "")
                 .httpOnly(true)
