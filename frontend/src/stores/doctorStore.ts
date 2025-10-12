@@ -1,7 +1,6 @@
-import { defineStore } from 'pinia'
-import axios from 'axios'
-import type { StaffDto } from '@/util/types/types'
-import api from './apiInterceptor'
+import { defineStore } from 'pinia';
+import type { StaffDto } from '@/util/types/types';
+import api from './apiInterceptor';
 
 export const useDoctorStore = defineStore('doctor', {
   state: () => ({
@@ -25,10 +24,11 @@ export const useDoctorStore = defineStore('doctor', {
           role: 'DOCTOR',
         },
         withCredentials: true,
-      })
-      this.doctors = response.data.staffResponseDtos
-      this.totalPages = response.data.totalPages
-      this.totalDoctors = response.data.totalStaff
+      });
+      this.doctors = response.data.staffResponseDtos;
+      this.fullNameConcatenation(this.doctors);
+      this.totalPages = response.data.totalPages;
+      this.totalDoctors = response.data.totalStaff;
     },
 
     async searchDoctors(input: string, page: number, size: number) {
@@ -39,26 +39,34 @@ export const useDoctorStore = defineStore('doctor', {
           size: size,
         },
         withCredentials: true,
-      })
-      this.doctors = response.data.staffResponseDtos
-      this.totalPages = response.data.totalPages
-      this.totalDoctors = response.data.totalPatients
+      });
+      this.doctors = response.data.staffResponseDtos;
+      this.fullNameConcatenation(this.doctors);
+      this.totalPages = response.data.totalPages;
+      this.totalDoctors = response.data.totalStaff;
     },
 
     async addDoctor(formData: object) {
       const response = await api.post('/staff', formData, {
         withCredentials: true,
-      })
-      console.log(response.data)
+      });
+      console.log(response.data);
     },
 
     // Miscellaneous actions
     storeSelectInput(input: string, type: string) {
       switch (type) {
         case 'gender':
-          this.gender = input
-          break
+          this.gender = input;
+          break;
       }
     },
+
+    fullNameConcatenation(doctors: StaffDto[]) {
+      this.doctors = doctors.map((d) => ({
+        ...d,
+        fullName: d.firstName + ' ' + d.lastName,
+      }));
+    },
   },
-})
+});

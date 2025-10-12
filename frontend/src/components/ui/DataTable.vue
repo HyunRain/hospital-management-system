@@ -16,9 +16,9 @@ const props = defineProps({
 });
 
 interface Column {
-  key: string;          // key for label
-  label: string;        // column header
-  class?: string;       // optional css for td/th like specific padding or width
+  key: string;
+  label: string;
+  class?: string; // css
 }
 
 </script>
@@ -41,15 +41,17 @@ interface Column {
         class="text-center w-full h-[45px] cursor-pointer border-zinc-800 hover:bg-red-100 dark:hover:bg-[#1d1d1dcf]">
         <td v-for="(col, colIndex) in props.columns" :key="col.key"
           :class="[col.class, colIndex === 0 ? 'rounded-l-lg' : '', colIndex === props.columns.length - 1 ? 'rounded-r-lg' : '']">
+
           <slot v-if="colIndex === 0" name="invoice"></slot>
-          {{ data[col.key] }}
-          <slot v-if="colIndex === props.columns.length-1" name="download"></slot>
+
+          <slot v-if="col.key === 'status' && (data.status === 'Open' || data.status === 'Closed')" name="status" :statusValue="data.status"></slot>
+          <template v-else>
+            {{ data[col.key] }}
+          </template>
+
+          <slot v-if="colIndex === props.columns.length - 1" name="download"></slot>
         </td>
       </tr>
     </tbody>
   </table>
 </template>
-
-<style scoped>
-
-</style>

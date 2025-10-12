@@ -54,10 +54,8 @@ function toggleDropdown() {
       <img class="size-4.5 ml-auto" :src="`/assets/icons/${toggleStore.darkModeState}/downarrow.svg`" alt="Chevron Down Icon">
     </button>
 
-    <!-- Select Dropdown -->
     <div v-click-outside="toggleDropdown" v-if="showDropdown" class="border flex flex-col w-full overflow-scroll overflow-y-scroll max-h-[175px] lg:max-h-[275px] mt-2 absolute z-50 bg-white dark:bg-[#0a0a0a] border-rose-200
       dark:border-neutral-900 rounded-lg px-2 py-3">
-      <!-- Select Items-->
       <div v-for="item in props.data" :key="item.value"
         @click.stop="() => { selection = item.label; const store = storeMap[forView]; store.storeSelectInput(item.value, type); showDropdown = false; }"
         class="flex justify-between h-[37px] items-center py-1 px-3 rounded-lg font-medium hover:bg-rose-200 dark:hover:bg-[#1d1d1dcf]">
@@ -67,5 +65,3 @@ function toggleDropdown() {
     </div>
   </div>
 </template>
-
-<style scoped></style>

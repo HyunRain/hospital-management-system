@@ -10,6 +10,9 @@ import DataTable from '@/components/ui/DataTable.vue';
 import { isAxiosError } from 'axios';
 import ErrorAlert from '@/components/ui/misc/ErrorAlert.vue';
 import { useErrorAlert } from '@/composables/useErrorAlert';
+import PaginationWrapper from '@/components/ui/pagination/PaginationWrapper.vue';
+import { usePagination } from '@/composables/usePagination';
+import NonAdminState from '@/components/ui/misc/NonAdminState.vue';
 
 const billingStore = useBillingStore();
 const authStore = useAuthStore();
@@ -35,13 +38,13 @@ onBeforeMount(async () => {
 
 const billingColumns = [
   { key: 'invoice', label: 'Invoice', class: '' },
-  { key: 'status', label: 'Status', class: ''},
-  { key: 'billingItemType', label: 'Type', class: ''},
-  { key: 'totalPrice', label: 'Amount', class: ''},
-  { key: 'startDate', label: 'Date', class: ''},
+  { key: 'status', label: 'Status', class: '' },
+  { key: 'billingItemType', label: 'Type', class: '' },
+  { key: 'totalPrice', label: 'Amount', class: '' },
+  { key: 'startDate', label: 'Date', class: '' },
   { key: 'patientName', label: 'Patient Name', class: 'md:px-0 px-13' },
   { key: 'dueDate', label: 'Due Date', class: 'md:px-0 px-3' },
-  { key: 'download', label: 'Download', class: ''},
+  { key: 'download', label: 'Download', class: '' },
 ];
 
 // ----------------------- Billings Bar Chart -----------------------
@@ -188,17 +191,26 @@ async function handleFetchPdf() {
   window.open(pdfUrl, '_blank');
 }
 
+const {
+  range,
+  currentPage,
+  pageSize,
+  handlePageChange,
+  searchInput
+} = usePagination('1-8', billingStore, billingStore.searchBillingItems, billingStore.getPageOfBillingItems, 'totalBillingItems')
 </script>
 
 <template>
-  <div
+  <main
     class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] dark:border border-zinc-800 min-h-[calc(100vh-147px)] overflow-y-auto rounded-lg">
-    <div v-if="isAdmin" class="justify-between items-center mb-2">
-      <div class="flex gap-2 items-center mb-5">
+
+    <section v-if="isAdmin" class="justify-between items-center mb-2">
+
+      <header class="flex gap-2 items-center mb-5">
         <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/billing.svg`" alt="Billing Icon">
         <h2 class="text-[20px]">Billings</h2>
-        <ErrorAlert class="ml-5" :show="showError" :alert-key="errorAlertKey" :message="errorMessage" />
-      </div>
+        <ErrorAlert for="backend error" class="ml-5" :show="showError" :alert-key="errorAlertKey" :message="errorMessage" />
+      </header>
 
       <!-- Charts Section -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full px-5 pb-5">
@@ -253,14 +265,12 @@ async function handleFetchPdf() {
         </DataTable>
       </section>
 
+      <PaginationWrapper @page-change="handlePageChange" :range="range" :current-page=currentPage :total="billingStore.totalBillingItems"
+        :size-per-page="pageSize" type="Billing-Items">
+      </PaginationWrapper>
 
-    </div>
-    <div v-else class="flex items-center justify-center w-full h-full text-center p-5">
-      <p class="text-lg font-semibold">
-        You do not have permission to view billing data.
-      </p>
-    </div>
-  </div>
+    </section>
+
+    <NonAdminState v-else message="You do not have permission to view billing data."></NonAdminState>
+  </main>
 </template>
-
-<style scoped></style>

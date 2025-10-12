@@ -1,6 +1,5 @@
 import { required } from '../../../util/functions/validation/rules';
 <script setup lang="ts">
-
 const props = defineProps({
   alertKey: {
     type: Number,
@@ -13,6 +12,10 @@ const props = defineProps({
   message: {
     type: String,
     required: true,
+  },
+  for: {
+    type: String,
+    required: true
   }
 })
 </script>
@@ -24,7 +27,3 @@ const props = defineProps({
     </p>
   </transition>
 </template>
-
-<style scoped>
-
-</style>

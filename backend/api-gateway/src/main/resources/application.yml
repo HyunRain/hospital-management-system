@@ -106,7 +106,7 @@ spring:
         - id: billing-service-route
           uri: http://billing-service:8082
           predicates:
-            - Path=/api/billing-item/**
+            - Path=/api/billing/**
           filters:
             - JwtValidation
 

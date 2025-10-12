@@ -26,10 +26,11 @@ export const useStaffStore = defineStore('staff', {
           role: role,
         },
         withCredentials: true,
-      })
-      this.staff = response.data.staffResponseDtos
-      this.totalPages = response.data.totalPages
-      this.totalStaff = response.data.totalStaff
+      });
+      this.staff = response.data.staffResponseDtos;
+      this.fullNameConcatenation(this.staff);
+      this.totalPages = response.data.totalPages;
+      this.totalStaff = response.data.totalStaff;
     },
 
     async getPageOfAllStaff(page: number, size: number) {
@@ -39,10 +40,11 @@ export const useStaffStore = defineStore('staff', {
           size: size,
         },
         withCredentials: true,
-      })
-      this.staff = response.data.staffResponseDtos
-      this.totalPages = response.data.totalPages
-      this.totalStaff = response.data.totalStaff
+      });
+      this.staff = response.data.staffResponseDtos;
+      this.fullNameConcatenation(this.staff);
+      this.totalPages = response.data.totalPages;
+      this.totalStaff = response.data.totalStaff;
     },
 
     async searchStaff(input: string, page: number, size: number) {
@@ -53,28 +55,36 @@ export const useStaffStore = defineStore('staff', {
           size: size,
         },
         withCredentials: true,
-      })
-      this.staff = response.data.staffResponseDtos
-      this.totalPages = response.data.totalPages
-      this.totalStaff = response.data.totalStaff
+      });
+      this.staff = response.data.staffResponseDtos;
+      this.fullNameConcatenation(this.staff);
+      this.totalPages = response.data.totalPages;
+      this.totalStaff = response.data.totalStaff;
     },
 
     async addStaff(formData: object) {
       const response = await api.post('/staff', formData, {
         withCredentials: true,
-      })
-      console.log(response.data)
+      });
+      console.log(response.data);
     },
 
     storeSelectInput(input: string, type: string) {
       switch (type) {
         case 'gender':
-          this.gender = input
-          break
+          this.gender = input;
+          break;
         case 'role':
-          this.role = input
-          break
+          this.role = input;
+          break;
       }
     },
+
+    fullNameConcatenation(staff: StaffDto[]) {
+      this.staff = staff.map((d) => ({
+        ...d,
+        fullName: d.firstName + ' ' + d.lastName,
+      }));
+    },
   },
-})
+});

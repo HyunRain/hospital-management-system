@@ -28,6 +28,7 @@ export const usePatientStore = defineStore("patient", {
         withCredentials: true,
       });
       this.patients = response.data.patients;
+      this.fullNameConcatenation(this.patients);
       this.totalPages = response.data.totalPages;
       this.totalPatients = response.data.totalPatients;
     },
@@ -42,6 +43,7 @@ export const usePatientStore = defineStore("patient", {
         withCredentials: true,
       });
       this.patients = response.data.patients;
+      this.fullNameConcatenation(this.patients);
       this.totalPages = response.data.totalPages;
       this.totalPatients = response.data.totalPatients;
     },
@@ -66,6 +68,13 @@ export const usePatientStore = defineStore("patient", {
           this.maritalStatus = input;
           break;
       }
+    },
+
+    fullNameConcatenation(patients: PatientDto[]) {
+      this.patients = patients.map(p => ({
+        ...p,
+        fullName: p.firstName + ' ' + p.lastName
+      }));
     }
   },
 });

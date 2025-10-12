@@ -74,39 +74,44 @@ const rules: Record<string, Array<(value: string) => boolean | string>> = {
 </script>
 
 <template>
-  <div class="flex bg-white dark:bg-[#000] min-h-[calc(100vh-127px)] w-full justify-center items-center">
-    <div class="flex max-w-[1000px] justify-center w-full md:shadow-lg rounded-lg h-[65%]">
-      <div class="w-1/2 bg-[#ffe2cb]  bg bg-gradient-to-b p-5 items-center justify-center rounded-l-lg hidden md:flex">
+  <main class="flex bg-white dark:bg-[#000] min-h-[calc(100vh-127px)] w-full justify-center items-center">
+    <section class="flex max-w-[1000px] justify-center w-full md:shadow-lg rounded-lg h-[65%]">
+      <figure class="w-1/2 bg-[#ffe2cb]  bg bg-gradient-to-b p-5 items-center justify-center rounded-l-lg hidden md:flex">
         <img src="/assets/images/hospital-image2.png" alt="Brand Logo">
-      </div>
-      <div
-        class="px-5 md:p-0 items-center justify-center border md:border-y md:border-r border-gray-100 dark:border-zinc-800 bg-white dark:bg-[#000] flex flex-col md:w-1/2 rounded-lg md:rounded-none md:rounded-r-lg">
-        <h2 class="mb-10 font-bold text-[28px]">Login to Dashboard</h2>
+      </figure>
+
+      <div class="px-5 md:p-0 items-center justify-center border md:border-y
+      md:border-r border-gray-100 dark:border-zinc-800 bg-white dark:bg-[#000]
+      flex flex-col md:w-1/2 rounded-lg md:rounded-none md:rounded-r-lg">
+
+        <header>
+          <h2 class="mb-10 font-bold text-[28px]">Login to Dashboard</h2>
+        </header>
+
         <form class="flex flex-col items-center justify-center gap-6 w-full md:w-2/4" @submit.prevent="handleLogin()">
-          <input
-            class="bg-white input dark:bg-[#030714] border dark:border-0 w-full px-[10px] py-[7px] rounded-lg dark:border-zinc-800 focus:border-red-300 dark:focus:border-zinc-600 focus:outline-none"
-            type="text" name="email" placeholder="Email" v-model="loginInput.email" />
+          <label class="sr-only" for="email">Email</label>
+          <input id="email" class="input" type="text" name="email" placeholder="Email" v-model="loginInput.email" />
+
           <div class="relative w-full">
-            <input
-              class="bg-white input dark:bg-[#030714] border dark:border-0 w-full px-[10px] py-[7px] rounded-lg  dark:border-zinc-800 focus:border-red-300 dark:focus:border-zinc-600 focus:outline-none"
-              :type="toggleStore.showPassword ? 'text' : 'password'" name="password" placeholder="Password" v-model="loginInput.password" />
+            <label class="sr-only" for="password">Password</label>
+            <input id="password" class="input" :type="toggleStore.showPassword ? 'text' : 'password'" name="password" placeholder="Password"
+              v-model="loginInput.password" />
             <img v-if="toggleStore.showPassword" class="size-5 cursor-pointer absolute top-1/2 right-3 -translate-y-1/2"
               :src="`/assets/icons/${toggleStore.darkModeState}/eyeHide.svg`" alt="Show Eye Password Icon" @click="toggleStore.togglePassword">
             <img v-else class="size-5 cursor-pointer absolute top-1/2 right-3 -translate-y-1/2"
               :src="`/assets/icons/${toggleStore.darkModeState}/eyeShow.svg`" alt="Hide Eye Password Icon" @click="toggleStore.togglePassword">
           </div>
+
           <button class="w-full px-[10px] py-[7px] rounded-lg font-medium bg-[#fe936c] hover:bg-[#ff875b] text-[#212121] shadow-lg cursor-pointer"
             type="submit">
             Login
           </button>
         </form>
-        <!-- Backend Error -->
-        <ErrorAlert class="mt-5" :alert-key="errorAlertKey" :show="showError" :message="errorMessage"></ErrorAlert>
-        <!-- Frontend Error -->
-        <ErrorAlert class="mt-5" :alert-key="loginErrorAlertKey" :show="showLoginError" :message="loginErrorMessage"></ErrorAlert>
-      </div>
-    </div>
-  </div>
-</template>
 
-<style scoped></style>
+        <ErrorAlert for="backend error" class="mt-5" :alert-key="errorAlertKey" :show="showError" :message="errorMessage" role="alert"></ErrorAlert>
+        <ErrorAlert for="frontend error" class="mt-5" :alert-key="loginErrorAlertKey" :show="showLoginError" :message="loginErrorMessage"
+          role="alert"></ErrorAlert>
+      </div>
+    </section>
+  </main>
+</template>

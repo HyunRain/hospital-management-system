@@ -26,6 +26,14 @@ export const useBillingStore = defineStore('billing', {
       this.totalBillingItems = response.data.totalBillingItems;
     },
 
+    async searchBillingItems(input: string, page: number, size: number) {
+
+    },
+    
+    async getPageOfBillingItems(page: number, size: number) {
+
+    },
+
     async fetchPdfUrl(fileName: string) {
       const response = await api.get('/billing-item/pdf/get', {
         params: {

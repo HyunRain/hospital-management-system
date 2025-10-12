@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import DepartmentTable from '@/components/ui/departmentview/DepartmentTable.vue';
 import { useToggleStore } from '@/stores/toggleStore';
 import { useDepartmentStore } from '@/stores/departmentStore';
 import { useAuthStore } from '@/stores/authStore';
 import { onBeforeMount, ref, computed } from 'vue';
 import { isAxiosError } from 'axios';
 import ErrorAlert from '@/components/ui/misc/ErrorAlert.vue';
+import DataTable from '@/components/ui/DataTable.vue';
+import { useErrorAlert } from '@/composables/useErrorAlert';
+import NonAdminState from '@/components/ui/misc/NonAdminState.vue';
 
 const toggleStore = useToggleStore();
 const departmentStore = useDepartmentStore();
 const authStore = useAuthStore();
 
 const isAdmin = computed(() => authStore.role === 'ADMIN');
-
+const { showError, errorMessage, errorAlertKey, triggerBackendError } = useErrorAlert();
 
 onBeforeMount(async () => {
   if (departmentStore.departments.length > 0) return;
@@ -29,42 +31,35 @@ onBeforeMount(async () => {
   }
 });
 
-const showDepartmentsFailed = ref(false);
-const errorMessage = ref('');
-const errorAlertKey = ref(Date.now());
-let timer: ReturnType<typeof setTimeout>;
-
-function triggerBackendError(message: string) {
-  window.clearTimeout(timer);
-  showDepartmentsFailed.value = true;
-  errorAlertKey.value = Date.now();
-  errorMessage.value = message;
-  timer = setTimeout(() => {
-    showDepartmentsFailed.value = false;
-    errorMessage.value = '';
-  }, 10000);
-}
-
+const departmentColumns = [
+  { key: 'name', label: 'Name', class: 'border-0 rounded-l-xl' },
+  { key: 'headOfDepartmentName', label: 'Head of Dept', class: '' },
+  { key: 'staffCount', label: 'Staff Count', class: '' },
+  { key: 'bedCapacity', label: 'Bed Capacity', class: '' },
+  { key: 'currentBedCount', label: 'Current Bed Count', class: '' },
+  { key: 'status', label: 'Status', class: '' }
+];
 </script>
 
 <template>
-  <div class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] dark:border border-zinc-800 min-h-[calc(100vh-147px)] rounded-lg">
-    <div v-if="isAdmin" class="flex justify-between items-center">
-      <div class="flex gap-2 items-center">
+  <main class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] dark:border border-zinc-800 min-h-[calc(100vh-147px)] rounded-lg">
+    <header v-if="isAdmin" class="flex justify-between items-center">
+      <section class="flex gap-2 items-center">
         <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/department.svg`" alt="DepartmentIcon" />
         <h2 class="text-[20px]">Departments</h2>
-        <ErrorAlert class="ml-5" :show="showDepartmentsFailed" :alert-key="errorAlertKey" :message="errorMessage" />
-      </div>
-    </div>
-    <div v-if="isAdmin" class="h-full overflow-auto items-center flex">
-      <DepartmentTable />
-    </div>
-    <div v-else class="flex items-center justify-center w-full h-full text-center p-5">
-      <p class="text-lg font-semibold">
-        You do not have permission to view department data.
-      </p>
-    </div>
-  </div>
+        <ErrorAlert for="backend error" class="ml-5" :show="showError" :alert-key="errorAlertKey" :message="errorMessage" />
+      </section>
+    </header>
+    <section v-if="isAdmin" class="h-full overflow-auto items-center flex">
+      <DataTable :data="departmentStore.departments" :columns="departmentColumns">
+        <template #status="{ statusValue }">
+          <div class="flex items-center gap-2 justify-center">
+            <span class="inline-block size-3 rounded-full" :class="statusValue === 'Open' ? 'bg-green-500' : 'bg-red-500'"></span>
+            <span>{{ statusValue }}</span>
+          </div>
+        </template>
+      </DataTable>
+    </section>
+    <NonAdminState v-else message="You do not have permission to view department data."></NonAdminState>
+  </main>
 </template>
-
-<style scoped></style>

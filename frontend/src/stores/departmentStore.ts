@@ -11,6 +11,10 @@ export const useDepartmentStore = defineStore('department', {
     async fetchDepartments() {
       const response = await api.get('/department/all');
       this.departments = response.data;
+      this.departments = this.departments.map((d) => ({
+        ...d,
+        status: d.isActive ? 'Open' : 'Closed',
+      }));
     }
   },
 })

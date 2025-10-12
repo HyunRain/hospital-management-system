@@ -27,6 +27,7 @@ export enum UserRole {
 export interface PatientDto {
   firstName: string;
   lastName: string;
+  fullName: string;
   gender: 'MALE' | 'FEMALE' | 'OTHER';
   dateOfBirth: string; //
   bloodGroup: 'A_POSITIVE' | 'A_NEGATIVE' | 'B_POSITIVE' | 'B_NEGATIVE' | 'AB_POSITIVE' | 'AB_NEGATIVE' | 'O_POSITIVE' | 'O_NEGATIVE';
@@ -96,6 +97,37 @@ export interface BillingData {
   startDate: string;
   dueDate: string;
   patientName: string;
+}
+
+export type selectedRange = 'week' | 'month' | 'year';
+
+export interface Selection {
+  key: selectedRange;
+  value: string;
+}
+
+export interface ChartStoreState {
+  patientChartData: TimeRangeData;
+  patientSelectedRange: selectedRange;
+  appointmentChartData: TimeRangeData;
+  appointmentSelectedRange: selectedRange;
+  revenueChartData: TimeRangeData;
+  revenueSelectedRange: selectedRange;
+  billingChartData: TimeRangeData;
+  billingSelectedRange: selectedRange;
+  departmentChartData: ChartData;
+  departmentSelectedRange: selectedRange;
+}
+
+export interface TimeRangeData {
+  week: ChartData;
+  month: ChartData;
+  year: ChartData;
+}
+
+export interface ChartData {
+  labels: string[];
+  data: number[];
 }
 
 export type ValidationResult = { success: true } | { success: false; field: string; validator: string; error: string };
