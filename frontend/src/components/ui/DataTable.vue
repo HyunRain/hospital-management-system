@@ -32,15 +32,15 @@ interface Column {
         </td>
       </tr>
 
-      <tr v-else class=" h-[30px] text-[15px]">
-        <th v-for="col in props.columns" :key="col.key" :class="col.class"> {{ col.label }}</th>
+      <tr v-else class=" h-[30px] text-[15px] border-b">
+        <th class="pb-2" v-for="col in props.columns" :key="col.key" :class="col.class"> {{ col.label }}</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="(data, index) in props.data" :key="index"
         class="text-center w-full h-[45px] cursor-pointer border-zinc-800 hover:bg-red-100 dark:hover:bg-[#1d1d1dcf]">
         <td v-for="(col, colIndex) in props.columns" :key="col.key"
-          :class="[col.class, colIndex === 0 ? 'rounded-l-lg' : '', colIndex === props.columns.length - 1 ? 'rounded-r-lg' : '']">
+          :class="[col.class, 'pt-2', colIndex === 0 ? 'rounded-l-lg' : '', colIndex === props.columns.length - 1 ? 'rounded-r-lg' : '']">
 
           <slot v-if="colIndex === 0" name="invoice"></slot>
 

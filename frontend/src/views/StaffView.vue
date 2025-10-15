@@ -45,22 +45,21 @@ const staffColumns = [
   { key: 'role', label: 'Role', class: 'border-0 rounded-r-lg' },
 ]
 
+const isDoctorSearch = false;
+
 const {
   range,
   currentPage,
   pageSize,
   handlePageChange,
   searchInput
-} = usePagination('1-15', staffStore, staffStore.searchStaff, staffStore.getPageOfAllStaff, 'totalStaff');
+} = usePagination('1-15', staffStore, staffStore.searchStaff, staffStore.getPageOfAllStaff, isDoctorSearch, 'totalStaff');
 
 </script>
 
 <template>
-  <main class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] dark:border-neutral-900
-    min-h-[calc(100vh-147px)] overflow-y-auto rounded-lg border border-neutral-200">
-
+  <main class="baseView">
     <template v-if="isAdmin">
-
       <header class="flex justify-between items-center mb-10">
         <section class="flex gap-2 items-center">
           <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/employees.svg`" alt="Doctor Icon">

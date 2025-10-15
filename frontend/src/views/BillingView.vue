@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { useBillingStore } from '@/stores/billingStore';
 import { useAuthStore } from '@/stores/authStore';
-import { computed, ref, onBeforeMount } from 'vue';
+import { computed, onBeforeMount } from 'vue';
 import { useToggleStore } from '@/stores/toggleStore';
 import { Line, Pie, Bar } from 'vue-chartjs';
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, BarElement, PointElement, ArcElement, CategoryScale, LinearScale, Filler } from 'chart.js';
-import type { ChartOptions } from 'chart.js';
 import DataTable from '@/components/ui/DataTable.vue';
 import { isAxiosError } from 'axios';
 import ErrorAlert from '@/components/ui/misc/ErrorAlert.vue';
@@ -13,10 +12,15 @@ import { useErrorAlert } from '@/composables/useErrorAlert';
 import PaginationWrapper from '@/components/ui/pagination/PaginationWrapper.vue';
 import { usePagination } from '@/composables/usePagination';
 import NonAdminState from '@/components/ui/misc/NonAdminState.vue';
+import { useLineChart } from '@/composables/useLineChart';
+import { useBarChart } from '@/composables/useBarChart';
+import { useChartStore } from '@/stores/chartStore';
+import ChartRangeSelection from '@/components/ui/misc/ChartRangeSelection.vue';
 
 const billingStore = useBillingStore();
 const authStore = useAuthStore();
 const toggleStore = useToggleStore();
+const chartStore = useChartStore();
 
 ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, BarElement, CategoryScale, LinearScale, Filler, ArcElement);
 
@@ -47,149 +51,27 @@ const billingColumns = [
   { key: 'download', label: 'Download', class: '' },
 ];
 
-// ----------------------- Billings Bar Chart -----------------------
 
-const selectedRangeBarBillings = ref<'week' | 'month' | 'year'>('week');
+const { chartDataBar: chartDataBarBillings, chartOptionsBar: chartOptionsBarBillings } = useBarChart(
+  'Billing Items',
+  chartStore.billingChartData,
+  computed(() => chartStore.billingSelectedRange)
+);
 
-const chartDataSetsBarBillings = {
-  week: {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    data: [10, 12, 8, 15, 20, 18, 9],
-  },
-  month: {
-    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-    data: [50, 70, 40, 90],
-  },
-  year: {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Sep', 'Oct', 'Nov', 'Dec'],
-    data: [120, 90, 140, 100, 180, 160, 120, 90, 130, 180, 150, 120],
-  },
-};
-
-const chartDataBarBillings = computed(() => ({
-  labels: chartDataSetsBarBillings[selectedRangeBarBillings.value].labels,
-  datasets: [{
-    label: 'Billings',
-    data: chartDataSetsBarBillings[selectedRangeBarBillings.value].data,
-    backgroundColor: isDark.value ? '#e7523b20' : '#e7523b80',
-  },
-  ],
-}));
-
-const chartOptionsBarBillings = computed<ChartOptions<'bar'>>(() => ({
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      labels: {
-        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
-      },
-      position: 'bottom',
-    },
-  },
-  elements: {
-    bar: {
-      borderWidth: 3,
-      borderRadius: 10,
-      borderColor: isDark.value ? '#e7523b95' : '#e7523b',
-    }
-  },
-  scales: {
-    x: {
-      ticks: {
-        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
-      },
-      grid: {
-        color: '#333',
-        display: false,
-      },
-    },
-    y: {
-      min: 0,
-      ticks: {
-        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
-        stepSize: 10,
-      },
-      grid: {
-        color: isDark.value ? '#333' : '#dfdfd6',
-      },
-    },
-  },
-}));
-
-// ----------------------- Reveneue Overview Line Chart -----------------------
-
-const selectedRangeLineRevenue = ref<'week' | 'month' | 'year'>('week');
-
-const chartDataSetsLineRevenue = {
-  week: {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    data: [10, 12, 8, 15, 20, 18, 9],
-  },
-  month: {
-    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-    data: [50, 70, 40, 90],
-  },
-  year: {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Sep', 'Oct', 'Nov', 'Dec'],
-    data: [120, 90, 140, 100, 180, 160, 120, 90, 130, 180, 150, 120],
-  },
-};
-
-const chartDataLineRevenue = computed(() => ({
-  labels: chartDataSetsLineRevenue[selectedRangeLineRevenue.value].labels,
-  datasets: [{
-    label: 'Revenue',
-    data: chartDataSetsLineRevenue[selectedRangeLineRevenue.value].data,
-    borderColor: isDark.value ? '#e7523b95' : '#e7523b',
-    backgroundColor: isDark.value ? '#e7523b20' : '#e7523b80',
-    tension: 0.4,
-    fill: true,
-  },
-  ],
-}));
+const { chartDataLine: chartDataLineRevenue, chartOptionsLine: chartOptionsLineRevenue } = useLineChart(
+  'Revenue',
+  chartStore.revenueChartData,
+  computed(() => chartStore.revenueSelectedRange)
+);
 
 
-const chartOptionsLineRevenue = computed<ChartOptions<'line'>>(() => ({
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      labels: {
-        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
-      },
-      position: 'bottom',
-    },
-  },
-  scales: {
-    x: {
-      ticks: {
-        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
-      },
-      grid: {
-        color: '#333',
-        display: false,
-      },
-    },
-    y: {
-      min: 0,
-      ticks: {
-        color: isDark.value ? '#dfdfd6' : '#4c4c4c',
-        stepSize: 10,
-      },
-      grid: {
-        color: isDark.value ? '#333' : '#dfdfd6',
-      },
-    },
-  },
-}));
-
-// ----------------------- Billing Item PDF Fetching -----------------------
-
+// Fetching billing invoices
 async function handleFetchPdf() {
   const pdfUrl = await billingStore.fetchPdfUrl("billing-items/Besucherfolder_Willkommen-im-AKH.pdf");
   window.open(pdfUrl, '_blank');
 }
+
+const isDoctorSearch = false;
 
 const {
   range,
@@ -197,15 +79,12 @@ const {
   pageSize,
   handlePageChange,
   searchInput
-} = usePagination('1-8', billingStore, billingStore.searchBillingItems, billingStore.getPageOfBillingItems, 'totalBillingItems')
+} = usePagination('1-8', billingStore, billingStore.searchBillingItems, billingStore.getPageOfBillingItems, isDoctorSearch, 'totalBillingItems');
 </script>
 
 <template>
-  <main
-    class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] dark:border border-zinc-800 min-h-[calc(100vh-147px)] overflow-y-auto rounded-lg">
-
+  <main class="baseView">
     <section v-if="isAdmin" class="justify-between items-center mb-2">
-
       <header class="flex gap-2 items-center mb-5">
         <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/billing.svg`" alt="Billing Icon">
         <h2 class="text-[20px]">Billings</h2>
@@ -214,34 +93,19 @@ const {
 
       <!-- Charts Section -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full px-5 pb-5">
-        <div class="flex flex-col h-[300px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] dark:border border-neutral-900 shadow-sm p-5">
+        <div class="chart">
           <div class="flex mb-5 items-center justify-between">
-            <p class="text-[16px] text-zinc-800 dark:text-zinc-200">Billings</p>
-            <div class="flex gap-4">
-              <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-lg cursor-pointer" @click="selectedRangeBarBillings = 'week'">Last
-                Week</button>
-              <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-lg cursor-pointer"
-                @click="selectedRangeBarBillings = 'month'">Last Month</button>
-              <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-lg cursor-pointer" @click="selectedRangeBarBillings = 'year'">Last
-                Year</button>
-            </div>
+            <p class="chartHeader">Billings</p>
+            <ChartRangeSelection chart-key="billing" default-value="Last Week"></ChartRangeSelection>
           </div>
           <div class="flex-1">
             <Bar :data="chartDataBarBillings" :options="chartOptionsBarBillings" />
           </div>
         </div>
-        <div class="flex flex-col h-[300px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] dark:border border-neutral-900 shadow-sm p-5">
+        <div class="chart">
           <div class="flex mb-5 items-center justify-between">
-            <p class="text-[16px] text-zinc-800 dark:text-zinc-200">Revenue Overview</p>
-            <div class="flex gap-5">
-              <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-lg cursor-pointer" @click="selectedRangeLineRevenue = 'week'">Last
-                Week</button>
-              <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-lg cursor-pointer"
-                @click="selectedRangeLineRevenue = 'month'">Last
-                Month</button>
-              <button class="hover:bg-red-100 dark:hover:bg-neutral-800 p-2 rounded-lg cursor-pointer" @click="selectedRangeLineRevenue = 'year'">Last
-                Year</button>
-            </div>
+            <p class="chartHeader">Revenue  €</p>
+            <ChartRangeSelection chart-key="revenue" default-value="Last Year"></ChartRangeSelection>
           </div>
           <div class="flex-1">
             <Line :data="chartDataLineRevenue" :options="chartOptionsLineRevenue" />

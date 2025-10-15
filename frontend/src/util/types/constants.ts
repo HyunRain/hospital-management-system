@@ -12,7 +12,7 @@ export const bloodTypes = [
 export const gender = [
   { label: 'Male', value: 'MALE' },
   { label: 'Female', value: 'FEMALE' },
-  { label: 'Other', value: 'OTHER'},
+  { label: 'Other', value: 'OTHER' },
 ];
 
 export const maritalStatus = [
@@ -33,8 +33,46 @@ export const staffTypes = [
   { label: 'Physiotherapist', value: 'PHYSIOTHERAPIST' },
   { label: 'Lab Technician', value: 'LAB_TECHNICIAN' },
   { label: 'Surgeon', value: 'SURGEON' },
-]
+];
 
-export const billingItemTypes = [
-  { label: 'Nurse'}
-]
+export const billingItemTypes = [{ label: 'Nurse' }];
+
+export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+export const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+export const departments = [
+  'Pediatrics',
+  'Dermatology',
+  'Ophthalmology',
+  'Pathology',
+  'Surgery',
+  'Orthopedics',
+  'Gynecology',
+  'Gastroenterology',
+  'Neurology',
+  'Urology',
+  'Oncology',
+  'Nephrology',
+  'Cardiology',
+  'Pulmonology',
+  'Emergency',
+  'Endocrinology',
+  'Radiology',
+];
+
+export const calendarRanges = ['Month', 'Week', 'Day'];
+

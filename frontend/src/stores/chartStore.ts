@@ -36,11 +36,11 @@ export const useChartStore = defineStore('chartStore', {
     revenueChartData: {
       week: {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        data: [10, 12, 8, 15, 20, 18, 9],
+        data: [520, 610, 480, 750, 940, 830, 560], // ≈ 4,690 total — fits a ~19k month
       },
       month: {
         labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-        data: [50, 70, 40, 90],
+        data: [4300, 5200, 4800, 5100], // ≈ 19,400 total
       },
       year: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -62,7 +62,7 @@ export const useChartStore = defineStore('chartStore', {
         data: [85, 130, 145, 95, 155, 170, 160, 120, 125, 140, 135, 110],
       },
     },
-    billingSelectedRange: 'year',
+    billingSelectedRange: 'week',
     departmentChartData: {
       labels: [
         'Orthopedics',

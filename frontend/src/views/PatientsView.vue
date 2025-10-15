@@ -40,19 +40,19 @@ const patientColumns = [
 
 ];
 
+const isDoctorSearch = false;
+
 const {
   range,
   currentPage,
   pageSize,
   handlePageChange,
   searchInput
-} = usePagination('1-15', patientStore, patientStore.searchPatients, patientStore.getPageOfPatients, 'totalPatients');
+} = usePagination('1-15', patientStore, patientStore.searchPatients, patientStore.getPageOfPatients, isDoctorSearch, 'totalPatients');
 </script>
 
 <template>
-  <main
-    class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] border border-neutral-200 dark:border-neutral-900 min-h-[calc(100vh-147px)] rounded-lg">
-
+  <main class="baseView">
     <header class="flex justify-between items-center mb-10">
       <section class="flex gap-2 items-center">
         <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/patients.svg`" alt="PatientIcon" />

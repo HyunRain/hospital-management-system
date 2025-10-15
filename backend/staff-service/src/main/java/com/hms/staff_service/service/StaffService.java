@@ -15,7 +15,7 @@ public interface StaffService {
 
     PaginatedResponseDto getAllStaffPaginated(int page, int size);
 
-    PaginatedResponseDto searchDoctors(String input, int page, int size);
+    PaginatedResponseDto searchStaff(String input, Boolean doctorSearch, int page, int size);
 
     void deleteStaffByEmail(String email);
 

@@ -79,42 +79,44 @@ const { chartDataPie: chartDataPieDepartments, chartOptionsPie: chartOptionsPieD
     </section>
 
     <section class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full lg:px-5 pb-5">
-      <div class="flex flex-col h-[400px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] dark:border dark:border-neutral-900 shadow-md p-5">
-        <div class="flex mb-5 items-center justify-between">
-          <p class="text-[16px] text-zinc-800 dark:text-zinc-200">Patients Overview</p>
+      <article class="chartHome">
+        <header class="flex mb-5 items-center justify-between">
+          <p class="chartHeader">Patients Overview</p>
           <ChartRangeSelection chart-key="patient" default-value="Last Year" />
-        </div>
+        </header>
         <div class="flex-1">
           <Line :data="chartDataLinePatients" :options="chartOptionsLinePatients" />
         </div>
-      </div>
-      <div class="flex flex-col h-[400px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] shadow-md dark:border dark:border-neutral-900 p-5">
-        <div class="flex mb-5 items-center justify-between">
-          <p class="text-[16px] text-zinc-800 dark:text-zinc-200">Appointments</p>
+      </article>
+      <article class="chartHome">
+        <header class="flex mb-5 items-center justify-between">
+          <p class="chartHeader">Appointments</p>
           <ChartRangeSelection chart-key="appointment" default-value="Last Week"></ChartRangeSelection>
-        </div>
+        </header>
         <div class="flex-1">
           <Bar :data="chartDataBarAppointments" :options="chartOptionsBarAppointments" />
         </div>
-      </div>
+      </article>
     </section>
 
     <section class="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-5 w-full lg:px-5 pb-5">
-      <div class="flex flex-col h-[400px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] dark:border dark:border-neutral-900 shadow-md p-5">
-        <p class="text-[16px] mb-5 text-zinc-800 dark:text-zinc-200">Department Breakdown</p>
+      <article class="chartHome">
+        <header>
+          <p class="text-[16px] mb-5 text-zinc-800 dark:text-zinc-200">Department Breakdown</p>
+        </header>
         <div class="flex-1">
           <Pie :data="chartDataPieDepartments" :options="chartOptionsPieDepartments" />
         </div>
-      </div>
-      <div class="flex flex-col h-[400px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] dark:border dark:border-neutral-900  shadow-md  p-5">
-        <div class="flex mb-5 items-center justify-between">
+      </article>
+      <article class="chartHome">
+        <header class="flex mb-5 items-center justify-between">
           <p class="text-[16px] mb-5 text-zinc-800 dark:text-zinc-200">Revenue in €</p>
           <ChartRangeSelection chart-key="revenue" default-value="Last Year" />
-        </div>
+        </header>
         <div class="flex-1">
           <Line :data="chartDataLineRevenue" :options="chartOptionsLineRevenue" />
         </div>
-      </div>
+      </article>
     </section>
 
   </main>

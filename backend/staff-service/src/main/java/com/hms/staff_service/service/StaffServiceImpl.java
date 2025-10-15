@@ -120,24 +120,24 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public PaginatedResponseDto searchDoctors(String input, int page, int size) {
+    public PaginatedResponseDto searchStaff(String input, Boolean doctorSearch, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Specification<Staff> spec = StaffSpecifications.staffContainsTerm(input);
+        System.out.println(doctorSearch);
+        Specification<Staff> spec = StaffSpecifications.staffContainsTerm(input, doctorSearch);
 
-        Page<Staff> pagedDoctors = staffRepository.findAll(spec, pageable);
-        List<UUID> doctorIds = pagedDoctors.stream().map(Staff::getUuid).toList();
+        Page<Staff> pagedStaff = staffRepository.findAll(spec, pageable);
+        List<UUID> staffIds = pagedStaff.stream().map(Staff::getUuid).toList();
 
-        List<Staff> allDoctors = staffRepository.findStaffWithDepartmentByIds(doctorIds);
+        List<Staff> allStaff = staffRepository.findStaffWithDepartmentByIds(staffIds);
 
-        List<StaffResponseDto> dtos = allDoctors.stream().map(staffMapper::entityToDto).toList();
+        List<StaffResponseDto> dtos = allStaff.stream().map(staffMapper::entityToDto).toList();
 
         return PaginatedResponseDto.builder()
                 .staffResponseDtos(dtos)
-                .totalPages(pagedDoctors.getTotalPages())
-                .totalStaff(pagedDoctors.getTotalElements())
+                .totalPages(pagedStaff.getTotalPages())
+                .totalStaff(pagedStaff.getTotalElements())
                 .build();
     }
-
 
     @Override
     public void deleteStaffByEmail(String email) {

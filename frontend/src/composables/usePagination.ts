@@ -4,8 +4,9 @@ import debounce from 'lodash.debounce';
 export function usePagination(
   rangeValue: string,
   store: any,
-  searchMethod: (input: string, page: number, size: number) => Promise<void>,
+  searchMethod: (input: string, page: number, size: number, doctorSearch?: boolean,) => Promise<void>,
   getPageOfMethod: (page: number, size: number) => Promise<void>,
+  isDoctorSearch: boolean,
   totalEntity: string,
 ) {
   const range = ref<string>(rangeValue);
@@ -18,7 +19,7 @@ export function usePagination(
     store.page = page;
 
     if (searchInput.value && searchInput.value.length > 1) {
-      await searchMethod(searchInput.value, page - 1, pageSize.value);
+      await searchMethod(searchInput.value, page - 1, pageSize.value, isDoctorSearch);
     } else {
       await getPageOfMethod(page - 1, pageSize.value);
     }
@@ -38,7 +39,7 @@ export function usePagination(
   // ------------------------ Search Entities ------------------------
 
   const debouncedSearch = debounce(async (input: string) => {
-    if (input.length > 1) await searchMethod(input, 0, pageSize.value);
+    if (input.length > 1) await searchMethod(input, 0, pageSize.value, isDoctorSearch);
     if (input.length < 1) {
       // if search field becomes empty, fetch first page of all patients and set the visual current page back to 1
       await getPageOfMethod(0, pageSize.value);

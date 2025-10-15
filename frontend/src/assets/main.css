@@ -137,12 +137,16 @@ body {
   }
 }
 
+.baseView {
+  @apply flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] border border-neutral-200 dark:border-neutral-900 min-h-[calc(100vh-147px)] rounded-lg;
+}
+
 .input {
   @apply h-[36px] py-1 w-full px-3  bg-white border dark:border-neutral-800 dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg focus:border-red-300 dark:focus:border-neutral-500 focus:outline-none;
 }
 
 .search-input {
-  @apply h-[38px] max-w-[185px] hidden md:block py-1 px-3 bg-white dark:border-[#1f1f1f] dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg border focus:border-red-300 dark:focus:border-neutral-800 focus:outline-none;
+  @apply py-2 max-w-[185px] hidden md:block px-3 bg-white dark:border-[#1f1f1f] dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg border focus:border-red-300 dark:focus:border-neutral-800 focus:outline-none;
 }
 
 .search-input:-webkit-autofill {
@@ -156,7 +160,7 @@ body {
 }
 
 .button {
-  @apply px-3 py-5 h-[40px] bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#000] border border-gray-300 dark:border-zinc-900 rounded-lg cursor-pointer dark:hover:bg-[#1d1d1dcf];
+  @apply px-3 py-2 bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#000] border border-gray-300 dark:border-[#1f1f1f] rounded-lg cursor-pointer dark:hover:bg-[#1d1d1dcf] focus:border-red-300 dark:focus:border-neutral-800 focus:outline-none;
 }
 
 .form-button {
@@ -164,7 +168,7 @@ body {
 }
 
 .chartRangeButton {
-  @apply relative gap-1 flex justify-between px-4 items-center cursor-pointer truncate h-[36px] py-1 w-full bg-white border dark:border-neutral-900 dark:bg-[#000] dark:placeholder-[#898989] rounded-lg focus:border-red-300 dark:focus:border-neutral-700 focus:outline-none;
+  @apply relative gap-1 flex justify-between px-3 items-center cursor-pointer truncate py-2 w-full bg-white border dark:border-neutral-900 dark:bg-[#000] dark:placeholder-[#898989] rounded-lg focus:border-red-300 dark:focus:border-neutral-700 focus:outline-none;
 }
 
 .chartRangeDropdown {
@@ -172,9 +176,27 @@ body {
 }
 
 .chartRangeDropdownItem {
-  @apply flex h-[37px] justify-between items-center py-1 px-2 gap-2 rounded-lg font-medium hover:bg-rose-200 dark:hover:bg-[#1d1d1dcf];
+  @apply flex h-[37px] justify-between items-center py-1 px-3 gap-2 rounded-lg font-medium hover:bg-rose-200 dark:hover:bg-[#1d1d1dcf];
 }
 
 .sr-only {
   @apply w-[1px] h-[1px] p-0 overflow-hidden whitespace-nowrap border-0 absolute;
+}
+
+.chartHome {
+  @apply flex flex-col h-[400px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] dark:border border-neutral-900 shadow-sm p-5;
+}
+
+.chart {
+  @apply flex flex-col h-[300px] w-full rounded-lg bg-white dark:bg-[#0a0a0a] dark:border border-neutral-900 shadow-sm p-5;
+}
+
+.chartHeader {
+  @apply text-[16px] text-zinc-800 dark:text-zinc-200;
+}
+
+/* Calendar classes */
+
+.monthCalendarLayout {
+  @apply flex;
 }

@@ -131,3 +131,19 @@ export interface ChartData {
 }
 
 export type ValidationResult = { success: true } | { success: false; field: string; validator: string; error: string };
+
+import type { Ref, ComputedRef } from "vue";
+
+export interface CalendarState {
+  date: Ref<Date, Date>;
+  currentYear: Ref<number>;
+  currentMonth: Ref<number>;
+  currentDay: Ref<number>;
+  isLeapYear: ComputedRef<boolean>
+  daysInCurrentMonth: ComputedRef<number>;
+  nextMonth: () => void;
+  previousMonth: () => void;
+  applyTodaysDate: () => void;
+  firstWeekDayOfMonth: ComputedRef<string>;
+  daysOfPreviousMonth: ComputedRef<number[]>;
+}

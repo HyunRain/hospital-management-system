@@ -43,21 +43,20 @@ const doctorColumns = [
   { key: 'departmentName', label: 'Department', class: 'border-0 rounded-r-lg' },
 ]
 
+const isDoctorSearch = true;
+
 const {
   range,
   currentPage,
   pageSize,
   handlePageChange,
   searchInput
-} = usePagination('1-15', doctorStore, doctorStore.searchDoctors, doctorStore.getPageOfDoctors, 'totalDoctors');
+} = usePagination('1-15', doctorStore, doctorStore.searchDoctors, doctorStore.getPageOfDoctors, isDoctorSearch, 'totalDoctors');
 </script>
 
 <template>
-  <main class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] border borer-neutral-200
-  dark:border-neutral-900 min-h-[calc(100vh-147px)] rounded-lg">
-
+  <main class="baseView">
     <template v-if="isAdmin">
-
       <header class="flex justify-between items-center mb-10">
         <section class="flex gap-2 items-center">
           <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/doctor.svg`" alt="PatientIcon" />
@@ -88,6 +87,5 @@ const {
         You do not have permission to view doctor data.
       </p>
     </section>
-
   </main>
 </template>

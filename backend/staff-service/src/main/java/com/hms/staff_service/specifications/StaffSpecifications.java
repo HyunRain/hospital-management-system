@@ -6,7 +6,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 
 public class StaffSpecifications {
-    public static Specification<Staff> staffContainsTerm(String input) {
+    public static Specification<Staff> staffContainsTerm(String input, Boolean doctorSearch) {
         return (root, query, cb) -> {
             if (input == null || input.isEmpty()) {
                 return cb.conjunction(); // no filtering
@@ -31,7 +31,7 @@ public class StaffSpecifications {
                 );
             }
 
-            return cb.or(
+            Predicate generalPredicate = cb.or(
                     namePredicate,
                     cb.like(cb.lower(root.get("email")), likeInput),
                     cb.like(cb.lower(root.get("city")), likeInput),
@@ -40,6 +40,16 @@ public class StaffSpecifications {
                     cb.like(cb.lower(root.get("gender").as(String.class)), likeInput),
                     cb.like(cb.lower(cb.function("TO_CHAR", String.class, root.get("dateOfBirth"), cb.literal("YYYY-MM-DD"))), likeInput)
             );
+
+            if (Boolean.TRUE.equals(doctorSearch)) {
+                Predicate doctorPredicate = cb.equal(root.get("role"), "DOCTOR");
+                return cb.and(generalPredicate, doctorPredicate);
+            } else if (Boolean.FALSE.equals(doctorSearch)) {
+                Predicate nonDoctorPredicate = cb.notEqual(root.get("role"), "DOCTOR");
+                return cb.and(generalPredicate, nonDoctorPredicate);
+            }
+
+            return generalPredicate;
         };
     }
 }

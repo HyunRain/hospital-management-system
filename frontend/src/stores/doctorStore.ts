@@ -31,10 +31,11 @@ export const useDoctorStore = defineStore('doctor', {
       this.totalDoctors = response.data.totalStaff;
     },
 
-    async searchDoctors(input: string, page: number, size: number) {
+    async searchDoctors(input: string, page: number, size: number, doctorSearch?: boolean) {
       const response = await api.get('/staff/search', {
         params: {
           input: input,
+          doctorSearch: doctorSearch,
           page: page,
           size: size,
         },

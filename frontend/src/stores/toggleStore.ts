@@ -1,15 +1,15 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
-
-export const useToggleStore = defineStore("toggle", {
+export const useToggleStore = defineStore('toggle', {
   state: () => ({
     // Navbar
     showUserDropdown: false as boolean,
-    darkModeState: localStorage.getItem('vueuse-color-scheme') === 'light' ? 'lightMode' : 'darkMode',
+    darkModeState:
+      localStorage.getItem('vueuse-color-scheme') === 'light' ? 'lightMode' : 'darkMode',
     // LoginView
     showPassword: false as boolean,
     // User
-    isDemo: localStorage.getItem('isDemo') === "true",
+    isDemo: localStorage.getItem('isDemo') === 'true',
     // PatientView
     showAddPatientModal: false as boolean,
     // DoctorView
@@ -20,6 +20,9 @@ export const useToggleStore = defineStore("toggle", {
     showLoader: false as boolean,
     // BillingDropDown
     showBillingDropdown: false as boolean,
+    // DepartmentSelection
+    showDepartmentSelection: false,
+    showCalendarRangeSelection: false,
   }),
 
   actions: {
@@ -31,7 +34,7 @@ export const useToggleStore = defineStore("toggle", {
     },
     toggleDemo() {
       this.isDemo = !this.isDemo;
-      this.isDemo ? localStorage.setItem('isDemo', "true") : localStorage.removeItem('isDemo');
+      this.isDemo ? localStorage.setItem('isDemo', 'true') : localStorage.removeItem('isDemo');
     },
     toggleAddPatientModel() {
       this.showAddPatientModal = !this.showAddPatientModal;
@@ -48,5 +51,15 @@ export const useToggleStore = defineStore("toggle", {
     toggleBillingDropdown() {
       this.showBillingDropdown = !this.showBillingDropdown;
     },
+    toggleAppointmentCalendar(stateName: string) {
+      switch (stateName) {
+        case 'showDepartmentSelection':
+          this.showDepartmentSelection = !this.showDepartmentSelection;
+          break;
+        case 'showCalendarRangeSelection':
+          this.showCalendarRangeSelection = !this.showCalendarRangeSelection;
+          break;
+      }
+    }
   },
 });

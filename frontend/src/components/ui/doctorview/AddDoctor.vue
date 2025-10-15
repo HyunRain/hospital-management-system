@@ -88,67 +88,64 @@ function nextStep() {
 
 <template>
   <!-- Overlay Container -->
-  <div class="fixed inset-0 z-50 flex items-center justify-center bg-[#00000087] p-4">
+  <main class="fixed inset-0 z-50 flex items-center justify-center bg-[#00000087] p-4">
 
     <!-- AddPatientModal -->
-    <div v-click-outside="() => { toggleStore.toggleAddDoctorModal(); resetSelects(); }" class="flex flex-col bg-white dark:bg-[#0a0a0a] p-5 border border-gray-300 dark:border-neutral-900 min-h-[50vh] max-h-[90vh]
+    <article v-click-outside="() => { toggleStore.toggleAddDoctorModal(); resetSelects(); }" class="flex flex-col bg-white dark:bg-[#0a0a0a] p-5 border border-gray-300 dark:border-neutral-900 min-h-[50vh] max-h-[90vh]
       md:min-h-fit rounded-lg w-full max-w-4xl overflow-y-auto">
-      <div class="flex justify-between items-center">
-        <div class="flex gap-2 items-center">
+      <header class="flex justify-between items-center">
+        <section class="flex gap-2 items-center">
           <h3 class="text-[18px]">+ Add Doctor</h3>
-        </div>
+        </section>
         <img class="size-4.5 cursor-pointer hover:size-5" @click="() => { toggleStore.toggleAddDoctorModal(); resetSelects(); }"
           :src="`/assets/icons/${toggleStore.darkModeState}/close.svg`" alt="Close Icon">
-      </div>
-
-
+      </header>
 
       <!-- Steps Window-->
-      <div class="flex justify-evenly px-5 mt-9 md:py-3 py-6 dark:bg-[#000] overflow-x-auto gap-5 md:mx-15 rounded-lg border ">
+      <section class="flex justify-evenly px-5 mt-9 md:py-3 py-6 dark:bg-[#000] overflow-x-auto gap-5 md:mx-15 rounded-lg border ">
 
         <!-- Header 1-->
-        <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 1">
+        <section class="flex gap-2 items-center cursor-pointer" @click="currentStep = 1">
           <div class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
             <img v-if="isStep1" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`" alt="PatientIcon" />
             <p v-else :class="[stepTextColor(1)]">1</p>
           </div>
           <p class="min-w-24" :class="[stepTextColor(1)]">
             Account Data</p>
-        </div>
+        </section>
 
         <div class="border-l"></div>
 
         <!-- Header 2-->
-        <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 2">
+        <section class="flex gap-2 items-center cursor-pointer" @click="currentStep = 2">
           <div class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
             <img v-if="isStep2" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`" alt="PatientIcon" />
             <p v-else :class="[stepTextColor(2)]">2</p>
           </div>
           <p :class="[stepTextColor(2)]">
             Personal Data </p>
-        </div>
+        </section>
 
         <div class="border-l"></div>
 
         <!-- Header 3-->
-        <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = 3">
+        <section class="flex gap-2 items-center cursor-pointer" @click="currentStep = 3">
           <div class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
             <img v-if="isStep2" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`" alt="PatientIcon" />
             <p v-else :class="[stepTextColor(3)]">3</p>
           </div>
           <p :class="[stepTextColor(3)]">
             Address </p>
-        </div>
+        </section>
 
+      </section>
 
-
-      </div>
       <form @submit.prevent="handleAddDoctor" class="flex flex-col flex-1">
         <!-- Form Body-->
-        <div class="md:mx-30 md:max-h-[60vh] md:min-h-[55vh] 3xl:max-h-[40vh] 3xl:min-h-[40vh]">
+        <section class="md:mx-30 md:max-h-[60vh] md:min-h-[55vh] 3xl:max-h-[40vh] 3xl:min-h-[40vh]">
 
           <!-- Step 1 UserData Doctor Information -->
-          <div v-show="currentStep === 1" class="flex flex-col gap-4 mt-10 mb-10">
+          <section v-show="currentStep === 1" class="flex flex-col gap-4 mt-10 mb-10">
             <p class="ml-1 text-[16px] mb-1">User Data</p>
             <div>
               <label class="ml-1" for="email">Email</label>
@@ -172,10 +169,10 @@ function nextStep() {
               <label class="ml-1" for="role">Role</label>
               <input class="input mt-2" id="role" type="text" disabled v-model="doctorFormData.role">
             </div>
-          </div>
+          </section>
 
           <!-- Step 2 Basic Doctor Information -->
-          <div v-show="currentStep === 2" class="flex flex-col gap-4 mt-10 mb-10">
+          <section v-show="currentStep === 2" class="flex flex-col gap-4 mt-10 mb-10">
             <p class="ml-1 text-[16px] mb-1">Personal Data</p>
 
             <div class="flex w-full gap-5">
@@ -209,10 +206,10 @@ function nextStep() {
               <label class="ml-1" for="departmentName">Department Name</label>
               <input class="input mt-2" id="departmentName" type="text" v-model="doctorFormData.departmentName">
             </div>
-          </div>
+          </section>
 
           <!-- Step 3 Address -->
-          <div v-show="currentStep === 3" class="flex flex-col gap-4 mt-10 mb-10">
+          <section v-show="currentStep === 3" class="flex flex-col gap-4 mt-10 mb-10">
             <p class="ml-1 text-[16px] mb-1">Address</p>
             <div>
               <label class="ml-1" for="address1">Address 1</label>
@@ -241,23 +238,21 @@ function nextStep() {
               <label class="ml-1" for="country">Country</label>
               <input class="input mt-2" id="country" type="text" v-model="doctorFormData.country">
             </div>
-          </div>
-        </div>
+          </section>
+        </section>
 
         <!-- Form Footer -->
-        <div class="flex items-center">
+        <footer class="flex items-center">
           <button class="form-button" type="button" @click="previousStep" v-show="currentStep > 1">Back</button>
           <div class="flex ml-auto">
             <button class="form-button" type="button" @click="nextStep" v-show="currentStep < totalSteps">Next</button>
             <button :disabled="!stepsCompleted" class="form-button w-[65.32px]" type="submit" v-if="currentStep === totalSteps">Add</button>
           </div>
-        </div>
+        </footer>
 
       </form>
 
-    </div>
+    </article>
 
-  </div>
+  </main>
 </template>
-
-<style scoped></style>
