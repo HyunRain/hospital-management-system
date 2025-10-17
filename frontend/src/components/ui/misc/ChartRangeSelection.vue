@@ -60,7 +60,7 @@ watch(selection, (newValue) => {
 
 
     <div v-click-outside="toggleDropdown" v-if="showDropdown" class="chartRangeDropdown">
-      <div v-for="item in selectionData" :key="item.key" @click.stop="() => { selection = item; toggleDropdown(); }" class="chartRangeDropdownItem">
+      <div v-for="item in selectionData" :key="item.key" @click.stop="() => { selection = item; toggleDropdown(); }" class="chartRangeDropdownItem text-nowrap">
         <p> {{ item.value }} </p>
         <img v-if="item.value === selection.value" class="size-3.5" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`"
           alt="Checkmark Icon">

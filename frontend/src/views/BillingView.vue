@@ -41,13 +41,13 @@ onBeforeMount(async () => {
 });
 
 const billingColumns = [
-  { key: 'invoice', label: 'Invoice', class: '' },
-  { key: 'status', label: 'Status', class: '' },
+  { key: 'invoice', label: 'Invoice', class: 'md:px-0 px-10' },
+  { key: 'status', label: 'Status', class: 'md:px-0 pr-7' },
   { key: 'billingItemType', label: 'Type', class: '' },
-  { key: 'totalPrice', label: 'Amount', class: '' },
-  { key: 'startDate', label: 'Date', class: '' },
+  { key: 'totalPrice', label: 'Amount', class: 'md:px-0 px-5' },
+  { key: 'startDate', label: 'Date', class: 'md:px-0 px-5' },
   { key: 'patientName', label: 'Patient Name', class: 'md:px-0 px-13' },
-  { key: 'dueDate', label: 'Due Date', class: 'md:px-0 px-3' },
+  { key: 'dueDate', label: 'Due Date', class: 'md:px-0 px-5' },
   { key: 'download', label: 'Download', class: '' },
 ];
 
@@ -92,7 +92,7 @@ const {
       </header>
 
       <!-- Charts Section -->
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full px-5 pb-5">
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full pb-5">
         <div class="chart">
           <div class="flex mb-5 items-center justify-between">
             <p class="chartHeader">Billings</p>
@@ -104,7 +104,7 @@ const {
         </div>
         <div class="chart">
           <div class="flex mb-5 items-center justify-between">
-            <p class="chartHeader">Revenue  €</p>
+            <p class="chartHeader">Revenue €</p>
             <ChartRangeSelection chart-key="revenue" default-value="Last Year"></ChartRangeSelection>
           </div>
           <div class="flex-1">
@@ -114,19 +114,21 @@ const {
       </section>
 
       <!-- Billing History -->
-      <section class="p-5">
+      <section class="pb-5">
         <h3 class="text-[18px] mb-5">Recent Billings</h3>
-        <DataTable :data="billingStore.billingItems" :columns="billingColumns" :billing-table="true">
-          <template #invoice>
-            <div @click="handleFetchPdf()" class="flex gap-3 items-center justify-center">
-              <img class="h-7 w-7" src="/assets/icons/darkMode/pdf.svg" alt="PDF Icon">
-              Invoice
-            </div>
-          </template>
-          <template #download>
-            <button class=" cursor-grab border bg-white dark:bg-black hover:bg-red-300 dark:hover:bg-[#101010] p-2 rounded-lg">Download</button>
-          </template>
-        </DataTable>
+        <section class="h-full overflow-auto items-start flex">
+          <DataTable :data="billingStore.billingItems" :columns="billingColumns" :billing-table="true">
+            <template #invoice>
+              <div @click="handleFetchPdf()" class="flex gap-3 items-center justify-center w-fit">
+                <img class="h-7 w-7" src="/assets/icons/darkMode/pdf.svg" alt="PDF Icon">
+                Invoice
+              </div>
+            </template>
+            <template #download>
+              <button class=" cursor-grab border bg-white dark:bg-black hover:bg-red-300 dark:hover:bg-[#101010] p-2 rounded-lg">Download</button>
+            </template>
+          </DataTable>
+        </section>
       </section>
 
       <PaginationWrapper @page-change="handlePageChange" :range="range" :current-page=currentPage :total="billingStore.totalBillingItems"

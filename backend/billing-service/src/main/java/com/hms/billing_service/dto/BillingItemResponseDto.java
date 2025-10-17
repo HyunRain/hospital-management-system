@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -31,7 +32,7 @@ public class BillingItemResponseDto {
     @NotBlank
     private BillingItemStatus status;
     @NotBlank
-    private LocalDateTime startDate;
+    private LocalDate startDate;
     @NotBlank
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
 }

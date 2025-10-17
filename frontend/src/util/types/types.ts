@@ -13,7 +13,6 @@ export interface User {
   country: string;
   postalCode: string;
   departmentId: string;
-
 }
 
 export enum UserRole {
@@ -23,14 +22,21 @@ export enum UserRole {
   RECEPTIONIST = 'RECEPTIONIST',
 }
 
-
 export interface PatientDto {
   firstName: string;
   lastName: string;
   fullName: string;
   gender: 'MALE' | 'FEMALE' | 'OTHER';
   dateOfBirth: string; //
-  bloodGroup: 'A_POSITIVE' | 'A_NEGATIVE' | 'B_POSITIVE' | 'B_NEGATIVE' | 'AB_POSITIVE' | 'AB_NEGATIVE' | 'O_POSITIVE' | 'O_NEGATIVE';
+  bloodGroup:
+    | 'A_POSITIVE'
+    | 'A_NEGATIVE'
+    | 'B_POSITIVE'
+    | 'B_NEGATIVE'
+    | 'AB_POSITIVE'
+    | 'AB_NEGATIVE'
+    | 'O_POSITIVE'
+    | 'O_NEGATIVE';
   maritalStatus: 'SINGLE' | 'MARRIED';
   phoneNumber: string;
   email: string;
@@ -55,7 +61,7 @@ export interface PatientDto {
   insuranceProvider?: string;
   insurancePolicyNumber?: string;
   insuranceExpiryDate?: string;
-};
+}
 
 export interface StaffDto {
   userId: string;
@@ -74,7 +80,7 @@ export interface StaffDto {
   postalCode: string;
   role: string;
   departmentName: string;
-};
+}
 
 export interface DepartmentDto {
   name: string;
@@ -130,20 +136,28 @@ export interface ChartData {
   data: number[];
 }
 
-export type ValidationResult = { success: true } | { success: false; field: string; validator: string; error: string };
+export type ValidationResult =
+  | { success: true }
+  | { success: false; field: string; validator: string; error: string };
 
-import type { Ref, ComputedRef } from "vue";
+import type { Ref, ComputedRef } from 'vue';
 
 export interface CalendarState {
   date: Ref<Date, Date>;
+  todaysDate: Ref<Date, Date>;
   currentYear: Ref<number>;
   currentMonth: Ref<number>;
   currentDay: Ref<number>;
-  isLeapYear: ComputedRef<boolean>
+  currentWeekDay: Ref<string>;
+  currentWeekDays: ComputedRef<number[]>;
+  currentTimeTopPixelValue: Ref<number>;
+  isLeapYear: ComputedRef<boolean>;
   daysInCurrentMonth: ComputedRef<number>;
-  nextMonth: () => void;
-  previousMonth: () => void;
+  changeDate: (direction: 'prev' | 'next', isWeek: boolean) => void;
   applyTodaysDate: () => void;
   firstWeekDayOfMonth: ComputedRef<string>;
+  lastWeekDayOfMonth: ComputedRef<string>;
   daysOfPreviousMonth: ComputedRef<number[]>;
+  daysOfNextMonth: ComputedRef<number[]>;
+  totalDaysForCurrentMonth: ComputedRef<{ value: number; type: string }[]>;
 }

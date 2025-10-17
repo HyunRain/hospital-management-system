@@ -20,7 +20,7 @@ export function useBarChart(
       {
         label: label,
         data: data[selectedRange.value].data,
-        backgroundColor: isDark.value ? '#e7523b20' : '#e7523b80',
+        backgroundColor: isDark.value ? '#e7523b20' : '#fca5a5',
       },
     ],
   }));
@@ -40,7 +40,7 @@ export function useBarChart(
       bar: {
         borderWidth: 3,
         borderRadius: 10,
-        borderColor: isDark.value ? '#e7523b95' : '#e7523b',
+        borderColor: isDark.value ? '#e7523b95' : '#f87171',
       },
     },
     scales: {

@@ -5,8 +5,7 @@ export const useAppointmentStore = defineStore('appointmentStore', {
     // Appointment Calendar Related
     selectedDepartment: 'Pediatrics' as string,
     selectedCalendarRange: 'Month' as string,
-
-    daysInMonth: 0 as number,
+    dayCalendarTimeSlotValues: { hour: 0, slot: 0 },
   }),
 
   actions: {
@@ -19,7 +18,11 @@ export const useAppointmentStore = defineStore('appointmentStore', {
           this.selectedCalendarRange = value;
           break;
       }
-    }
+    },
+    setDayCalendarTimeSlot(hour: number, slot: number) {
+      this.dayCalendarTimeSlotValues.hour = hour;
+      this.dayCalendarTimeSlotValues.slot = slot;
+    },
   },
 });
 

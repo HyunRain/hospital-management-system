@@ -6,6 +6,7 @@ import com.hms.billing_service.enums.BillingItemType;
 import com.hms.billing_service.model.BillingItem;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -37,8 +38,8 @@ public class BillingItemMapper {
                 .quantity(billingItem.getQuantity())
                 .totalPrice(billingItem.getTotalPrice())
                 .status(billingItem.getStatus())
-                .startDate(billingItem.getStartDate())
-                .dueDate(billingItem.getEndDate())
+                .startDate(LocalDate.from(billingItem.getStartDate()))
+                .dueDate(LocalDate.from(billingItem.getEndDate()))
                 .build();
     }
 }

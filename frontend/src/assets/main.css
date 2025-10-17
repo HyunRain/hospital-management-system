@@ -11,6 +11,10 @@ body {
   height: 100%;
 }
 
+.test {
+  font-family: ''
+}
+
 :root {
   --bg-color: #fff;
   --text-color: #4c4c4c;
@@ -138,7 +142,11 @@ body {
 }
 
 .baseView {
-  @apply flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] border border-neutral-200 dark:border-neutral-900 min-h-[calc(100vh-147px)] rounded-lg;
+  @apply flex flex-col w-full mt-5 lg:mx-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] border border-neutral-200 dark:border-neutral-900 min-h-[calc(100vh-147px)] rounded-lg;
+}
+
+.appointmentView {
+  @apply flex flex-col w-full mt-5 p-2 lg:mx-5 lg:p-5 bg-gray-50 dark:bg-[#0a0a0a] border border-neutral-200 dark:border-neutral-900 min-h-[calc(100vh-147px)] rounded-lg;
 }
 
 .input {
@@ -146,7 +154,7 @@ body {
 }
 
 .search-input {
-  @apply py-2 max-w-[185px] hidden md:block px-3 bg-white dark:border-[#1f1f1f] dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg border focus:border-red-300 dark:focus:border-neutral-800 focus:outline-none;
+  @apply py-2 max-w-[185px] hidden md:block px-3 bg-white dark:border-neutral-900 dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg border focus:border-red-300 dark:focus:border-neutral-800 focus:outline-none;
 }
 
 .search-input:-webkit-autofill {
@@ -160,19 +168,19 @@ body {
 }
 
 .button {
-  @apply px-3 py-2 bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#000] border border-gray-300 dark:border-[#1f1f1f] rounded-lg cursor-pointer dark:hover:bg-[#1d1d1dcf] focus:border-red-300 dark:focus:border-neutral-800 focus:outline-none;
+  @apply px-3 py-2 bg-red-100 hover:bg-red-200 font-medium dark:bg-[#000] border border-neutral-300 dark:border-[#1f1f1f] rounded-lg cursor-pointer dark:hover:bg-[#1d1d1dcf] focus:border-red-300 dark:focus:border-neutral-800 focus:outline-none;
 }
 
 .form-button {
-  @apply px-4 h-[36px] bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#000] border border-gray-300 dark:border-zinc-800 rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-[#1d1d1dcf];
+  @apply px-4 h-[36px] bg-red-100 shadow-sm hover:bg-red-200 font-medium dark:bg-[#000] border border-gray-300 dark:border-[#1f1f1f] rounded-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-[#1d1d1dcf];
 }
 
 .chartRangeButton {
-  @apply relative gap-1 flex justify-between px-3 items-center cursor-pointer truncate py-2 w-full bg-white border dark:border-neutral-900 dark:bg-[#000] dark:placeholder-[#898989] rounded-lg focus:border-red-300 dark:focus:border-neutral-700 focus:outline-none;
+  @apply relative gap-1 flex justify-between px-3 items-center cursor-pointer truncate py-2 w-full bg-white border dark:border-[#1f1f1f] dark:bg-[#000] dark:placeholder-[#898989] rounded-lg focus:border-neutral-300 dark:focus:border-neutral-700 focus:outline-none;
 }
 
 .chartRangeDropdown {
-  @apply border flex flex-col min-w-full w-full overflow-scroll overflow-y-scroll max-h-[175px] lg:max-h-[275px] mt-2 absolute z-50 bg-white dark:bg-[#0a0a0a] border-rose-200 dark:border-neutral-900 rounded-lg px-2 py-3;
+  @apply border flex flex-col min-w-full w-full overflow-scroll overflow-y-scroll max-h-[175px] lg:max-h-[275px] mt-2 absolute z-50 bg-white dark:bg-[#0a0a0a] border-neutral-200 dark:border-neutral-900 rounded-lg px-2 py-3;
 }
 
 .chartRangeDropdownItem {
@@ -199,4 +207,8 @@ body {
 
 .monthCalendarLayout {
   @apply flex;
+}
+
+.mainHover {
+  @apply dark:hover:bg-[#1d1d1dcf] hover:bg-red-200;
 }

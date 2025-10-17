@@ -5,7 +5,7 @@ import UserDropdown from '@/components/ui/nav/UserDropdown.vue';
 import { roleToPascalCase } from '@/util/functions/roleToPascalCase';
 import { useColorMode } from '@vueuse/core';
 import { RouterLink } from 'vue-router';
-import Logo from '/public/assets/icons/darkMode/hospital.svg';
+import Logo from '/assets/icons/darkMode/hospital.svg';
 
 const authStore = useAuthStore();
 const toggleStore = useToggleStore();
@@ -17,19 +17,18 @@ const mode = useColorMode({
 </script>
 
 <template>
-  <div class="top-0 z-50 w-full flex items-center h-[66px] bg-[#fff] dark:bg-[#000] justify-between px-2 md:px-7.5 py-3 fixed">
-    <div class="flex items-center gap-30">
+  <main class="top-0 z-50 w-full flex items-center h-[66px] bg-[#fff] dark:bg-[#000] justify-between px-2 md:px-7.5 py-3 fixed">
+    <section class="flex items-center gap-30">
       <div class="flex items-center gap-2">
         <img :src="Logo" alt="Brand logo" class="w-[35px] h-[35px]">
         <RouterLink to="/dashboard">
           <h1 class="font-bold text-2xl">Medic</h1>
         </RouterLink>
       </div>
-      <!-- <input v-if="authStore.isLoggedIn" type="search" placeholder="Search ..." class="h-[35px] w-[220px] shadow-sm hidden md:block focus:w-[280px] px-3 border border-gray-300 dark:border-0 dark:bg-[#1f1f23] dark:placeholder-[#979797] rounded-lg focus:outline-none"> -->
-    </div>
+    </section>
 
-    <div class="flex items-center gap-4 relative">
-      <div class="mr-4">
+    <section class="flex items-center gap-4 relative">
+      <section class="mr-4">
         <svg v-if="mode === 'light'" @click="mode = 'dark', toggleStore.darkModeState = 'darkMode'"
           class="cursor-pointer h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-100" width="15" height="15"
           viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,28 +44,19 @@ const mode = useColorMode({
             fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
         </svg>
         <span class="sr-only">Toggle theme</span>
-      </div>
-      <div v-if="authStore.isLoggedIn" class="flex gap-4 items-center">
+      </section>
+      <section v-if="authStore.isLoggedIn" class="flex gap-4 items-center">
         <div class="md:flex flex-col items-center hidden">
           <p class="dark:text-neutral-400 text-gray-500"> {{ authStore.role ? roleToPascalCase(authStore.role) : "" }} </p>
           <p class="font-medium">{{ authStore.user?.firstName }} {{ authStore.user?.lastName }}</p>
         </div>
         <img @click="toggleStore.toggleUserDropdown()" :src="authStore.profileImage" alt="Profile Picture"
-          class="w-[35px] h-[35px] rounded-full object-fit-cover cursor-pointer">
+          class="size-9 rounded-full object-fit-cover cursor-pointer">
         <UserDropdown v-if="toggleStore.showUserDropdown" v-click-outside="toggleStore.toggleUserDropdown" />
-      </div>
-      <div v-if="toggleStore.isDemo" class="flex items-center gap-4">
-        <div class="flex flex-col">
-          <p class="hidden md:block">Demo Session</p>
-          <p class="md:hidden">Demo</p>
-        </div>
-        <img @click="toggleStore.toggleUserDropdown()" :src="authStore.profileImage" alt="Profile Picture"
-          class="w-[35px] h-[35px] rounded-full object-fit-cover cursor-pointer">
-        <UserDropdown v-if="toggleStore.showUserDropdown" v-click-outside="toggleStore.toggleUserDropdown" />
-      </div>
+      </section>
 
-    </div>
-  </div>
+    </section>
+  </main>
 </template>
 
 <style scoped></style>

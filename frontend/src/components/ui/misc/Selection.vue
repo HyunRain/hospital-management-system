@@ -22,7 +22,7 @@ const props = defineProps({
   toggleStateName: {
     type: String as PropType<'showDepartmentSelection' | 'showCalendarRangeSelection'>,
     required: true,
-  }
+  },
 });
 
 const storeMap = {
@@ -32,13 +32,21 @@ const storeMap = {
 </script>
 
 <template>
-  <main class="relative min-w-[180px]">
+  <main class="relative lg:min-w-[180px]">
     <button @click="() => toggleStore.toggleAppointmentCalendar(toggleStateName)" type="button" class="chartRangeButton">
-      <p> {{ appointmentStore[stateName] }} </p>
+
+      <span class="hidden lg:inline">
+        {{ appointmentStore[stateName] }}
+      </span>
+      <span v-if="props.stateName === 'selectedCalendarRange'" class="inline lg:hidden">
+        {{ appointmentStore[stateName].slice(0, 1) }}
+      </span>
+
       <img class="size-4.5" :src="`/assets/icons/${toggleStore.darkModeState}/downarrow.svg`" alt="Chevron Down Icon">
     </button>
 
-    <section v-click-outside="() => toggleStore.toggleAppointmentCalendar(toggleStateName)" v-if="toggleStore[toggleStateName]" class="chartRangeDropdown">
+    <section v-click-outside="() => toggleStore.toggleAppointmentCalendar(toggleStateName)" v-if="toggleStore[toggleStateName]"
+      class="chartRangeDropdown">
       <div v-for="(item, key) in props.data" :key="key" @click.stop="
         () => {
           const store = storeMap[storeName];

@@ -18,7 +18,7 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <main class="baseView">
+  <main class="appointmentView">
     <header class="flex items-center pb-5 justify-between">
 
       <section class="flex gap-2 items-center">
@@ -32,7 +32,7 @@ onBeforeMount(async () => {
       </section>
     </header>
 
-    <section>
+    <section class="h-full">
       <Calendar></Calendar>
     </section>
 

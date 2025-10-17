@@ -19,8 +19,8 @@ export function useLineChart(
       {
         label: label,
         data: data[selectedRange.value].data,
-        borderColor: isDark.value ? '#e7523b95' : '#e7523b',
-        backgroundColor: isDark.value ? '#e7523b20' : '#e7523b80',
+        borderColor: isDark.value ? '#e7523b95' : '#f87171',
+        backgroundColor: isDark.value ? '#e7523b20' : '#fca5a5',
         tension: 0.4,
         fill: true,
       },
