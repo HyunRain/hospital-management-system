@@ -45,9 +45,9 @@ const isWeek = computed(() => appointmentStore.selectedCalendarRange === 'Week')
           <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/rightarrow.svg`" alt="Right Arrow Icon" />
         </div>
         <p class="text-[16px] gap-1 flex flex-row mx-1">
-          <span v-show="appointmentStore.selectedCalendarRange === 'Day'"> {{ currentWeekDay }} {{ currentDay }} </span>
-          <span v-show="containsPrevMonthDays || containsNextMonthDays"> {{ weekMonthOverLapString }}</span>
-          <span v-show="!containsNextMonthDays && !containsPrevMonthDays">{{ months[currentMonth] }}</span>
+          <span v-show="appointmentStore.selectedCalendarRange === 'Day'"> {{ currentWeekDay }} {{ currentDay }}</span>
+          <span v-show="appointmentStore.selectedCalendarRange === 'Week'"> {{ weekMonthOverLapString }}</span>
+          <span v-show="appointmentStore.selectedCalendarRange !== 'Week'">{{ months[currentMonth] }}</span>
           <span>{{ currentYear }}</span>
         </p>
       </section>

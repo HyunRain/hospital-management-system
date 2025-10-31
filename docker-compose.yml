@@ -21,7 +21,7 @@ services:
       - internal
 
   auth-service-db:
-    image: postgres:latest
+    image: postgres:17
     ports:
       - "${AUTH_SERVICE_DB_PORTS}"
     networks:
@@ -52,7 +52,7 @@ services:
       - SPRING_SQL_INIT_MODE=always
     
   patient-service-db:
-    image: postgres:latest
+    image: postgres:17
     ports:
      - "${PATIENT_SERVICE_DB_PORTS}"
     networks:
@@ -84,7 +84,7 @@ services:
       - SPRING_SQL_INIT_MODE=always
   
   staff-service-db:
-    image: postgres:latest
+    image: postgres:17
     ports:
       - "${STAFF_SERVICE_DB_PORTS}"
     networks:
@@ -114,7 +114,7 @@ services:
       - SPRING_SQL_INIT_MODE=always
   
   billing-service-db:
-    image: postgres:latest
+    image: postgres:17
     ports:
       - "${BILLING_SERVICE_DB_PORTS}"
     networks:
@@ -149,7 +149,7 @@ services:
       - AWS_S3_BUCKET=${AWS_S3_BUCKET}
 
   appointment-service-db:
-    image: postgres:latest
+    image: postgres:17
     ports:
       - "${APPOINTMENT_SERVICE_DB_PORTS}"
     networks:

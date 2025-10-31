@@ -38,56 +38,6 @@ export function useCalendar(): CalendarState {
   // eg Wed
   const currentWeekDay = computed(() => days[date.value.getDay()]);
 
-  const containsPrevMonthDays = ref(false);
-  const containsNextMonthDays = ref(false);
-
-  const currentWeekDays = computed(() => {
-    const weekDayNumber = date.value.getDay();
-    const weekDaysArray: number[] = [];
-
-    for (let i: number = 0; i <= weekDayNumber; i++) {
-      if (currentDay.value - weekDayNumber + i <= 0) {
-        weekDaysArray.push(daysOfPreviousMonth.value[i]);
-      } else {
-        weekDaysArray.push(currentDay.value - weekDayNumber + i);
-      }
-    }
-
-    for (let i: number = 1; i <= 7 - (weekDayNumber + 1); i++) {
-      if (currentDay.value + i > daysInMonth(currentYear.value, currentMonth.value)) {
-        weekDaysArray.push(daysOfNextMonth.value[i - 1]);
-      } else {
-        weekDaysArray.push(currentDay.value + i);
-      }
-    }
-    return weekDaysArray;
-  });
-
-  watchEffect(() => {
-    const firstDay = currentWeekDays.value[0];
-    const lastDay = currentWeekDays.value[currentWeekDays.value.length-1];
-
-    // Compare with first/last day of current month
-    containsPrevMonthDays.value = firstDay > currentDay.value;
-    containsNextMonthDays.value = lastDay < currentDay.value;
-  });
-
-  const weekMonthOverLapString = computed(() => {
-    const tempDate = new Date();
-
-    if(containsPrevMonthDays) {
-      tempDate.setMonth(date.value.getMonth()-1);
-      const prevMonth = tempDate.getMonth();
-      return `${shortMonths[prevMonth]} - ${shortMonths[currentMonth.value]}`;
-    }
-    if(containsNextMonthDays) {
-      tempDate.setMonth(date.value.getMonth() + 1);
-      const nextMonth = tempDate.getMonth();
-      return `${shortMonths[currentMonth.value]} - ${shortMonths[nextMonth]}`;
-    }
-    return months[currentMonth.value];
-  })
-
   // hh--mm
   const currentTimeTopPixelValue = computed(
     () => todaysDate.value.getHours() * 84 + todaysDate.value.getMinutes() * 1.4 + 4.5,
@@ -123,6 +73,14 @@ export function useCalendar(): CalendarState {
 
     switch (appointmentStore.selectedCalendarRange) {
       case 'Month':
+        // Covers edge case when current day is 31 and prev or next month has <31 days.
+        // eg date is oct 31. click back a month -> sep 31 (sep has 30 days, so it auto corrects forwards to oct 1)
+        if (
+          date.value.getDate() >
+          daysInMonth(newDate.getFullYear(), newDate.getMonth() + incrementValue)
+        ) {
+          newDate.setDate(daysInMonth(newDate.getFullYear(), newDate.getMonth() + incrementValue));
+        }
         newDate.setMonth(newDate.getMonth() + incrementValue);
         break;
       case 'Week':
@@ -194,6 +152,71 @@ export function useCalendar(): CalendarState {
     const nextDays = daysOfNextMonth.value.map((day) => ({ value: day, type: 'next' }));
 
     return [...previousDays, ...currentDays, ...nextDays];
+  });
+
+  // only relevant for week calendar
+  const containsPrevMonthDays = ref(false);
+  const containsNextMonthDays = ref(false);
+
+  const weekMonthOverLapString = computed(() => {
+    const tempDate = new Date();
+
+    if (containsPrevMonthDays.value) {
+      const targetMonth = date.value.getMonth() - 1;
+      const daysInTargetMonth = daysInMonth(date.value.getFullYear(), targetMonth);
+
+      if (tempDate.getDate() > daysInMonth(date.value.getFullYear(), targetMonth)) {
+        tempDate.setDate(daysInTargetMonth);
+      }
+
+      tempDate.setMonth(date.value.getMonth() - 1);
+      const prevMonth = tempDate.getMonth();
+      return `${shortMonths[prevMonth]} - ${shortMonths[currentMonth.value]}`;
+    }
+    if (containsNextMonthDays.value) {
+      const targetMonth = date.value.getMonth() + 1;
+      const daysInTargetMonth = daysInMonth(date.value.getFullYear(), targetMonth);
+
+      if(tempDate.getDate() > daysInMonth(date.value.getFullYear(), targetMonth)) {
+        tempDate.setDate(daysInTargetMonth);
+      }
+
+      tempDate.setMonth(targetMonth);
+      const nextMonth = tempDate.getMonth();
+      return `${shortMonths[currentMonth.value]} - ${shortMonths[nextMonth]}`;
+    }
+    return months[currentMonth.value];
+  });
+
+  const currentWeekDays = computed(() => {
+    const weekDayNumber = date.value.getDay();
+    const weekDaysArray: number[] = [];
+
+    for (let i: number = 0; i <= weekDayNumber; i++) {
+      if (currentDay.value - weekDayNumber + i <= 0) {
+        weekDaysArray.push(daysOfPreviousMonth.value[i]);
+      } else {
+        weekDaysArray.push(currentDay.value - weekDayNumber + i);
+      }
+    }
+
+    for (let i: number = 1; i <= 7 - (weekDayNumber + 1); i++) {
+      if (currentDay.value + i > daysInMonth(currentYear.value, currentMonth.value)) {
+        weekDaysArray.push(daysOfNextMonth.value[i - 1]);
+      } else {
+        weekDaysArray.push(currentDay.value + i);
+      }
+    }
+    return weekDaysArray;
+  });
+
+  watchEffect(() => {
+    const firstDay = currentWeekDays.value[0];
+    const lastDay = currentWeekDays.value[currentWeekDays.value.length - 1];
+
+    // Compare with first/last day of current month
+    containsPrevMonthDays.value = firstDay > currentDay.value;
+    containsNextMonthDays.value = lastDay < currentDay.value;
   });
 
   return {
