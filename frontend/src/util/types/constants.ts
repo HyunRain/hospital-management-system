@@ -54,6 +54,22 @@ export const months = [
   'December',
 ];
 
+export const shortMonths = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+
+
 export const departments = [
   'Pediatrics',
   'Dermatology',
@@ -76,3 +92,11 @@ export const departments = [
 
 export const calendarRanges = ['Month', 'Week', 'Day'];
 
+export const slotTime: Record<number, number> = {
+  1: 15,
+  2: 30,
+  3: 45,
+};
+
+export const hours = 24;
+export const slots = 4;

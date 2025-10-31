@@ -180,7 +180,7 @@ body {
 }
 
 .chartRangeDropdown {
-  @apply border flex flex-col min-w-full w-full overflow-scroll overflow-y-scroll max-h-[175px] lg:max-h-[275px] mt-2 absolute z-50 bg-white dark:bg-[#0a0a0a] border-neutral-200 dark:border-neutral-900 rounded-lg px-2 py-3;
+  @apply border flex flex-col min-w-full w-full overflow-scroll overflow-y-scroll max-h-[175px] lg:max-h-[275px] mt-2 absolute z-50 bg-white dark:bg-[#0a0a0a] border-neutral-200 dark:border-[#1f1f1f] rounded-lg px-2 py-3;
 }
 
 .chartRangeDropdownItem {
@@ -211,4 +211,8 @@ body {
 
 .mainHover {
   @apply dark:hover:bg-[#1d1d1dcf] hover:bg-red-200;
+}
+
+.mainBorder {
+  @apply border-neutral-200 dark:border-neutral-900;
 }

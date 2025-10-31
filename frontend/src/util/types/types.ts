@@ -150,6 +150,9 @@ export interface CalendarState {
   currentDay: Ref<number>;
   currentWeekDay: Ref<string>;
   currentWeekDays: ComputedRef<number[]>;
+  containsPrevMonthDays: Ref<boolean>;
+  containsNextMonthDays: Ref<boolean>;
+  weekMonthOverLapString: ComputedRef<string>;
   currentTimeTopPixelValue: Ref<number>;
   isLeapYear: ComputedRef<boolean>;
   daysInCurrentMonth: ComputedRef<number>;

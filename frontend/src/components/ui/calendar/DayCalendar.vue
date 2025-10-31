@@ -4,6 +4,14 @@ import { useAppointmentStore } from '@/stores/appointmentStore';
 const appointmentStore = useAppointmentStore();
 
 const props = defineProps({
+  currentDay: {
+    type: Number,
+    required: true
+  },
+  todaysDate: {
+    type: Date,
+    required: true,
+  },
   currentTimeTopPixelValue: {
     type: Number,
     required: true,
@@ -23,7 +31,7 @@ const slots = 4;
 
 <template>
   <main class="relative">
-    <div :style="{ top: `${props.currentTimeTopPixelValue}px` }"
+    <div v-if="props.todaysDate.getDate() === props.currentDay" :style="{ top: `${props.currentTimeTopPixelValue}px` }"
       class="flex items-center absolute w-[calc(100%-80px)] ml-20 z-50 pointer-events-none">
       <div class="bg-red-600 dark:bg-red-400 rounded-full size-3"></div>
       <div class="border-t h-0 border-red-600 dark:border-red-400 w-full"></div>

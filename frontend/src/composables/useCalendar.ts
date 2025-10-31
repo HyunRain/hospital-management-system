@@ -1,5 +1,5 @@
-import { ref, computed, onMounted, onUnmounted } from 'vue';
-import { days } from '@/util/types/constants';
+import { ref, computed, onMounted, onUnmounted, watchEffect } from 'vue';
+import { days, months, shortMonths } from '@/util/types/constants';
 import type { CalendarState } from '@/util/types/types';
 import { useAppointmentStore } from '@/stores/appointmentStore';
 
@@ -34,12 +34,16 @@ export function useCalendar(): CalendarState {
   const currentYear = computed(() => date.value.getFullYear());
   const currentMonth = computed(() => date.value.getMonth());
   const currentDay = computed(() => date.value.getDate());
+
   // eg Wed
   const currentWeekDay = computed(() => days[date.value.getDay()]);
 
+  const containsPrevMonthDays = ref(false);
+  const containsNextMonthDays = ref(false);
+
   const currentWeekDays = computed(() => {
     const weekDayNumber = date.value.getDay();
-    const weekDaysArray = [];
+    const weekDaysArray: number[] = [];
 
     for (let i: number = 0; i <= weekDayNumber; i++) {
       if (currentDay.value - weekDayNumber + i <= 0) {
@@ -51,13 +55,38 @@ export function useCalendar(): CalendarState {
 
     for (let i: number = 1; i <= 7 - (weekDayNumber + 1); i++) {
       if (currentDay.value + i > daysInMonth(currentYear.value, currentMonth.value)) {
-        weekDaysArray.push(daysOfNextMonth.value[i-1]);
+        weekDaysArray.push(daysOfNextMonth.value[i - 1]);
       } else {
         weekDaysArray.push(currentDay.value + i);
       }
     }
     return weekDaysArray;
   });
+
+  watchEffect(() => {
+    const firstDay = currentWeekDays.value[0];
+    const lastDay = currentWeekDays.value[currentWeekDays.value.length-1];
+
+    // Compare with first/last day of current month
+    containsPrevMonthDays.value = firstDay > currentDay.value;
+    containsNextMonthDays.value = lastDay < currentDay.value;
+  });
+
+  const weekMonthOverLapString = computed(() => {
+    const tempDate = new Date();
+
+    if(containsPrevMonthDays) {
+      tempDate.setMonth(date.value.getMonth()-1);
+      const prevMonth = tempDate.getMonth();
+      return `${shortMonths[prevMonth]} - ${shortMonths[currentMonth.value]}`;
+    }
+    if(containsNextMonthDays) {
+      tempDate.setMonth(date.value.getMonth() + 1);
+      const nextMonth = tempDate.getMonth();
+      return `${shortMonths[currentMonth.value]} - ${shortMonths[nextMonth]}`;
+    }
+    return months[currentMonth.value];
+  })
 
   // hh--mm
   const currentTimeTopPixelValue = computed(
@@ -175,6 +204,9 @@ export function useCalendar(): CalendarState {
     currentDay,
     currentWeekDay,
     currentWeekDays,
+    containsNextMonthDays,
+    containsPrevMonthDays,
+    weekMonthOverLapString,
     currentTimeTopPixelValue,
     isLeapYear,
     daysInCurrentMonth,

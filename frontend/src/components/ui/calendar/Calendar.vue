@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MonthCalendar from './MonthCalendar.vue';
-import { months, days } from '@/util/types/constants';
+import { months, shortMonths } from '@/util/types/constants';
 import { useToggleStore } from '@/stores/toggleStore';
 import Selection from '../misc/Selection.vue';
 import { calendarRanges } from '@/util/types/constants';
@@ -20,6 +20,9 @@ const {
   currentDay,
   currentWeekDay,
   currentWeekDays,
+  containsNextMonthDays,
+  containsPrevMonthDays,
+  weekMonthOverLapString,
   currentTimeTopPixelValue,
   changeDate,
   applyTodaysDate,
@@ -43,12 +46,13 @@ const isWeek = computed(() => appointmentStore.selectedCalendarRange === 'Week')
         </div>
         <p class="text-[16px] gap-1 flex flex-row mx-1">
           <span v-show="appointmentStore.selectedCalendarRange === 'Day'"> {{ currentWeekDay }} {{ currentDay }} </span>
-          <span>{{ months[currentMonth] }}</span>
+          <span v-show="containsPrevMonthDays || containsNextMonthDays"> {{ weekMonthOverLapString }}</span>
+          <span v-show="!containsNextMonthDays && !containsPrevMonthDays">{{ months[currentMonth] }}</span>
           <span>{{ currentYear }}</span>
         </p>
       </section>
 
-      <section class="flex gap-1 items-center">
+      <section class="flex gap-1 items-center z-51">
         <Selection :data="calendarRanges" storeName="appointment" stateName="selectedCalendarRange" toggle-state-name="showCalendarRangeSelection" />
         <button class="button" type="button">
           <span class="hidden lg:block">+ New Appointment</span>
@@ -59,8 +63,10 @@ const isWeek = computed(() => appointmentStore.selectedCalendarRange === 'Week')
 
     <MonthCalendar v-show="appointmentStore.selectedCalendarRange === 'Month'" :total-days-for-current-month="totalDaysForCurrentMonth"
       :todays-date="todaysDate" :current-month="currentMonth"></MonthCalendar>
-    <WeekCalendar v-show="appointmentStore.selectedCalendarRange === 'Week'" :todays-date="todaysDate" :current-week-day="currentWeekDay" :current-week-days></WeekCalendar>
-    <DayCalendar v-show="appointmentStore.selectedCalendarRange === 'Day'" :current-time-top-pixel-value="currentTimeTopPixelValue"></DayCalendar>
+    <WeekCalendar v-show="appointmentStore.selectedCalendarRange === 'Week'" :todays-date="todaysDate" :current-week-day="currentWeekDay"
+      :current-week-days="currentWeekDays" :current-time-top-pixel-value="currentTimeTopPixelValue" :current-month="currentMonth"></WeekCalendar>
+    <DayCalendar v-show="appointmentStore.selectedCalendarRange === 'Day'" :todays-date="todaysDate" :current-day="currentDay"
+      :current-time-top-pixel-value="currentTimeTopPixelValue"></DayCalendar>
 
   </main>
 </template>

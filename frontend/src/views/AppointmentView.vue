@@ -27,7 +27,7 @@ onBeforeMount(async () => {
         <ErrorAlert for="backend error" class="ml-5" :show="showError" :alert-key="errorAlertKey" :message="errorMessage" />
       </section>
 
-      <section>
+      <section class="z-52">
         <Selection :data="departments" storeName="appointment" stateName="selectedDepartment" toggle-state-name="showDepartmentSelection"></Selection>
       </section>
     </header>

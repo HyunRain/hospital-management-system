@@ -27,8 +27,8 @@ const mode = useColorMode({
       </div>
     </section>
 
-    <section class="flex items-center gap-4 relative">
-      <section class="mr-4">
+    <section class="flex items-center gap-6 relative">
+      <section>
         <svg v-if="mode === 'light'" @click="mode = 'dark', toggleStore.darkModeState = 'darkMode'"
           class="cursor-pointer h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-100" width="15" height="15"
           viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +45,7 @@ const mode = useColorMode({
         </svg>
         <span class="sr-only">Toggle theme</span>
       </section>
-      <section v-if="authStore.isLoggedIn" class="flex gap-4 items-center">
+      <section v-if="authStore.isLoggedIn" class="flex gap-6 items-center">
         <div class="md:flex flex-col items-center hidden">
           <p class="dark:text-neutral-400 text-gray-500"> {{ authStore.role ? roleToPascalCase(authStore.role) : "" }} </p>
           <p class="font-medium">{{ authStore.user?.firstName }} {{ authStore.user?.lastName }}</p>
