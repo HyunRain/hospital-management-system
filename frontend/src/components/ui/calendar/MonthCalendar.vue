@@ -30,7 +30,7 @@ const props = defineProps({
         class="flex flex-col text-start border-b border-neutral-300 dark:border-[#33333380] p-1"
         :class="[day.type === 'prev' || day.type === 'next' ? 'bg-neutral-200 dark:bg-[#141414]' : '', (index + 1) % 7 === 0 ? '' : 'border-r', index >= props.totalDaysForCurrentMonth.length - 7 ? 'border-b-0' : '']">
         <p class="size-6 rounded-full inline-flex items-center justify-center leading-[24px]"
-          :class="[day.value === props.todaysDate.getDate() && props.todaysDate.getMonth() === props.currentMonth ? 'bg-red-200 dark:bg-red-400 dark:text-black' : '']">
+          :class="[day.value === props.todaysDate.getDate() && props.todaysDate.getMonth() === props.currentMonth && day.type === 'curr' ? 'bg-red-200 dark:bg-red-400 dark:text-black' : '']">
           {{ day.value }} </p>
         <section class="flex-1 flex items-center justify-center">
           <p class=""></p>

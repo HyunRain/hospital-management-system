@@ -6,6 +6,7 @@ import { onBeforeMount } from 'vue';
 import Calendar from '@/components/ui/calendar/Calendar.vue';
 import Selection from '@/components/ui/misc/Selection.vue';
 import { departments } from '@/util/types/constants';
+import CreateAppointment from '@/components/ui/appointmentview/CreateAppointment.vue';
 
 const toggleStore = useToggleStore();
 
@@ -34,6 +35,7 @@ onBeforeMount(async () => {
 
     <section class="h-full">
       <Calendar></Calendar>
+      <CreateAppointment v-if="toggleStore.showAppointmentForm"></CreateAppointment>
     </section>
 
     <footer>

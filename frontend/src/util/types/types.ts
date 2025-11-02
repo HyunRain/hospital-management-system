@@ -164,3 +164,27 @@ export interface CalendarState {
   daysOfNextMonth: ComputedRef<number[]>;
   totalDaysForCurrentMonth: ComputedRef<{ value: number; type: string }[]>;
 }
+
+export enum AppointmentStatus {
+  SCHEDULED = "SCHEDULED",
+  CANCELLED = "CANCELLED",
+  COMPLETED = "COMPLETED"
+}
+
+export enum AppointmentType {
+  CONSULTATION = "CONSULTATION",
+  FOLLOW_UP = "FOLLOW_UP",
+  EMERGENCY = "EMERGENCY",
+  ROUTINE_CHECKUP = "ROUTINE_CHECKUP",
+}
+
+export interface AppointmentFormData {
+  patientId: string;
+  doctorId: string;
+  departmentId: string;
+  appointmentDate: string;
+  appointmentTime: string;
+  appointmentStatus: AppointmentStatus;
+  appointmentType: AppointmentType;
+  reason: string;
+}

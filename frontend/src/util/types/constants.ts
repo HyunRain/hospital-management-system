@@ -100,3 +100,4 @@ export const slotTime: Record<number, number> = {
 
 export const hours = 24;
 export const slots = 4;
+

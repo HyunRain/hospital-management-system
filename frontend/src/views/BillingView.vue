@@ -3,7 +3,7 @@ import { useBillingStore } from '@/stores/billingStore';
 import { useAuthStore } from '@/stores/authStore';
 import { computed, onBeforeMount } from 'vue';
 import { useToggleStore } from '@/stores/toggleStore';
-import { Line, Pie, Bar } from 'vue-chartjs';
+import { Line, Bar } from 'vue-chartjs';
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, BarElement, PointElement, ArcElement, CategoryScale, LinearScale, Filler } from 'chart.js';
 import DataTable from '@/components/ui/DataTable.vue';
 import { isAxiosError } from 'axios';

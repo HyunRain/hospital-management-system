@@ -21,8 +21,10 @@ export const useToggleStore = defineStore('toggle', {
     // BillingDropDown
     showBillingDropdown: false as boolean,
     // DepartmentSelection
-    showDepartmentSelection: false,
-    showCalendarRangeSelection: false,
+    showDepartmentSelection: false as boolean,
+    showCalendarRangeSelection: false as boolean,
+    // AppointmentView
+    showAppointmentForm: false as boolean,
   }),
 
   actions: {
@@ -60,6 +62,9 @@ export const useToggleStore = defineStore('toggle', {
           this.showCalendarRangeSelection = !this.showCalendarRangeSelection;
           break;
       }
+    },
+    toggleAppointmentForm() {
+      this.showAppointmentForm = !this.showAppointmentForm;
     }
   },
 });

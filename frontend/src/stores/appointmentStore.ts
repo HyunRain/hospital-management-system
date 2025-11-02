@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import type { AppointmentFormData } from '../util/types/types';
 
 export const useAppointmentStore = defineStore('appointmentStore', {
   state: () => ({
@@ -23,6 +24,9 @@ export const useAppointmentStore = defineStore('appointmentStore', {
       this.dayCalendarTimeSlotValues.hour = hour;
       this.dayCalendarTimeSlotValues.slot = slot;
     },
+    async createAppointment(appointmentData: AppointmentFormData) {
+      console.log(appointmentData);
+    }
   },
 });
 

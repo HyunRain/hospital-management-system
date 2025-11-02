@@ -216,3 +216,15 @@ body {
 .mainBorder {
   @apply border-neutral-200 dark:border-neutral-900;
 }
+
+.formOverlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-[#00000087] p-4;
+}
+
+.formFrame {
+  @apply flex flex-col bg-white dark:bg-[#0a0a0a] p-5 border border-gray-300 dark:border-zinc-800 min-h-[90vh] max-h-[90vh] md:min-h-fit rounded-lg w-full max-w-4xl overflow-y-auto;
+}
+
+.formStepsFrame {
+  @apply flex justify-evenly px-5 mt-9 md:py-3 py-6 dark:bg-[#000] overflow-x-auto gap-5 md:mx-15 rounded-lg border;
+}

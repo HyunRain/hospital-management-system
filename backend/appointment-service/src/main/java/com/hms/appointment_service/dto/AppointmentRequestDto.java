@@ -22,13 +22,13 @@ public class AppointmentRequestDto {
     private String departmentId;
     @NotNull
     @FutureOrPresent
-    private LocalDate appointmentDate; // Format: YYYY-MM-DD
+    private LocalDate appointmentDate;
     @NotNull
-    private LocalTime appointmentTime; // Format: HH:mm
+    private LocalTime appointmentTime;
     @NotNull
-    private AppointmentStatus appointmentStatus; // e.g., "Scheduled", "Cancelled", "Completed"
+    private AppointmentStatus appointmentStatus;
     @NotNull
-    private AppointmentType appointmentType; // e.g., "In-person", "Telemedicine"
+    private AppointmentType appointmentType;
     @NotBlank
-    private String reason; // Reason for the appointment
+    private String reason;
 }

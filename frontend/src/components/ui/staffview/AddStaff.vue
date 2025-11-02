@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useToggleStore } from '@/stores/toggleStore';
-import { ref, computed, reactive, watch } from 'vue';
+import { ref, computed, reactive } from 'vue';
 import Select from '@/components/ui/patientview/Select.vue';
 import { gender, staffTypes } from '@/util/types/constants';
 import { useStaffStore } from '@/stores/staffStore';
@@ -264,5 +264,3 @@ function nextStep() {
 
   </div>
 </template>
-
-<style scoped></style>

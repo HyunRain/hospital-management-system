@@ -14,10 +14,10 @@ public class AppointmentResponseDto {
     private String patientId;
     private String doctorId;
     private String departmentId;
-    private LocalDate appointmentDate; // Format: YYYY-MM-DD
-    private LocalTime appointmentTime; // Format: HH:mm
-    private LocalTime appointmentEndTime; // Format: HH:mm, must be after appointmentTime
-    private AppointmentStatus appointmentStatus; // e.g., "Scheduled", "Cancelled", "Completed"
-    private AppointmentType appointmentType; // e.g., "In-person", "Telemedicine"
+    private LocalDate appointmentDate;
+    private LocalTime appointmentTime;
+    private LocalTime appointmentEndTime;
+    private AppointmentStatus appointmentStatus;
+    private AppointmentType appointmentType;
     private String reason;
 }

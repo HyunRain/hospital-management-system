@@ -54,7 +54,7 @@ const isWeek = computed(() => appointmentStore.selectedCalendarRange === 'Week')
 
       <section class="flex gap-1 items-center z-51">
         <Selection :data="calendarRanges" storeName="appointment" stateName="selectedCalendarRange" toggle-state-name="showCalendarRangeSelection" />
-        <button class="button" type="button">
+        <button class="button" type="button" @click="toggleStore.toggleAppointmentForm()">
           <span class="hidden lg:block">+ New Appointment</span>
           <span class="lg:hidden">+</span>
         </button>
