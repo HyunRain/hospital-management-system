@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useToggleStore } from '@/stores/toggleStore';
 import { ref, type PropType } from 'vue';
+import type { ComputedRef } from 'vue';
 
 const toggleStore = useToggleStore();
 
@@ -14,7 +15,7 @@ const props = defineProps({
     required: true,
   },
   isStepFilledArray: {
-    type: Array as PropType<boolean[]>,
+    type: Array as PropType<ComputedRef<boolean>[]>,
     required: true,
   }
 })
@@ -32,14 +33,14 @@ function stepTextColor(step: number) {
 </script>
 
 <template>
-  <section class="formStepsFrame">
+  <section v-if="stepsAmount > 1" class="formStepsFrame">
     <section v-for="(value, index) in props.stepsAmount" :key="index">
       <div class="flex gap-2 items-center cursor-pointer" @click="currentStep = value">
         <div class="border border-gray-300 size-6.5 dark:border-zinc-800 rounded-full p-2 flex items-center justify-center">
           <img v-if="isStepFilledArray[value]" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`" alt="PatientIcon" />
           <p v-else :class="[stepTextColor(value)]">1</p>
         </div>
-        <p class="min-w-24" :class="[stepTextColor(value)]"> {{ stepNames[value] }}</p>
+        <p  class="min-w-24" :class="[stepTextColor(value)]"> {{ stepNames[value - 1] }}</p>
       </div>
     </section>
   </section>

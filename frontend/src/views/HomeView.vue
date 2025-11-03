@@ -69,7 +69,7 @@ const { chartDataPie: chartDataPieDepartments, chartOptionsPie: chartOptionsPieD
 </script>
 
 <template>
-  <main class="flex flex-col items-start w-full border border-neutral-100 dark:border-0 bg-gray-50 dark:bg-[#000000] rounded-lg">
+  <main class="flex flex-col items-start w-full border border-neutral-200 dark:border-neutral-900 bg-gray-50 dark:bg-[#000000] rounded-lg">
 
     <section class="flex flex-wrap gap-5 w-full justify-center lg:px-5 py-5">
       <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Patients" :amount="patientStore.totalPatients" :trend="3.15" />

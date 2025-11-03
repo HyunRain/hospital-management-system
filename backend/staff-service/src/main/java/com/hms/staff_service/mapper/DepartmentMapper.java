@@ -23,6 +23,7 @@ public class DepartmentMapper {
         }
 
         return DepartmentResponseDto.builder()
+                .id(department.getUuid())
                 .name(department.getName())
                 .headOfDepartmentName(fullName)
                 .headOfDepartmentUuid(headOfDepartmentUuid)

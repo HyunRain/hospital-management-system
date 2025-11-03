@@ -3,10 +3,13 @@ import type { AppointmentFormData } from '../util/types/types';
 
 export const useAppointmentStore = defineStore('appointmentStore', {
   state: () => ({
-    // Appointment Calendar Related
+    // Appointment Calendar
     selectedDepartment: 'Pediatrics' as string,
     selectedCalendarRange: 'Month' as string,
     dayCalendarTimeSlotValues: { hour: 0, slot: 0 },
+
+    // Appointment Form
+    createAppointmentData: {} as AppointmentFormData
   }),
 
   actions: {

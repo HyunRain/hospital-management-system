@@ -34,7 +34,6 @@ const appointmentStore = useAppointmentStore();
 
 <template>
   <main class="flex flex-col mt-1.5 h-full relative">
-
     <header class="grid grid-cols-[50px_repeat(7,1fr)] lg:grid-cols-[100px_repeat(7,1fr)] col-span-8 text-center mb-3">
       <p class="w-full"></p>
       <p v-for="(day, index) in days" :key="index"

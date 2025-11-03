@@ -4,8 +4,6 @@ import type { CalendarState } from '@/util/types/types';
 import { useAppointmentStore } from '@/stores/appointmentStore';
 
 export function useCalendar(): CalendarState {
-  const appointmentStore = useAppointmentStore();
-
   const todaysDate = ref(new Date());
 
   // Updates todaysDate starting exactly at every minute for the time marker in day and week calendar
@@ -37,6 +35,7 @@ export function useCalendar(): CalendarState {
 
   // eg Wed
   const currentWeekDay = computed(() => days[date.value.getDay()]);
+  const currentWeekDayNum = computed(() => date.value.getDay());
 
   // hh--mm
   const currentTimeTopPixelValue = computed(
@@ -67,11 +66,11 @@ export function useCalendar(): CalendarState {
     date.value = new Date();
   }
 
-  function changeDate(direction: 'prev' | 'next', isWeek: boolean) {
+  function changeDate(direction: 'prev' | 'next', isWeek: boolean, selectedCalendarRange: string) {
     const newDate = new Date(date.value);
     const incrementValue = isWeek ? (direction === 'prev' ? -7 : 7) : direction === 'prev' ? -1 : 1;
 
-    switch (appointmentStore.selectedCalendarRange) {
+    switch (selectedCalendarRange) {
       case 'Month':
         // Covers edge case when current day is 31 and prev or next month has <31 days.
         // eg date is oct 31. click back a month -> sep 31 (sep has 30 days, so it auto corrects forwards to oct 1)
@@ -188,9 +187,23 @@ export function useCalendar(): CalendarState {
     return months[currentMonth.value];
   });
 
+  // const currentWeekDays = computed(() => {
+  //   const daysInCurrentMonth = daysInMonth(currentYear.value, currentMonth.value);
+  //   const weekDaysArray: number[] = [];
+
+  //   for (let i: number = 0; i < 7; i++) {
+  //     const day = currentDay.value + i - currentWeekDayNum.value;
+  //     console.log(currentDay.value)
+  //     weekDaysArray.push(day < daysInCurrentMonth && day > 0 ? day : day - daysInCurrentMonth);
+  //   }
+
+  //   return weekDaysArray;
+  // });
+
   const currentWeekDays = computed(() => {
     const weekDayNumber = date.value.getDay();
     const weekDaysArray: number[] = [];
+    let newMonthDayIndex = 0;
 
     for (let i: number = 0; i <= weekDayNumber; i++) {
       if (currentDay.value - weekDayNumber + i <= 0) {
@@ -202,7 +215,8 @@ export function useCalendar(): CalendarState {
 
     for (let i: number = 1; i <= 7 - (weekDayNumber + 1); i++) {
       if (currentDay.value + i > daysInMonth(currentYear.value, currentMonth.value)) {
-        weekDaysArray.push(daysOfNextMonth.value[i - 1]);
+        weekDaysArray.push(daysOfNextMonth.value[newMonthDayIndex]);
+        newMonthDayIndex++;
       } else {
         weekDaysArray.push(currentDay.value + i);
       }

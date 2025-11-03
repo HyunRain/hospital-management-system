@@ -37,7 +37,6 @@ const patientColumns = [
   { key: 'email', label: 'Email', class: '' },
   { key: 'city', label: 'City', class: 'min-w-[80px]' },
   { key: 'status', label: 'Status', class: 'border-0 rounded-r-lg' },
-
 ];
 
 const isDoctorSearch = false;

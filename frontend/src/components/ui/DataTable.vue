@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useTableSelectStore } from '@/stores/tableSelectStore';
+import type { Column } from '@/util/types/types';
 
 const props = defineProps({
   data: {
@@ -12,15 +14,14 @@ const props = defineProps({
   billingTable: {
     type: Boolean,
     default: false
+  },
+  tableName: {
+    type: String,
+    required: true,
   }
 });
 
-interface Column {
-  key: string;
-  label: string;
-  class?: string; // css
-}
-
+const tableSelectStore = useTableSelectStore();
 </script>
 
 <template>
@@ -37,7 +38,7 @@ interface Column {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(data, index) in props.data" :key="index"
+      <tr v-for="(data, index) in props.data" :key="index" @click.stop="tableSelectStore.selectedIdx = index, tableSelectStore.selectedTable = tableName"
         class="text-center w-full h-[45px] cursor-pointer border-zinc-800 hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] text-nowrap">
         <td v-for="(col, colIndex) in props.columns" :key="col.key"
           :class="[col.class, 'py-0', colIndex === 0 ? 'rounded-l-lg' : '', colIndex === props.columns.length - 1 ? 'rounded-r-lg' : '']">

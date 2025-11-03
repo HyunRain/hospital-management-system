@@ -2,20 +2,23 @@
 import { useToggleStore } from '@/stores/toggleStore';
 import { useErrorAlert } from '@/composables/useErrorAlert';
 import ErrorAlert from '@/components/ui/misc/ErrorAlert.vue';
-import { onBeforeMount } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import Calendar from '@/components/ui/calendar/Calendar.vue';
 import Selection from '@/components/ui/misc/Selection.vue';
 import { departments } from '@/util/types/constants';
 import CreateAppointment from '@/components/ui/appointmentview/CreateAppointment.vue';
+import { useDepartmentStore } from '@/stores/departmentStore';
 
 const toggleStore = useToggleStore();
+const departmentStore = useDepartmentStore();
 
 const { showError, errorMessage, errorAlertKey, triggerBackendError } = useErrorAlert();
 
 onBeforeMount(async () => {
-
+  await departmentStore.fetchDepartments();
 });
 
+const selectedDepartment = ref<string>('Pediatrics');
 </script>
 
 <template>
@@ -28,14 +31,19 @@ onBeforeMount(async () => {
         <ErrorAlert for="backend error" class="ml-5" :show="showError" :alert-key="errorAlertKey" :message="errorMessage" />
       </section>
 
-      <section class="z-52">
-        <Selection :data="departments" storeName="appointment" stateName="selectedDepartment" toggle-state-name="showDepartmentSelection"></Selection>
+      <section class="z-49">
+        <Selection :data="departments" v-model="selectedDepartment" :is-open="toggleStore.showDepartmentSelection"
+          @toggle="toggleStore.toggleDepartmentSelection" min-width="166px">
+          <template v-slot:Mobile>
+            <span class="inline lg:hidden"> {{ selectedDepartment.slice(0, 4) }} </span>
+          </template>
+        </Selection>
       </section>
     </header>
 
     <section class="h-full">
       <Calendar></Calendar>
-      <CreateAppointment v-if="toggleStore.showAppointmentForm"></CreateAppointment>
+      <CreateAppointment :current-department="selectedDepartment" v-if="toggleStore.showAppointmentForm"></CreateAppointment>
     </section>
 
     <footer>

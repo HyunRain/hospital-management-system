@@ -68,6 +68,7 @@ export interface StaffDto {
   staffId: string;
   firstName: string;
   lastName: string;
+  fullName: string;
   gender: 'MALE' | 'FEMALE' | 'OTHER';
   dateOfBirth: string;
   phoneNumber: string;
@@ -83,6 +84,7 @@ export interface StaffDto {
 }
 
 export interface DepartmentDto {
+  id: string;
   name: string;
   headOfDepartmentName: string;
   headOfDepartmentId: string;
@@ -156,7 +158,7 @@ export interface CalendarState {
   currentTimeTopPixelValue: Ref<number>;
   isLeapYear: ComputedRef<boolean>;
   daysInCurrentMonth: ComputedRef<number>;
-  changeDate: (direction: 'prev' | 'next', isWeek: boolean) => void;
+  changeDate: (direction: 'prev' | 'next', isWeek: boolean, selectedCalendarRange: string) => void;
   applyTodaysDate: () => void;
   firstWeekDayOfMonth: ComputedRef<string>;
   lastWeekDayOfMonth: ComputedRef<string>;
@@ -166,25 +168,33 @@ export interface CalendarState {
 }
 
 export enum AppointmentStatus {
-  SCHEDULED = "SCHEDULED",
-  CANCELLED = "CANCELLED",
-  COMPLETED = "COMPLETED"
+  SCHEDULED = "Scheduled",
+  CANCELLED = "Cancelled",
+  COMPLETED = "Completed"
 }
 
 export enum AppointmentType {
-  CONSULTATION = "CONSULTATION",
-  FOLLOW_UP = "FOLLOW_UP",
-  EMERGENCY = "EMERGENCY",
-  ROUTINE_CHECKUP = "ROUTINE_CHECKUP",
+  CONSULTATION = "Consultation",
+  FOLLOW_UP = "Follow up",
+  EMERGENCY = "Emergency",
+  ROUTINE_CHECKUP = "Check up",
 }
 
 export interface AppointmentFormData {
   patientId: string;
   doctorId: string;
-  departmentId: string;
+  departmentId: string | undefined;
   appointmentDate: string;
+  appointmentEndDate: string;
   appointmentTime: string;
-  appointmentStatus: AppointmentStatus;
-  appointmentType: AppointmentType;
+  appointmentEndTime: string;
+  appointmentStatus: string;
+  appointmentType: string;
   reason: string;
+}
+
+export interface Column {
+  key: string;
+  label: string;
+  class?: string; // css
 }

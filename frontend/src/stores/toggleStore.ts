@@ -25,6 +25,11 @@ export const useToggleStore = defineStore('toggle', {
     showCalendarRangeSelection: false as boolean,
     // AppointmentView
     showAppointmentForm: false as boolean,
+    showAppointmentTypeSelection: false as boolean,
+    showAppointmentTimeSelection: false as boolean,
+    showAppointmentEndTimeSelection: false as boolean,
+    showSearchPatientDialog: false as boolean,
+    showSearchDoctorDialog: false as boolean,
   }),
 
   actions: {
@@ -53,18 +58,29 @@ export const useToggleStore = defineStore('toggle', {
     toggleBillingDropdown() {
       this.showBillingDropdown = !this.showBillingDropdown;
     },
-    toggleAppointmentCalendar(stateName: string) {
-      switch (stateName) {
-        case 'showDepartmentSelection':
-          this.showDepartmentSelection = !this.showDepartmentSelection;
-          break;
-        case 'showCalendarRangeSelection':
-          this.showCalendarRangeSelection = !this.showCalendarRangeSelection;
-          break;
-      }
+    toggleDepartmentSelection() {
+      this.showDepartmentSelection = !this.showDepartmentSelection;
+    },
+    toggleCalendarRangeSelection() {
+      this.showCalendarRangeSelection = !this.showCalendarRangeSelection;
+    },
+    toggleAppointmentTypeSelection() {
+      this.showAppointmentTypeSelection = !this.showAppointmentTypeSelection;
     },
     toggleAppointmentForm() {
       this.showAppointmentForm = !this.showAppointmentForm;
-    }
+    },
+    toggleAppointmentTimeSelection() {
+      this.showAppointmentTimeSelection = !this.showAppointmentTimeSelection;
+    },
+    toggleAppointmentEndTimeSelection() {
+      this.showAppointmentEndTimeSelection = !this.showAppointmentEndTimeSelection;
+    },
+    toggleSearchPatientDialog() {
+      this.showSearchPatientDialog = !this.showSearchPatientDialog;
+    },
+    toggleSearchDoctorDialog() {
+      this.showSearchDoctorDialog = !this.showSearchDoctorDialog;
+    },
   },
 });

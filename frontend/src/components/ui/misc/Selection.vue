@@ -1,63 +1,66 @@
 <script setup lang="ts">
+import { useIsMobile } from '@/composables/useIsMobile';
 import { useAppointmentStore } from '@/stores/appointmentStore';
 import { useToggleStore } from '@/stores/toggleStore';
 import type { PropType } from 'vue';
+import { ref } from 'vue';
 
 const toggleStore = useToggleStore();
 const appointmentStore = useAppointmentStore();
 
 const props = defineProps({
   data: {
-    type: Array as PropType<string[]>,
+    type: Array as PropType<Object[]>,
     required: true,
   },
-  storeName: {
-    type: String as PropType<'appointment'>,
+  modelValue: {
+    type: String,
     required: true,
   },
-  stateName: {
-    type: String as PropType<'selectedDepartment' | 'selectedCalendarRange'>,
+  isOpen: {
+    type: Boolean,
     required: true,
   },
-  toggleStateName: {
-    type: String as PropType<'showDepartmentSelection' | 'showCalendarRangeSelection'>,
-    required: true,
+  isFormInput: {
+    type: Boolean,
+    required: false,
   },
+  labelName: {
+    type: String,
+    required: false,
+  },
+  labelText: {
+    type: String,
+    required: false,
+  },
+  minWidth: {
+    type: String,
+    required: true,
+  }
 });
 
-const storeMap = {
-  appointment: appointmentStore,
-}
-
+const emit = defineEmits(['update:modelValue', 'toggle']);
+const isMobile = useIsMobile();
 </script>
 
 <template>
-  <main class="relative lg:min-w-[180px]">
-    <button @click="() => toggleStore.toggleAppointmentCalendar(toggleStateName)" type="button" class="chartRangeButton">
-
-      <span class="hidden lg:inline">
-        {{ appointmentStore[stateName] }}
-      </span>
-      <span v-if="props.stateName === 'selectedCalendarRange'" class="inline lg:hidden">
-        {{ appointmentStore[stateName].slice(0, 1) }}
-      </span>
-
+  <div class="relative" :style="{ minWidth: minWidth }">
+    <div v-if="isFormInput" class="flex justify-between">
+      <label class="ml-1" :for="labelName">{{ labelName }}</label>
+      <p class="text-[#898989] opacity-80 mr-1 text-[13px]">{{ labelText }}</p>
+    </div>
+    <button @click="emit('toggle')" type="button" :class="[isFormInput ? 'input formSelectButton' : 'chartRangeButton']">
+      <span class="hidden lg:inline"> {{ modelValue }} </span>
+      <slot name="Mobile"></slot>
       <img class="size-4.5" :src="`/assets/icons/${toggleStore.darkModeState}/downarrow.svg`" alt="Chevron Down Icon">
     </button>
 
-    <section v-click-outside="() => toggleStore.toggleAppointmentCalendar(toggleStateName)" v-if="toggleStore[toggleStateName]"
-      class="chartRangeDropdown">
-      <div v-for="(item, key) in props.data" :key="key" @click.stop="
-        () => {
-          const store = storeMap[storeName];
-          store.storeSelectInput(item, stateName);
-          toggleStore.toggleAppointmentCalendar(toggleStateName)
-        }
-      " class="chartRangeDropdownItem">
+    <div v-if="isOpen" v-click-outside="() => emit('toggle')"
+      :class="[isFormInput ? 'formSelectDropdown' : 'chartRangeDropdown', isMobile ? 'right-0' : 'w-full']">
+      <div v-for="(item, key) in props.data" :key="key" @click.stop="emit('update:modelValue', item); emit('toggle')" class="chartRangeDropdownItem">
         <p> {{ item }} </p>
-        <img v-if="item === appointmentStore[stateName]" class="size-3.5" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`"
-          alt="Checkmark Icon">
+        <img v-if="item === modelValue" class="size-3.5" :src="`/assets/icons/${toggleStore.darkModeState}/checkmark.svg`" alt="Checkmark Icon">
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
 </template>

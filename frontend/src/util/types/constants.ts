@@ -69,7 +69,6 @@ export const shortMonths = [
   'Dec',
 ];
 
-
 export const departments = [
   'Pediatrics',
   'Dermatology',
@@ -101,3 +100,8 @@ export const slotTime: Record<number, number> = {
 export const hours = 24;
 export const slots = 4;
 
+export const timeSlots: string[] = Array.from({ length: 24 * 4 }, (_, i) => {
+  const hours = Math.floor(i / 4).toString().padStart(2, '0');
+  const minutes = ((i % 4) * 15).toString().padStart(2, '0');
+  return `${hours}:${minutes}`;
+});

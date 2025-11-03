@@ -42,7 +42,7 @@ const departmentColumns = [
 </script>
 
 <template>
-  <main class="flex flex-col w-full mt-5 p-5 bg-gray-50 dark:bg-[#0a0a0a] dark:border border-zinc-800 min-h-[calc(100vh-147px)] rounded-lg">
+  <main class="baseView">
     <header v-if="isAdmin" class="flex justify-between items-center">
       <section class="flex gap-2 items-center">
         <img class="size-6" :src="`/assets/icons/${toggleStore.darkModeState}/department.svg`" alt="DepartmentIcon" />

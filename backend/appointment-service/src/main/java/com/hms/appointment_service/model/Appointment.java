@@ -42,6 +42,9 @@ public class Appointment {
     private LocalDate appointmentDate;
 
     @NotNull
+    private LocalDate appointmentEndDate;
+
+    @NotNull
     private LocalTime appointmentTime;
 
     @NotNull

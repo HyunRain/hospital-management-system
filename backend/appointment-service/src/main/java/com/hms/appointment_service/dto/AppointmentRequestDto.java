@@ -23,8 +23,12 @@ public class AppointmentRequestDto {
     @NotNull
     @FutureOrPresent
     private LocalDate appointmentDate;
+    @FutureOrPresent
+    private LocalDate appointmentEndDate;
     @NotNull
     private LocalTime appointmentTime;
+    @NotNull
+    private LocalTime appointmentEndTime;
     @NotNull
     private AppointmentStatus appointmentStatus;
     @NotNull

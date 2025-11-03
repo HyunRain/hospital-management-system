@@ -7,6 +7,7 @@ import java.util.UUID;
 @Data
 @Builder
 public class DepartmentResponseDto {
+    private UUID id;
     private String name;
     private String headOfDepartmentName;
     private UUID headOfDepartmentUuid;
