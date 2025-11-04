@@ -18,6 +18,7 @@ import { useDoctorStore } from '@/stores/doctorStore';
 import debounce from 'lodash.debounce';
 import SearchResults from '../form/SearchResults.vue';
 import { useTableSelectStore } from '@/stores/tableSelectStore';
+import FormDatePicker from '../form/FormDatePicker.vue';
 
 const toggleStore = useToggleStore();
 const appointmentStore = useAppointmentStore();
@@ -50,9 +51,9 @@ const appointmentForm = reactive<AppointmentFormData>({
   doctorId: "",
   departmentId: "",
   appointmentDate: "",
-  appointmentTime: "00:15",
+  appointmentTime: "09:00",
   appointmentEndDate: "",
-  appointmentEndTime: "00:30",
+  appointmentEndTime: "10:00",
   appointmentStatus: "SCHEDULED",
   appointmentType: "",
   reason: "",
@@ -113,22 +114,28 @@ const doctorColumns = [
 const currentPatientName = ref('');
 const currentDoctorName = ref('');
 
-watch(() => tableSelectStore.selectedIdx, (newIdx) => {
+watch([() => tableSelectStore.selectedPatientIdx, () => tableSelectStore.selectedDoctorIdx], ([newPatientIdx, newDoctorIdx]) => {
   switch (tableSelectStore.selectedTable) {
     case "patient":
-      const { patientId, fullName: fullPName } = patientStore.patients[newIdx];
+      const { patientId, fullName: fullPName } = patientStore.patients[newPatientIdx];
       patientId && (appointmentForm.patientId = patientId);
       fullPName && (currentPatientName.value = fullPName);
-      toggleStore.toggleSearchPatientDialog();
       break;
     case "doctor":
-      const { staffId, fullName: fullDName } = doctorStore.doctors[newIdx];
+      const { staffId, fullName: fullDName } = doctorStore.doctors[newDoctorIdx];
       staffId && (appointmentForm.doctorId = staffId);
       fullDName && (currentDoctorName.value = fullDName);
-      toggleStore.toggleSearchDoctorDialog();
       break;
   }
 });
+
+// Form: Apply Selected Date from Calendar Click to Appointment Form
+watch(() => appointmentStore.selectedDate, (newSelectedDate) => {
+  appointmentForm.appointmentDate = newSelectedDate.date;
+  appointmentForm.appointmentEndDate = newSelectedDate.endDate;
+  appointmentForm.appointmentTime = newSelectedDate.time;
+  appointmentForm.appointmentEndTime = newSelectedDate.endTime;
+}, { immediate: true });
 </script>
 
 <template>
@@ -139,21 +146,21 @@ watch(() => tableSelectStore.selectedIdx, (newIdx) => {
       <FormHeader header-text="+ Create Appointment" @close="toggleStore.toggleAppointmentForm()"></FormHeader>
       <FormSteps :steps-amount="1" :step-names="['Appointment']" :is-step-filled-array="isStepFilled"></FormSteps>
 
-      <div class="flex flex-col gap-4 py-8 mx-4 lg:mx-8">
-        {{ appointmentForm }}
+      <div class="flex flex-col gap-4 py-6">
+        <!-- {{ appointmentForm }} -->
 
         <FormSearchInput v-model="currentPatientName" label-name="Patient" @toggle="toggleStore.toggleSearchPatientDialog"></FormSearchInput>
         <SearchDialog v-if="toggleStore.showSearchPatientDialog" @toggle="toggleStore.toggleSearchPatientDialog" @search="handlePatientSearch"
           placeholder="Search Patient">
           <template #results>
-            <SearchResults :results="patientStore.patients" :columns="patientColumns" table-name="patient"></SearchResults>
+            <SearchResults :results="patientStore.patients" :columns="patientColumns" table-name="patient" @toggle="toggleStore.toggleSearchPatientDialog"></SearchResults>
           </template>
         </SearchDialog>
         <FormSearchInput v-model="currentDoctorName" label-name="Doctor" @toggle="toggleStore.toggleSearchDoctorDialog"></FormSearchInput>
         <SearchDialog v-if="toggleStore.showSearchDoctorDialog" @toggle="toggleStore.toggleSearchDoctorDialog" @search="handleDoctorSearch"
           placeholder="Search Doctor">
           <template #results>
-            <SearchResults :results="doctorStore.doctors" :columns="doctorColumns" table-name="doctor"></SearchResults>
+            <SearchResults :results="doctorStore.doctors" :columns="doctorColumns" table-name="doctor" @toggle="toggleStore.toggleSearchDoctorDialog"></SearchResults>
           </template>
         </SearchDialog>
 
@@ -170,7 +177,8 @@ watch(() => tableSelectStore.selectedIdx, (newIdx) => {
         </div>
 
         <div class="flex justify-between gap-4">
-          <FormInput class="w-4/5" v-model="appointmentForm.appointmentDate" label-name="Start Date"></FormInput>
+          <FormDatePicker class="w-4/5" label-name="Start Date" v-model="appointmentForm.appointmentDate"
+            @toggle="toggleStore.toggleStartDatePicker" :is-open="toggleStore.showStartTimePicker"></FormDatePicker>
 
           <Selection :data="timeSlots" v-model="appointmentForm.appointmentTime" :is-open="toggleStore.showAppointmentTimeSelection"
             :is-form-input="true" label-name="Start Time" @toggle="toggleStore.toggleAppointmentTimeSelection" min-width="100px">
@@ -181,7 +189,8 @@ watch(() => tableSelectStore.selectedIdx, (newIdx) => {
         </div>
 
         <div class="flex justify-between gap-4">
-          <FormInput class="w-4/5" v-model="appointmentForm.appointmentEndDate" label-name="End Date"></FormInput>
+          <FormDatePicker class="w-4/5" label-name="End Date" v-model="appointmentForm.appointmentEndDate"
+            @toggle="toggleStore.toggleEndDatePicker" :is-open="toggleStore.showEndTimePicker"></FormDatePicker>
 
           <Selection :data="timeSlots" v-model="appointmentForm.appointmentEndTime" :is-open="toggleStore.showAppointmentEndTimeSelection"
             :is-form-input="true" label-name="End Time" @toggle="toggleStore.toggleAppointmentEndTimeSelection" min-width="100px">

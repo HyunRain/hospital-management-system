@@ -30,6 +30,8 @@ export const useToggleStore = defineStore('toggle', {
     showAppointmentEndTimeSelection: false as boolean,
     showSearchPatientDialog: false as boolean,
     showSearchDoctorDialog: false as boolean,
+    showStartTimePicker: false as boolean,
+    showEndTimePicker: false as boolean,
   }),
 
   actions: {
@@ -81,6 +83,12 @@ export const useToggleStore = defineStore('toggle', {
     },
     toggleSearchDoctorDialog() {
       this.showSearchDoctorDialog = !this.showSearchDoctorDialog;
+    },
+    toggleStartDatePicker() {
+      this.showStartTimePicker = !this.showStartTimePicker;
+    },
+    toggleEndDatePicker() {
+      this.showEndTimePicker = !this.showEndTimePicker;
     },
   },
 });

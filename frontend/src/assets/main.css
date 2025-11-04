@@ -150,11 +150,11 @@ body {
 }
 
 .input {
-  @apply h-[36px] py-1 w-full px-3  bg-white border dark:border-neutral-800 dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg focus:border-red-300 dark:focus:border-neutral-500 focus:outline-none;
+  @apply h-[36px] py-1 w-full px-3  bg-white border dark:border-neutral-800 dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg focus:border-red-300 dark:focus:border-neutral-700 focus:outline-none;
 }
 
 .inputArea {
-  @apply h-[80px] py-1 w-full px-3  bg-white border dark:border-neutral-800 dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg focus:border-red-300 dark:focus:border-neutral-500 focus:outline-none;
+  @apply h-[80px] py-1 w-full px-3  bg-white border dark:border-neutral-800 dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg focus:border-red-300 dark:focus:border-neutral-700 focus:outline-none;
 }
 
 .search-input {
@@ -180,7 +180,7 @@ body {
 }
 
 .chartRangeButton {
-  @apply relative gap-1 flex justify-between px-3 items-center cursor-pointer truncate py-2 w-full bg-white border dark:border-[#1f1f1f] dark:bg-[#000] dark:placeholder-[#898989] rounded-lg focus:border-neutral-300 dark:focus:border-neutral-700 focus:outline-none;
+  @apply relative gap-1 flex w-full justify-between px-3 items-center cursor-pointer truncate py-2 bg-white border dark:border-[#1f1f1f] dark:bg-[#000] dark:placeholder-[#898989] rounded-lg focus:border-neutral-300 dark:focus:border-neutral-700 focus:outline-none;
 }
 
 .chartRangeDropdown {
@@ -236,7 +236,7 @@ body {
 }
 
 .formFrame {
-  @apply flex flex-col bg-white dark:bg-[#0a0a0a] p-5 border border-gray-300 dark:border-zinc-800 min-h-[90vh] max-h-[90vh] md:min-h-fit z-50 rounded-lg w-full max-w-lg overflow-y-auto;
+  @apply flex flex-col bg-white dark:bg-[#0a0a0a] p-8 border border-gray-300 dark:border-zinc-800 min-h-[90vh] max-h-[90vh] md:min-h-fit lg:min-h-fit z-50 rounded-lg w-full max-w-md overflow-y-auto lg:overflow-y-visible;
 }
 
 .formStepsFrame {
@@ -244,9 +244,13 @@ body {
 }
 
 .formSelectButton {
-  @apply mt-2 flex items-center justify-between gap-3 cursor-pointer h-[36px] py-1 px-3 bg-white border dark:border-neutral-800 dark:bg-[#141414] dark:placeholder-[#898989] rounded-lg focus:border-red-300 dark:focus:border-neutral-500 focus:outline-none;
+  @apply mt-2 flex items-center justify-between gap-3 cursor-pointer h-[36px] py-1 px-3 bg-white border dark:border-neutral-800 dark:bg-[#141414] dark:hover:bg-[#222222] dark:placeholder-[#898989] rounded-lg focus:border-red-300 dark:focus:border-neutral-700 focus:outline-none;
 }
 
 .formSelectDropdown {
-  @apply border w-fit flex flex-col overflow-scroll overflow-y-scroll max-h-[275px] lg:max-h-[275px] mt-2 absolute z-50 bg-white dark:bg-[#0a0a0a] border-neutral-200 dark:border-[#1f1f1f] rounded-lg px-2 py-3;
+  @apply border w-full flex flex-col overflow-scroll overflow-y-scroll max-h-[275px] lg:max-h-[275px] mt-2 absolute z-50 bg-white dark:bg-[#0a0a0a] border-neutral-200 dark:border-[#1f1f1f] rounded-lg px-2 py-3;
+}
+
+.formSelectDropdownDatePicker {
+  @apply border w-full flex flex-col mt-2 absolute z-50 bg-white dark:bg-[#0a0a0a] border-neutral-200 dark:border-[#1f1f1f] rounded-lg px-2 py-3;
 }

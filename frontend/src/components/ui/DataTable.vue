@@ -22,6 +22,18 @@ const props = defineProps({
 });
 
 const tableSelectStore = useTableSelectStore();
+
+function handleClick(index: number) {
+  if (props.tableName === "patient") {
+    tableSelectStore.selectedPatientIdx = index;
+  } else if (props.tableName === "doctor") {
+    tableSelectStore.selectedDoctorIdx = index;
+  }
+  tableSelectStore.selectedTable = props.tableName;
+  emit('toggle');
+}
+
+const emit = defineEmits(['toggle']);
 </script>
 
 <template>
@@ -38,7 +50,7 @@ const tableSelectStore = useTableSelectStore();
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(data, index) in props.data" :key="index" @click.stop="tableSelectStore.selectedIdx = index, tableSelectStore.selectedTable = tableName"
+      <tr v-for="(data, index) in props.data" :key="index" @click.stop="handleClick(index)"
         class="text-center w-full h-[45px] cursor-pointer border-zinc-800 hover:bg-red-100 dark:hover:bg-[#1d1d1dcf] text-nowrap">
         <td v-for="(col, colIndex) in props.columns" :key="col.key"
           :class="[col.class, 'py-0', colIndex === 0 ? 'rounded-l-lg' : '', colIndex === props.columns.length - 1 ? 'rounded-r-lg' : '']">

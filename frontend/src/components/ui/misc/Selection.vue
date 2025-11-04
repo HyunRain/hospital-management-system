@@ -44,7 +44,7 @@ const isMobile = useIsMobile();
 </script>
 
 <template>
-  <div class="relative" :style="{ minWidth: minWidth }">
+  <div class="relative" :style="isMobile ? { minWidth: 'fit-content' } : { minWidth: minWidth }">
     <div v-if="isFormInput" class="flex justify-between">
       <label class="ml-1" :for="labelName">{{ labelName }}</label>
       <p class="text-[#898989] opacity-80 mr-1 text-[13px]">{{ labelText }}</p>

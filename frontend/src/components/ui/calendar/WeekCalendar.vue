@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useAppointmentStore } from '@/stores/appointmentStore';
+import { useToggleStore } from '@/stores/toggleStore';
 import { days, hours, slotTime, slots } from '@/util/types/constants';
 import type { PropType } from 'vue';
 
@@ -24,12 +25,33 @@ const props = defineProps({
   currentMonth: {
     type: Number,
     required: true,
+  },
+  currentYear: {
+    type: Number,
+    required: true,
   }
 });
 
 const appointmentStore = useAppointmentStore();
+const toggleStore = useToggleStore();
 
+function handleClick(day: number, hour: number, slot: number) {
+  const date = new Date(props.currentYear, props.currentMonth, day);
+  const endDate = new Date(props.currentYear, props.currentMonth, day);
+  
+  date.setHours(hour);
+  date.setMinutes(slot === 4 ? 0 : slotTime[slot]);
+  endDate.setHours(hour + 1);
+  endDate.setMinutes(slot === 4 ? 0 : slotTime[slot]);
 
+  const localDate = date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
+  const endLocalDate = endDate.getFullYear() + '-' + String(endDate.getMonth() + 1).padStart(2, '0') + '-' + String(endDate.getDate()).padStart(2, '0');
+  const time = date.toTimeString().split(' ')[0].slice(0,5);
+  const endTime = endDate.toTimeString().split(' ')[0].slice(0,5);
+
+  appointmentStore.fillSelectedDate(localDate, endLocalDate, time, endTime);
+  toggleStore.toggleAppointmentForm();
+}
 </script>
 
 <template>
@@ -44,11 +66,6 @@ const appointmentStore = useAppointmentStore();
     <section class="grid grid-cols-[50px_repeat(7,1fr)] lg:grid-cols-[100px_repeat(7,1fr)] col-span-8">
       <section class="py-[10.5px]">
         <ul>
-          <!-- <li>
-            <time class="absolute">00:00</time>
-            <div class="ml-15 flex-1 flex items-center rounded-sm h-[21px]" role="button" aria-label="time slot">
-            </div>
-          </li> -->
           <li v-for="hour in hours" :key="hour" class="relative">
             <ul>
               <li v-for="slot in slots">
@@ -76,32 +93,27 @@ const appointmentStore = useAppointmentStore();
       <section v-for="(value, index) in 7" :key="index"
         class="relative pt-[10.5px] border-b border-r border-t border-neutral-300 dark:border-[#33333380]"
         :class="[value === 1 ? 'border-l' : '', value === 1 ? 'rounded-l-lg' : '', value === 7 ? 'rounded-r-lg' : '']">
-
         <div
           v-if="index === props.todaysDate.getDay() && currentWeekDays[index] === props.todaysDate.getDate() && props.currentMonth === props.todaysDate.getMonth()"
           :style="{ top: `${props.currentTimeTopPixelValue-10.5}px` }" class="flex items-center absolute w-full z-50 pointer-events-none">
           <div class="bg-red-600 dark:bg-red-400 rounded-full size-3"></div>
           <div class="border-t h-0 border-red-600 dark:border-red-400 w-full"></div>
         </div>
-
         <ul>
-          <!-- <li>
-            <div class="flex-1 flex items-center cursor-pointer mainHover rounded-sm h-[21px]" role="button" aria-label="time slot">
-              <span class="flex border-t h-0 w-full border-neutral-300 dark:border-[#33333380]"></span>
-            </div>
-          </li> -->
           <li v-for="hour in hours" :key="hour" class="relative">
             <ul>
               <li v-for="slot in slots">
-
                 <div v-if="slot !== 4" class="flex items-center">
                   <div class="flex-1 flex cursor-pointer mainHover rounded-sm h-[21px] py-[3px]" role="button" aria-label="time slot"
-                    @mouseover="appointmentStore.setDayCalendarTimeSlot(hour, slot)" @mouseleave="appointmentStore.setDayCalendarTimeSlot(0, 0)">
+                    @click="handleClick(currentWeekDays[index], hour-1, slot)" @mouseover="appointmentStore.setDayCalendarTimeSlot(hour, slot)"
+                    @mouseleave="appointmentStore.setDayCalendarTimeSlot(0, 0)">
                   </div>
                 </div>
 
                 <div v-if="slot === 4 && hour !== 24" class="flex items-center">
-                  <div class="flex-1 flex items-center cursor-pointer mainHover rounded-sm h-[21px]" role="button" aria-label="time slot">
+                  <div class="flex-1 flex items-center cursor-pointer mainHover rounded-sm h-[21px]" role="button" aria-label="time slot"
+                    @click="handleClick(currentWeekDays[index], hour, slot)" @mouseover="appointmentStore.setDayCalendarTimeSlot(hour, slot)"
+                    @mouseleave="appointmentStore.setDayCalendarTimeSlot(0, 0)">
                     <span class="flex border-t h-0 w-full border-neutral-300 dark:border-[#33333380]"></span>
                   </div>
                 </div>

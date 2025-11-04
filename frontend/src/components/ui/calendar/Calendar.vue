@@ -32,13 +32,18 @@ const isWeek = computed(() => selectedCalendarRange.value === 'Week');
 
 const selectedCalendarRange = ref<string>('Month');
 const isMobile = useIsMobile();
+
+function handleCreateAppointmentClick() {
+  appointmentStore.resetSelectedDate();
+  toggleStore.toggleAppointmentForm();
+}
 </script>
 
 <template>
   <main class="flex flex-col h-full">
     <header class="flex items-center justify-between" :class="[selectedCalendarRange !== 'Day' ? 'pb-5' : 'pb-5']">
 
-      <section class="flex items-center gap-2">
+      <section class="flex items-center gap-1.5">
         <button @click="applyTodaysDate" type="button" class="button">Today</button>
         <div @click="changeDate('prev', isWeek, selectedCalendarRange)"
           class="p-1.5 hover:bg-rose-100 dark:hover:bg-[#1d1d1dcf] cursor-pointer rounded-lg select-none">
@@ -64,7 +69,7 @@ const isMobile = useIsMobile();
             <span class="inline lg:hidden"> {{ selectedCalendarRange.slice(0, 1) }} </span>
           </template>
         </Selection>
-        <button class="button" type="button" @click="toggleStore.toggleAppointmentForm()">
+        <button class="button" type="button" @click="handleCreateAppointmentClick()">
           <span class="hidden lg:block">+ New Appointment</span>
           <span class="lg:hidden">+</span>
         </button>
@@ -72,11 +77,12 @@ const isMobile = useIsMobile();
     </header>
 
     <MonthCalendar v-show="selectedCalendarRange === 'Month'" :total-days-for-current-month="totalDaysForCurrentMonth" :todays-date="todaysDate"
-      :current-month="currentMonth"></MonthCalendar>
+      :current-month="currentMonth" :current-year="currentYear"></MonthCalendar>
     <WeekCalendar v-show="selectedCalendarRange === 'Week'" :todays-date="todaysDate" :current-week-day="currentWeekDay"
-      :current-week-days="currentWeekDays" :current-time-top-pixel-value="currentTimeTopPixelValue" :current-month="currentMonth"></WeekCalendar>
+      :current-week-days="currentWeekDays" :current-time-top-pixel-value="currentTimeTopPixelValue" :current-month="currentMonth"
+      :current-year="currentYear"></WeekCalendar>
     <DayCalendar v-show="selectedCalendarRange === 'Day'" :todays-date="todaysDate" :current-day="currentDay"
-      :current-time-top-pixel-value="currentTimeTopPixelValue"></DayCalendar>
+      :current-time-top-pixel-value="currentTimeTopPixelValue" :current-month="currentMonth" :current-year="currentYear"></DayCalendar>
 
   </main>
 </template>

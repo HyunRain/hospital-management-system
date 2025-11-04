@@ -18,10 +18,11 @@ const props = defineProps({
   }
 })
 
+const emit = defineEmits(['toggle']);
 </script>
 
 <template>
   <section class="mt-5">
-    <DataTable :columns="columns" :data="results" :table-name="tableName"></DataTable>
+    <DataTable :columns="columns" :data="results" :table-name="tableName" @toggle="emit('toggle')"></DataTable>
   </section>
 </template>

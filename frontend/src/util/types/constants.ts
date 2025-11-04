@@ -38,6 +38,7 @@ export const staffTypes = [
 export const billingItemTypes = [{ label: 'Nurse' }];
 
 export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+export const shortDays = ['S','M','T','W','T','F','S'];
 
 export const months = [
   'January',
