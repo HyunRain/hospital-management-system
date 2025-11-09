@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -15,13 +16,18 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
     @Query("SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END " +
             "FROM Appointment a " +
             "WHERE a.departmentId = :departmentId " +
+            "AND a.doctorId = :doctorId " +
             "AND a.appointmentDate = :appointmentDate " +
             "AND a.appointmentTime < :appointmentEndTime " +
             "AND a.appointmentEndTime > :appointmentTime")
     boolean hasConflictingAppointment(@Param("departmentId") String departmentId,
+                                      @Param("doctorId") String doctorId,
                                       @Param("appointmentDate") LocalDate appointmentDate,
                                       @Param("appointmentTime") LocalTime appointmentTime,
                                       @Param("appointmentEndTime") LocalTime appointmentEndTime);
 
     long deleteAppointmentById(UUID id);
+
+    @Query("SELECT a FROM Appointment a WHERE a.appointmentDate BETWEEN :startDate AND :endDate")
+    List<Appointment> findByAppointmentDateBetween(LocalDate startDate, LocalDate endDate);
 }

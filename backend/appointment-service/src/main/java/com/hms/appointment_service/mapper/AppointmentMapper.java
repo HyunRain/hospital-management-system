@@ -18,6 +18,7 @@ public class AppointmentMapper {
                 .appointmentStatus(appointment.getAppointmentStatus())
                 .appointmentDate(appointment.getAppointmentDate())
                 .appointmentTime(appointment.getAppointmentTime())
+                .appointmentEndDate(appointment.getAppointmentEndDate())
                 .appointmentEndTime(appointment.getAppointmentEndTime())
                 .reason(appointment.getReason())
                 .build();

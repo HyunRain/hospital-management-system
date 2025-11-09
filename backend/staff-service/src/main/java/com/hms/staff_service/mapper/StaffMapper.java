@@ -1,5 +1,6 @@
 package com.hms.staff_service.mapper;
 
+import com.hms.staff_service.dto.staff.DoctorDto;
 import com.hms.staff_service.dto.staff.StaffRequestDto;
 import com.hms.staff_service.dto.staff.StaffResponseDto;
 import com.hms.staff_service.model.Staff;
@@ -47,6 +48,14 @@ public class StaffMapper {
                 .state(staffRequestDto.getState())
                 .country(staffRequestDto.getCountry())
                 .postalCode(staffRequestDto.getPostalCode())
+                .build();
+    }
+
+    public DoctorDto entityToDoctorDto(Staff staff) {
+        return DoctorDto.builder()
+                .doctorId(staff.getStaffId())
+                .firstName(staff.getFirstName())
+                .lastName(staff.getLastName())
                 .build();
     }
 }

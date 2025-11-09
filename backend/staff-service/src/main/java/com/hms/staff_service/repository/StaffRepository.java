@@ -21,6 +21,7 @@ public interface StaffRepository extends JpaRepository<Staff, UUID>, JpaSpecific
     boolean existsByStaffId(String staffId);
     Optional<Staff> findByEmail(String email);
     long deleteByEmail(String email);
+    List<Staff> findAllByStaffIdIn(List<String> staffIds);
 
     @Query("SELECT s.uuid FROM Staff s WHERE s.role = :role ORDER BY s.uuid ASC")
     Page<UUID> findPagedRoleIds(@Param("role") Role role, Pageable pageable);

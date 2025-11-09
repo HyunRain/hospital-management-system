@@ -12,10 +12,13 @@ import java.time.LocalTime;
 @Builder
 public class AppointmentResponseDto {
     private String patientId;
+    private String patientName;
     private String doctorId;
+    private String doctorName;
     private String departmentId;
     private LocalDate appointmentDate;
     private LocalTime appointmentTime;
+    private LocalDate appointmentEndDate;
     private LocalTime appointmentEndTime;
     private AppointmentStatus appointmentStatus;
     private AppointmentType appointmentType;

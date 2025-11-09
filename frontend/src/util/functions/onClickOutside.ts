@@ -1,7 +1,10 @@
+import { useToggleStore } from "@/stores/toggleStore";
 import type { DirectiveBinding } from "vue";
 
 export default {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
+    const toggleStore = useToggleStore();
+
     const handler = (event: MouseEvent) => {
       const target = event.target as Node;
 
@@ -27,7 +30,6 @@ export default {
       document.removeEventListener("click", handler);
       delete (el as any).__clickOutsideHandler__;
     }
-
   }
 };
 

@@ -6,7 +6,7 @@ import { onBeforeMount, ref } from 'vue';
 import Calendar from '@/components/ui/calendar/Calendar.vue';
 import Selection from '@/components/ui/misc/Selection.vue';
 import { departments } from '@/util/types/constants';
-import CreateAppointment from '@/components/ui/appointmentview/CreateAppointment.vue';
+import AppointmentForm from '@/components/ui/appointmentview/AppointmentForm.vue';
 import { useDepartmentStore } from '@/stores/departmentStore';
 
 const toggleStore = useToggleStore();
@@ -43,7 +43,7 @@ const selectedDepartment = ref<string>('Pediatrics');
 
     <section class="h-full">
       <Calendar></Calendar>
-      <CreateAppointment :current-department="selectedDepartment" v-if="toggleStore.showAppointmentForm"></CreateAppointment>
+      <AppointmentForm :current-department="selectedDepartment" v-if="toggleStore.showAppointmentForm"></AppointmentForm>
     </section>
 
     <footer>

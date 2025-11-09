@@ -1,5 +1,6 @@
 package com.hms.staff_service.controller;
 
+import com.hms.staff_service.dto.staff.DoctorDto;
 import com.hms.staff_service.dto.staff.PaginatedResponseDto;
 import com.hms.staff_service.dto.staff.StaffRequestDto;
 import com.hms.staff_service.dto.staff.StaffResponseDto;
@@ -58,6 +59,13 @@ public class StaffController {
     public ResponseEntity<PaginatedResponseDto> searchStaff(@RequestParam String input, @RequestParam Boolean doctorSearch, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "15") int size) {
         PaginatedResponseDto searchedStaff = staffService.searchStaff(input, doctorSearch, page, size);
         return new ResponseEntity<>(searchedStaff, HttpStatus.OK);
+    }
+
+    @PostMapping("/doctor/batch")
+    @Operation(summary = "Get Doctor Names by IDs")
+    public ResponseEntity<List<DoctorDto>> getDoctorNames(@RequestBody List<String> ids) {
+        List<DoctorDto> doctorNames = staffService.getDoctorNamesByIds(ids);
+        return new ResponseEntity<>(doctorNames, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{email}")

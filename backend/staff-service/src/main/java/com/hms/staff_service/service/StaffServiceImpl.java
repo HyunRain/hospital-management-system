@@ -3,6 +3,7 @@ package com.hms.staff_service.service;
 
 import auth.CreateUserResponse;
 import auth.UserExistsResponse;
+import com.hms.staff_service.dto.staff.DoctorDto;
 import com.hms.staff_service.dto.staff.PaginatedResponseDto;
 import com.hms.staff_service.dto.staff.StaffRequestDto;
 import com.hms.staff_service.dto.staff.StaffResponseDto;
@@ -143,5 +144,13 @@ public class StaffServiceImpl implements StaffService {
     public void deleteStaffByEmail(String email) {
         long deleteCount = staffRepository.deleteByEmail(email);
         if (deleteCount == 0) throw new ResourceNotFoundException("Staff not found with email: " + email);
+    }
+
+    @Override
+    public List<DoctorDto> getDoctorNamesByIds(List<String> ids) {
+        List<Staff> doctors = staffRepository.findAllByStaffIdIn(ids);
+        return doctors.stream()
+                .map(staffMapper::entityToDoctorDto)
+                .toList();
     }
 }

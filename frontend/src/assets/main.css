@@ -231,6 +231,10 @@ body {
   @apply fixed inset-0 flex items-start justify-center z-50 bg-[#000000d9] p-4;
 }
 
+.cardOverlay {
+  @apply fixed inset-0 z-40 bg-[#00000000] p-4;
+}
+
 .searchFrame {
   @apply flex flex-col mt-50 bg-white dark:bg-[#0a0a0a] border border-gray-300 dark:border-zinc-800 min-h-fit md:min-h-fit z-50 rounded-lg w-full max-w-xl overflow-y-auto;
 }

@@ -4,8 +4,7 @@ export const useToggleStore = defineStore('toggle', {
   state: () => ({
     // Navbar
     showUserDropdown: false as boolean,
-    darkModeState:
-      localStorage.getItem('vueuse-color-scheme') === 'light' ? 'lightMode' : 'darkMode',
+    darkModeState: localStorage.getItem('vueuse-color-scheme') === 'light' ? 'lightMode' : 'darkMode',
     // LoginView
     showPassword: false as boolean,
     // User
@@ -32,6 +31,9 @@ export const useToggleStore = defineStore('toggle', {
     showSearchDoctorDialog: false as boolean,
     showStartTimePicker: false as boolean,
     showEndTimePicker: false as boolean,
+    showAppointmentFormWarning: false as boolean,
+    showFullMonthAppointmentCards: false as boolean,
+    clickedDayIndex: -1 as number,
   }),
 
   actions: {
@@ -89,6 +91,13 @@ export const useToggleStore = defineStore('toggle', {
     },
     toggleEndDatePicker() {
       this.showEndTimePicker = !this.showEndTimePicker;
+    },
+    toggleAppointmentFormWarning() {
+      this.showAppointmentFormWarning = !this.showAppointmentFormWarning;
+    },
+    toggleFullMonthAppointmentCards(index: number) {
+      this.clickedDayIndex = index;
+      this.showFullMonthAppointmentCards = !this.showFullMonthAppointmentCards;
     },
   },
 });

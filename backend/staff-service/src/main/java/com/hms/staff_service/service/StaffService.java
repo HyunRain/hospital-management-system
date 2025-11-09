@@ -1,5 +1,6 @@
 package com.hms.staff_service.service;
 
+import com.hms.staff_service.dto.staff.DoctorDto;
 import com.hms.staff_service.dto.staff.PaginatedResponseDto;
 import com.hms.staff_service.dto.staff.StaffRequestDto;
 import com.hms.staff_service.dto.staff.StaffResponseDto;
@@ -19,5 +20,5 @@ public interface StaffService {
 
     void deleteStaffByEmail(String email);
 
-
+    List<DoctorDto> getDoctorNamesByIds(List<String> ids);
 }

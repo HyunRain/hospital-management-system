@@ -8,13 +8,18 @@ import { useAppointmentStore } from '@/stores/appointmentStore';
 import WeekCalendar from './WeekCalendar.vue';
 import DayCalendar from './DayCalendar.vue';
 import { useCalendar } from '@/composables/useCalendar';
-import { computed, ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
 import { useIsMobile } from '@/composables/useIsMobile';
 
 const toggleStore = useToggleStore();
 const appointmentStore = useAppointmentStore();
 
+onBeforeMount(async () => {
+  fetchAppointmentsForMonthRange();
+});
+
 const {
+  date,
   todaysDate,
   currentYear,
   currentMonth,
@@ -25,7 +30,8 @@ const {
   currentTimeTopPixelValue,
   changeDate,
   applyTodaysDate,
-  totalDaysForCurrentMonth
+  totalDaysForCurrentMonth,
+  fetchAppointmentsForMonthRange,
 } = useCalendar();
 
 const isWeek = computed(() => selectedCalendarRange.value === 'Week');
@@ -35,6 +41,7 @@ const isMobile = useIsMobile();
 
 function handleCreateAppointmentClick() {
   appointmentStore.resetSelectedDate();
+  appointmentStore.resetClickedAppointmentFormData();
   toggleStore.toggleAppointmentForm();
 }
 </script>
@@ -42,7 +49,6 @@ function handleCreateAppointmentClick() {
 <template>
   <main class="flex flex-col h-full">
     <header class="flex items-center justify-between" :class="[selectedCalendarRange !== 'Day' ? 'pb-5' : 'pb-5']">
-
       <section class="flex items-center gap-1.5">
         <button @click="applyTodaysDate" type="button" class="button">Today</button>
         <div @click="changeDate('prev', isWeek, selectedCalendarRange)"
@@ -77,7 +83,7 @@ function handleCreateAppointmentClick() {
     </header>
 
     <MonthCalendar v-show="selectedCalendarRange === 'Month'" :total-days-for-current-month="totalDaysForCurrentMonth" :todays-date="todaysDate"
-      :current-month="currentMonth" :current-year="currentYear"></MonthCalendar>
+      :current-month="currentMonth" :current-year="currentYear" :current-date="date"></MonthCalendar>
     <WeekCalendar v-show="selectedCalendarRange === 'Week'" :todays-date="todaysDate" :current-week-day="currentWeekDay"
       :current-week-days="currentWeekDays" :current-time-top-pixel-value="currentTimeTopPixelValue" :current-month="currentMonth"
       :current-year="currentYear"></WeekCalendar>

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,34 +26,41 @@ public class AppointmentController {
     @Operation(summary = "Create a new appointment")
     public ResponseEntity<AppointmentResponseDto> createAppointment(@Valid @RequestBody AppointmentRequestDto appointmentRequestDto) {
         AppointmentResponseDto appointmentResponseDto = appointmentService.createAppointment(appointmentRequestDto);
-        return new ResponseEntity<>(appointmentResponseDto, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(appointmentResponseDto);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     @Operation(summary = "Get appointment by ID")
     public ResponseEntity<AppointmentResponseDto> getAppointmentById(@PathVariable UUID id) {
         AppointmentResponseDto appointmentResponseDto = appointmentService.getAppointmentById(id);
-        return new ResponseEntity<>(appointmentResponseDto, HttpStatus.OK);
+        return ResponseEntity.ok(appointmentResponseDto);
     }
 
     @GetMapping("/all")
     @Operation(summary = "Get all appointments")
     public ResponseEntity<List<AppointmentResponseDto>> getAllAppointments() {
         List<AppointmentResponseDto> allAppointments = appointmentService.getAllAppointments();
-        return new ResponseEntity<>(allAppointments, HttpStatus.OK);
+        return ResponseEntity.ok(allAppointments);
     }
 
-    @PatchMapping("/update/{id}")
+    @GetMapping("/monthRange/{year}/{month}")
+    @Operation(summary = "Get all appointments in current/previous/upcoming month")
+    public ResponseEntity<List<AppointmentResponseDto>> getAppointmentsByMonthRange(@PathVariable int year, @PathVariable int month) {
+        List<AppointmentResponseDto> appointments = appointmentService.getAppointmentsByMonthRange(year, month);
+        return ResponseEntity.ok(appointments);
+    }
+
+    @PatchMapping("/{id}")
     @Operation(summary = "Update an existing appointment")
     public ResponseEntity<AppointmentResponseDto> updateAppointment(@PathVariable UUID id, @Valid @RequestBody AppointmentRequestDto appointmentRequestDto) {
         AppointmentResponseDto updatedAppointment = appointmentService.updateAppointment(id, appointmentRequestDto);
-        return new ResponseEntity<>(updatedAppointment, HttpStatus.OK);
+        return ResponseEntity.ok(updatedAppointment);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @Operation(summary = "Delete an appointment by ID")
     public ResponseEntity<String> deleteAppointment(@PathVariable UUID id) {
         appointmentService.deleteAppointment(id);
-        return new ResponseEntity<>("Appointment deleted successfully", HttpStatus.NO_CONTENT);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Appointment deleted successfully");
     }
 }

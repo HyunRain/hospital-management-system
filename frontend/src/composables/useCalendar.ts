@@ -35,17 +35,12 @@ export function useCalendar(): CalendarState {
 
   // eg Wed
   const currentWeekDay = computed(() => days[date.value.getDay()]);
-  const currentWeekDayNum = computed(() => date.value.getDay());
 
   // hh--mm
-  const currentTimeTopPixelValue = computed(
-    () => todaysDate.value.getHours() * 84 + todaysDate.value.getMinutes() * 1.4 + 4.5,
-  );
+  const currentTimeTopPixelValue = computed(() => todaysDate.value.getHours() * 84 + todaysDate.value.getMinutes() * 1.4 + 4.5);
 
   const isLeapYear = computed(
-    () =>
-      (currentYear.value % 4 === 0 && currentYear.value % 100 !== 0) ||
-      currentYear.value % 400 === 0,
+    () => (currentYear.value % 4 === 0 && currentYear.value % 100 !== 0) || currentYear.value % 400 === 0,
   );
 
   function daysInMonth(year: number, month: number) {
@@ -66,6 +61,16 @@ export function useCalendar(): CalendarState {
     date.value = new Date();
   }
 
+  function toLocalDateString(dateObj: Date): string {
+    return (
+      dateObj.getFullYear() +
+      '-' +
+      String(dateObj.getMonth() + 1).padStart(2, '0') +
+      '-' +
+      String(dateObj.getDate()).padStart(2, '0')
+    );
+  }
+
   function changeDate(direction: 'prev' | 'next', isWeek: boolean, selectedCalendarRange: string) {
     const newDate = new Date(date.value);
     const incrementValue = isWeek ? (direction === 'prev' ? -7 : 7) : direction === 'prev' ? -1 : 1;
@@ -74,10 +79,7 @@ export function useCalendar(): CalendarState {
       case 'Month':
         // Covers edge case when current day is 31 and prev or next month has <31 days.
         // eg date is oct 31. click back a month -> sep 31 (sep has 30 days, so it auto corrects forwards to oct 1)
-        if (
-          date.value.getDate() >
-          daysInMonth(newDate.getFullYear(), newDate.getMonth() + incrementValue)
-        ) {
+        if (date.value.getDate() > daysInMonth(newDate.getFullYear(), newDate.getMonth() + incrementValue)) {
           newDate.setDate(daysInMonth(newDate.getFullYear(), newDate.getMonth() + incrementValue));
         }
         newDate.setMonth(newDate.getMonth() + incrementValue);
@@ -91,6 +93,7 @@ export function useCalendar(): CalendarState {
     }
 
     date.value = newDate;
+    fetchAppointmentsForMonthRange();
   }
 
   // Returns the number of the first week day in the month
@@ -176,7 +179,7 @@ export function useCalendar(): CalendarState {
       const targetMonth = date.value.getMonth() + 1;
       const daysInTargetMonth = daysInMonth(date.value.getFullYear(), targetMonth);
 
-      if(tempDate.getDate() > daysInMonth(date.value.getFullYear(), targetMonth)) {
+      if (tempDate.getDate() > daysInMonth(date.value.getFullYear(), targetMonth)) {
         tempDate.setDate(daysInTargetMonth);
       }
 
@@ -186,19 +189,6 @@ export function useCalendar(): CalendarState {
     }
     return months[currentMonth.value];
   });
-
-  // const currentWeekDays = computed(() => {
-  //   const daysInCurrentMonth = daysInMonth(currentYear.value, currentMonth.value);
-  //   const weekDaysArray: number[] = [];
-
-  //   for (let i: number = 0; i < 7; i++) {
-  //     const day = currentDay.value + i - currentWeekDayNum.value;
-  //     console.log(currentDay.value)
-  //     weekDaysArray.push(day < daysInCurrentMonth && day > 0 ? day : day - daysInCurrentMonth);
-  //   }
-
-  //   return weekDaysArray;
-  // });
 
   const currentWeekDays = computed(() => {
     const weekDayNumber = date.value.getDay();
@@ -233,8 +223,30 @@ export function useCalendar(): CalendarState {
     containsNextMonthDays.value = lastDay < currentDay.value;
   });
 
+  function isEndBeforeStart(startDate: string, startTime: string, endDate: string, endTime: string) {
+    return new Date(`${endDate}T${endTime}`) < new Date(`${startDate}T${startTime}`);
+  }
+
+  async function fetchAppointmentsForMonthRange() {
+    const appointmentStore = useAppointmentStore();
+
+    const prevDate = new Date(date.value);
+    prevDate.setMonth(date.value.getMonth() - 1);
+    const nextDate = new Date(date.value);
+    nextDate.setMonth(date.value.getMonth() + 1);
+
+    // +1 because months are 0 indexed in JS Date but 1 indexed in javas local date, lol
+    // TODO: Ideally only make 1 api call for all 3 months, while still caching the results month by month in the store.
+    await Promise.all([
+      appointmentStore.getAppointmentsByMonthRange(prevDate.getFullYear(), prevDate.getMonth() + 1),
+      appointmentStore.getAppointmentsByMonthRange(date.value.getFullYear(), date.value.getMonth() + 1),
+      appointmentStore.getAppointmentsByMonthRange(nextDate.getFullYear(), nextDate.getMonth() + 1),
+    ]);
+  }
+
   return {
     date,
+    toLocalDateString,
     todaysDate,
     currentYear,
     currentMonth,
@@ -248,11 +260,14 @@ export function useCalendar(): CalendarState {
     isLeapYear,
     daysInCurrentMonth,
     applyTodaysDate,
+    daysInMonth,
     changeDate,
     firstWeekDayOfMonth,
     lastWeekDayOfMonth,
     daysOfPreviousMonth,
     daysOfNextMonth,
     totalDaysForCurrentMonth,
+    fetchAppointmentsForMonthRange,
+    isEndBeforeStart,
   };
 }

@@ -146,6 +146,7 @@ import type { Ref, ComputedRef } from 'vue';
 
 export interface CalendarState {
   date: Ref<Date, Date>;
+  toLocalDateString: (dateObj: Date) => string;
   todaysDate: Ref<Date, Date>;
   currentYear: Ref<number>;
   currentMonth: Ref<number>;
@@ -156,6 +157,7 @@ export interface CalendarState {
   containsNextMonthDays: Ref<boolean>;
   weekMonthOverLapString: ComputedRef<string>;
   currentTimeTopPixelValue: Ref<number>;
+  daysInMonth: (year: number, month: number) => number;
   isLeapYear: ComputedRef<boolean>;
   daysInCurrentMonth: ComputedRef<number>;
   changeDate: (direction: 'prev' | 'next', isWeek: boolean, selectedCalendarRange: string) => void;
@@ -165,6 +167,8 @@ export interface CalendarState {
   daysOfPreviousMonth: ComputedRef<number[]>;
   daysOfNextMonth: ComputedRef<number[]>;
   totalDaysForCurrentMonth: ComputedRef<{ value: number; type: string }[]>;
+  fetchAppointmentsForMonthRange: () => Promise<void>;
+  isEndBeforeStart: (startDate: string, startTime: string, endDate: string, endTime: string) => boolean;
 }
 
 export enum AppointmentStatus {
@@ -182,7 +186,9 @@ export enum AppointmentType {
 
 export interface AppointmentFormData {
   patientId: string;
+  patientName: string;
   doctorId: string;
+  doctorName: string;
   departmentId: string | undefined;
   appointmentDate: string;
   appointmentEndDate: string;
