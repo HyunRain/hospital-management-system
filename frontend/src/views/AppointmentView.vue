@@ -2,15 +2,17 @@
 import { useToggleStore } from '@/stores/toggleStore';
 import { useErrorAlert } from '@/composables/useErrorAlert';
 import ErrorAlert from '@/components/ui/misc/ErrorAlert.vue';
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount, ref, watch } from 'vue';
 import Calendar from '@/components/ui/calendar/Calendar.vue';
 import Selection from '@/components/ui/misc/Selection.vue';
 import { departments } from '@/util/types/constants';
 import AppointmentForm from '@/components/ui/appointmentview/AppointmentForm.vue';
 import { useDepartmentStore } from '@/stores/departmentStore';
+import { useAppointmentStore } from '@/stores/appointmentStore';
 
 const toggleStore = useToggleStore();
 const departmentStore = useDepartmentStore();
+const appointmentStore = useAppointmentStore();
 
 const { showError, errorMessage, errorAlertKey, triggerBackendError } = useErrorAlert();
 
@@ -19,6 +21,10 @@ onBeforeMount(async () => {
 });
 
 const selectedDepartment = ref<string>('Pediatrics');
+
+watch(selectedDepartment, (val) => {
+  appointmentStore.selectedDepartment = val;
+});
 </script>
 
 <template>

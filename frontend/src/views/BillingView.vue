@@ -117,7 +117,7 @@ const {
       <section class="pb-5">
         <h3 class="text-[18px] mb-5">Recent Billings</h3>
         <section class="h-full overflow-auto items-start flex">
-          <DataTable :data="billingStore.billingItems" :columns="billingColumns" :billing-table="true">
+          <DataTable :data="billingStore.billingItems" :columns="billingColumns" :billing-table="true" table-name="billing">
             <template #invoice>
               <div @click="handleFetchPdf()" class="flex gap-3 items-center justify-center w-fit">
                 <img class="h-7 w-7" src="/assets/icons/darkMode/pdf.svg" alt="PDF Icon">

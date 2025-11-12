@@ -35,6 +35,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public AppointmentResponseDto createAppointment(AppointmentRequestDto appointmentRequestDto) {
         boolean isConflicting = appointmentRepository.hasConflictingAppointment(
+                appointmentRequestDto.getId(),
                 appointmentRequestDto.getDepartmentId(),
                 appointmentRequestDto.getDoctorId(),
                 appointmentRequestDto.getAppointmentDate(),
@@ -54,7 +55,7 @@ public class AppointmentServiceImpl implements AppointmentService {
                 .next()
                 .block();
 
-        DoctorDto doctorName = staffClient.getDoctorNames((List.of(appointmentToSave.getDoctorId())))
+        DoctorDto doctorName = staffClient.getDoctorNames((List.of(savedAppointment.getDoctorId())))
                 .flatMapMany(Flux::fromIterable)
                 .next()
                 .block();
@@ -116,16 +117,22 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    public Long countAppointments() {
+        return appointmentRepository.countFutureAppointments();
+    }
+
+    @Override
     public AppointmentResponseDto updateAppointment(UUID id, AppointmentRequestDto appointmentRequestDto) {
         Appointment existingAppointment = appointmentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Appointment not found with ID: " + id));
 
         boolean isConflicting = appointmentRepository.hasConflictingAppointment(
+                appointmentRequestDto.getId(),
                 appointmentRequestDto.getDepartmentId(),
                 appointmentRequestDto.getDoctorId(),
                 appointmentRequestDto.getAppointmentDate(),
                 appointmentRequestDto.getAppointmentTime(),
-                appointmentRequestDto.getAppointmentTime().plusMinutes(30)
+                appointmentRequestDto.getAppointmentEndTime()
         );
 
         if (isConflicting)
@@ -133,7 +140,26 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         Appointment updatedAppointment = appointmentMapper.updateEntityFromDto(existingAppointment, appointmentRequestDto);
         Appointment savedAppointment = appointmentRepository.save(updatedAppointment);
-        return appointmentMapper.entityToDto(savedAppointment);
+
+        PatientDto patientName = patientClient.getPatientNames(List.of(savedAppointment.getPatientId()))
+                .flatMapMany(Flux::fromIterable)
+                .next()
+                .block();
+
+        DoctorDto doctorName = staffClient.getDoctorNames((List.of(savedAppointment.getDoctorId())))
+                .flatMapMany(Flux::fromIterable)
+                .next()
+                .block();
+
+        AppointmentResponseDto appointmentResponseDto = appointmentMapper.entityToDto(savedAppointment);
+
+        if(patientName == null || doctorName == null) {
+            return appointmentResponseDto;
+        }
+
+        appointmentResponseDto.setPatientName(patientName.getFirstName() + " " + patientName.getLastName());
+        appointmentResponseDto.setDoctorName(doctorName.getFirstName() + " " + doctorName.getLastName());
+        return appointmentResponseDto;
     }
 
     @Override

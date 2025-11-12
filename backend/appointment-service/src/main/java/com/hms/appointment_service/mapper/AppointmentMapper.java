@@ -11,6 +11,7 @@ import java.util.Objects;
 public class AppointmentMapper {
     public AppointmentResponseDto entityToDto(Appointment appointment) {
         return AppointmentResponseDto.builder()
+                .id(appointment.getId())
                 .patientId(appointment.getPatientId())
                 .doctorId(appointment.getDoctorId())
                 .departmentId(appointment.getDepartmentId())
@@ -64,8 +65,16 @@ public class AppointmentMapper {
             existingAppointment.setAppointmentDate(appointmentRequestDto.getAppointmentDate());
         }
 
+        if (!Objects.equals(existingAppointment.getAppointmentEndDate(), appointmentRequestDto.getAppointmentEndDate())) {
+            existingAppointment.setAppointmentEndDate(appointmentRequestDto.getAppointmentEndDate());
+        }
+
         if (!Objects.equals(existingAppointment.getAppointmentTime(), appointmentRequestDto.getAppointmentTime())) {
             existingAppointment.setAppointmentTime(appointmentRequestDto.getAppointmentTime());
+        }
+
+        if (!Objects.equals(existingAppointment.getAppointmentEndTime(), appointmentRequestDto.getAppointmentEndTime())) {
+            existingAppointment.setAppointmentEndTime(appointmentRequestDto.getAppointmentEndTime());
         }
 
         if (!Objects.equals(existingAppointment.getReason(), appointmentRequestDto.getReason())) {

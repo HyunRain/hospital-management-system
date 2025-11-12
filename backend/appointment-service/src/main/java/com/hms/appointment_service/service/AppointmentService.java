@@ -16,6 +16,8 @@ public interface AppointmentService {
 
     List<AppointmentResponseDto> getAppointmentsByMonthRange(int year, int month);
 
+    Long countAppointments();
+
     AppointmentResponseDto updateAppointment(UUID id, AppointmentRequestDto appointmentRequestDto);
 
     void deleteAppointment(UUID id);

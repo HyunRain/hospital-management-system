@@ -10,10 +10,12 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.UUID;
 
 @Data
 @Builder
 public class AppointmentRequestDto {
+    private UUID id;
     @NotBlank
     private String patientId;
     @NotBlank

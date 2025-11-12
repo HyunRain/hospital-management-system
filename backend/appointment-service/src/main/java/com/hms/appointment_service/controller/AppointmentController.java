@@ -50,6 +50,13 @@ public class AppointmentController {
         return ResponseEntity.ok(appointments);
     }
 
+    @GetMapping("/count")
+    @Operation(summary = "Get the count of all upcoming events")
+    public ResponseEntity<Long> getAppointmentCount() {
+        Long appointmentCount = appointmentService.countAppointments();
+        return ResponseEntity.ok(appointmentCount);
+    }
+
     @PatchMapping("/{id}")
     @Operation(summary = "Update an existing appointment")
     public ResponseEntity<AppointmentResponseDto> updateAppointment(@PathVariable UUID id, @Valid @RequestBody AppointmentRequestDto appointmentRequestDto) {

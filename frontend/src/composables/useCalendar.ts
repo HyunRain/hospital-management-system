@@ -1,6 +1,6 @@
 import { ref, computed, onMounted, onUnmounted, watchEffect } from 'vue';
-import { days, months, shortMonths } from '@/util/types/constants';
-import type { CalendarState } from '@/util/types/types';
+import { days, months, shortMonths, slotTime } from '@/util/types/constants';
+import { departmentMap, type CalendarState } from '@/util/types/types';
 import { useAppointmentStore } from '@/stores/appointmentStore';
 
 export function useCalendar(): CalendarState {
@@ -36,9 +36,8 @@ export function useCalendar(): CalendarState {
   // eg Wed
   const currentWeekDay = computed(() => days[date.value.getDay()]);
 
-  // hh--mm
-  const currentTimeTopPixelValue = computed(() => todaysDate.value.getHours() * 84 + todaysDate.value.getMinutes() * 1.4 + 4.5);
-
+  // 1 hour = 100px, 1 min = 1.666667 px. -6 is magic
+  const currentTimeTopPixelValue = computed(() => todaysDate.value.getHours() * 100 + todaysDate.value.getMinutes() * 1.666667 - 6);
   const isLeapYear = computed(
     () => (currentYear.value % 4 === 0 && currentYear.value % 100 !== 0) || currentYear.value % 400 === 0,
   );
@@ -192,31 +191,31 @@ export function useCalendar(): CalendarState {
 
   const currentWeekDays = computed(() => {
     const weekDayNumber = date.value.getDay();
-    const weekDaysArray: number[] = [];
+    const weekDaysArray: { value: number, type: string}[] = [];
     let newMonthDayIndex = 0;
 
     for (let i: number = 0; i <= weekDayNumber; i++) {
       if (currentDay.value - weekDayNumber + i <= 0) {
-        weekDaysArray.push(daysOfPreviousMonth.value[i]);
+        weekDaysArray.push({ value: daysOfPreviousMonth.value[i], type: 'prev'});
       } else {
-        weekDaysArray.push(currentDay.value - weekDayNumber + i);
+        weekDaysArray.push({ value: currentDay.value - weekDayNumber + i, type: 'curr' });
       }
     }
 
     for (let i: number = 1; i <= 7 - (weekDayNumber + 1); i++) {
       if (currentDay.value + i > daysInMonth(currentYear.value, currentMonth.value)) {
-        weekDaysArray.push(daysOfNextMonth.value[newMonthDayIndex]);
+        weekDaysArray.push({ value: daysOfNextMonth.value[newMonthDayIndex], type: 'next'});
         newMonthDayIndex++;
       } else {
-        weekDaysArray.push(currentDay.value + i);
+        weekDaysArray.push({ value: currentDay.value + i, type: 'curr' });
       }
     }
     return weekDaysArray;
   });
 
   watchEffect(() => {
-    const firstDay = currentWeekDays.value[0];
-    const lastDay = currentWeekDays.value[currentWeekDays.value.length - 1];
+    const firstDay = currentWeekDays.value[0].value;
+    const lastDay = currentWeekDays.value[currentWeekDays.value.length - 1].value;
 
     // Compare with first/last day of current month
     containsPrevMonthDays.value = firstDay > currentDay.value;
@@ -244,6 +243,38 @@ export function useCalendar(): CalendarState {
     ]);
   }
 
+
+function getAppointmentsForDay(day: { value: number, type: string; }, month: number, year: number) {
+  const appointmentStore = useAppointmentStore();
+
+  const temp = new Date(year, month, day.value);
+
+  if (day.type === 'next') temp.setMonth(month + 1);
+  if (day.type === 'prev') temp.setMonth(month - 1);
+
+  // format date as yyyy-mm-dd to return the appointments of the clicked day
+  const key = toLocalDateString(temp);
+
+  const appointments = appointmentStore.cachedDays[key] || [];
+
+  // only return the appointments of currently selected department
+  const filteredAppointments = appointments.filter(appointment => appointment.departmentId === departmentMap[appointmentStore.selectedDepartment]);
+
+  // sort them by appointment time
+  return {
+    appointments: filteredAppointments.slice().sort((a, b) => a.appointmentTime.localeCompare(b.appointmentTime)),
+    length: filteredAppointments.length
+  };
+}
+
+function isPast(day: number, hour: number, slot: number) {
+  const date = new Date(currentYear.value, currentMonth.value, day);
+  date.setHours(hour - 1);
+  date.setMinutes(slotTime[slot]);
+
+  return date < new Date();
+}
+
   return {
     date,
     toLocalDateString,
@@ -269,5 +300,7 @@ export function useCalendar(): CalendarState {
     totalDaysForCurrentMonth,
     fetchAppointmentsForMonthRange,
     isEndBeforeStart,
+    getAppointmentsForDay,
+    isPast
   };
 }

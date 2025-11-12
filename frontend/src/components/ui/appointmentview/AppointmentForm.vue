@@ -40,7 +40,7 @@ onUnmounted(() => {
   doctorStore.doctors = [];
 });
 
-
+const isAppointmentInThePast = computed(() => appointmentStore.isSelectedDateInThePast);
 const { isEndBeforeStart } = useCalendar();
 const warningTimeout = ref<ReturnType<typeof setTimeout> | null>(null);
 
@@ -56,11 +56,18 @@ async function createAppointment() {
     }, 5000);
     return;
   }
-  await appointmentStore.createAppointment(appointmentForm);
+
+  if(submitButtonText.value === 'Create') {
+    await appointmentStore.createAppointment(appointmentForm);
+  } else {
+    await appointmentStore.updateAppointment(appointmentForm);
+  }
+
   toggleStore.toggleAppointmentForm();
 }
 
 const appointmentForm = reactive<AppointmentFormData>({
+  id: "",
   patientId: "",
   patientName: "",
   doctorId: "",
@@ -163,7 +170,11 @@ watch(() => appointmentStore.clickedAppointmentData, (newVal) => {
   }
 }, { immediate: true });
 
-const submitButtonText = computed(() => Object.keys(appointmentStore.clickedAppointmentData).length > 0 ? 'Update' : 'Create');
+const submitButtonText = computed(() => {
+  if(isAppointmentInThePast.value) return 'View';
+  return Object.keys(appointmentStore.clickedAppointmentData).length > 0 ? 'Update' : 'Create';
+});
+
 </script>
 
 <template>
@@ -171,9 +182,7 @@ const submitButtonText = computed(() => Object.keys(appointmentStore.clickedAppo
     <form @submit.stop.prevent="createAppointment()" v-click-outside="() => toggleStore.toggleAppointmentForm()" class="formFrame">
       <FormHeader :header-text="'+ ' + submitButtonText + ' Appointment'" @close="toggleStore.toggleAppointmentForm()"></FormHeader>
       <FormSteps :steps-amount="1" :step-names="['Appointment']" :is-step-filled-array="isStepFilled"></FormSteps>
-
       <div class="flex flex-col gap-4 pt-6 py-3">
-
         <FormSearchInput v-model="currentPatientName" label-name="Patient" @toggle="toggleStore.toggleSearchPatientDialog"></FormSearchInput>
         <SearchDialog v-if="toggleStore.showSearchPatientDialog" @toggle="toggleStore.toggleSearchPatientDialog" @search="handlePatientSearch"
           placeholder="Search Patient">
@@ -234,7 +243,7 @@ const submitButtonText = computed(() => Object.keys(appointmentStore.clickedAppo
 
       <div class="flex justify-between items-center pt-3">
         <button @click="toggleStore.toggleAppointmentForm()" class="form-button" type="button">Cancel</button>
-        <button class="form-button" type="submit" :disabled="!isStepFilled[0].value"> {{ submitButtonText }} </button>
+        <button v-if="submitButtonText !== 'View'" class="form-button" type="submit" :disabled="!isStepFilled[0].value"> {{ submitButtonText }} </button>
       </div>
     </form>
   </div>

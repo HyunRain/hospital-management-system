@@ -7,10 +7,12 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.UUID;
 
 @Data
 @Builder
 public class AppointmentResponseDto {
+    private UUID id;
     private String patientId;
     private String patientName;
     private String doctorId;

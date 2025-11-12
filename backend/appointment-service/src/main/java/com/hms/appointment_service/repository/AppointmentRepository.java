@@ -19,8 +19,10 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
             "AND a.doctorId = :doctorId " +
             "AND a.appointmentDate = :appointmentDate " +
             "AND a.appointmentTime < :appointmentEndTime " +
-            "AND a.appointmentEndTime > :appointmentTime")
-    boolean hasConflictingAppointment(@Param("departmentId") String departmentId,
+            "AND a.appointmentEndTime > :appointmentTime " +
+            "AND a.id <> :id")
+    boolean hasConflictingAppointment(@Param("id") UUID id,
+                                      @Param("departmentId") String departmentId,
                                       @Param("doctorId") String doctorId,
                                       @Param("appointmentDate") LocalDate appointmentDate,
                                       @Param("appointmentTime") LocalTime appointmentTime,
@@ -30,4 +32,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
 
     @Query("SELECT a FROM Appointment a WHERE a.appointmentDate BETWEEN :startDate AND :endDate")
     List<Appointment> findByAppointmentDateBetween(LocalDate startDate, LocalDate endDate);
+
+    @Query("SELECT COUNT(a) FROM Appointment a WHERE a.appointmentDate >= CURRENT_TIMESTAMP")
+    long countFutureAppointments();
 }

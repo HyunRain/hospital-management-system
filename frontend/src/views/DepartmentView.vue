@@ -51,7 +51,7 @@ const departmentColumns = [
       </section>
     </header>
     <section v-if="isAdmin" class="h-full overflow-auto items-center flex">
-      <DataTable :data="departmentStore.departments" :columns="departmentColumns">
+      <DataTable :data="departmentStore.departments" :columns="departmentColumns" table-name="department">
         <template #status="{ statusValue }">
           <div class="flex items-center gap-2 justify-center">
             <span class="inline-block size-3 rounded-full" :class="statusValue === 'Open' ? 'bg-green-500' : 'bg-red-500'"></span>

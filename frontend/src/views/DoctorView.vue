@@ -73,7 +73,7 @@ const {
       </header>
 
       <section class="h-full overflow-auto items-start flex">
-        <DataTable :data="doctorStore.doctors" :columns="doctorColumns"/>
+        <DataTable :data="doctorStore.doctors" :columns="doctorColumns" table-name="doctor"/>
       </section>
 
       <PaginationWrapper @page-change="handlePageChange" :range="range" :total="doctorStore.totalDoctors" :current-page="currentPage"

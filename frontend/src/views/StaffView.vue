@@ -76,7 +76,7 @@ const {
       </header>
 
       <section class="h-full overflow-auto items-start flex">
-        <DataTable :data="staffStore.staff" :columns="staffColumns"></DataTable>
+        <DataTable :data="staffStore.staff" :columns="staffColumns" table-name="staff"></DataTable>
       </section>
 
       <PaginationWrapper @page-change="handlePageChange" :range="range" :total="staffStore.totalStaff" :current-page="currentPage"

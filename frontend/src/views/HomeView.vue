@@ -13,6 +13,7 @@ import { useLineChart } from '@/composables/useLineChart';
 import { useBarChart } from '@/composables/useBarChart';
 import { useChartStore } from '@/stores/chartStore';
 import { usePieChart } from '@/composables/usePieChart';
+import { useAppointmentStore } from '@/stores/appointmentStore';
 
 const authStore = useAuthStore();
 const patientStore = usePatientStore();
@@ -20,11 +21,17 @@ const doctorStore = useDoctorStore();
 const departmentStore = useDepartmentStore();
 const staffStore = useStaffStore();
 const chartStore = useChartStore();
+const appointmentStore = useAppointmentStore();
 
 onBeforeMount(async () => {
   if (patientStore.patients.length === 0) {
     await patientStore.getPageOfPatients(0, patientStore.size);
   }
+
+  if(appointmentStore.futureAppointmentCount === 0) {
+    await appointmentStore.countFutureAppointments();
+  }
+
   if (authStore.role === 'ADMIN') {
     if (doctorStore.doctors.length === 0) {
       await doctorStore.getPageOfDoctors(0, doctorStore.size);
@@ -73,7 +80,7 @@ const { chartDataPie: chartDataPieDepartments, chartOptionsPie: chartOptionsPieD
 
     <section class="flex flex-wrap gap-5 w-full justify-center lg:px-5 py-5">
       <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Patients" :amount="patientStore.totalPatients" :trend="3.15" />
-      <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Appointments" :amount="15" :trend="-1.25" />
+      <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Appointments" :amount="appointmentStore.futureAppointmentCount" :trend="-1.25" />
       <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Staff" :amount="staffStore.totalStaff" :trend="2.24" />
       <DashboardCard class="flex-1 min-w-[200px] max-w-sm" title="Doctors" :amount="doctorStore.totalDoctors" :trend="2.5" />
     </section>

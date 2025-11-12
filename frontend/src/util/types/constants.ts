@@ -93,9 +93,10 @@ export const departments = [
 export const calendarRanges = ['Month', 'Week', 'Day'];
 
 export const slotTime: Record<number, number> = {
-  1: 15,
-  2: 30,
-  3: 45,
+  1: 0,
+  2: 15,
+  3: 30,
+  4: 45,
 };
 
 export const hours = 24;
@@ -106,3 +107,11 @@ export const timeSlots: string[] = Array.from({ length: 24 * 4 }, (_, i) => {
   const minutes = ((i % 4) * 15).toString().padStart(2, '0');
   return `${hours}:${minutes}`;
 });
+
+
+export const appointmentTypeColors: Record<string, string[]> = {
+  ROUTINE_CHECKUP: ['#113649', '#11364999'],
+  CONSULTATION: ['#0e3c2d', '#0e3c2d99'],
+  EMERGENCY: ['#482128', '#48212899'],
+  FOLLOW_UP: ['#473506', '#47350699'],
+};
