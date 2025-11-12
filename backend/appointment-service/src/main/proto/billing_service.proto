@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "billing";
+
+service BillingService {
+  rpc CreateBillingAccount(CreateBillingRequest) returns (GetBillingResponse);
+  rpc GetBillingAccount(GetBillingAccountRequest) returns (GetBillingResponse);
+  rpc UpdateBillingAccount(UpdateBillingRequest) returns (GetBillingResponse);
+  rpc CreateBillingItem(CreateBillingItemRequest) returns (GetBillingItemResponse);
+  rpc UpdateBillingItem(UpdateBillingItemRequest) returns (GetBillingItemResponse);
+}
+
+message CreateBillingRequest {
+  string patientId = 1;
+  string email = 2;
+}
+
+message GetBillingAccountRequest {
+  string patientId = 1;
+}
+
+message GetBillingResponse {
+  string accountId = 1;
+  string patientId = 2;
+  string email = 3;
+  string totalAmount = 4;
+  string paidAmount = 5;
+  string dueAmount = 6;
+  string status = 7;
+  repeated GetBillingItemResponse billingItems = 8;
+}
+
+message UpdateBillingRequest {
+  string accountId = 1;
+  string patientId = 2;
+  string email = 3;
+  string totalAmount = 4;
+  string paidAmount = 5;
+  string dueAmount = 6;
+  string status = 7;
+}
+
+message CreateBillingItemRequest {
+  string patientId = 1;
+  string billingItemType = 2;
+  string sourceId = 3;
+}
+
+message GetBillingItemResponse {
+  string accountId = 1;
+  string patientId = 2;
+  string billingItemId = 3;
+  string billingItemType = 4;
+  string unitPrice = 5;
+  int32 quantity = 6;
+  string totalPrice = 7;
+  string status = 8;
+  string sourceId = 9;
+}
+
+message UpdateBillingItemRequest {
+  string accountId = 1;
+  string patientId = 2;
+  string billingItemId = 3;
+  string billingItemType = 4;
+  string sourceId = 5;
+  int32 quantity = 6;
+  string totalPrice = 7;
+  string startDate = 8;
+  string status = 9;
+}
+

@@ -1,0 +1,62 @@
+meta {
+  name: savePatient
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8079/api/patient
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDgyNjE3MzAsImV4cCI6MTc0ODI5NzczMH0.fW-uX25bfPIGO_ogFNZyo1GZ_vYtdt4zk9s6YMvs3POITYiAn39rxsea9xKQftWMSBwV2ePKe1fYu3MiVLHpXw
+}
+
+body:json {
+  {
+    "firstName": "Sandra",
+    "lastName": "Walter",
+    "gender": "MALE",
+    "dateOfBirth": "1990-05-15",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "06603244699",
+    "email": "sandra.walter@gmail.com",
+    "emergencyContactName": "Max Mustermann",
+    "emergencyContactNumber": "06641234567",
+    "relationshipToEmergencyContact": "Bruder",
+    "addressLine1": "Zieglergasse 22",
+    "city": "Wien",
+    "state": "Wien",
+    "country": "Österreich",
+    "postalCode": "1030",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Dr. Wallner",
+    "knownAllergies": [
+      "Erdnüsse",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      
+    ],
+    "chronicDiseases": [
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "331024121998",
+    "insuranceExpiryDate": "2028-12-31"
+  }
+}

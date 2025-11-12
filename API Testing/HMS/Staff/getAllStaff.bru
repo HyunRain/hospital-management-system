@@ -1,0 +1,15 @@
+meta {
+  name: getAllStaff
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8079/api/staff/all
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDkwNTI4MzUsImV4cCI6MTc0OTA4ODgzNX0.Mu_-w8c94w6ls8ewRiIMliQeK_kASgtaUHtd6y9KHXlf5FggKCLX6hKIDGN71EFfcyqTeyQuaTlliTyzyi4h1w
+}

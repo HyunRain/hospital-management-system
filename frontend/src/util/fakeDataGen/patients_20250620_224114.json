@@ -1,0 +1,4481 @@
+[
+  {
+    "firstName": "Vito",
+    "lastName": "Brandstätter",
+    "gender": "MALE",
+    "dateOfBirth": "1993-03-03",
+    "bloodGroup": "AB_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "04791/99276170",
+    "email": "stockmarcus@example.com",
+    "emergencyContactName": "Lennard Kuhn",
+    "emergencyContactNumber": "+43 51290906578",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Peerweg 5",
+    "addressLine2": "",
+    "city": "Bad Leonfelden",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "7688",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Manuel Becker",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Hypertension"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Ibuprofen",
+      "Metformin"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "748217882328",
+    "insuranceExpiryDate": "2027-07-16"
+  },
+  {
+    "firstName": "Melissa",
+    "lastName": "Gruber",
+    "gender": "OTHER",
+    "dateOfBirth": "1964-08-12",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "06441/31339480",
+    "email": "tischlernika@example.org",
+    "emergencyContactName": "Lean Scharf",
+    "emergencyContactNumber": "06152 97886 100",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Lean-Bichler-Platz 8/2",
+    "addressLine2": "Rachel-Felber-Gasse",
+    "city": "Bad Aussee",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "3514",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Marijana Hochreiter-Gratz",
+    "knownAllergies": [
+      "Pollen"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Ibuprofen",
+      "Metformin"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "772804260199",
+    "insuranceExpiryDate": "2026-04-17"
+  },
+  {
+    "firstName": "Manuel",
+    "lastName": "Brandstätter",
+    "gender": "MALE",
+    "dateOfBirth": "1946-11-07",
+    "bloodGroup": "AB_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "02856 05981 853",
+    "email": "gruenbergerdennis@example.org",
+    "emergencyContactName": "Jacob Mayr",
+    "emergencyContactNumber": "(03315) 42299 002",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Paiergasse 652",
+    "addressLine2": "",
+    "city": "Peuerbach",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "8605",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Hannah Nemeth",
+    "knownAllergies": [],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Asthma",
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Tetanus"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "178803633881",
+    "insuranceExpiryDate": "2028-08-08"
+  },
+  {
+    "firstName": "Marie-Louise",
+    "lastName": "Gruber",
+    "gender": "FEMALE",
+    "dateOfBirth": "1972-02-24",
+    "bloodGroup": "AB_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "03309 94689 541",
+    "email": "cfercher@example.com",
+    "emergencyContactName": "Raffael Varga",
+    "emergencyContactNumber": "05467/69731148",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Lena-Beck-Ring 6",
+    "addressLine2": "Gloria-Eberharter-Ring",
+    "city": "Hainburg an der Donau",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "2596",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Dipl.-Ing. Lena Linder",
+    "knownAllergies": [
+      "Nuts",
+      "Pollen",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Tetanus",
+      "Influenza",
+      "COVID-19"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "680884393427",
+    "insuranceExpiryDate": "2030-03-04"
+  },
+  {
+    "firstName": "Florian",
+    "lastName": "Frick",
+    "gender": "MALE",
+    "dateOfBirth": "1987-07-20",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 (0) 6200 13955938",
+    "email": "cfellinger@example.com",
+    "emergencyContactName": "Ben Heinzl-Weiss",
+    "emergencyContactNumber": "07632 30303 592",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Jovana-Jauk-Gasse 594",
+    "addressLine2": "Zenzstraße",
+    "city": "Enns",
+    "state": "Steiermark",
+    "country": "Austria",
+    "postalCode": "9426",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Sandro Hämmerle",
+    "knownAllergies": [
+      "Latex"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis"
+    ],
+    "chronicDiseases": [
+      "Asthma",
+      "Diabetes",
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Metformin",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "511825507599",
+    "insuranceExpiryDate": "2026-08-30"
+  },
+  {
+    "firstName": "Emilie",
+    "lastName": "Loibl",
+    "gender": "OTHER",
+    "dateOfBirth": "1964-04-02",
+    "bloodGroup": "B_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "07673 83168 852",
+    "email": "ustolz@example.com",
+    "emergencyContactName": "Gregor Siller",
+    "emergencyContactNumber": "0662/15923753",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Felicitas-Eberharter-Ring 688",
+    "addressLine2": "",
+    "city": "Schwanenstadt",
+    "state": "Steiermark",
+    "country": "Austria",
+    "postalCode": "3758",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Liliana Kriegl",
+    "knownAllergies": [
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Diabetes",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Hypertension",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Metformin",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "253665859435",
+    "insuranceExpiryDate": "2028-12-25"
+  },
+  {
+    "firstName": "Moritz",
+    "lastName": "Schinagl",
+    "gender": "MALE",
+    "dateOfBirth": "2001-10-12",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "03405 32911 286",
+    "email": "zfritsch@example.org",
+    "emergencyContactName": "Marta Rotter-Nöbauer",
+    "emergencyContactNumber": "+43 7298 05417 751",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Cristiano-Gschaider-Straße 0",
+    "addressLine2": "Emilie-Köberl-Gasse",
+    "city": "Oberndorf bei Salzburg",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "1815",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Emmanuel Steinbauer",
+    "knownAllergies": [
+      "Latex",
+      "Nuts"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Hypertension",
+      "Diabetes",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Metformin",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "867645970140",
+    "insuranceExpiryDate": "2026-09-07"
+  },
+  {
+    "firstName": "Benedikt",
+    "lastName": "Sperl",
+    "gender": "MALE",
+    "dateOfBirth": "2017-04-28",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "(05625) 70129 120",
+    "email": "steinermert@example.org",
+    "emergencyContactName": "Univ.Prof. Ferdinand Stückler",
+    "emergencyContactNumber": "(07442) 03843 661",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Macherstraße 8",
+    "addressLine2": "Blümelring",
+    "city": "Kufstein",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "4743",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Aron Posch",
+    "knownAllergies": [
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Asthma",
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B",
+      "COVID-19",
+      "Influenza"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "685281947433",
+    "insuranceExpiryDate": "2027-12-17"
+  },
+  {
+    "firstName": "Mika",
+    "lastName": "Stummer",
+    "gender": "MALE",
+    "dateOfBirth": "1994-06-28",
+    "bloodGroup": "A_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 (0) 6401 95988565",
+    "email": "markus82@example.net",
+    "emergencyContactName": "Hugo Seidl",
+    "emergencyContactNumber": "02561/41616663",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Mariella-Geyer-Straße 3",
+    "addressLine2": "",
+    "city": "Gänserndorf",
+    "state": "Wien",
+    "country": "Austria",
+    "postalCode": "4776",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Ing. Patrick Steinböck",
+    "knownAllergies": [
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Diabetes"
+    ],
+    "chronicDiseases": [
+      "Asthma",
+      "Arthritis",
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "667687171328",
+    "insuranceExpiryDate": "2025-09-06"
+  },
+  {
+    "firstName": "Lilian",
+    "lastName": "Kohl",
+    "gender": "OTHER",
+    "dateOfBirth": "2001-05-21",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "07270/64499447",
+    "email": "nisaludwig@example.net",
+    "emergencyContactName": "Franz Herbst",
+    "emergencyContactNumber": "(03450) 74954 524",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Frankstr. 19",
+    "addressLine2": "",
+    "city": "Sankt Valentin",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "6095",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Leah Burger",
+    "knownAllergies": [
+      "Latex"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Hypertension",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B",
+      "Tetanus",
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Hernia repair",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "291948286200",
+    "insuranceExpiryDate": "2026-03-01"
+  },
+  {
+    "firstName": "Anika",
+    "lastName": "Yilmaz",
+    "gender": "FEMALE",
+    "dateOfBirth": "1994-04-20",
+    "bloodGroup": "B_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 (0) 2912 36956521",
+    "email": "florinsinger@example.net",
+    "emergencyContactName": "Ing. Francesca Kaspar",
+    "emergencyContactNumber": "06107/59909027",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Ledererstr. 46",
+    "addressLine2": "Leithnerplatz",
+    "city": "Kufstein",
+    "state": "Niederösterreich",
+    "country": "Austria",
+    "postalCode": "7635",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Eduard Keplinger",
+    "knownAllergies": [
+      "Nuts",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Diabetes",
+      "Hypertension",
+      "Asthma"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [],
+    "immunizationStatus": [
+      "Tetanus",
+      "Hepatitis B",
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "750718812337",
+    "insuranceExpiryDate": "2029-05-24"
+  },
+  {
+    "firstName": "Leoni",
+    "lastName": "Taucher",
+    "gender": "OTHER",
+    "dateOfBirth": "1991-01-16",
+    "bloodGroup": "A_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 (0) 463 85416806",
+    "email": "ledererangelika@example.org",
+    "emergencyContactName": "Johanna Lerch",
+    "emergencyContactNumber": "06537/34364312",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Irma-Reichmann-Straße 80",
+    "addressLine2": "",
+    "city": "Althofen",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "5748",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Nicole Götz",
+    "knownAllergies": [
+      "Dust",
+      "Pollen",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Hypertension",
+      "Arthritis",
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Metformin",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "524702675650",
+    "insuranceExpiryDate": "2028-08-31"
+  },
+  {
+    "firstName": "Josef",
+    "lastName": "Meindl",
+    "gender": "MALE",
+    "dateOfBirth": "1978-01-07",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "(05375) 57508 190",
+    "email": "katharina62@example.net",
+    "emergencyContactName": "Florentin Steinbacher",
+    "emergencyContactNumber": "+43 763550611929",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Patrick-Schrammel-Platz 6",
+    "addressLine2": "",
+    "city": "Bad Sankt Leonhard im Lavanttal",
+    "state": "Vorarlberg",
+    "country": "Austria",
+    "postalCode": "5154",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Finn Schwendinger",
+    "knownAllergies": [
+      "Pollen"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Albuterol",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Influenza",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "059038400238",
+    "insuranceExpiryDate": "2028-06-17"
+  },
+  {
+    "firstName": "Ben",
+    "lastName": "Heim",
+    "gender": "MALE",
+    "dateOfBirth": "1976-05-30",
+    "bloodGroup": "B_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 6229 26484 210",
+    "email": "oramsauer@example.com",
+    "emergencyContactName": "Ajna Schnabl",
+    "emergencyContactNumber": "+43 (0) 3554 83146310",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Engelweg 3/3",
+    "addressLine2": "Holzknechtplatz",
+    "city": "Wolfsberg",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "2298",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Domenica Kummer",
+    "knownAllergies": [
+      "Pollen",
+      "Penicillin",
+      "Nuts"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Asthma"
+    ],
+    "currentMedications": [],
+    "immunizationStatus": [
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Appendectomy",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "222400348650",
+    "insuranceExpiryDate": "2025-11-17"
+  },
+  {
+    "firstName": "Nela",
+    "lastName": "Haindl",
+    "gender": "OTHER",
+    "dateOfBirth": "1980-05-17",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "(06480) 38372 599",
+    "email": "xertl@example.net",
+    "emergencyContactName": "Antonio Jauk-Luger",
+    "emergencyContactNumber": "(05566) 02476 547",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Florin-Vogler-Platz 8/3",
+    "addressLine2": "",
+    "city": "Grein",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "1644",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Ing. Ela Kappel",
+    "knownAllergies": [
+      "Pollen",
+      "Penicillin",
+      "Latex"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Hypertension",
+      "Asthma",
+      "Arthritis"
+    ],
+    "currentMedications": [],
+    "immunizationStatus": [
+      "Influenza",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Hernia repair",
+      "Cataract surgery",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "865418748593",
+    "insuranceExpiryDate": "2027-02-27"
+  },
+  {
+    "firstName": "Selma",
+    "lastName": "Köck",
+    "gender": "OTHER",
+    "dateOfBirth": "2006-11-15",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "05339/75835275",
+    "email": "teodor80@example.org",
+    "emergencyContactName": "Anne Stelzer",
+    "emergencyContactNumber": "+43 (0) 5222 83585886",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Bayerstraße 33",
+    "addressLine2": "Heissgasse",
+    "city": "Gmünd",
+    "state": "Wien",
+    "country": "Austria",
+    "postalCode": "1371",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Manuela Strasser",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Asthma",
+      "Diabetes"
+    ],
+    "chronicDiseases": [
+      "Hypertension",
+      "Asthma",
+      "Arthritis"
+    ],
+    "currentMedications": [],
+    "immunizationStatus": [
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "926909237586",
+    "insuranceExpiryDate": "2029-12-14"
+  },
+  {
+    "firstName": "Emilia",
+    "lastName": "Mitterlehner",
+    "gender": "FEMALE",
+    "dateOfBirth": "1947-04-25",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 (0) 6265 59390215",
+    "email": "lino97@example.net",
+    "emergencyContactName": "Benedict Macher",
+    "emergencyContactNumber": "+43 768936171659",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Lea-Hattinger-Platz 1",
+    "addressLine2": "",
+    "city": "Mariazell",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "4541",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Victor Knoll",
+    "knownAllergies": [
+      "Pollen",
+      "Penicillin",
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Arthritis"
+    ],
+    "chronicDiseases": [
+      "Diabetes"
+    ],
+    "currentMedications": [],
+    "immunizationStatus": [],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "836551514289",
+    "insuranceExpiryDate": "2029-03-22"
+  },
+  {
+    "firstName": "Beni",
+    "lastName": "Taferner",
+    "gender": "MALE",
+    "dateOfBirth": "1980-09-12",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 (0) 512 64191741",
+    "email": "aleksandrawenger@example.org",
+    "emergencyContactName": "Univ.Prof. Nikola Kronsteiner",
+    "emergencyContactNumber": "+43 (0) 4833 48943784",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Wiesingerstr. 66",
+    "addressLine2": "",
+    "city": "Pinkafeld",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "7634",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Antonella Pöll",
+    "knownAllergies": [],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Asthma",
+      "Diabetes",
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Metformin"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "963614991908",
+    "insuranceExpiryDate": "2029-06-22"
+  },
+  {
+    "firstName": "Violetta",
+    "lastName": "Hofbauer",
+    "gender": "OTHER",
+    "dateOfBirth": "1965-03-31",
+    "bloodGroup": "AB_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "07328/30986571",
+    "email": "dnagl@example.net",
+    "emergencyContactName": "Theodor Draxler-Walder",
+    "emergencyContactNumber": "06432/34735155",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Schillerstraße 02",
+    "addressLine2": "Sternstraße",
+    "city": "Kindberg",
+    "state": "Steiermark",
+    "country": "Austria",
+    "postalCode": "6770",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Irina Maierhofer-Reitbauer",
+    "knownAllergies": [
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Diabetes"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Asthma"
+    ],
+    "currentMedications": [],
+    "immunizationStatus": [
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Cataract surgery",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "449974410205",
+    "insuranceExpiryDate": "2029-09-02"
+  },
+  {
+    "firstName": "Joseph",
+    "lastName": "Moosbrugger",
+    "gender": "MALE",
+    "dateOfBirth": "2022-09-30",
+    "bloodGroup": "A_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "(04710) 76882 051",
+    "email": "pendlselina@example.com",
+    "emergencyContactName": "Thomas Wiedner",
+    "emergencyContactNumber": "(05444) 37284 147",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Polzerweg 4/1",
+    "addressLine2": "",
+    "city": "Hall in Tirol",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "9463",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Tobias Hoffmann-Müller",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Diabetes"
+    ],
+    "chronicDiseases": [
+      "Hypertension",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "769894775526",
+    "insuranceExpiryDate": "2025-07-07"
+  },
+  {
+    "firstName": "Andjela",
+    "lastName": "Wegscheider",
+    "gender": "OTHER",
+    "dateOfBirth": "1955-02-28",
+    "bloodGroup": "A_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 645382712788",
+    "email": "jonathan78@example.org",
+    "emergencyContactName": "Florentin Teufl",
+    "emergencyContactNumber": "(03645) 12143 935",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Fröhlichgasse 5",
+    "addressLine2": "",
+    "city": "Traismauer",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "9341",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Valentino Ostermann",
+    "knownAllergies": [
+      "Latex",
+      "Nuts",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Ibuprofen",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "Tetanus",
+      "Influenza",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "190074882590",
+    "insuranceExpiryDate": "2026-04-14"
+  },
+  {
+    "firstName": "Adrian",
+    "lastName": "König",
+    "gender": "MALE",
+    "dateOfBirth": "1982-11-18",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 7398 36443 001",
+    "email": "emilijameier@example.org",
+    "emergencyContactName": "Alma Jung",
+    "emergencyContactNumber": "02737 67775 879",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Adriano-Kolb-Gasse 128",
+    "addressLine2": "Klausplatz",
+    "city": "Bruck an der Leitha",
+    "state": "Steiermark",
+    "country": "Austria",
+    "postalCode": "3102",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Luca Fürst",
+    "knownAllergies": [
+      "Latex",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Diabetes",
+      "Asthma",
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B",
+      "COVID-19",
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Hernia repair",
+      "Cataract surgery",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "914775670093",
+    "insuranceExpiryDate": "2029-08-12"
+  },
+  {
+    "firstName": "Nicolas",
+    "lastName": "Heinz",
+    "gender": "MALE",
+    "dateOfBirth": "1990-07-19",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "02557 54153 686",
+    "email": "nathalieschuh@example.org",
+    "emergencyContactName": "Julijana Kloiber",
+    "emergencyContactNumber": "+43 7215 53760 454",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Messnergasse 94",
+    "addressLine2": "Hofingerstr.",
+    "city": "Güssing",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "4092",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Joseph Eberharter",
+    "knownAllergies": [
+      "Dust",
+      "Latex"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Arthritis"
+    ],
+    "chronicDiseases": [
+      "Diabetes"
+    ],
+    "currentMedications": [],
+    "immunizationStatus": [],
+    "surgicalHistory": [
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "153340214402",
+    "insuranceExpiryDate": "2025-12-12"
+  },
+  {
+    "firstName": "Lina",
+    "lastName": "Santner",
+    "gender": "FEMALE",
+    "dateOfBirth": "1984-10-17",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "(05550) 57472 923",
+    "email": "akuhn@example.com",
+    "emergencyContactName": "Ricardo Kargl-Pröll",
+    "emergencyContactNumber": "+43 754915703100",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Macherstr. 5/1",
+    "addressLine2": "Linda-Simic-Ring",
+    "city": "Vils",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "7590",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Vanessa Moritz",
+    "knownAllergies": [
+      "Pollen",
+      "Nuts",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Arthritis"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Arthritis",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Ibuprofen",
+      "Metformin",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B",
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "761421011638",
+    "insuranceExpiryDate": "2026-07-15"
+  },
+  {
+    "firstName": "Leandra",
+    "lastName": "Brandstetter",
+    "gender": "OTHER",
+    "dateOfBirth": "2002-09-16",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "04748/09757614",
+    "email": "kollernatan@example.com",
+    "emergencyContactName": "Lucas Altmann",
+    "emergencyContactNumber": "+43 (0) 7951 44307145",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Thurnergasse 293",
+    "addressLine2": "Lugerring",
+    "city": "Krems an der Donau",
+    "state": "Wien",
+    "country": "Austria",
+    "postalCode": "9847",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Tobias Friedl",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Metformin",
+      "Albuterol"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "420260625316",
+    "insuranceExpiryDate": "2027-05-05"
+  },
+  {
+    "firstName": "Clara",
+    "lastName": "Reinisch",
+    "gender": "OTHER",
+    "dateOfBirth": "1980-08-22",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 (0) 2710 51185765",
+    "email": "lydia28@example.org",
+    "emergencyContactName": "Catharina Paul",
+    "emergencyContactNumber": "+43 4805 14115 392",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Rohrmoserstr. 4/4",
+    "addressLine2": "Raffael-Lichtenegger-Straße",
+    "city": "Wien",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "4674",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Jan Kain",
+    "knownAllergies": [
+      "Pollen"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Diabetes",
+      "Hypertension"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Tetanus",
+      "Influenza"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "256095998180",
+    "insuranceExpiryDate": "2030-04-16"
+  },
+  {
+    "firstName": "Florentina",
+    "lastName": "Schwaiger",
+    "gender": "OTHER",
+    "dateOfBirth": "1951-10-24",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 544554180085",
+    "email": "kleutgeb@example.org",
+    "emergencyContactName": "Anna Payer",
+    "emergencyContactNumber": "+43 (0) 3584 54652213",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Anna-Maria-Stückler-Gasse 3",
+    "addressLine2": "Jana-Vogel-Platz",
+    "city": "Steyr",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "6415",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Zoe Mohr",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Hypertension",
+      "Diabetes",
+      "Arthritis"
+    ],
+    "currentMedications": [],
+    "immunizationStatus": [
+      "Influenza",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "194201678440",
+    "insuranceExpiryDate": "2026-11-04"
+  },
+  {
+    "firstName": "Anna",
+    "lastName": "Göschl",
+    "gender": "OTHER",
+    "dateOfBirth": "2006-06-10",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "(06287) 29143 855",
+    "email": "kalinahell@example.com",
+    "emergencyContactName": "Matteo Wiener",
+    "emergencyContactNumber": "(07681) 42109 470",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Ackerlplatz 7/6",
+    "addressLine2": "",
+    "city": "Waidhofen an der Thaya",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "9986",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Evelyn Sammer-Teufl",
+    "knownAllergies": [
+      "Dust",
+      "Pollen"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Arthritis",
+      "Diabetes"
+    ],
+    "chronicDiseases": [
+      "Hypertension",
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Ibuprofen",
+      "Albuterol",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "996654816440",
+    "insuranceExpiryDate": "2029-07-24"
+  },
+  {
+    "firstName": "Verena",
+    "lastName": "Philipp",
+    "gender": "FEMALE",
+    "dateOfBirth": "1972-05-12",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "(07242) 70894 737",
+    "email": "krammersteven@example.net",
+    "emergencyContactName": "Dipl.-Ing. Rita Leopold",
+    "emergencyContactNumber": "+43 2258 35409 564",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Metzlerring 2",
+    "addressLine2": "",
+    "city": "Hainfeld",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "8836",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Patrick Scheucher",
+    "knownAllergies": [
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [],
+    "immunizationStatus": [
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "727906263981",
+    "insuranceExpiryDate": "2028-01-05"
+  },
+  {
+    "firstName": "Tim",
+    "lastName": "Dengg",
+    "gender": "MALE",
+    "dateOfBirth": "1964-06-23",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 5398 50167 709",
+    "email": "zrausch@example.com",
+    "emergencyContactName": "Esther Schöller",
+    "emergencyContactNumber": "+43 (0) 2727 22655323",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Jaukring 8/1",
+    "addressLine2": "",
+    "city": "Friedberg",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "2542",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Eda Reichmann",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Hypertension",
+      "Arthritis"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Metformin",
+      "Lisinopril",
+      "Albuterol"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "313258074881",
+    "insuranceExpiryDate": "2028-01-28"
+  },
+  {
+    "firstName": "Leo",
+    "lastName": "Käfer",
+    "gender": "MALE",
+    "dateOfBirth": "1983-07-04",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "0662 25929 482",
+    "email": "nicoleprohaska@example.com",
+    "emergencyContactName": "David Braun",
+    "emergencyContactNumber": "05279/05085850",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Schenkstr. 9",
+    "addressLine2": "Mayrhoferplatz",
+    "city": "Schrems",
+    "state": "Wien",
+    "country": "Austria",
+    "postalCode": "1287",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Igor Mayer",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Asthma"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Lisinopril",
+      "Albuterol"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "460357132960",
+    "insuranceExpiryDate": "2025-09-11"
+  },
+  {
+    "firstName": "Nicola",
+    "lastName": "Leithner",
+    "gender": "OTHER",
+    "dateOfBirth": "2016-07-09",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 3530 54679 035",
+    "email": "marawoehrer@example.net",
+    "emergencyContactName": "Ing. Oskar Mairhofer",
+    "emergencyContactNumber": "07543 68179 309",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Nikolai-Walcher-Gasse 66",
+    "addressLine2": "Emanuel-Binder-Platz",
+    "city": "Sankt Veit an der Glan",
+    "state": "Steiermark",
+    "country": "Austria",
+    "postalCode": "9361",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Soraya Thalhammer",
+    "knownAllergies": [
+      "Latex"
+    ],
+    "pastMedicalHistory": [
+      "Diabetes",
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Ibuprofen",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Hernia repair",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "187689689254",
+    "insuranceExpiryDate": "2025-10-29"
+  },
+  {
+    "firstName": "Louis",
+    "lastName": "Lassnig",
+    "gender": "MALE",
+    "dateOfBirth": "1943-05-01",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 744566348344",
+    "email": "luisa81@example.com",
+    "emergencyContactName": "Ing. Mathias Felber",
+    "emergencyContactNumber": "+43 (0) 4298 42341120",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Sandra-Ladner-Weg 264",
+    "addressLine2": "Spieglstraße",
+    "city": "Bad Vöslau",
+    "state": "Steiermark",
+    "country": "Austria",
+    "postalCode": "4250",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Christian Heger",
+    "knownAllergies": [
+      "Pollen",
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "chronicDiseases": [
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Lisinopril",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "605693119548",
+    "insuranceExpiryDate": "2026-06-01"
+  },
+  {
+    "firstName": "Tim",
+    "lastName": "Pinter",
+    "gender": "MALE",
+    "dateOfBirth": "1968-09-02",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 66221585407",
+    "email": "wechselbergerisa@example.org",
+    "emergencyContactName": "Laetitia Strohmayer",
+    "emergencyContactNumber": "+43 424842257816",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Lamplring 09",
+    "addressLine2": "Schmidlring",
+    "city": "Kufstein",
+    "state": "Vorarlberg",
+    "country": "Austria",
+    "postalCode": "2126",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Prof. Anna-Lena Janisch",
+    "knownAllergies": [
+      "Nuts"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Hypertension",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Metformin",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Tetanus",
+      "Hepatitis B",
+      "COVID-19"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "373842679694",
+    "insuranceExpiryDate": "2028-02-14"
+  },
+  {
+    "firstName": "Elina",
+    "lastName": "Mann",
+    "gender": "OTHER",
+    "dateOfBirth": "2006-03-28",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 (0) 4852 46574918",
+    "email": "markusbachmann@example.com",
+    "emergencyContactName": "Patrick Weigl-Krainz",
+    "emergencyContactNumber": "04220 23384 975",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Hammerstr. 535",
+    "addressLine2": "",
+    "city": "Schwaz",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "7448",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lana Yilmaz",
+    "knownAllergies": [
+      "Pollen",
+      "Dust",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Asthma",
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Ibuprofen",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B",
+      "Influenza",
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "132851612745",
+    "insuranceExpiryDate": "2026-12-01"
+  },
+  {
+    "firstName": "Yasmina",
+    "lastName": "Prager",
+    "gender": "FEMALE",
+    "dateOfBirth": "2023-05-13",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 2611 04514 528",
+    "email": "thaider@example.net",
+    "emergencyContactName": "Ariane Holl",
+    "emergencyContactNumber": "07227 42328 320",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Mika-Kasper-Platz 0/8",
+    "addressLine2": "",
+    "city": "Bärnbach",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "4141",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Marvin Schober",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Diabetes",
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Metformin",
+      "Albuterol"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "116484881797",
+    "insuranceExpiryDate": "2027-11-29"
+  },
+  {
+    "firstName": "Magdalena",
+    "lastName": "Haider",
+    "gender": "FEMALE",
+    "dateOfBirth": "1968-03-03",
+    "bloodGroup": "B_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "03362/27264422",
+    "email": "ywurzinger@example.com",
+    "emergencyContactName": "Nicolas Egger",
+    "emergencyContactNumber": "(06413) 67752 880",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Carolina-Hager-Weg 01",
+    "addressLine2": "Andjelina-Albrecht-Gasse",
+    "city": "Oberpullendorf",
+    "state": "Wien",
+    "country": "Austria",
+    "postalCode": "5569",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "James Schauer",
+    "knownAllergies": [
+      "Latex",
+      "Nuts"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Hypertension",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Hypertension",
+      "Arthritis",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Metformin",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Tetanus",
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "293292080551",
+    "insuranceExpiryDate": "2025-10-12"
+  },
+  {
+    "firstName": "Nicolas",
+    "lastName": "Geier",
+    "gender": "MALE",
+    "dateOfBirth": "1946-06-09",
+    "bloodGroup": "AB_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "06123/89411412",
+    "email": "maximilianmeyer@example.org",
+    "emergencyContactName": "Univ.Prof. Mathilda Hutterer",
+    "emergencyContactNumber": "06100/37417093",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Schimplstraße 66",
+    "addressLine2": "",
+    "city": "Zeltweg",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "6313",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lean Röck",
+    "knownAllergies": [
+      "Penicillin",
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Hypertension",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Hypertension",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Ibuprofen",
+      "Albuterol",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Influenza",
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "155069369089",
+    "insuranceExpiryDate": "2027-04-06"
+  },
+  {
+    "firstName": "Larissa",
+    "lastName": "Humer",
+    "gender": "FEMALE",
+    "dateOfBirth": "1993-05-02",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 219990712254",
+    "email": "scheiberberra@example.com",
+    "emergencyContactName": "Stella Bogner",
+    "emergencyContactNumber": "0662/68916885",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Sonja-Neuwirth-Platz 390",
+    "addressLine2": "",
+    "city": "Schärding",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "8333",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Emilia Lorenz",
+    "knownAllergies": [
+      "Nuts",
+      "Pollen",
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Diabetes",
+      "Arthritis"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Hepatitis B",
+      "Influenza"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "409342066336",
+    "insuranceExpiryDate": "2029-07-15"
+  },
+  {
+    "firstName": "Manuela",
+    "lastName": "Uhl",
+    "gender": "FEMALE",
+    "dateOfBirth": "2005-09-27",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "07670/58613616",
+    "email": "tbodner@example.net",
+    "emergencyContactName": "Nina Mitterer-Kirchner",
+    "emergencyContactNumber": "07423 76838 416",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Götzplatz 508",
+    "addressLine2": "Tea-Kaiser-Ring",
+    "city": "Pregarten",
+    "state": "Niederösterreich",
+    "country": "Austria",
+    "postalCode": "3470",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Alexander Pollak",
+    "knownAllergies": [
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Diabetes",
+      "Arthritis",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Asthma",
+      "Diabetes",
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Ibuprofen",
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "Influenza",
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Hernia repair",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "644220639140",
+    "insuranceExpiryDate": "2028-09-15"
+  },
+  {
+    "firstName": "Fernando",
+    "lastName": "Lutz",
+    "gender": "MALE",
+    "dateOfBirth": "1970-02-05",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "05476 62874 812",
+    "email": "lfoidl@example.com",
+    "emergencyContactName": "Maya Bauer",
+    "emergencyContactNumber": "(03528) 00786 730",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Larissa-Bernhard-Straße 767",
+    "addressLine2": "",
+    "city": "Marchegg",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "9301",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Emanuel Kerschbaum-Rauter",
+    "knownAllergies": [],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Metformin",
+      "Lisinopril",
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "876471062319",
+    "insuranceExpiryDate": "2029-08-27"
+  },
+  {
+    "firstName": "Annabella",
+    "lastName": "Bogner",
+    "gender": "FEMALE",
+    "dateOfBirth": "1986-04-27",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 216729970182",
+    "email": "hochleitneraleksandra@example.com",
+    "emergencyContactName": "Elisabeth Eisner-Dangl",
+    "emergencyContactNumber": "05436/31450870",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Gmeinerplatz 1/0",
+    "addressLine2": "Schindlerstr.",
+    "city": "Mödling",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "3141",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lukas Punz",
+    "knownAllergies": [],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Metformin",
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "739644248138",
+    "insuranceExpiryDate": "2027-08-23"
+  },
+  {
+    "firstName": "Christopher",
+    "lastName": "Reiter",
+    "gender": "MALE",
+    "dateOfBirth": "1939-10-04",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 651161765213",
+    "email": "tristanboehler@example.net",
+    "emergencyContactName": "Kristian Peter-Gasser",
+    "emergencyContactNumber": "+43 5657 65968 033",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Platzerring 9/6",
+    "addressLine2": "",
+    "city": "Feldkirch",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "9035",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Univ.Prof. Florian Himmelbauer",
+    "knownAllergies": [],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Hypertension",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Albuterol",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "161389456402",
+    "insuranceExpiryDate": "2028-09-18"
+  },
+  {
+    "firstName": "Juliane",
+    "lastName": "Ludwig",
+    "gender": "FEMALE",
+    "dateOfBirth": "2006-10-25",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "03858 53283 860",
+    "email": "lucaskarl@example.com",
+    "emergencyContactName": "Kyra Kral",
+    "emergencyContactNumber": "04776/65180913",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Lamplweg 74",
+    "addressLine2": "Beckerweg",
+    "city": "Grieskirchen",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "7109",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Aaron Kaufmann",
+    "knownAllergies": [
+      "Pollen"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Diabetes"
+    ],
+    "chronicDiseases": [
+      "Asthma",
+      "Diabetes",
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Metformin",
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "623001712929",
+    "insuranceExpiryDate": "2025-10-25"
+  },
+  {
+    "firstName": "Axel",
+    "lastName": "Fellner",
+    "gender": "MALE",
+    "dateOfBirth": "2006-02-08",
+    "bloodGroup": "A_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 3386 81295 837",
+    "email": "vschiller@example.net",
+    "emergencyContactName": "Heinrich Schön",
+    "emergencyContactNumber": "+43 3660 71925 709",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Haidstr. 8",
+    "addressLine2": "",
+    "city": "Zeltweg",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "5690",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Iris Schatzl",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Asthma",
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Hypertension"
+    ],
+    "currentMedications": [],
+    "immunizationStatus": [
+      "Tetanus",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "993029970652",
+    "insuranceExpiryDate": "2027-12-27"
+  },
+  {
+    "firstName": "Lora",
+    "lastName": "Brenner",
+    "gender": "OTHER",
+    "dateOfBirth": "1991-11-19",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 367400760759",
+    "email": "leanbock@example.org",
+    "emergencyContactName": "Matheo Kager-Bock",
+    "emergencyContactNumber": "+43 5485 11821 918",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Hütterstraße 5/3",
+    "addressLine2": "Kesslerring",
+    "city": "Scheibbs",
+    "state": "Wien",
+    "country": "Austria",
+    "postalCode": "8123",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Iris Wiesbauer",
+    "knownAllergies": [
+      "Pollen",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Lisinopril",
+      "Ibuprofen",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Influenza",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Hernia repair",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "023343772453",
+    "insuranceExpiryDate": "2026-02-05"
+  },
+  {
+    "firstName": "Kilian",
+    "lastName": "Bauer",
+    "gender": "MALE",
+    "dateOfBirth": "2023-01-11",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "03812/98436824",
+    "email": "zbraeuer@example.com",
+    "emergencyContactName": "Leander Weissenböck",
+    "emergencyContactNumber": "02811/22802781",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Jasmine-Walcher-Weg 356",
+    "addressLine2": "Stockerplatz",
+    "city": "Linz",
+    "state": "Wien",
+    "country": "Austria",
+    "postalCode": "2829",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Valentino Ortner-Lengauer",
+    "knownAllergies": [
+      "Latex",
+      "Pollen"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Hypertension",
+      "Diabetes",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Metformin"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "117067983304",
+    "insuranceExpiryDate": "2025-12-05"
+  },
+  {
+    "firstName": "Lena",
+    "lastName": "Kober",
+    "gender": "OTHER",
+    "dateOfBirth": "2012-12-10",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "02203/41324584",
+    "email": "zieglerjannis@example.org",
+    "emergencyContactName": "Sophie-Marie Leibetseder",
+    "emergencyContactNumber": "+43 6456 18446 129",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Finkstraße 3",
+    "addressLine2": "Höflerweg",
+    "city": "Tulln an der Donau",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "1155",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lara-Sophie Thurner",
+    "knownAllergies": [
+      "Pollen"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Lisinopril",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "Tetanus",
+      "Influenza",
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Cataract surgery",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "804302781709",
+    "insuranceExpiryDate": "2025-11-09"
+  },
+  {
+    "firstName": "Rachel",
+    "lastName": "Schwarzl",
+    "gender": "FEMALE",
+    "dateOfBirth": "1982-05-07",
+    "bloodGroup": "A_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 (0) 2136 34210800",
+    "email": "kirchmairseverin@example.com",
+    "emergencyContactName": "Ing. Kristina Baumgartner",
+    "emergencyContactNumber": "+43 7291 92221 507",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Wurzingerstraße 8/2",
+    "addressLine2": "",
+    "city": "Litschau",
+    "state": "Steiermark",
+    "country": "Austria",
+    "postalCode": "1561",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Gustav Keplinger",
+    "knownAllergies": [
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Diabetes",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "640803693466",
+    "insuranceExpiryDate": "2028-10-27"
+  },
+  {
+    "firstName": "Carolina",
+    "lastName": "Puntigam",
+    "gender": "OTHER",
+    "dateOfBirth": "1954-11-10",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 126072775",
+    "email": "maksim92@example.net",
+    "emergencyContactName": "Oskar Deutschmann-Holzinger",
+    "emergencyContactNumber": "+43 354120427238",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Malena-Schwab-Platz 8/7",
+    "addressLine2": "Wiednerstraße",
+    "city": "Oberndorf bei Salzburg",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "1943",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Dr. Andrej Waldner",
+    "knownAllergies": [
+      "Nuts"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Asthma",
+      "Hypertension",
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Influenza",
+      "Tetanus"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "842587748977",
+    "insuranceExpiryDate": "2027-04-08"
+  },
+  {
+    "firstName": "Tristan",
+    "lastName": "Kitzler",
+    "gender": "MALE",
+    "dateOfBirth": "1975-06-05",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "0732 10191 787",
+    "email": "rspreitzer@example.org",
+    "emergencyContactName": "Univ.Prof. Laura Brandl",
+    "emergencyContactNumber": "07218 24015 533",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Julia-Bartl-Platz 2",
+    "addressLine2": "Nicola-Polzer-Ring",
+    "city": "Geras",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "4666",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Andreas Perner",
+    "knownAllergies": [
+      "Dust",
+      "Pollen",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Arthritis",
+      "Diabetes"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Ibuprofen",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Tetanus",
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Hernia repair",
+      "Cataract surgery",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "908954583728",
+    "insuranceExpiryDate": "2030-01-20"
+  },
+  {
+    "firstName": "Veronika",
+    "lastName": "Sailer",
+    "gender": "FEMALE",
+    "dateOfBirth": "1974-05-25",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "03828 18387 105",
+    "email": "eduard87@example.org",
+    "emergencyContactName": "Milica Scholz-Rohrmoser",
+    "emergencyContactNumber": "+43 (0) 7661 61299441",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Felix-Steinbauer-Weg 57",
+    "addressLine2": "",
+    "city": "Langenlois",
+    "state": "Vorarlberg",
+    "country": "Austria",
+    "postalCode": "5343",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Emilie Lintner-Martin",
+    "knownAllergies": [
+      "Pollen",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Arthritis",
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Albuterol",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B",
+      "Tetanus"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "452728223409",
+    "insuranceExpiryDate": "2027-07-31"
+  },
+  {
+    "firstName": "Luka",
+    "lastName": "Schreiner",
+    "gender": "MALE",
+    "dateOfBirth": "1977-05-14",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "(03415) 15885 531",
+    "email": "fruehwirthheinrich@example.net",
+    "emergencyContactName": "Philip Pucher",
+    "emergencyContactNumber": "+43 651379155605",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Stephan-Kappel-Ring 6",
+    "addressLine2": "Angela-Ringhofer-Weg",
+    "city": "Zeltweg",
+    "state": "Vorarlberg",
+    "country": "Austria",
+    "postalCode": "8580",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Alma Pohl",
+    "knownAllergies": [
+      "Latex",
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Arthritis",
+      "Hypertension"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [],
+    "immunizationStatus": [],
+    "surgicalHistory": [
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "818518368361",
+    "insuranceExpiryDate": "2027-05-16"
+  },
+  {
+    "firstName": "Hanna",
+    "lastName": "Fellinger",
+    "gender": "OTHER",
+    "dateOfBirth": "1989-02-18",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 5230 68181 649",
+    "email": "jacobrinner@example.org",
+    "emergencyContactName": "Maya Pfeffer",
+    "emergencyContactNumber": "(07697) 47456 148",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Eva-Köberl-Gasse 879",
+    "addressLine2": "",
+    "city": "Wien",
+    "state": "Vorarlberg",
+    "country": "Austria",
+    "postalCode": "2103",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lionel Janisch",
+    "knownAllergies": [
+      "Nuts",
+      "Penicillin",
+      "Latex"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Hypertension",
+      "Arthritis"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [],
+    "immunizationStatus": [],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "059105714044",
+    "insuranceExpiryDate": "2027-01-14"
+  },
+  {
+    "firstName": "Raffaela",
+    "lastName": "Wenzl",
+    "gender": "OTHER",
+    "dateOfBirth": "1957-09-04",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 2979 13350 732",
+    "email": "marie-sophieschoeller@example.net",
+    "emergencyContactName": "Jovana Landl",
+    "emergencyContactNumber": "+43 73267026874",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Emil-Scharf-Platz 6",
+    "addressLine2": "Oswaldweg",
+    "city": "Pinkafeld",
+    "state": "Wien",
+    "country": "Austria",
+    "postalCode": "4392",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Ing. Frida Hahn",
+    "knownAllergies": [
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Hypertension",
+      "Arthritis",
+      "Asthma"
+    ],
+    "currentMedications": [],
+    "immunizationStatus": [
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Hernia repair",
+      "Appendectomy",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "412311963453",
+    "insuranceExpiryDate": "2025-11-03"
+  },
+  {
+    "firstName": "Gloria",
+    "lastName": "Redl",
+    "gender": "OTHER",
+    "dateOfBirth": "2018-05-03",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 756168560191",
+    "email": "angerernick@example.com",
+    "emergencyContactName": "Ralph Friedrich",
+    "emergencyContactNumber": "07940 74195 505",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Zehetnerstraße 394",
+    "addressLine2": "Burtscherstr.",
+    "city": "Köflach",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "2664",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Ajna Schiefer-Schinagl",
+    "knownAllergies": [
+      "Nuts",
+      "Penicillin",
+      "Latex"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Albuterol",
+      "Lisinopril",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "724283344710",
+    "insuranceExpiryDate": "2025-06-30"
+  },
+  {
+    "firstName": "Karim",
+    "lastName": "Strohmeier",
+    "gender": "MALE",
+    "dateOfBirth": "1967-05-18",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 222795745457",
+    "email": "melanie80@example.org",
+    "emergencyContactName": "Dipl.-Ing. Luise Glaser",
+    "emergencyContactNumber": "(07409) 86257 748",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Xavier-Schuh-Straße 4",
+    "addressLine2": "Rosenbergergasse",
+    "city": "Bad Aussee",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "6135",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Leoni Lassnig",
+    "knownAllergies": [],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Hepatitis B",
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Hernia repair",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "299107238368",
+    "insuranceExpiryDate": "2030-02-14"
+  },
+  {
+    "firstName": "Mariana",
+    "lastName": "Mayerhofer",
+    "gender": "OTHER",
+    "dateOfBirth": "1994-02-24",
+    "bloodGroup": "AB_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 (0) 3112 64395469",
+    "email": "kristinarieger@example.net",
+    "emergencyContactName": "Helena Hafner",
+    "emergencyContactNumber": "+43 7629 06195 208",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Geyerstr. 21",
+    "addressLine2": "",
+    "city": "Bad Ischl",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "4652",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Sena Peter",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Arthritis"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Lisinopril",
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "Tetanus",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Appendectomy",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "152107515398",
+    "insuranceExpiryDate": "2030-06-15"
+  },
+  {
+    "firstName": "Karina",
+    "lastName": "Krainz",
+    "gender": "OTHER",
+    "dateOfBirth": "1959-03-03",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "03651/94087186",
+    "email": "voglerwilliam@example.com",
+    "emergencyContactName": "Marie Steinböck",
+    "emergencyContactNumber": "04873 66473 816",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Claudia-Wilhelm-Platz 88",
+    "addressLine2": "",
+    "city": "Wilhelmsburg",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "1354",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Natalie Lercher",
+    "knownAllergies": [
+      "Dust",
+      "Penicillin",
+      "Latex"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Hypertension"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Ibuprofen",
+      "Albuterol",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Tetanus",
+      "Hepatitis B",
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "339414145717",
+    "insuranceExpiryDate": "2028-05-21"
+  },
+  {
+    "firstName": "Joseph",
+    "lastName": "Pirker",
+    "gender": "MALE",
+    "dateOfBirth": "2005-08-01",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "(04878) 93011 988",
+    "email": "oullmann@example.com",
+    "emergencyContactName": "Jonas Buchberger",
+    "emergencyContactNumber": "(03819) 92730 035",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Selina-Neumüller-Straße 5",
+    "addressLine2": "Anastasia-Schneider-Ring",
+    "city": "Ferlach",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "2572",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Herr Josef Köck",
+    "knownAllergies": [
+      "Pollen",
+      "Dust",
+      "Latex"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Ibuprofen",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "734825061396",
+    "insuranceExpiryDate": "2028-10-09"
+  },
+  {
+    "firstName": "Marie-Sophie",
+    "lastName": "Achleitner",
+    "gender": "OTHER",
+    "dateOfBirth": "2004-03-02",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "(07348) 47545 380",
+    "email": "iris30@example.org",
+    "emergencyContactName": "Prof. Nina Pock",
+    "emergencyContactNumber": "(07991) 75701 978",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Natalie-Grasser-Gasse 1/3",
+    "addressLine2": "Böhmweg",
+    "city": "Wien",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "7983",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Maximilian Pendl",
+    "knownAllergies": [],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Diabetes",
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Metformin",
+      "Albuterol",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Hernia repair",
+      "Appendectomy",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "585127337567",
+    "insuranceExpiryDate": "2026-09-10"
+  },
+  {
+    "firstName": "Helene",
+    "lastName": "Hufnagl",
+    "gender": "OTHER",
+    "dateOfBirth": "1944-05-01",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 316 43010 629",
+    "email": "thallerlora@example.org",
+    "emergencyContactName": "Andreas Seidl",
+    "emergencyContactNumber": "+43 7634 38986 450",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Unterwegerring 8",
+    "addressLine2": "Schartnerstr.",
+    "city": "Bregenz",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "7358",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Franziska Wieland",
+    "knownAllergies": [
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Arthritis",
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Ibuprofen",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "449352056299",
+    "insuranceExpiryDate": "2028-09-04"
+  },
+  {
+    "firstName": "Evelyn",
+    "lastName": "Becker",
+    "gender": "FEMALE",
+    "dateOfBirth": "1970-11-09",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "(0732) 87350 756",
+    "email": "usteinkellner@example.net",
+    "emergencyContactName": "Kai Traxler",
+    "emergencyContactNumber": "+43 290340447030",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Damian-Plattner-Straße 61",
+    "addressLine2": "Ulrichstr.",
+    "city": "Lilienfeld",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "1938",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Sofia Böhler",
+    "knownAllergies": [
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Diabetes"
+    ],
+    "chronicDiseases": [
+      "Asthma",
+      "Arthritis",
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Albuterol"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "085537213714",
+    "insuranceExpiryDate": "2025-11-14"
+  },
+  {
+    "firstName": "Julijana",
+    "lastName": "Meixner",
+    "gender": "OTHER",
+    "dateOfBirth": "1964-06-18",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "0316/81215637",
+    "email": "louismitteregger@example.com",
+    "emergencyContactName": "Prof. Claudia Eberhard",
+    "emergencyContactNumber": "+43 282938105088",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Rossmannstr. 5/2",
+    "addressLine2": "",
+    "city": "Oberpullendorf",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "6344",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Florian Margreiter",
+    "knownAllergies": [
+      "Latex"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Ibuprofen",
+      "Albuterol",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "431831040356",
+    "insuranceExpiryDate": "2030-04-03"
+  },
+  {
+    "firstName": "Clarissa",
+    "lastName": "Gamsjäger",
+    "gender": "FEMALE",
+    "dateOfBirth": "2010-03-28",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 4888 87797 129",
+    "email": "leahrieder@example.org",
+    "emergencyContactName": "Prof. Philipp Wilhelm",
+    "emergencyContactNumber": "03650 50390 356",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Gasserring 66",
+    "addressLine2": "Max-Geyer-Platz",
+    "city": "Traismauer",
+    "state": "Steiermark",
+    "country": "Austria",
+    "postalCode": "9927",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Samuel Reitinger",
+    "knownAllergies": [
+      "Penicillin",
+      "Latex"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Diabetes",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Hypertension",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "390884153909",
+    "insuranceExpiryDate": "2027-01-31"
+  },
+  {
+    "firstName": "Felix",
+    "lastName": "Hubmann",
+    "gender": "MALE",
+    "dateOfBirth": "1938-01-06",
+    "bloodGroup": "AB_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 2871 89163 584",
+    "email": "aaronzeiler@example.org",
+    "emergencyContactName": "Ariana Steidl",
+    "emergencyContactNumber": "03422 16063 348",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Scholzstr. 18",
+    "addressLine2": "",
+    "city": "Rattenberg",
+    "state": "Niederösterreich",
+    "country": "Austria",
+    "postalCode": "8306",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Mariana Greiner",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Diabetes",
+      "Arthritis"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Asthma",
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Metformin"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "314979245474",
+    "insuranceExpiryDate": "2028-02-18"
+  },
+  {
+    "firstName": "Carla",
+    "lastName": "Schmuck",
+    "gender": "FEMALE",
+    "dateOfBirth": "1942-04-03",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 66269969457",
+    "email": "pgschaider@example.com",
+    "emergencyContactName": "Isa Kreiner",
+    "emergencyContactNumber": "+43 5377 65765 743",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Beergasse 5",
+    "addressLine2": "",
+    "city": "Mistelbach an der Zaya",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "1273",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Nadia Kremser",
+    "knownAllergies": [
+      "Nuts"
+    ],
+    "pastMedicalHistory": [
+      "Diabetes",
+      "Asthma",
+      "Arthritis"
+    ],
+    "chronicDiseases": [
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "Tetanus",
+      "Influenza",
+      "COVID-19"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "736146343418",
+    "insuranceExpiryDate": "2026-06-26"
+  },
+  {
+    "firstName": "Rene",
+    "lastName": "Rohrer",
+    "gender": "MALE",
+    "dateOfBirth": "2007-04-12",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "07677 40260 970",
+    "email": "dreichl@example.org",
+    "emergencyContactName": "Kristian Gstrein",
+    "emergencyContactNumber": "+43 (0) 2238 02190990",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Ronja-Erhart-Ring 7/9",
+    "addressLine2": "",
+    "city": "Lilienfeld",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "4128",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Charlotte Putz",
+    "knownAllergies": [
+      "Pollen",
+      "Nuts",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "980606019400",
+    "insuranceExpiryDate": "2027-02-02"
+  },
+  {
+    "firstName": "Alexia",
+    "lastName": "Hochreiter",
+    "gender": "FEMALE",
+    "dateOfBirth": "1964-09-12",
+    "bloodGroup": "AB_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "(02552) 20532 774",
+    "email": "andjela77@example.com",
+    "emergencyContactName": "Benedict Walcher",
+    "emergencyContactNumber": "+43 (0) 463 60691361",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Meisterstr. 3",
+    "addressLine2": "",
+    "city": "Bad Hall",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "2897",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Frau Helena Heiss",
+    "knownAllergies": [
+      "Pollen",
+      "Dust",
+      "Latex"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Arthritis",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B",
+      "COVID-19",
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "553179617411",
+    "insuranceExpiryDate": "2025-11-20"
+  },
+  {
+    "firstName": "Yvonne",
+    "lastName": "Grünwald",
+    "gender": "FEMALE",
+    "dateOfBirth": "1982-09-06",
+    "bloodGroup": "A_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "(05605) 08576 152",
+    "email": "mittertimon@example.net",
+    "emergencyContactName": "Alexander Richter",
+    "emergencyContactNumber": "+43 (0) 3868 57916752",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Domenica-Muhr-Weg 7",
+    "addressLine2": "Linus-Prohaska-Platz",
+    "city": "Zwettl",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "7373",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lisa Renner",
+    "knownAllergies": [],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Arthritis",
+      "Diabetes",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Metformin",
+      "Albuterol",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Cataract surgery",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "526629872500",
+    "insuranceExpiryDate": "2030-01-09"
+  },
+  {
+    "firstName": "Igor",
+    "lastName": "Hofmann",
+    "gender": "MALE",
+    "dateOfBirth": "1962-07-30",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "(07481) 44611 306",
+    "email": "phirsch@example.net",
+    "emergencyContactName": "Dipl.-Ing. Arthur Holzer",
+    "emergencyContactNumber": "(04857) 98751 607",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Noel-Haller-Platz 1/7",
+    "addressLine2": "",
+    "city": "Mödling",
+    "state": "Steiermark",
+    "country": "Austria",
+    "postalCode": "6664",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lucas Kronsteiner",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Arthritis",
+      "Asthma",
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Ibuprofen",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Tetanus",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "730988041979",
+    "insuranceExpiryDate": "2027-04-20"
+  },
+  {
+    "firstName": "Rachel",
+    "lastName": "Koller",
+    "gender": "OTHER",
+    "dateOfBirth": "2021-04-02",
+    "bloodGroup": "B_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "07329 66931 919",
+    "email": "snowak@example.com",
+    "emergencyContactName": "Peter Schrammel-Angerer",
+    "emergencyContactNumber": "(04271) 56835 689",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Rene-Neumayr-Platz 5/3",
+    "addressLine2": "",
+    "city": "Krems an der Donau",
+    "state": "Wien",
+    "country": "Austria",
+    "postalCode": "2444",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Angelina Wurzer",
+    "knownAllergies": [
+      "Dust",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Diabetes",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Ibuprofen",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Appendectomy",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "601373325034",
+    "insuranceExpiryDate": "2027-07-03"
+  },
+  {
+    "firstName": "Christine",
+    "lastName": "Hahn",
+    "gender": "OTHER",
+    "dateOfBirth": "1964-08-20",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 3899 71286 299",
+    "email": "kilianreif@example.net",
+    "emergencyContactName": "Maja Grabner",
+    "emergencyContactNumber": "06157 20782 730",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Bichlerplatz 0/5",
+    "addressLine2": "",
+    "city": "Gloggnitz",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "4888",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Linnea Schartner",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Arthritis",
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Appendectomy",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "207559607782",
+    "insuranceExpiryDate": "2027-02-28"
+  },
+  {
+    "firstName": "Elma",
+    "lastName": "Berchtold",
+    "gender": "FEMALE",
+    "dateOfBirth": "1996-08-26",
+    "bloodGroup": "B_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 (0) 6125 56376268",
+    "email": "ritaziegler@example.com",
+    "emergencyContactName": "Denise Felber-Hinteregger",
+    "emergencyContactNumber": "+43 (0) 732 69489982",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Nick-Eichhorn-Platz 382",
+    "addressLine2": "Laurenz-Spreitzer-Ring",
+    "city": "Bruck an der Leitha",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "6678",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Niko Galler",
+    "knownAllergies": [
+      "Nuts"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Arthritis",
+      "Asthma",
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Ibuprofen",
+      "Metformin",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Influenza",
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "851532366156",
+    "insuranceExpiryDate": "2030-03-03"
+  },
+  {
+    "firstName": "Theodora",
+    "lastName": "Kapeller",
+    "gender": "FEMALE",
+    "dateOfBirth": "1996-11-16",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 6150 30991 518",
+    "email": "alexkaefer@example.net",
+    "emergencyContactName": "Leoni Schuh",
+    "emergencyContactNumber": "02778/34939508",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Tauberstraße 5/4",
+    "addressLine2": "",
+    "city": "Drosendorf-Zissersdorf 1",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "6391",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lea-Sophie Fellner-Ferstl",
+    "knownAllergies": [
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Asthma"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Albuterol",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "303363321318",
+    "insuranceExpiryDate": "2029-05-11"
+  },
+  {
+    "firstName": "Alena",
+    "lastName": "Santner",
+    "gender": "OTHER",
+    "dateOfBirth": "1990-01-20",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 (0) 3867 58071711",
+    "email": "ugasser@example.com",
+    "emergencyContactName": "Manuel Fischer",
+    "emergencyContactNumber": "+43 (0) 5529 82625013",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Beni-Gamsjäger-Gasse 8/5",
+    "addressLine2": "Burtscherstr.",
+    "city": "Pöchlarn",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "3856",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Kerstin Probst",
+    "knownAllergies": [
+      "Latex",
+      "Pollen"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Diabetes",
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "250544363875",
+    "insuranceExpiryDate": "2030-05-18"
+  },
+  {
+    "firstName": "Kilian",
+    "lastName": "Schuler",
+    "gender": "MALE",
+    "dateOfBirth": "2012-02-22",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "07212 89386 072",
+    "email": "klammervincent@example.org",
+    "emergencyContactName": "Claire Böhler",
+    "emergencyContactNumber": "0662/90986448",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Nick-Teufl-Weg 8",
+    "addressLine2": "",
+    "city": "Perg",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "8234",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lorenz Pichler",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Ibuprofen",
+      "Albuterol"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "498061725643",
+    "insuranceExpiryDate": "2028-11-06"
+  },
+  {
+    "firstName": "Christina",
+    "lastName": "Müllner",
+    "gender": "FEMALE",
+    "dateOfBirth": "1973-05-26",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 753066891607",
+    "email": "ozotter@example.com",
+    "emergencyContactName": "Lydia Helm",
+    "emergencyContactNumber": "03312 69789 875",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Viktor-Dobler-Ring 2",
+    "addressLine2": "Eric-Mandl-Gasse",
+    "city": "Gänserndorf",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "5521",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Melina Stecher",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Albuterol",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Hernia repair",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "220587281666",
+    "insuranceExpiryDate": "2028-10-16"
+  },
+  {
+    "firstName": "Anton",
+    "lastName": "Froschauer",
+    "gender": "MALE",
+    "dateOfBirth": "2000-01-14",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 (0) 3895 94236961",
+    "email": "natankammerer@example.net",
+    "emergencyContactName": "Lena Sauer",
+    "emergencyContactNumber": "+43 732 73078 078",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Erwin-Stolz-Platz 087",
+    "addressLine2": "",
+    "city": "Mariazell",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "7584",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Elias Metzler-Tanzer",
+    "knownAllergies": [
+      "Nuts",
+      "Pollen",
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Asthma",
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Hypertension",
+      "Asthma",
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [
+      "Hernia repair",
+      "Appendectomy",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "446929926854",
+    "insuranceExpiryDate": "2028-08-25"
+  },
+  {
+    "firstName": "Andjela",
+    "lastName": "Maringer",
+    "gender": "OTHER",
+    "dateOfBirth": "1981-09-29",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 (0) 5634 27944291",
+    "email": "iamann@example.org",
+    "emergencyContactName": "Laura Prohaska",
+    "emergencyContactNumber": "+43 5480 49608 800",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Stützweg 23",
+    "addressLine2": "",
+    "city": "Wolfsberg",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "3945",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Estelle Hubmann-Schartner",
+    "knownAllergies": [
+      "Latex",
+      "Nuts"
+    ],
+    "pastMedicalHistory": [
+      "Diabetes",
+      "Arthritis"
+    ],
+    "chronicDiseases": [
+      "Diabetes"
+    ],
+    "currentMedications": [],
+    "immunizationStatus": [
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Cataract surgery",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "164039515951",
+    "insuranceExpiryDate": "2028-08-14"
+  },
+  {
+    "firstName": "Andjela",
+    "lastName": "Bernhard",
+    "gender": "FEMALE",
+    "dateOfBirth": "1953-02-22",
+    "bloodGroup": "B_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "02883 36937 845",
+    "email": "ackerlemely@example.com",
+    "emergencyContactName": "Dennis Prinz",
+    "emergencyContactNumber": "07259/20794658",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Pertlplatz 09",
+    "addressLine2": "",
+    "city": "Bleiburg",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "8658",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Luka Knoll",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Metformin",
+      "Lisinopril",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B",
+      "Tetanus",
+      "Influenza"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "853714974083",
+    "insuranceExpiryDate": "2027-01-05"
+  },
+  {
+    "firstName": "Noah",
+    "lastName": "Jovanovic",
+    "gender": "MALE",
+    "dateOfBirth": "2018-08-23",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 3616 76597 754",
+    "email": "lindingerluca@example.org",
+    "emergencyContactName": "Lisa-Marie Pointner-Pauer",
+    "emergencyContactNumber": "0662/98749066",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Elsa-Schuler-Gasse 6/2",
+    "addressLine2": "",
+    "city": "Fehring",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "9958",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Daniel Walser",
+    "knownAllergies": [],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Diabetes",
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Influenza"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "032235904857",
+    "insuranceExpiryDate": "2029-07-13"
+  },
+  {
+    "firstName": "Jana",
+    "lastName": "Meister",
+    "gender": "FEMALE",
+    "dateOfBirth": "2022-02-26",
+    "bloodGroup": "AB_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 7489 90390 276",
+    "email": "jakob70@example.net",
+    "emergencyContactName": "Karim Maringer",
+    "emergencyContactNumber": "07461/16857797",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Felix-Kössler-Straße 6",
+    "addressLine2": "",
+    "city": "Neunkirchen",
+    "state": "Niederösterreich",
+    "country": "Austria",
+    "postalCode": "5675",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Luna Lindinger",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Ibuprofen",
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B",
+      "Influenza",
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "966015320919",
+    "insuranceExpiryDate": "2028-03-27"
+  },
+  {
+    "firstName": "Elisa",
+    "lastName": "Luger",
+    "gender": "OTHER",
+    "dateOfBirth": "2007-06-09",
+    "bloodGroup": "A_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "02726 44195 800",
+    "email": "mfreudenthaler@example.net",
+    "emergencyContactName": "Lennart Steiner",
+    "emergencyContactNumber": "07320/91042264",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Aignerstraße 42",
+    "addressLine2": "",
+    "city": "Gloggnitz",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "5259",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Xavier Lang",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Hypertension"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Hypertension",
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Ibuprofen",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "Influenza"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "369180307112",
+    "insuranceExpiryDate": "2025-11-01"
+  },
+  {
+    "firstName": "Beatrice",
+    "lastName": "Stadler",
+    "gender": "FEMALE",
+    "dateOfBirth": "2018-09-20",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "03405/53066276",
+    "email": "eberhardsophia@example.com",
+    "emergencyContactName": "Steven Eder",
+    "emergencyContactNumber": "+43 657359958528",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Leo-Mayer-Straße 0",
+    "addressLine2": "Rabitschstr.",
+    "city": "Bad Sankt Leonhard im Lavanttal",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "2443",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Patricia Schmidinger",
+    "knownAllergies": [
+      "Penicillin",
+      "Nuts"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis",
+      "Asthma",
+      "Hypertension"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Lisinopril",
+      "Metformin",
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "Influenza",
+      "Tetanus",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "634042410349",
+    "insuranceExpiryDate": "2027-08-23"
+  },
+  {
+    "firstName": "Sandra",
+    "lastName": "Oberhauser",
+    "gender": "FEMALE",
+    "dateOfBirth": "1976-02-17",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "07381/86140940",
+    "email": "duensermichelle@example.com",
+    "emergencyContactName": "Nikola Kainz",
+    "emergencyContactNumber": "+43 (0) 732 52926203",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Alex-Geisler-Gasse 93",
+    "addressLine2": "",
+    "city": "Bleiburg",
+    "state": "Tirol",
+    "country": "Austria",
+    "postalCode": "6454",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Amanda Schwaiger",
+    "knownAllergies": [
+      "Penicillin",
+      "Pollen"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Albuterol",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B",
+      "Influenza",
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Appendectomy",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "919003675182",
+    "insuranceExpiryDate": "2027-02-17"
+  },
+  {
+    "firstName": "Dennis",
+    "lastName": "Haider",
+    "gender": "MALE",
+    "dateOfBirth": "1970-08-06",
+    "bloodGroup": "B_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 (0) 5344 04712898",
+    "email": "xstern@example.com",
+    "emergencyContactName": "Frederik Prager-Seebacher",
+    "emergencyContactNumber": "02166 26010 929",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Heiglstraße 1",
+    "addressLine2": "",
+    "city": "Bärnbach",
+    "state": "Vorarlberg",
+    "country": "Austria",
+    "postalCode": "4199",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Josefine Schäfer-Frey",
+    "knownAllergies": [
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Diabetes",
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Metformin",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "Tetanus",
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Hernia repair",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "382982387836",
+    "insuranceExpiryDate": "2027-09-04"
+  },
+  {
+    "firstName": "Elina",
+    "lastName": "Neulinger",
+    "gender": "FEMALE",
+    "dateOfBirth": "1977-08-27",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "(03522) 91883 623",
+    "email": "njost@example.net",
+    "emergencyContactName": "Herr Arda Suppan",
+    "emergencyContactNumber": "(04856) 27521 745",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Antonella-Hagen-Platz 618",
+    "addressLine2": "",
+    "city": "Bad Hall",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "5968",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lorenzo Kölbl",
+    "knownAllergies": [],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Ibuprofen",
+      "Albuterol",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "Influenza",
+      "Hepatitis B",
+      "Tetanus"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "470076826387",
+    "insuranceExpiryDate": "2027-11-02"
+  },
+  {
+    "firstName": "Klara",
+    "lastName": "Mandl",
+    "gender": "OTHER",
+    "dateOfBirth": "2017-04-28",
+    "bloodGroup": "A_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 (0) 6589 05841512",
+    "email": "hblauensteiner@example.com",
+    "emergencyContactName": "Rana Moosbrugger",
+    "emergencyContactNumber": "05332/93294489",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Pendlring 8",
+    "addressLine2": "",
+    "city": "Wörgl",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "4105",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lionel Leibetseder",
+    "knownAllergies": [
+      "Penicillin",
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Diabetes"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Ibuprofen",
+      "Albuterol",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Tetanus"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "937707849254",
+    "insuranceExpiryDate": "2025-10-24"
+  },
+  {
+    "firstName": "Berra",
+    "lastName": "Lerch",
+    "gender": "FEMALE",
+    "dateOfBirth": "1988-05-17",
+    "bloodGroup": "B_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "03549/10189749",
+    "email": "marlene65@example.com",
+    "emergencyContactName": "Frau Lara-Sophie Ecker",
+    "emergencyContactNumber": "+43 618257905964",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Anton-Wenzl-Gasse 159",
+    "addressLine2": "Anderlstraße",
+    "city": "Villach",
+    "state": "Wien",
+    "country": "Austria",
+    "postalCode": "2738",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Laila Hosp-Kreidl",
+    "knownAllergies": [],
+    "pastMedicalHistory": [
+      "Asthma"
+    ],
+    "chronicDiseases": [
+      "Diabetes",
+      "Asthma"
+    ],
+    "currentMedications": [
+      "Albuterol",
+      "Lisinopril",
+      "Ibuprofen"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "530499561074",
+    "insuranceExpiryDate": "2026-05-21"
+  },
+  {
+    "firstName": "Anna-Maria",
+    "lastName": "Obermayr",
+    "gender": "OTHER",
+    "dateOfBirth": "1977-08-29",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 5262 19736 554",
+    "email": "naglsonja@example.org",
+    "emergencyContactName": "Calvin List",
+    "emergencyContactNumber": "+43 66268318733",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Haidergasse 937",
+    "addressLine2": "Neumayrring",
+    "city": "Bad Hall",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "7788",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Nick Holl-Schwaighofer",
+    "knownAllergies": [
+      "Latex",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [
+      "Arthritis"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Metformin"
+    ],
+    "immunizationStatus": [],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "329716936836",
+    "insuranceExpiryDate": "2027-03-24"
+  },
+  {
+    "firstName": "Lorena",
+    "lastName": "Eichinger",
+    "gender": "FEMALE",
+    "dateOfBirth": "2009-06-12",
+    "bloodGroup": "AB_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 420256782347",
+    "email": "matheolindner@example.org",
+    "emergencyContactName": "Angela Pointner-Baumann",
+    "emergencyContactNumber": "04363/28301351",
+    "relationshipToEmergencyContact": "Father",
+    "addressLine1": "Obermüllerstr. 5",
+    "addressLine2": "",
+    "city": "Knittelfeld",
+    "state": "Burgenland",
+    "country": "Austria",
+    "postalCode": "3096",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Lucas Zimmermann",
+    "knownAllergies": [
+      "Dust",
+      "Latex"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Arthritis"
+    ],
+    "currentMedications": [
+      "Metformin",
+      "Lisinopril",
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "Influenza",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "335639677771",
+    "insuranceExpiryDate": "2029-06-12"
+  },
+  {
+    "firstName": "Vanessa",
+    "lastName": "Fasching",
+    "gender": "OTHER",
+    "dateOfBirth": "1947-03-11",
+    "bloodGroup": "B_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 (0) 3377 68604255",
+    "email": "matteostoiber@example.net",
+    "emergencyContactName": "Lilly Rauch",
+    "emergencyContactNumber": "(03629) 60043 085",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Tim-Jost-Ring 3",
+    "addressLine2": "Mohrplatz",
+    "city": "Enns",
+    "state": "Vorarlberg",
+    "country": "Austria",
+    "postalCode": "7720",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Dr. Sabine Sagmeister",
+    "knownAllergies": [
+      "Latex",
+      "Nuts"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Arthritis",
+      "Diabetes"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Cataract surgery",
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "205216127906",
+    "insuranceExpiryDate": "2026-11-15"
+  },
+  {
+    "firstName": "Rayana",
+    "lastName": "Schiefer",
+    "gender": "FEMALE",
+    "dateOfBirth": "1994-04-14",
+    "bloodGroup": "AB_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "03813/46405543",
+    "email": "mariana00@example.com",
+    "emergencyContactName": "Univ.Prof. Siena Baier",
+    "emergencyContactNumber": "+43 31683919174",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Schweighofergasse 848",
+    "addressLine2": "Rechbergergasse",
+    "city": "Perg",
+    "state": "Steiermark",
+    "country": "Austria",
+    "postalCode": "8311",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Nela Kerschbaumer",
+    "knownAllergies": [
+      "Pollen",
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Diabetes"
+    ],
+    "chronicDiseases": [
+      "Asthma",
+      "Hypertension"
+    ],
+    "currentMedications": [],
+    "immunizationStatus": [
+      "Influenza",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Hernia repair"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "411013724076",
+    "insuranceExpiryDate": "2030-04-02"
+  },
+  {
+    "firstName": "Severin",
+    "lastName": "Steiger",
+    "gender": "MALE",
+    "dateOfBirth": "2005-11-29",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 (0) 4213 96479223",
+    "email": "vstock@example.net",
+    "emergencyContactName": "Dr. Johanna Schnabl",
+    "emergencyContactNumber": "+43 645066551896",
+    "relationshipToEmergencyContact": "Friend",
+    "addressLine1": "Traunerstraße 8/1",
+    "addressLine2": "Leonardo-Walcher-Straße",
+    "city": "Gföhl",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "4687",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Marko Tanzer",
+    "knownAllergies": [
+      "Nuts",
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Diabetes"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Albuterol",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "COVID-19",
+      "Influenza",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Appendectomy",
+      "Hernia repair",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "521739537013",
+    "insuranceExpiryDate": "2029-02-17"
+  },
+  {
+    "firstName": "Mariella",
+    "lastName": "Brandner",
+    "gender": "OTHER",
+    "dateOfBirth": "1969-12-22",
+    "bloodGroup": "B_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "(07646) 22103 482",
+    "email": "vfrey@example.com",
+    "emergencyContactName": "Axel Pock",
+    "emergencyContactNumber": "06415/67721416",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Ladnerplatz 9/2",
+    "addressLine2": "",
+    "city": "Frohnleiten",
+    "state": "Salzburg",
+    "country": "Austria",
+    "postalCode": "4483",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Ylvie Bayer",
+    "knownAllergies": [
+      "Pollen",
+      "Penicillin",
+      "Dust"
+    ],
+    "pastMedicalHistory": [
+      "Hypertension",
+      "Diabetes",
+      "Asthma"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Albuterol",
+      "Ibuprofen",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "Influenza"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "862775011451",
+    "insuranceExpiryDate": "2026-08-29"
+  },
+  {
+    "firstName": "Eleonora",
+    "lastName": "Ziegler",
+    "gender": "FEMALE",
+    "dateOfBirth": "1949-05-18",
+    "bloodGroup": "O_NEGATIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "+43 547946972324",
+    "email": "burgerkevin@example.net",
+    "emergencyContactName": "Jessica Stecher-Schmölzer",
+    "emergencyContactNumber": "(05494) 76880 052",
+    "relationshipToEmergencyContact": "Spouse",
+    "addressLine1": "Igor-Kasper-Gasse 0",
+    "addressLine2": "Veronika-Fuchs-Ring",
+    "city": "Murau",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "1547",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Hugo Hochreiter",
+    "knownAllergies": [
+      "Pollen",
+      "Latex",
+      "Penicillin"
+    ],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Asthma",
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Albuterol",
+      "Metformin"
+    ],
+    "immunizationStatus": [
+      "Influenza",
+      "Tetanus",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "221501523913",
+    "insuranceExpiryDate": "2029-01-16"
+  },
+  {
+    "firstName": "Sara",
+    "lastName": "Walch",
+    "gender": "OTHER",
+    "dateOfBirth": "1985-12-13",
+    "bloodGroup": "O_POSITIVE",
+    "maritalStatus": "MARRIED",
+    "phoneNumber": "05675 62864 655",
+    "email": "antonbraeuer@example.org",
+    "emergencyContactName": "Mike Salzmann",
+    "emergencyContactNumber": "+43 (0) 6537 31493969",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Leibetsederstr. 4/6",
+    "addressLine2": "",
+    "city": "Mürzzuschlag",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "6304",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Prof. Damian Fercher",
+    "knownAllergies": [
+      "Pollen"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Arthritis"
+    ],
+    "chronicDiseases": [
+      "Arthritis",
+      "Diabetes"
+    ],
+    "currentMedications": [
+      "Lisinopril",
+      "Albuterol"
+    ],
+    "immunizationStatus": [
+      "Tetanus"
+    ],
+    "surgicalHistory": [],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "329908097164",
+    "insuranceExpiryDate": "2027-09-11"
+  },
+  {
+    "firstName": "Anna-Lena",
+    "lastName": "Vogler",
+    "gender": "OTHER",
+    "dateOfBirth": "1944-02-13",
+    "bloodGroup": "A_NEGATIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "03354/59475768",
+    "email": "jahnsabine@example.com",
+    "emergencyContactName": "Louisa Plattner-Leibetseder",
+    "emergencyContactNumber": "+43 3324 20451 183",
+    "relationshipToEmergencyContact": "Sibling",
+    "addressLine1": "Adrian-Bachmann-Ring 804",
+    "addressLine2": "Oliver-Rauch-Gasse",
+    "city": "Lilienfeld",
+    "state": "Oberösterreich",
+    "country": "Austria",
+    "postalCode": "4793",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Prof. Patricia Gamsjäger",
+    "knownAllergies": [
+      "Nuts",
+      "Latex"
+    ],
+    "pastMedicalHistory": [
+      "Asthma",
+      "Arthritis"
+    ],
+    "chronicDiseases": [],
+    "currentMedications": [
+      "Metformin",
+      "Albuterol",
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Hepatitis B",
+      "Influenza",
+      "COVID-19"
+    ],
+    "surgicalHistory": [
+      "Appendectomy"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "540670500501",
+    "insuranceExpiryDate": "2025-12-07"
+  },
+  {
+    "firstName": "Lola",
+    "lastName": "Grundner",
+    "gender": "FEMALE",
+    "dateOfBirth": "1948-07-09",
+    "bloodGroup": "AB_POSITIVE",
+    "maritalStatus": "SINGLE",
+    "phoneNumber": "+43 (0) 3848 37454700",
+    "email": "christinareichmann@example.org",
+    "emergencyContactName": "Gregor Stocker",
+    "emergencyContactNumber": "+43 724800882366",
+    "relationshipToEmergencyContact": "Mother",
+    "addressLine1": "Hugo-Schuster-Platz 645",
+    "addressLine2": "",
+    "city": "Amstetten",
+    "state": "Kärnten",
+    "country": "Austria",
+    "postalCode": "8983",
+    "status": "ACTIVE",
+    "patientId": "",
+    "referredBy": "Nicole Rettenbacher",
+    "knownAllergies": [],
+    "pastMedicalHistory": [],
+    "chronicDiseases": [
+      "Arthritis",
+      "Diabetes",
+      "Hypertension"
+    ],
+    "currentMedications": [
+      "Lisinopril"
+    ],
+    "immunizationStatus": [
+      "Tetanus",
+      "Hepatitis B"
+    ],
+    "surgicalHistory": [
+      "Hernia repair",
+      "Appendectomy",
+      "Cataract surgery"
+    ],
+    "insuranceProvider": "ÖGK",
+    "insurancePolicyNumber": "533372854410",
+    "insuranceExpiryDate": "2029-06-04"
+  }
+]

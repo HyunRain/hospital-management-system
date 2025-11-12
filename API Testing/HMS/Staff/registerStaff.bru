@@ -1,0 +1,29 @@
+meta {
+  name: registerStaff
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8083/api/staff
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "userId": "85995b84-b7a3-4c95-9189-066f5f87b36b",
+    "firstName": "Franz",
+    "lastName": "Meier",
+    "gender": "MALE",
+    "dateOfBirth": "1996-09-10",
+    "phoneNumber": "06649998388",
+    "email": "frandz.meier@gmail.com",
+    "addressLine1": "Meiergasse 15",
+    "city": "Wien",
+    "state": "Wien",
+    "country": "Österreich",
+    "postalCode": "1150",
+    "departmentName": "Oncology"
+  }
+}

@@ -1,0 +1,135 @@
+server:
+  port: 8079 # Gateway listens on port 8079
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: auth
+        url: /api-docs/auth
+      - name: patient
+        url: /api-docs/patient
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway.filter.ratelimit: DEBUG
+
+
+services:
+  patient:
+    url: http://patient-service:8080
+  billing:
+    url: http://billing-service:8082
+
+
+spring:
+  data:
+    redis:
+      host: redis-stack
+      port: 6379
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - 'http://localhost:5173'
+              - 'http://localhost:5174'
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - Content-Type
+            allowCredentials: true
+      routes:
+        # AUTH SERVICE ROUTES
+        - id: auth-service-protected-route
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api/auth/registration
+          filters:
+            - JwtValidation
+
+        - id: login_route
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api/auth/login
+          filters:
+            - LoginRateLimiter
+
+
+        - id: auth-service-route
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - JwtValidation
+
+        # PATIENT SERVICE ROUTE
+        - id: patient-service-route
+          uri: http://patient-service:8080
+          predicates:
+            - Path=/api/patient/**
+          filters:
+            - JwtValidation
+
+        # STAFF SERVICE ROUTE
+        - id: staff-service-route
+          uri: http://staff-service:8083
+          predicates:
+              - Path=/api/staff/**
+          filters:
+            - JwtValidation
+
+        # DEPARTMENT SERVICE ROUTE
+        - id: department-service-route
+          uri: http://staff-service:8083
+          predicates:
+            - Path=/api/department/**
+          filters:
+            - JwtValidation
+
+
+        # APPOINTMENT SERVICE ROUTE
+        - id: appointment-service-route
+          uri: http://appointment-service:8084
+          predicates:
+            - Path=/api/appointment/**
+          filters:
+            - JwtValidation
+
+        # BILLING SERVICE ROUTES
+        - id: billing-service-route
+          uri: http://billing-service:8082
+          predicates:
+            - Path=/api/billing/**
+          filters:
+            - JwtValidation
+
+        - id: billing-item-service-route
+          uri: http://billing-service:8082
+          predicates:
+            - Path=/api/billing-item/**
+          filters:
+            - JwtValidation
+
+
+        # AUTH API DOCS
+        - id: auth-api-docs-route
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api-docs/auth
+          filters:
+            - RewritePath=/api-docs/auth, /v3/api-docs
+
+        # PATIENT API DOCS
+        - id: patient-api-docs-route
+          uri: http://patient-service:8080
+          predicates:
+            - Path=/api-docs/patient
+          filters:
+            - RewritePath=/api-docs/patient, /v3/api-docs

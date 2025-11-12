@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "auth";
+
+service AuthService {
+  rpc UserExists(UserExistsRequest) returns (UserExistsResponse);
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+}
+
+message UserExistsRequest {
+  string email = 1;
+}
+
+message UserExistsResponse {
+  bool doesExist = 1;
+}
+
+message CreateUserRequest {
+  string email = 1;
+  string password = 2;
+  string role = 3;
+}
+
+message CreateUserResponse {
+  string userId = 1;
+}

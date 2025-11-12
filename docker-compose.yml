@@ -1,0 +1,195 @@
+services:
+  api-gateway:
+    build:
+      context: ./backend/api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "${API_GATEWAY_PORTS}"
+    networks:
+      - internal
+    environment:
+      - AUTH_SERVICE_URL=${AUTH_SERVICE_URL}
+      - SPRING_REDIS_HOST=redis-stack
+      - SPRING_REDIS_PORT=${SPRING_REDIS_PORT}
+
+  redis-stack:
+    image: redis/redis-stack:latest
+    ports:
+      - "${REDIS_PORTS}"
+      - "${REDIS_UI_PORTS}"
+    networks:
+      - internal
+
+  auth-service-db:
+    image: postgres:17
+    ports:
+      - "${AUTH_SERVICE_DB_PORTS}"
+    networks:
+      - internal
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - auth-db-data:/var/lib/postgresql/data
+
+  auth-service:
+    build:
+      context: ./backend/auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "${AUTH_SERVICE_GRPC_PORTS}"
+    networks:
+      - internal
+    depends_on:
+      - auth-service-db
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_DATASOURCE_URL=${AUTH_SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_SQL_INIT_MODE=always
+    
+  patient-service-db:
+    image: postgres:17
+    ports:
+     - "${PATIENT_SERVICE_DB_PORTS}"
+    networks:
+      - internal
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - patient-db-data:/var/lib/postgresql/data
+
+  patient-service:
+    build:
+      context: ./backend/patient-service
+      dockerfile: Dockerfile
+    networks:
+      - internal
+    depends_on:
+      - patient-service-db
+    environment:
+      - BILLING_SERVICE_ADDRESS=billing-service
+      - BILLING_SERVICE_GRPC_PORT=${BILLING_SERVICE_GRPC_PORT}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_DATASOURCE_URL=${PATIENT_SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_SHOW_SQL=true
+      - SPRING_SQL_INIT_MODE=always
+  
+  staff-service-db:
+    image: postgres:17
+    ports:
+      - "${STAFF_SERVICE_DB_PORTS}"
+    networks:
+      - internal
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - staff-db-data:/var/lib/postgresql/data
+
+  staff-service:
+    build:
+      context: ./backend/staff-service
+      dockerfile: Dockerfile
+    networks:
+      - internal
+    depends_on:
+      - staff-service-db
+    environment:
+      - AUTH_SERVICE_ADDRESS=auth-service
+      - AUTH_SERVICE_GRPC_PORT=${AUTH_SERVICE_GRPC_PORT}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_DATASOURCE_URL=${STAFF_SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_SQL_INIT_MODE=always
+  
+  billing-service-db:
+    image: postgres:17
+    ports:
+      - "${BILLING_SERVICE_DB_PORTS}"
+    networks:
+      - internal
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - billing-db-data:/var/lib/postgresql/data
+
+  billing-service:
+    build:
+      context: ./backend/billing-service
+      dockerfile: Dockerfile
+    ports:
+      - "${BILLING_SERVICE_PORTS}"
+      - "${BILLING_SERVICE_GRPC_PORTS}"
+    networks:
+      - internal
+    depends_on:
+      - billing-service-db
+    environment:
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_DATASOURCE_URL=${BILLING_SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_SQL_INIT_MODE=always
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_S3_REGION=${AWS_S3_REGION}
+      - AWS_S3_BUCKET=${AWS_S3_BUCKET}
+
+  appointment-service-db:
+    image: postgres:17
+    ports:
+      - "${APPOINTMENT_SERVICE_DB_PORTS}"
+    networks:
+      - internal
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - appointment-db-data:/var/lib/postgresql/data
+
+  appointment-service:
+    build:
+      context: ./backend/appointment-service
+      dockerfile: Dockerfile
+    networks:
+      - internal
+    depends_on:
+      - appointment-service-db
+    environment:
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_DATASOURCE_URL=${APPOINTMENT_SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_SQL_INIT_MODE=always
+      - BILLING_SERVICE_ADDRESS=billing-service
+      - BILLING_SERVICE_GRPC_PORT=${BILLING_SERVICE_GRPC_PORT}
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  auth-db-data:
+    external: true
+  patient-db-data:
+    external: true
+  staff-db-data:
+    external: true
+  billing-db-data:
+    external: true
+  appointment-db-data:
+    external: true
