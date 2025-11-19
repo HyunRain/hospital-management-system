@@ -14,6 +14,7 @@ public class StaffClient {
 
     public StaffClient(@Value("${services.staff.url}") String staffServiceUrl) {
         this.webClient = WebClient.create(staffServiceUrl);
+        System.out.println();
     }
 
     public Mono<List<DoctorDto>> getDoctorNames(List<String> ids) {
